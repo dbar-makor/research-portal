@@ -1,0 +1,74 @@
+{
+  "data": {
+    "Melbourne": {
+      "fin_id": "JP.JPX",
+      "exchange": "Japan Exchange Group",
+      "market": "Tokyo Stock Exchange",
+      "products": null,
+      "local_time": "2020-09-12T04:03:19+09:00",
+      "status": "Closed",
+      "reason": null,
+      "until": "2020-09-14T08:00:00+09:00",
+      "next_bell": "2020-09-14T12:30:00+09:00"
+    },
+    "London": {
+      "fin_id": "JP.JPX",
+      "exchange": "Japan Exchange Group",
+      "market": "Tokyo Stock Exchange",
+      "products": null,
+      "local_time": "2020-09-12T04:03:19+09:00",
+      "status": "Open",
+      "reason": null,
+      "until": "2020-09-14T08:00:00+09:00",
+      "next_bell": "2020-09-14T12:30:00+09:00"
+    },
+    "Singapore": {
+      "fin_id": "JP.JPX",
+      "exchange": "Japan Exchange Group",
+      "market": "Tokyo Stock Exchange",
+      "products": null,
+      "local_time": "2020-09-12T04:03:19+09:00",
+      "status": "Open",
+      "reason": null,
+      "until": "2020-09-14T08:00:00+09:00",
+      "next_bell": "2020-09-14T12:30:00+09:00"
+    },
+    "Monaco": {
+      "fin_id": "JP.JPX",
+      "exchange": "Japan Exchange Group",
+      "market": "Tokyo Stock Exchange",
+      "products": null,
+      "local_time": "2020-09-12T04:03:19+09:00",
+      "status": "Closed",
+      "reason": null,
+      "until": "2020-09-14T08:00:00+09:00",
+      "next_bell": "2020-09-14T12:30:00+09:00"
+    },
+    "Bermuda": {
+      "fin_id": "JP.JPX",
+      "exchange": "Japan Exchange Group",
+      "market": "Tokyo Stock Exchange",
+      "products": null,
+      "local_time": "2020-09-12T04:03:19+09:00",
+      "status": "Closed",
+      "reason": null,
+      "until": "2020-09-14T08:00:00+09:00",
+      "next_bell": "2020-09-14T12:30:00+09:00"
+    },
+    "Newyork": {
+      "fin_id": "US.NYSE",
+      "exchange": "New York Stock Exchange",
+      "market": "Canonical",
+      "products": null,
+      "local_time": "2020-09-11T15:03:19-04:00",
+      "status": "Open",
+      "reason": "Primary Trading Session",
+      "until": "2020-09-11T15:45:00-04:00",
+      "next_bell": "2020-09-11T16:00:00-04:00"
+    }
+  },
+  "meta": {
+    "utc_time": "2020-09-11T19:03:19+00:00",
+    "time": "2020-09-11T19:03:19+00:00"
+  }
+}

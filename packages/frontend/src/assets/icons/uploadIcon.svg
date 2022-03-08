@@ -1,0 +1,9 @@
+ <svg xmlns="http://www.w3.org/2000/svg" width="37" height="48" viewBox="0 0 37 48">
+  <g id="Group_175" data-name="Group 175" transform="translate(-1072 -467)">
+    <g id="Icon_feather-file-text" data-name="Icon feather-file-text" transform="translate(1073 468)">
+      <path class='upload1' id="Path_21" data-name="Path 21" d="M27.875,3h-17.5A4.492,4.492,0,0,0,6,7.6V44.4A4.492,4.492,0,0,0,10.375,49h26.25A4.492,4.492,0,0,0,41,44.4V16.8Z" transform="translate(-6 -3)" fill="none" stroke="#868da2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path class='upload2' id="Path_22" data-name="Path 22" d="M21,3V17.3H35.3" transform="translate(-0.301 -3)" fill="none" stroke="#868da2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <path class='upload3' id="Icon_material-file-upload" data-name="Icon material-file-upload" d="M12,18.827h6.745V12.215h4.5L15.369,4.5,7.5,12.215H12Zm-4.5,2.2H23.238v2.2H7.5Z" transform="translate(1075.463 484.774)" fill="#868da2"/>
+  </g>
+</svg> 

@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+/* select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus */
+/* {
+ -webkit-box-shadow: 0 0 0 30px #262626 inset !important;
+ -webkit-text-fill-color: #ffffff !important;
+} */
+.MuiDrawer-paperAnchorDockedLeft {
+  border: none !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}

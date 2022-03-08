@@ -1,0 +1,19 @@
+{
+    "statistics" : 
+      {
+        "id": "1",
+        "authorsID": "100",
+        "posts": 13,
+        "total_words": 7500,
+        "avg_wordcount": 700,
+        "comments": 22,
+        "views": 150,
+        "shares": 5,
+        "most_read": "The Floki Scam",
+        "most_interacted":"What are NFTs",
+        "saved_drafts": 3,
+        "drafts_total_words": 2000,
+        "drafts_avg_wordcount": 600
+      }
+    
+}

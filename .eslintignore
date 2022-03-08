@@ -1,13 +1,8 @@
 changelog.config.js
-lighthouserc.js
-jest.config.js
-jest.setup.js
 .eslintrc.js
 .prettierrc.js
-next.config.js
 stylelint.config.js
 release.config.js
-next-sitemap.config.js
 dist
 build
 _templates

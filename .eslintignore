@@ -7,3 +7,4 @@ dist
 build
 _templates
 coverage
+test

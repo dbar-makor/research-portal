@@ -61,7 +61,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "eslint \"src/**/*.{js,jsx}\" --fix",
+		"format": "prettier --write \"src/**/*.{js,jsx}\"",
+		"template:page": "hygen component new-page",
+		"template:container": "hygen component new-container",
+		"template:layout": "hygen component new-layout",
+		"template:ui": "hygen component new-ui"
   },
   "eslintConfig": {
     "extends": [

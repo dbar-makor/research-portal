@@ -27,7 +27,8 @@
     "git-cz": "^4.8.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "hygen": "^6.1.0"
   },
   "dependencies": {}
 }

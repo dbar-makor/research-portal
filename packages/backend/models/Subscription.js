@@ -1,18 +1,18 @@
-const db_helper = require('../utils/db_helper')
+const db_helper = require('../utils/db_helper');
 
 // constructor
-const Subscription = () => {}
+const Subscription = () => {};
 
 // create subscription
-Subscription.createSubscription = (payload, result) => {}
+Subscription.createSubscription = (payload, result) => {};
 
 //get all subscriptions by admin
-Subscription.getSubscription = (payload, result) => {}
+Subscription.getSubscription = (payload, result) => {};
 
 //update subscription
-Subscription.updatesubScription = (payload, result) => {}
+Subscription.updatesubScription = (payload, result) => {};
 
 //remove subscription
-Subscription.deleteSubscription = (payload, result) => {}
+Subscription.deleteSubscription = (payload, result) => {};
 
-module.exports = Subscription
+module.exports = Subscription;

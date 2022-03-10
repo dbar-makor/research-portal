@@ -6,7 +6,6 @@ import { ReactComponent as Rejected } from '../../../assets/icons/rejected.svg';
 import { ReactComponent as Approved } from '../../../assets/icons/approved.svg';
 import { ReactComponent as Paper } from '../../../assets/icons/paper.svg';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
-import { ReactComponent as Add } from '../../../assets/icons/add.svg';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import {
@@ -24,7 +23,7 @@ import {
 import { useStyles, StyledTextField } from '../../../styles/ContarctsModalStyles';
 import { withStyles } from '@material-ui/styles';
 import PaymentButtonBar from './PaymentButtonBar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 
@@ -104,10 +103,6 @@ function ContractRow(props) {
 		} catch (err) {
 			dispatch(actionSnackBar.setSnackBar('error', 'Failed to create a invoice', 2000));
 		}
-		console.log(invoiceId);
-		const url = `${BASE_URL}${END_POINT.INVOICE}/pdf/${invoiceId})}`;
-
-		// window.open(url, '_blank');
 	};
 
 	console.log(filterInvoices);

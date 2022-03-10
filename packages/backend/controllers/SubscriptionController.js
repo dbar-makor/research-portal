@@ -6,27 +6,27 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/SubscriptionService')
+const Controller = require('./Controller');
+const service = require('../services/SubscriptionService');
 const createSubscription = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createSubscription)
-}
+	await Controller.handleRequest(request, response, service.createSubscription);
+};
 
 const deleteSubscription = async (request, response) => {
-  await Controller.handleRequest(request, response, service.deleteSubscription)
-}
+	await Controller.handleRequest(request, response, service.deleteSubscription);
+};
 
 const getSubscription = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getSubscription)
-}
+	await Controller.handleRequest(request, response, service.getSubscription);
+};
 
 const updatesubScription = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updatesubScription)
-}
+	await Controller.handleRequest(request, response, service.updatesubScription);
+};
 
 module.exports = {
-  createSubscription,
-  deleteSubscription,
-  getSubscription,
-  updatesubScription,
-}
+	createSubscription,
+	deleteSubscription,
+	getSubscription,
+	updatesubScription,
+};

@@ -13,7 +13,6 @@ import { setAuthToken } from './utils/constants';
 // REDUX
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_SUCCESS } from './redux/auth/constants';
-//import AuthorsNewArticle from './components/AuthorsScreens/AuthorsNewArticle'
 import AuthorsNewArticle from './components/ui/author/AuthorsnewArticle/AuthorsNewArticle';
 import AllPublications from './components/AuthorsScreens/allPublications/AllPublications';
 import TopBar from './utils/components/TopBar';

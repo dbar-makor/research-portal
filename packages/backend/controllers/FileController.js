@@ -6,17 +6,17 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/FileService')
+const Controller = require('./Controller');
+const service = require('../services/FileService');
 const getFile = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getFile)
-}
+	await Controller.handleRequest(request, response, service.getFile);
+};
 
 const updateFile = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateFile)
-}
+	await Controller.handleRequest(request, response, service.updateFile);
+};
 
 module.exports = {
-  getFile,
-  updateFile,
-}
+	getFile,
+	updateFile,
+};

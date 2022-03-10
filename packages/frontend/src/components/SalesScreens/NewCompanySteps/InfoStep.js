@@ -1,156 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { ReactComponent as BlueBorder } from '../../../assets/icons/blueBorder.svg';
 import TextInputUnit from '../../Reusables/TextInputUnit';
 import SelectInputUnit from '../../Reusables/SelectInputUnit';
 import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
 import DateInputUnit from '../../Reusables/DateInputUnit';
-import { selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-//import { validateCompany } from "../../Reusables/validationFunctions";
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, Typography, makeStyles, Button, IconButton, TextField } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import DropZone from '../../Reusables/DropZone';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import axios from 'axios';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
-
-const typeArray = [
-	{
-		value: 'client',
-		name: 'Client',
-	},
-	{
-		value: 'prospect',
-		name: 'Prospect',
-	},
-];
-
-const today = new Date();
-const tomorrow = new Date(today);
-tomorrow.setDate(tomorrow.getDate() + 1);
-
-const InfoStep = ({
-	company,
-	setCompany,
-	errors,
-	setErrors,
-	handleCompany,
-	setUploadedImage,
-	uploadedImage,
-	inputValue,
-	setInputValue,
-}) => {
-	const countriesArr = useSelector((state) => state.utils.utils.country);
-	const classes = useStyles();
-	console.log('company', company);
-	const dispatch = useDispatch();
-	//const [uploadedImage, setUploadedImage] = useState({})
-
-	const onDrop = async (acceptedFiles) => {
-		// console.log('acceptedCover', acceptedFiles)
-		const image = acceptedFiles[0];
-		const formData = new FormData();
-		formData.append('file', image);
-		try {
-			const res = await axios.post(`${BASE_URL}${END_POINT.FILE}`, formData);
-			if (res.status === 200) {
-				// console.log('res', res)
-				// const newImage = { logo: res.data.file}
-				// setLogo(res.data.file)
-				setUploadedImage(res.data.file);
-			}
-		} catch (error) {
-			dispatch(actionSnackBar.setSnackBar('error', 'File upload failed', 2000));
-		}
-	};
-
-	return (
-		<Grid item xs={6} className={classes.stepFormContanier}>
-			<Grid container>
-				<Grid item xs={12} className={classes.fieldWrapper}>
-					<TextInputUnit
-						className={classes.textFieldStyle}
-						name="name"
-						label="Customer"
-						value={company.name || ''}
-						onChange={handleCompany}
-						error={errors.name}
-					/>
-				</Grid>
-
-				<Grid item xs={12} className={classes.fieldWrapper} style={{ marginTop: -10 }}>
-					<DropZone
-						className={classes.dropZone}
-						onDrop={onDrop}
-						uploadedImage={uploadedImage}
-						setUploadedImage={setUploadedImage}
-						purpose="logo"
-						// imageData='uploadedImage'
-					/>
-				</Grid>
-
-				<Grid item xs={12} className={classes.fieldWrapper}>
-					{countriesArr && (
-						<AutoCompleteUnit
-							className={classes.autoCompleteStyle}
-							name="country"
-							label="Country"
-							// style={company.country.name ? {color: "#000"} : {}}
-							fieldForLabel="name"
-							options={countriesArr}
-							formObject={company}
-							handler={handleCompany}
-							error={errors.country}
-							inputValue={inputValue}
-							setInputValue={setInputValue}
-						/>
-					)}
-				</Grid>
-				<Grid item xs={12} className={classes.fieldWrapper}>
-					<SelectInputUnit
-						className={classes.autoCompleteStyle}
-						name="type"
-						label={company.type ? '' : 'Type'}
-						optionLabelField="name"
-						valueField="value"
-						value={company.type || ''}
-						onChange={handleCompany}
-						optionsArray={typeArray}
-						error={errors.type}
-					/>
-				</Grid>
-				<Grid item xs={12} className={classes.fieldWrapper}>
-					<DateInputUnit
-						className={classes.datePicker}
-						name="start_at"
-						value={company['start_at'] || {}}
-						label="Start Date"
-						error={errors['start_at']}
-						onChange={(date) => handleCompany(date, 'start_at')}
-					/>
-				</Grid>
-				{company.type === 'prospect' ? (
-					<Grid item xs={12} className={classes.fieldWrapper}>
-						<DateInputUnit
-							className={`${classes.marginBottom35} ${classes.datePicker}`}
-							name="end_at"
-							error={errors['end_at']}
-							value={company['end_at'] || {}}
-							label="End Date "
-							// value={company["end_at"] ||tomorrow.setDate(tomorrow.getDate())}
-							onChange={(date) => handleCompany(date, 'end_at')}
-						/>
-					</Grid>
-				) : (
-					<></>
-				)}
-			</Grid>
-		</Grid>
-	);
-};
-
-export default InfoStep;
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	stepFormContanier: {
 		display: 'flex',
 		flexDirection: 'column',
@@ -282,3 +140,138 @@ const useStyles = makeStyles((theme) => ({
 		border: '1px solid #EDEFF3',
 	},
 }));
+
+const typeArray = [
+	{
+		value: 'client',
+		name: 'Client',
+	},
+	{
+		value: 'prospect',
+		name: 'Prospect',
+	},
+];
+
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+
+const InfoStep = ({
+	company,
+	errors,
+	handleCompany,
+	setUploadedImage,
+	uploadedImage,
+	inputValue,
+	setInputValue,
+}) => {
+	const countriesArr = useSelector((state) => state.utils.utils.country);
+	const classes = useStyles();
+	console.log('company', company);
+	const dispatch = useDispatch();
+	//const [uploadedImage, setUploadedImage] = useState({})
+
+	const onDrop = async (acceptedFiles) => {
+		// console.log('acceptedCover', acceptedFiles)
+		const image = acceptedFiles[0];
+		const formData = new FormData();
+		formData.append('file', image);
+		try {
+			const res = await axios.post(`${BASE_URL}${END_POINT.FILE}`, formData);
+			if (res.status === 200) {
+				// console.log('res', res)
+				// const newImage = { logo: res.data.file}
+				// setLogo(res.data.file)
+				setUploadedImage(res.data.file);
+			}
+		} catch (error) {
+			dispatch(actionSnackBar.setSnackBar('error', 'File upload failed', 2000));
+		}
+	};
+
+	return (
+		<Grid item xs={6} className={classes.stepFormContanier}>
+			<Grid container>
+				<Grid item xs={12} className={classes.fieldWrapper}>
+					<TextInputUnit
+						className={classes.textFieldStyle}
+						name="name"
+						label="Customer"
+						value={company.name || ''}
+						onChange={handleCompany}
+						error={errors.name}
+					/>
+				</Grid>
+
+				<Grid item xs={12} className={classes.fieldWrapper} style={{ marginTop: -10 }}>
+					<DropZone
+						className={classes.dropZone}
+						onDrop={onDrop}
+						uploadedImage={uploadedImage}
+						setUploadedImage={setUploadedImage}
+						purpose="logo"
+						// imageData='uploadedImage'
+					/>
+				</Grid>
+
+				<Grid item xs={12} className={classes.fieldWrapper}>
+					{countriesArr && (
+						<AutoCompleteUnit
+							className={classes.autoCompleteStyle}
+							name="country"
+							label="Country"
+							// style={company.country.name ? {color: "#000"} : {}}
+							fieldForLabel="name"
+							options={countriesArr}
+							formObject={company}
+							handler={handleCompany}
+							error={errors.country}
+							inputValue={inputValue}
+							setInputValue={setInputValue}
+						/>
+					)}
+				</Grid>
+				<Grid item xs={12} className={classes.fieldWrapper}>
+					<SelectInputUnit
+						className={classes.autoCompleteStyle}
+						name="type"
+						label={company.type ? '' : 'Type'}
+						optionLabelField="name"
+						valueField="value"
+						value={company.type || ''}
+						onChange={handleCompany}
+						optionsArray={typeArray}
+						error={errors.type}
+					/>
+				</Grid>
+				<Grid item xs={12} className={classes.fieldWrapper}>
+					<DateInputUnit
+						className={classes.datePicker}
+						name="start_at"
+						value={company['start_at'] || {}}
+						label="Start Date"
+						error={errors['start_at']}
+						onChange={(date) => handleCompany(date, 'start_at')}
+					/>
+				</Grid>
+				{company.type === 'prospect' ? (
+					<Grid item xs={12} className={classes.fieldWrapper}>
+						<DateInputUnit
+							className={`${classes.marginBottom35} ${classes.datePicker}`}
+							name="end_at"
+							error={errors['end_at']}
+							value={company['end_at'] || {}}
+							label="End Date "
+							// value={company["end_at"] ||tomorrow.setDate(tomorrow.getDate())}
+							onChange={(date) => handleCompany(date, 'end_at')}
+						/>
+					</Grid>
+				) : (
+					<></>
+				)}
+			</Grid>
+		</Grid>
+	);
+};
+
+export default InfoStep;

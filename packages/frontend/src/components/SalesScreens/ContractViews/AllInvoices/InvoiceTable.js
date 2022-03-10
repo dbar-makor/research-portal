@@ -20,6 +20,9 @@ import {
 } from '@material-ui/core';
 
 const headersName = ['No.', 'Company', 'Date', 'Amount', 'Status', 'Download'];
+<<<<<<< HEAD
+const useStyles = makeStyles(() => ({
+=======
 
 function InvoiceTable(props) {
 	const { invoiceRows } = props;
@@ -121,6 +124,7 @@ function InvoiceTable(props) {
 export default InvoiceTable;
 
 const useStyles = makeStyles((theme) => ({
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 	tableContainer: {
 		'maxHeight': 'calc(100vh - 265px)',
 		'&::-webkit-scrollbar': {
@@ -203,3 +207,103 @@ const useStyles = makeStyles((theme) => ({
 		border: 'none',
 	},
 }));
+
+function InvoiceTable(props) {
+	const { invoiceRows } = props;
+	const dispatch = useDispatch();
+	const classes = useStyles();
+
+	const showInvoice = async (invoiceId) => {
+		try {
+			const res = await axios.get(`${BASE_URL}${END_POINT.INVOICE}/pdf/${invoiceId}`, {
+				headers: { Accept: 'application/pdf' },
+			});
+
+			if (res.status === 200) {
+				const pdfString = res.data.pdf;
+
+				const byteCharacters = window.atob(pdfString);
+				const byteNumbers = new Array(byteCharacters.length);
+				for (let i = 0; i < byteCharacters.length; i++) {
+					byteNumbers[i] = byteCharacters.charCodeAt(i);
+				}
+				const byteArray = new Uint8Array(byteNumbers);
+				const file = new Blob([byteArray], { type: 'application/pdf;base64' });
+				const fileURL = URL.createObjectURL(file);
+				window.open(fileURL);
+
+				dispatch(actionSnackBar.setSnackBar('success', 'Contract successfully created', 2000));
+			}
+		} catch (err) {
+			dispatch(actionSnackBar.setSnackBar('error', 'Failed to create a invoice', 2000));
+		}
+	};
+
+	return (
+		<TableContainer className={classes.tableContainer}>
+			<Table stickyHeader size="small" className={classes.table}>
+				<TableHead style={{ borderBottom: 'none' }}>
+					<TableRow>
+						{headersName.map((header, idx) => {
+							return (
+								<TableCell
+									className={classes.tableCellHeaders}
+									key={idx}
+									style={{
+										textAlign:
+											header === 'Amount'
+												? 'center'
+												: header === 'Status'
+												? 'center'
+												: header === 'Download'
+												? 'center'
+												: 'none',
+									}}
+								>
+									{header}
+								</TableCell>
+							);
+						})}
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{invoiceRows &&
+						invoiceRows.map((invoice, index) => {
+							return (
+								<TableRow key={index}>
+									<TableCell
+										style={{ textTransform: 'uppercase', fontWeight: 'bold' }}
+									>{`#${invoice.id.slice(0, 6)}`}</TableCell>
+									<TableCell style={{ textTransform: 'capitalize' }}>
+										{invoice.company_name}
+									</TableCell>
+									<TableCell>
+										{format(new Date(invoice.invoice_date), 'dd MMM, yyyy')}
+									</TableCell>
+									<TableCell
+										style={{ textAlign: 'center' }}
+									>{`${invoice.amount}`}</TableCell>
+									<TableCell style={{ textAlign: 'center' }}>
+										{invoice.status === 'pending' ? (
+											<Pending />
+										) : invoice.status === 'rejected' ? (
+											<Rejected />
+										) : (
+											<Approved />
+										)}
+									</TableCell>
+									<TableCell style={{ textAlign: 'center' }}>
+										<IconButton size="small" onClick={() => showInvoice(invoice.id)}>
+											<Paper />
+										</IconButton>
+									</TableCell>
+								</TableRow>
+							);
+						})}
+				</TableBody>
+			</Table>
+		</TableContainer>
+	);
+}
+
+export default InvoiceTable;

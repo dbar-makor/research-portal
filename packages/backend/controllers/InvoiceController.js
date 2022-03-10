@@ -6,22 +6,22 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/InvoiceService')
+const Controller = require('./Controller');
+const service = require('../services/InvoiceService');
 const createInvoice = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createInvoice)
-}
+	await Controller.handleRequest(request, response, service.createInvoice);
+};
 
 const createInvoicePdf = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createInvoicePdf)
-}
+	await Controller.handleRequest(request, response, service.createInvoicePdf);
+};
 
 const getInvoices = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getInvoices)
-}
+	await Controller.handleRequest(request, response, service.getInvoices);
+};
 
 module.exports = {
-  createInvoice,
-  createInvoicePdf,
-  getInvoices,
-}
+	createInvoice,
+	createInvoicePdf,
+	getInvoices,
+};

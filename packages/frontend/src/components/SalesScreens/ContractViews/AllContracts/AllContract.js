@@ -1,9 +1,8 @@
 import { Grid, Typography, CircularProgress } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder.svg';
-import DateInputUnit from '../../../Reusables/DateInputUnit';
 import SelectInputUnit from '../../../Reusables/SelectInputUnit';
-import { useStyles, StyledTextField, AddButton } from '../../../../styles/MainStyles';
+import { useStyles } from '../../../../styles/MainStyles';
 import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
 import RangeDatePicker from '../../../Reusables/RangeDatePicker';
 import ContractsTable from './ContractsTable';

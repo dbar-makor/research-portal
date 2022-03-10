@@ -6,12 +6,12 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/ProspectService')
+const Controller = require('./Controller');
+const service = require('../services/ProspectService');
 const updateProspect = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateProspect)
-}
+	await Controller.handleRequest(request, response, service.updateProspect);
+};
 
 module.exports = {
-  updateProspect,
-}
+	updateProspect,
+};

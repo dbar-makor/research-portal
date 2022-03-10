@@ -1,15 +1,11 @@
 import { Grid, makeStyles } from '@material-ui/core';
 import { StyledTextField } from '../../styles/MainStyles';
 
-// const isEmail = (text) => {
-//   if (text === "") return true;
-
-//   const pattern =
-//     /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-//   return pattern.test(text.toLowerCase());
-// };
-
+const useStyles = makeStyles({
+	field: {
+		// height:63.2
+	},
+});
 function TextInputUnit({
 	className,
 	name,
@@ -52,9 +48,3 @@ function TextInputUnit({
 }
 
 export default TextInputUnit;
-
-const useStyles = makeStyles({
-	field: {
-		// height:63.2
-	},
-});

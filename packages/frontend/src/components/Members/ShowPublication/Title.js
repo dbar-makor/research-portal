@@ -1,4 +1,4 @@
-import { Divider, Grid, Link, makeStyles, Typography } from '@material-ui/core';
+import { Divider, Grid, Link,Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as ArrowRight } from '../../../assets/icons/arrowRight.svg';
 import { useStyles } from '../../../styles/PublicationsStyles';

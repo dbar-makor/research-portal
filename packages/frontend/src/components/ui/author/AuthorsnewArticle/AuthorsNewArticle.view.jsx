@@ -81,10 +81,21 @@ const AuthorsNewArticleView = (props) => {
 															: props.chosenResearch.content,
 												})}
 											{...(props.location.state?.from === 'prearticle' &&
+<<<<<<< HEAD
 												Object.keys(props.location.state?.publication.content).length && {
 													defaultValue:
 														typeof props.location.state?.publication.content !== 'string'
 															? JSON.stringify(props.location.state?.publication.content)
+=======
+												Object.keys(props.location.state?.publication.content)
+													.length && {
+													defaultValue:
+														typeof props.location.state?.publication.content !==
+														'string'
+															? JSON.stringify(
+																	props.location.state?.publication.content,
+															  )
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 															: props.location.state.publication.content,
 												})}
 											controls={[
@@ -108,11 +119,21 @@ const AuthorsNewArticleView = (props) => {
 											]}
 										/>
 									</Grid>
+<<<<<<< HEAD
 									{props.contentNotOK.focus && props.contentNotOK.everTyped && !props.contentNotOK.isText && (
 										<Grid item xs={6} style={{ color: 'red', marginLeft: 8 }}>
 											This field is required
 										</Grid>
 									)}
+=======
+									{props.contentNotOK.focus &&
+										props.contentNotOK.everTyped &&
+										!props.contentNotOK.isText && (
+											<Grid item xs={6} style={{ color: 'red', marginLeft: 8 }}>
+												This field is required
+											</Grid>
+										)}
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 								</Grid>
 							</Grid>
 						</Grid>

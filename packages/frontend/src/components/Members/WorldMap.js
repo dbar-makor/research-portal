@@ -1,7 +1,6 @@
 import { Typography } from '@material-ui/core';
 import { useMapData } from '../../customHooks/useMapData';
-import { useState } from 'react';
-import { geoNaturalEarth1, geoMercator, geoPath, geoGraticule, path, map } from 'd3';
+import { geoMercator, geoPath } from 'd3';
 import WorldMapSingle from './ShowPublication/WorldMapSingle';
 
 const width = 350;
@@ -20,13 +19,12 @@ function WorldMap() {
 	const { mapData, mapLoading, mapError, citiesData } = useMapData();
 
 	const projection = geoMercator()
-		.center([20, 50]) // GPS of location to zoom on
-		.scale(50) // This is like the zoom
+		.center([20, 50])
+		.scale(50)
 		.translate([width / 2, height / 2]);
 
 	const path = geoPath(projection);
 
-	const [tooltipState, setTooltipState] = useState(false);
 
 	return (
 		<>
@@ -40,7 +38,7 @@ function WorldMap() {
 						))}
 						{citiesData?.map((d) => {
 							const [x, y] = projection([d.lng, d.lat]);
-							return <WorldMapSingle d={d} x={x} y={y} citiesStatus={citiesStatus} />;
+							return <WorldMapSingle d={d} x={x} y={y} citiesStatus={citiesStatus} key={d.lat}/>;
 						})}
 					</g>
 				</svg>

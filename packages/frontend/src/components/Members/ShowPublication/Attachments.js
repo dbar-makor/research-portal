@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { BASE_URL, END_POINT } from '../../../utils/constants';
-import { Divider, Grid, Typography, SvgIcon } from '@material-ui/core';
+import { BASE_URL } from '../../../utils/constants';
+import { Divider, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import { ReactComponent as FileEmpty } from '../../../assets/icons/fileEmpty.svg';
 function Attachments(props) {
@@ -11,7 +10,6 @@ function Attachments(props) {
 		window.open(`${BASE_URL}/assets/${fileName}`, '_blank');
 	};
 
-	console.log(attachments);
 
 	const attachment = (file, idx) => {
 		return (
@@ -55,8 +53,13 @@ function Attachments(props) {
 					</Grid>
 					{attachments.length > 0
 						? attachments.map((file, idx) => {
+<<<<<<< HEAD
 								return attachment(file, idx);
 						  })
+=======
+							return attachment(file, idx);
+						})
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 						: noAttachments()}
 				</Grid>
 			</Grid>

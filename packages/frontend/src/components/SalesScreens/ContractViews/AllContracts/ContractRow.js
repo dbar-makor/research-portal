@@ -2,7 +2,6 @@ import {
 	Divider,
 	Grid,
 	IconButton,
-	makeStyles,
 	Popover,
 	TableCell,
 	TableRow,

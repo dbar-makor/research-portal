@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Grid, Typography, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useStyles } from '../../styles/InfoStyles';
@@ -45,7 +44,9 @@ function UserInfoBlock(props) {
 					<Grid item xs={index % 2 === 0 && chosenUser.isEditMode ? 6 : 5} key={index}>
 						<Grid container justifyContent="space-between" alignItems="center">
 							<Grid item>
-								<Typography className={classes.fieldName}>{field.replaceAll('_', ' ')}</Typography>
+								<Typography className={classes.fieldName}>
+									{field.replaceAll('_', ' ')}
+								</Typography>
 							</Grid>
 							<Grid item>
 								<Grid container justifyContent="flex-end">
@@ -55,7 +56,10 @@ function UserInfoBlock(props) {
 												<Typography className={classes.fieldContent}>
 													{chosenUser[field]
 														? dateFields.some((dateField) => dateField === field)
-															? format(new Date(chosenUser[field]), 'HH:mm dd/MM/yyyy')
+															? format(
+																	new Date(chosenUser[field]),
+																	'HH:mm dd/MM/yyyy',
+															  )
 															: chosenUser[field]
 														: '-'}
 												</Typography>
@@ -73,7 +77,10 @@ function UserInfoBlock(props) {
 											<Typography className={classes.fieldContent}>
 												{chosenUser[field]
 													? dateFields.some((dateField) => dateField === field)
-														? format(new Date(chosenUser[field]), 'HH:mm dd/MM/yyyy')
+														? format(
+																new Date(chosenUser[field]),
+																'HH:mm dd/MM/yyyy',
+														  )
 														: chosenUser[field]
 													: '-'}
 											</Typography>

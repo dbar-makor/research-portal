@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import { ReactComponent as FileEmpty } from '../../../assets/icons/fileEmpty.svg';
-import { BASE_URL, END_POINT } from '../../../utils/constants';
+import { BASE_URL } from '../../../utils/constants';
 
 function PdfViewer(props) {
 	const { pdf } = props;

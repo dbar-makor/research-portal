@@ -120,7 +120,9 @@ function DeadArticle() {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
-			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
+			const coverImg = publication.attachments?.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
 
 			const editedLocalForm = { ...publication };
 			delete editedLocalForm.created_at;
@@ -391,7 +393,7 @@ function DeadArticle() {
 				status: 'published',
 			};
 		} else if (buttonMarker === 'save-draft') {
-			console.log('i\'m a draft');
+			console.log("i'm a draft");
 			formToSend = {
 				...formToSend,
 				categories: categoriesForServer,

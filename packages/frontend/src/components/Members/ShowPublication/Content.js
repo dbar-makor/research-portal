@@ -1,8 +1,6 @@
-import { Divider, Grid, makeStyles, Typography, withStyles } from '@material-ui/core';
-import { useEffect, useState } from 'react';
+import { Divider, Grid, Typography, withStyles } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import MUIRichTextEditor from 'mui-rte';
-import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
 function Content(props) {
 	const { contentBlocks } = props;
@@ -28,7 +26,7 @@ function Content(props) {
 
 export default Content;
 
-const StyledEditor = withStyles((theme) => ({
+const StyledEditor = withStyles({
 	root: {
 		'height': '100%',
 		'& #mui-rte-container': {
@@ -55,4 +53,4 @@ const StyledEditor = withStyles((theme) => ({
 		width: 'inharit',
 		maxWidth: 'inharit',
 	},
-}))(MUIRichTextEditor);
+})(MUIRichTextEditor);

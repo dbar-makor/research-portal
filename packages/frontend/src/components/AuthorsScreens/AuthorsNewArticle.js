@@ -119,8 +119,15 @@ function AuthorsNewArticle() {
 	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
+<<<<<<< HEAD
 			console.log('there\'s a chosenResearch');
 			const coverImg = chosenResearch.attachments.find((attachment) => attachment.file_type === 'main_bg');
+=======
+			console.log("there's a chosenResearch");
+			const coverImg = chosenResearch.attachments.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 			const otherFiles = chosenResearch.attachments.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
@@ -159,8 +166,17 @@ function AuthorsNewArticle() {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
+<<<<<<< HEAD
 			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
 			const otherFiles = publication.attachments?.filter((attachment) => attachment.file_type !== 'main_bg');
+=======
+			const coverImg = publication.attachments?.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
+			const otherFiles = publication.attachments?.filter(
+				(attachment) => attachment.file_type !== 'main_bg',
+			);
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 			// let categoriesIDs = publication.categories?.map(category => category.id)
 			const editedLocalForm = { ...publication, attachments: otherFiles };
 			// let editedLocalForm = {...publication, attachments: otherFiles, content: JSON.stringify(publication.content)};
@@ -522,8 +538,16 @@ function AuthorsNewArticle() {
 											{...(location.state?.from === 'prearticle' &&
 												Object.keys(location.state?.publication.content).length && {
 													defaultValue:
+<<<<<<< HEAD
 														typeof location.state?.publication.content !== 'string'
 															? JSON.stringify(location.state?.publication.content)
+=======
+														typeof location.state?.publication.content !==
+														'string'
+															? JSON.stringify(
+																	location.state?.publication.content,
+															  )
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 															: location.state.publication.content,
 												})}
 											controls={[

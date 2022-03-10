@@ -4,7 +4,7 @@ import * as actionSnackBar from '../../../redux/SnackBar/action';
 
 import SnackbarView from './Snackbar.view';
 
-const Snackbar = (props) => {
+const Snackbar = () => {
 	const dispatch = useDispatch();
 	const snackBarOBJ = useSelector((state) => state.snackBar);
 	const handleClose = (event, reason) => {

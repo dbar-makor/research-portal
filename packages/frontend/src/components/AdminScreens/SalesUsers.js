@@ -90,7 +90,11 @@ function SalesUsers() {
 										// onWheel={(e) => setWheel(e.nativeEvent.wheelDelta)}
 										// onScroll={(e) => handleScroll(e)}
 									>
-										<TableComponent data={salesData} pageType="salesUsers" ref={lastItemRef} />
+										<TableComponent
+											data={salesData}
+											pageType="salesUsers"
+											ref={lastItemRef}
+										/>
 									</Grid>
 									{chosenUser && chosenUser.type === 'sales' && (
 										<Grid item xs={6}>
@@ -108,7 +112,9 @@ function SalesUsers() {
 							) : (
 								<Grid container>
 									<Grid item xs={6}>
-										<Typography className={classes.noMatches}>No matches found</Typography>
+										<Typography className={classes.noMatches}>
+											No matches found
+										</Typography>
 									</Grid>
 								</Grid>
 							)}

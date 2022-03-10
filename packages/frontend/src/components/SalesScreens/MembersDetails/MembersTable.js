@@ -101,9 +101,10 @@ function MembersTable() {
 			return null;
 		} else {
 			return (
-				<Typography style={{ textAlign: 'right' }} className={`${classes.moreCategories} moreCategs`}>{`+${
-					length - 1
-				}`}</Typography>
+				<Typography
+					style={{ textAlign: 'right' }}
+					className={`${classes.moreCategories} moreCategs`}
+				>{`+${length - 1}`}</Typography>
 			);
 		}
 	};
@@ -365,7 +366,8 @@ function MembersTable() {
 										// style={{ display: filterMembersDisplay(row, row.status)}}
 										style={{
 											display:
-												((!showAll && !row.status) || (memberSearch !== '' && filterOneMemberDisplay(row))) &&
+												((!showAll && !row.status) ||
+													(memberSearch !== '' && filterOneMemberDisplay(row))) &&
 												'none',
 										}}
 									>
@@ -373,16 +375,25 @@ function MembersTable() {
 											if (key !== 'id' && key !== 'isEditMode') {
 												if (key === 'categories') {
 													return (
-														<MembersTableCell key={i} style={{ cursor: 'pointer', maxWidth: '115px' }}>
+														<MembersTableCell
+															key={i}
+															style={{ cursor: 'pointer', maxWidth: '115px' }}
+														>
 															<LightBlueButton
 																id="categoriesbutton"
-																justification={value.length > 1 ? 'space-between' : 'flex-start'}
+																justification={
+																	value.length > 1
+																		? 'space-between'
+																		: 'flex-start'
+																}
 																onClick={(ev) => {
 																	ev.stopPropagation();
 																	handleOpen(index);
 																}}
 															>
-																{value.length ? `${value[0].name.slice(0, 17)}... ` : 'No categories'}
+																{value.length
+																	? `${value[0].name.slice(0, 17)}... `
+																	: 'No categories'}
 																{calculateCategories(value.length)}
 															</LightBlueButton>
 															<CategoriesModal
@@ -425,7 +436,10 @@ function MembersTable() {
 													);
 												} else {
 													return (
-														<MembersTableCell key={i} style={{ whiteSpace: 'nowrap', width: '1%' }}>
+														<MembersTableCell
+															key={i}
+															style={{ whiteSpace: 'nowrap', width: '1%' }}
+														>
 															{/* {row.isEditMode
                           ?  */}
 															<TableTextField
@@ -461,7 +475,13 @@ function MembersTable() {
 																// }
 
 																// }
-																onChange={(e) => updateMemberField(e.target.value, key, index)}
+																onChange={(e) =>
+																	updateMemberField(
+																		e.target.value,
+																		key,
+																		index,
+																	)
+																}
 															/>
 															{/* : <Typography>{value}</Typography>} */}
 														</MembersTableCell>
@@ -469,7 +489,10 @@ function MembersTable() {
 												}
 											}
 										})}
-										<MembersTableCell align="center" style={{ whiteSpace: 'nowrap', width: '1%' }}>
+										<MembersTableCell
+											align="center"
+											style={{ whiteSpace: 'nowrap', width: '1%' }}
+										>
 											{row.isEditMode ? (
 												<>
 													<BinButton
@@ -499,7 +522,9 @@ function MembersTable() {
 						</Table>
 					)
 				) : (
-					<Typography className={classes.noMembers}>There are no members for this company</Typography>
+					<Typography className={classes.noMembers}>
+						There are no members for this company
+					</Typography>
 				)}
 			</Grid>
 			{/* <Modal

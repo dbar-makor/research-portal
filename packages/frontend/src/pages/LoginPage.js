@@ -174,7 +174,11 @@ function LoginPage() {
 															onClick={handleClickShowPassword}
 															onMouseDown={handleMouseDownPassword}
 														>
-															{showPassword ? <Visibility /> : <VisibilityOff />}
+															{showPassword ? (
+																<Visibility />
+															) : (
+																<VisibilityOff />
+															)}
 														</IconButton>
 													</InputAdornment>
 												),
@@ -202,7 +206,10 @@ function LoginPage() {
 											//   disabled={form.username === "" || form.password === ""}
 										>
 											{loadingIndicator ? (
-												<CircularProgress size={30} className={classes.circularProgress} />
+												<CircularProgress
+													size={30}
+													className={classes.circularProgress}
+												/>
 											) : (
 												<Typography>Log in</Typography>
 											)}

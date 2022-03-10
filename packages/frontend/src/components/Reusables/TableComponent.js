@@ -101,7 +101,8 @@ const TableComponent = forwardRef((props, ref) => {
 						// ref={(el) => (tableRowsRefs.current[index] = el)}
 						className={clsx(classes.tableRow, {
 							[classes.selectedRow]:
-								(chosenCompany && row.id === chosenCompany.id) || (chosenUser && row.id === chosenUser.id),
+								(chosenCompany && row.id === chosenCompany.id) ||
+								(chosenUser && row.id === chosenUser.id),
 						})}
 						onClick={() => chooseRow(row.id)}
 						{...(data.length === index + 1 && { ref: ref })}
@@ -111,7 +112,11 @@ const TableComponent = forwardRef((props, ref) => {
 							if (key !== 'id' && key !== 'members' && key !== 'logo') {
 								if (key === 'start_at' || key === 'last_connected_at') {
 									return (
-										<StyledTableCell key={i} style={{ whiteSpace: 'nowrap' }} align="center">
+										<StyledTableCell
+											key={i}
+											style={{ whiteSpace: 'nowrap' }}
+											align="center"
+										>
 											{value ? (
 												format(new Date(value), 'HH:mm dd MMM, yyyy')
 											) : (
@@ -121,14 +126,24 @@ const TableComponent = forwardRef((props, ref) => {
 									);
 								} else if (key === 'created_at') {
 									return (
-										<StyledTableCell key={i} style={{ whiteSpace: 'nowrap' }} align="center">
-											{value ? format(new Date(value), 'dd MMM, yyyy') : <Typography>&#8211;</Typography>}
+										<StyledTableCell
+											key={i}
+											style={{ whiteSpace: 'nowrap' }}
+											align="center"
+										>
+											{value ? (
+												format(new Date(value), 'dd MMM, yyyy')
+											) : (
+												<Typography>&#8211;</Typography>
+											)}
 										</StyledTableCell>
 									);
 								} else if (key === 'country') {
 									return (
 										<StyledTableCell key={i} style={{ whiteSpace: 'nowrap' }}>
-											{value.name.length > 12 ? `${value.name.slice(0, 12)}...` : value.name}
+											{value.name.length > 12
+												? `${value.name.slice(0, 12)}...`
+												: value.name}
 										</StyledTableCell>
 									);
 								} else if (key === 'contract_status') {

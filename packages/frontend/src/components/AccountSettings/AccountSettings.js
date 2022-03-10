@@ -80,7 +80,10 @@ function AccountSettings() {
 								<Grid item>
 									<Grid container alignItems="center">
 										<Grid item style={{ paddingInline: '24px 16px' }}>
-											<Avatar style={{ width: 54, height: 54 }} src={`${userContent.avatar}`} />
+											<Avatar
+												style={{ width: 54, height: 54 }}
+												src={`${userContent.avatar}`}
+											/>
 										</Grid>
 										<Grid item>
 											<Typography>{userContent.name}</Typography>
@@ -92,7 +95,11 @@ function AccountSettings() {
 										<Grid
 											item
 											xs={12}
-											className={chosenRouteName === 'edit' ? classes.chosenRoute : classes.notChosen}
+											className={
+												chosenRouteName === 'edit'
+													? classes.chosenRoute
+													: classes.notChosen
+											}
 											onClick={() => handleRoute('edit')}
 										>
 											{/*
@@ -102,24 +109,38 @@ function AccountSettings() {
 											<Grid container alignItems="center">
 												<Grid item>
 													<PersonIcon
-														className={chosenRouteName === 'edit' ? classes.iconOn : classes.icon}
+														className={
+															chosenRouteName === 'edit'
+																? classes.iconOn
+																: classes.icon
+														}
 													/>
 												</Grid>
 												<Grid item>
-													<Typography style={{ fontSize: 14 }}>Edit Profile</Typography>
+													<Typography style={{ fontSize: 14 }}>
+														Edit Profile
+													</Typography>
 												</Grid>
 											</Grid>
 										</Grid>
 										<Grid
 											item
 											xs={12}
-											className={chosenRouteName === 'settings' ? classes.chosenRoute : classes.notChosen}
+											className={
+												chosenRouteName === 'settings'
+													? classes.chosenRoute
+													: classes.notChosen
+											}
 											onClick={() => handleRoute('settings')}
 										>
 											<Grid container alignItems="center">
 												<Grid item>
 													<SettingsIcon
-														className={chosenRouteName === 'settings' ? classes.iconOn : classes.icon}
+														className={
+															chosenRouteName === 'settings'
+																? classes.iconOn
+																: classes.icon
+														}
 													/>
 												</Grid>
 												<Grid item>
@@ -131,18 +152,26 @@ function AccountSettings() {
 											item
 											xs={12}
 											className={
-												chosenRouteName === 'contract_trails' ? classes.chosenRoute : classes.notChosen
+												chosenRouteName === 'contract_trails'
+													? classes.chosenRoute
+													: classes.notChosen
 											}
 											onClick={() => handleRoute('contract_trails')}
 										>
 											<Grid container alignItems="center">
 												<Grid item>
 													<InsertDriveFileIcon
-														className={chosenRouteName === 'contract_trails' ? classes.iconOn : classes.icon}
+														className={
+															chosenRouteName === 'contract_trails'
+																? classes.iconOn
+																: classes.icon
+														}
 													/>
 												</Grid>
 												<Grid item>
-													<Typography style={{ fontSize: 14 }}>Contracts & Trials</Typography>
+													<Typography style={{ fontSize: 14 }}>
+														Contracts & Trials
+													</Typography>
 												</Grid>
 											</Grid>
 										</Grid>
@@ -151,7 +180,12 @@ function AccountSettings() {
 							</Grid>
 						</Grid>
 						<Grid item xs={12}>
-							<Grid container style={{ height: '100%' }} direction="column" justifyContent="flex-end">
+							<Grid
+								container
+								style={{ height: '100%' }}
+								direction="column"
+								justifyContent="flex-end"
+							>
 								<Grid item style={{ paddingBlock: 32 }}>
 									<Divider style={{ margin: 'auto', width: '75%', marginBottom: '26px' }} />
 									<Typography

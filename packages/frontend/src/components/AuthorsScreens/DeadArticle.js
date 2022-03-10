@@ -86,7 +86,9 @@ function DeadArticle() {
 	useEffect(() => {
 		if (chosenResearch) {
 			console.log('chosenResearch', chosenResearch);
-			const coverImg = chosenResearch.attachments.find((attachment) => attachment.file_type === 'main_bg');
+			const coverImg = chosenResearch.attachments.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
 			//  let categoriesIDs = chosenResearch.categories.map(category => category.id);
 			const editedLocalForm = { ...chosenResearch };
 			delete editedLocalForm.created_at;
@@ -220,7 +222,13 @@ function DeadArticle() {
 				selectedValue,
 			);
 		} else {
-			validateDeadPublication({ categories: newCats }, errors, setErrors, setValidationResult, selectedValue);
+			validateDeadPublication(
+				{ categories: newCats },
+				errors,
+				setErrors,
+				setValidationResult,
+				selectedValue,
+			);
 		}
 	};
 
@@ -249,7 +257,13 @@ function DeadArticle() {
 	const handleChange = (value, key) => {
 		setLocalForm({ ...localForm, [key]: value });
 		if (chosenResearch) {
-			validateEditedDeadPublication({ [key]: value }, errors, setErrors, setValidationResult, selectedValue);
+			validateEditedDeadPublication(
+				{ [key]: value },
+				errors,
+				setErrors,
+				setValidationResult,
+				selectedValue,
+			);
 		} else {
 			validateDeadPublication({ [key]: value }, errors, setErrors, setValidationResult, selectedValue);
 		}
@@ -669,7 +683,12 @@ function DeadArticle() {
 										keyboardIcon={<CalendarIcon className={classes.calendarIcon} />}
 										onChange={(date) => {
 											setCurrentEvent({ ...currentEvent, date: date });
-											validateEvent({ date: date }, errorsEvent, setErrorsEvent, setValidationResultEvent);
+											validateEvent(
+												{ date: date },
+												errorsEvent,
+												setErrorsEvent,
+												setValidationResultEvent,
+											);
 										}}
 										PopoverProps={{
 											classes: { paper: classes.calendarPaper },
@@ -678,7 +697,11 @@ function DeadArticle() {
 								</Grid>
 
 								<Grid item xs={1} style={{ textAlignLast: 'right' }}>
-									<AddButton disableRipple disabled={!ifCurrentEventFilled} onClick={addEvent}>
+									<AddButton
+										disableRipple
+										disabled={!ifCurrentEventFilled}
+										onClick={addEvent}
+									>
 										<AddIcon
 											className={clsx(classes.addIcon, {
 												[classes.addIconDisabled]: !ifCurrentEventFilled,
@@ -700,7 +723,14 @@ function DeadArticle() {
 									>
 										<Grid item xs={6} style={{ paddingRight: 10 }}>
 											<StyledTextField
-												onChange={(e) => updatePropertyField(index, e.target.value, 'title', 'events')}
+												onChange={(e) =>
+													updatePropertyField(
+														index,
+														e.target.value,
+														'title',
+														'events',
+													)
+												}
 												value={event.title}
 												variant="outlined"
 												placeholder="Title"
@@ -728,7 +758,9 @@ function DeadArticle() {
 														<CalendarIcon className={classes.calendarIcon} />
 													)
 												}
-												onChange={(date) => updatePropertyField(index, date, 'date', 'events')}
+												onChange={(date) =>
+													updatePropertyField(index, date, 'date', 'events')
+												}
 												style={{ width: '100%', maxHeight: '53px' }}
 												PopoverProps={{
 													classes: { paper: classes.calendarPaper },
@@ -736,7 +768,10 @@ function DeadArticle() {
 											/>
 										</Grid>
 										<Grid item xs={1} style={{ textAlignLast: 'right' }}>
-											<DeleteButton disableRipple onClick={() => deleteItem(index, 'events')}>
+											<DeleteButton
+												disableRipple
+												onClick={() => deleteItem(index, 'events')}
+											>
 												<ClearIcon className={classes.clearIcon} />
 											</DeleteButton>
 										</Grid>
@@ -772,7 +807,11 @@ function DeadArticle() {
 										// style={{
 										//   color: selectedValue === "a" ? "#1C67FF" : "#868DA2",
 										// }}
-										className={selectedValue === 'pdf' ? classes.radioStyle : classes.disabledRadio}
+										className={
+											selectedValue === 'pdf'
+												? classes.radioStyle
+												: classes.disabledRadio
+										}
 										name="radio-button-demo"
 										inputProps={{ 'aria-label': 'pdf' }}
 									/>
@@ -810,7 +849,11 @@ function DeadArticle() {
 										id="raised-button-file"
 									/>
 									<label htmlFor="raised-button-file">
-										<Button variant="outlined" component="span" className={classes.pdfbtn}>
+										<Button
+											variant="outlined"
+											component="span"
+											className={classes.pdfbtn}
+										>
 											{localForm.file_pdf ? (
 												<>
 													{shortify(localForm.file_pdf)}
@@ -848,7 +891,11 @@ function DeadArticle() {
 												<>
 													Upload PDF
 													<FileUpload
-														className={selectedValue === 'pdf' ? classes.arrow2Style : classes.arrowStyle}
+														className={
+															selectedValue === 'pdf'
+																? classes.arrow2Style
+																: classes.arrowStyle
+														}
 													/>
 												</>
 											)}
@@ -881,7 +928,11 @@ function DeadArticle() {
 										value="video"
 										name="radio-button-demo"
 										color="default"
-										className={selectedValue === 'video' ? classes.radioStyle : classes.disabledRadio}
+										className={
+											selectedValue === 'video'
+												? classes.radioStyle
+												: classes.disabledRadio
+										}
 										inputProps={{ 'aria-label': 'B' }}
 									/>
 									Video Link
@@ -917,7 +968,11 @@ function DeadArticle() {
 										InputProps={{
 											startAdornment: (
 												<InsertLink
-													className={selectedValue === 'video' ? classes.linkStyle : classes.link2Style}
+													className={
+														selectedValue === 'video'
+															? classes.linkStyle
+															: classes.link2Style
+													}
 												/>
 											),
 										}}
@@ -943,20 +998,29 @@ function DeadArticle() {
 								</Button>
 							</Grid>
 							<Grid item xs={3}>
-								{((chosenResearch && chosenResearch.status === 'draft') || !chosenResearch) && (
-									<OutlinedButton className={classes.saveDraft} onClick={() => sendPublication('save-draft')}>
+								{((chosenResearch && chosenResearch.status === 'draft') ||
+									!chosenResearch) && (
+									<OutlinedButton
+										className={classes.saveDraft}
+										onClick={() => sendPublication('save-draft')}
+									>
 										Save Draft
 									</OutlinedButton>
 								)}
 							</Grid>
 							<Grid item xs={3}>
-								<OutlinedButton className={classes.saveDraft} onClick={() => sendPublication('preview')}>
+								<OutlinedButton
+									className={classes.saveDraft}
+									onClick={() => sendPublication('preview')}
+								>
 									Preview
 								</OutlinedButton>
 							</Grid>
 							<Grid item xs={3}>
 								<FilledButton
-									disabled={!validationResult || !validationResultEvent || !coverImageOK.final}
+									disabled={
+										!validationResult || !validationResultEvent || !coverImageOK.final
+									}
 									onClick={() => sendPublication('done')}
 									className={classes.publishStyle}
 								>

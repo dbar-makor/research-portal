@@ -6,42 +6,42 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/UserService')
+const Controller = require('./Controller');
+const service = require('../services/UserService');
 const createUser = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createUser)
-}
+	await Controller.handleRequest(request, response, service.createUser);
+};
 
 const deleteUser = async (request, response) => {
-  await Controller.handleRequest(request, response, service.deleteUser)
-}
+	await Controller.handleRequest(request, response, service.deleteUser);
+};
 
 const getPublicationByAuthorId = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getPublicationByAuthorId)
-}
+	await Controller.handleRequest(request, response, service.getPublicationByAuthorId);
+};
 
 const getStatisticsByAuthorId = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getStatisticsByAuthorId)
-}
+	await Controller.handleRequest(request, response, service.getStatisticsByAuthorId);
+};
 
 const getUserById = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getUserById)
-}
+	await Controller.handleRequest(request, response, service.getUserById);
+};
 
 const getUsers = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getUsers)
-}
+	await Controller.handleRequest(request, response, service.getUsers);
+};
 
 const updateUser = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateUser)
-}
+	await Controller.handleRequest(request, response, service.updateUser);
+};
 
 module.exports = {
-  createUser,
-  deleteUser,
-  getPublicationByAuthorId,
-  getStatisticsByAuthorId,
-  getUserById,
-  getUsers,
-  updateUser,
-}
+	createUser,
+	deleteUser,
+	getPublicationByAuthorId,
+	getStatisticsByAuthorId,
+	getUserById,
+	getUsers,
+	updateUser,
+};

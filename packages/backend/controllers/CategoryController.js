@@ -6,27 +6,27 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/CategoryService')
+const Controller = require('./Controller');
+const service = require('../services/CategoryService');
 const createCategory = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createCategory)
-}
+	await Controller.handleRequest(request, response, service.createCategory);
+};
 
 const deleteCategory = async (request, response) => {
-  await Controller.handleRequest(request, response, service.deleteCategory)
-}
+	await Controller.handleRequest(request, response, service.deleteCategory);
+};
 
 const getCategoriesById = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getCategoriesById)
-}
+	await Controller.handleRequest(request, response, service.getCategoriesById);
+};
 
 const getCategory = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getCategory)
-}
+	await Controller.handleRequest(request, response, service.getCategory);
+};
 
 module.exports = {
-  createCategory,
-  deleteCategory,
-  getCategoriesById,
-  getCategory,
-}
+	createCategory,
+	deleteCategory,
+	getCategoriesById,
+	getCategory,
+};

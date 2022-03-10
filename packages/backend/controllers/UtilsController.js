@@ -6,12 +6,12 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/UtilsService')
+const Controller = require('./Controller');
+const service = require('../services/UtilsService');
 const getUtils = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getUtils)
-}
+	await Controller.handleRequest(request, response, service.getUtils);
+};
 
 module.exports = {
-  getUtils,
-}
+	getUtils,
+};

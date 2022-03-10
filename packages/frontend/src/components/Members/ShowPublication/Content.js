@@ -12,7 +12,9 @@ function Content(props) {
 			<Grid container>
 				{contentBlocks !== '{}' ? (
 					<StyledEditor
-						defaultValue={typeof contentBlocks === 'object' ? JSON.stringify(contentBlocks) : contentBlocks}
+						defaultValue={
+							typeof contentBlocks === 'object' ? JSON.stringify(contentBlocks) : contentBlocks
+						}
 						controls={[]}
 						readOnly={true}
 					/>

@@ -1,0 +1,3320 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "Research"
+  description: "Project research"
+  contact:
+    email: "1@makor-capital.com"
+servers:
+  - url: "https://research.enigma-securities.io"
+    description: "PROD server"
+  - url: "http://localhost:8096"
+    description: "LOCAL server"
+  - url: "http://localhost:8097"
+    description: "Ortal LOCAL server"
+  - url: "http://10.0.0.49:8096"
+    description: "DEV server"
+tags:
+  - name: "auth"
+  - name: "utils"
+  - name: "user"
+  - name: "file"
+  - name: "category"
+  - name: "publication"
+  - name: "comment"
+  - name: "company"
+  - name: "contract"
+  - name: "invoice"
+  - name: "prospect"
+  - name: "subscription"
+  - name: "settings"
+paths:
+  /auth:
+    put:
+      tags:
+        - "auth"
+      summary: "Create auth"
+      description: ""
+      operationId: "createAuth"
+      parameters:
+        - explode: false
+          in: header
+          name: connection_by_app
+          required: false
+          schema:
+            type: boolean
+          style: simple
+        - explode: false
+          in: header
+          name: device-origin
+          required: false
+          schema:
+            type: string
+          style: simple
+        - explode: false
+          in: header
+          name: domain
+          required: false
+          schema:
+            type: string
+          style: simple
+        - explode: false
+          in: header
+          name: type
+          required: false
+          schema:
+            type: string
+            enum:
+              - mobile_app
+              - email_confirm
+              - sms_confirm
+              - dev
+          style: simple
+          description: >
+            type:
+              * `mobile_app`
+              * `email_confirm`
+              * `sms_confirm`
+              * `dev`
+      x-codegen-request-body-name: auth
+      requestBody:
+        description: Login to the site
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/auth"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user_login"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+    delete:
+      tags:
+        - "auth"
+      summary: "Delete auth"
+      description: "This can only be done by the logged in user."
+      operationId: "deleteAuth"
+      parameters:
+        - explode: false
+          in: header
+          name: device-origin
+          required: false
+          schema:
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2:
+            ["admin", "author", "sales", "compliance", "client", "prospect"]
+  /auth/register:
+    put:
+      tags:
+        - "auth"
+      summary: "Finish register auth with code"
+      operationId: "registerAuth"
+      x-codegen-request-body-name: register_auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/register_auth"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user_login"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2:
+            ["admin", "author", "sales", "compliance", "client", "prospect"]
+  /auth/two-factor-auth/verify-answer:
+    post:
+      operationId: verifyTwofactorAuthMobileAnswer
+      parameters:
+        - explode: false
+          in: header
+          name: domain
+          required: false
+          schema:
+            type: string
+          style: simple
+      x-codegen-request-body-name: two_factor_verification_mobile_answer
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/two_factor_verification_mobile_answer"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Verify the answer given by the mobile to authorize user to log in in the web client
+      tags:
+        - auth
+      x-eov-operation-handler: controllers/AuthController
+  /auth/forgot-password:
+    put:
+      deprecated: false
+      tags:
+        - auth
+      summary: forgot password by email / phone
+      description: Send new password to email / phone
+      operationId: forgotPassword
+      parameters:
+        - explode: false
+          in: header
+          name: domain
+          required: false
+          schema:
+            type: string
+          style: simple
+      x-codegen-request-body-name: forgot_password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/forgot_password"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /auth/reset-password:
+    put:
+      deprecated: false
+      tags:
+        - auth
+      summary: reset password by token
+      description: Send token and a new password
+      operationId: resetPassword
+      parameters:
+        - explode: false
+          in: header
+          name: domain
+          required: false
+          schema:
+            type: string
+          style: simple
+      x-codegen-request-body-name: reset_password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/reset_password"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      security:
+        - bearerAuth: []
+  /auth/change-password:
+    put:
+      deprecated: false
+      tags:
+        - auth
+      summary: change password by old password
+      description: Send new password and the old password
+      operationId: changePassword
+      parameters:
+        - explode: false
+          in: header
+          name: domain
+          required: false
+          schema:
+            type: string
+          style: simple
+      x-codegen-request-body-name: change_password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/change_password"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      security:
+        - bearerAuth: []
+  /file:
+    post:
+      tags:
+        - "file"
+      summary: "Update file"
+      description: ""
+      operationId: "updateFile"
+      x-codegen-request-body-name: file
+      requestBody:
+        description: update file
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "sales", "compliance"]
+    get:
+      deprecated: false
+      tags:
+        - "file"
+      summary: "Get file from server"
+      description: "get file"
+      operationId: "getFile"
+      parameters:
+        - name: "file_name"
+          in: "query"
+          description: "The file name"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+  /user:
+    get:
+      summary: Get all users
+      operationId: getUsers
+      parameters:
+        - name: limit
+          in: query
+          description: limit determines the number of rows that will be returned 5 / 10 / 15
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: skips the offset rows before beginning to return the rows - page 2 = 2 * row_count
+          required: false
+          schema:
+            type: integer
+        - name: order_by
+          in: query
+          required: false
+          schema:
+            enum:
+              - created_at
+              - name
+              - username
+              - email
+              - last_connected_at
+            type: string
+          description: |
+            Sort order by:
+             * `created_at`
+             * `name`
+             * `username`
+             * `email`
+             * `last_connected_at`
+        - name: sort
+          in: query
+          required: false
+          schema:
+            enum:
+              - ASC
+              - DESC
+            type: string
+          description: |
+            Sort order:
+             * `ASC` - Ascending, from A to Z
+             * `DESC` - Descending, from Z to A
+        - name: search
+          description: Search user name by string
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          schema:
+            enum:
+              - sales
+              - author
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: boolean
+      tags:
+        - "user"
+      description: "Will return all companies"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/users"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales", "compliance"]
+    post:
+      tags:
+        - "user"
+      summary: "Create user"
+      operationId: "createUser"
+      x-codegen-request-body-name: user_create
+      requestBody:
+        description: Create a user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user_create"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales", "compliance"]
+  /user/{id}:
+    get:
+      tags:
+        - "user"
+      summary: "Get user by id"
+      operationId: "getUserById"
+      description: "Get user by ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "user id"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales", "compliance"]
+    put:
+      tags:
+        - "user"
+      summary: "update user"
+      operationId: "updateUser"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Update user by ID"
+          required: true
+          schema:
+            type: string
+      x-codegen-request-body-name: user_update
+      requestBody:
+        description: update a user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user_update"
+      responses:
+        "201":
+          description: "Successful operation"
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales", "compliance"]
+    delete:
+      tags:
+        - "user"
+      summary: Remove a specific user
+      operationId: "deleteUser"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Delte user by ID"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales", "compliance"]
+  /user/publication:
+    get:
+      tags:
+        - "user"
+      summary: "find publications by author"
+      description: "return array of publications"
+      operationId: "getPublicationByAuthorId"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/publication_by_author_id"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+  /user/statistics:
+    get:
+      tags:
+        - "user"
+      summary: find statistics of author
+      description: "return object contains statistics"
+      operationId: "getStatisticsByAuthorId"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/statistics_by_author_id"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+  /utils:
+    get:
+      tags:
+        - "utils"
+      summary: "Get Utils"
+      description: "Data object that contains the following lists: Theme, Countries, Apis, Controls, modules & Languages"
+      operationId: "getUtils"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/get_utils"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2:
+            ["admin", "author", "sales", "compliance", "client", "prospect"]
+  /publication:
+    post:
+      tags:
+        - "publication"
+      summary: "Create publication"
+      description: ""
+      operationId: "createPublication"
+      x-codegen-request-body-name: publication_create
+      requestBody:
+        description: insert publication details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/publication_create"
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+    get:
+      tags:
+        - "publication"
+      summary: "Finds all publications / filtered by params by specific category ID"
+      description: "get publications by specific category ID & filtered by params"
+      operationId: "getPublications"
+      parameters:
+        - name: "id"
+          in: "query"
+          description: "Specific category ID"
+          required: true
+          schema:
+            type: string
+        - name: "search_string"
+          in: "query"
+          description: "Will return publications that contain the search_string in its title, content, description"
+          required: false
+          schema:
+            type: string
+        - name: "from"
+          in: "query"
+          description: "From specific date"
+          required: false
+          example: "YYYY-MM-DD"
+          schema:
+            type: string
+            pattern: '^\d{4}-\d{2}-\d{2}$'
+        - name: "to"
+          in: "query"
+          description: "To specific date"
+          required: false
+          example: "YYYY-MM-DD"
+          schema:
+            type: string
+            pattern: '^\d{4}-\d{2}-\d{2}$'
+        - name: "is_bookmarks"
+          in: "query"
+          description: "User bookmarks: true / false"
+          required: false
+          schema:
+            type: boolean
+          example: "true"
+        - name: "limit"
+          in: "query"
+          description: "limit determines the number of rows that will be returned 5 / 10 / 15"
+          required: false
+          schema:
+            type: integer
+          example: 5
+        - name: "offset"
+          in: "query"
+          description: "skips the offset rows before beginning to return the rows - for example, to get page 2: 2 * limit"
+          required: false
+          schema:
+            type: integer
+          example: 0
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/publication"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+  /publication/{id}:
+    get:
+      tags:
+        - "publication"
+      summary: "Find publication by ID"
+      description: "Returns a single publication"
+      operationId: "getPublicationById"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The publication ID
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/publication_by_id"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+    put:
+      tags:
+        - "publication"
+      summary: "Update an existing publication"
+      description: ""
+      operationId: "updatePublication"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of publication to return"
+          required: true
+          schema:
+            type: string
+      x-codegen-request-body-name: publication_update
+      requestBody:
+        description: insert publication content
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/publication_update"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+    delete:
+      tags:
+        - "publication"
+      summary: "Deletes a publication"
+      description: ""
+      operationId: "deletePublication"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "publication id to delete"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+  /publication/social/{id}:
+    put:
+      tags:
+        - "publication"
+      summary: "Like / dislike /share publication"
+      description: "like / dis publication by ID"
+      operationId: "socialPublication"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of publication to update"
+          required: true
+          schema:
+            type: "string"
+            x-codegen-request-body-name: publication_update
+      x-codegen-request-body-name: publication_type
+      requestBody:
+        description: "insert publication social"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/publication_type"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+  /publication/view/{id}:
+    put:
+      tags:
+        - "publication"
+      summary: "view publication"
+      description: "view publication by ID"
+      operationId: "viewPublication"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of publication to update view"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "201":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+  /publication/publish/{id}:
+    put:
+      tags:
+        - "publication"
+      summary: "publish publication"
+      description: "publish publication by ID"
+      operationId: "publishPublication"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of publication to update publish"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "201":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+  /publication/bookmark/{id}:
+    put:
+      tags:
+        - "publication"
+      summary: "Add / Remove bookmark"
+      description: "Add / Remove bookmark by ID"
+      operationId: "bookmarkPublication"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of publication to create / delete"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+  /publication/user:
+    get:
+      tags:
+        - "publication"
+      summary: "Finds all publications of user categories"
+      description: "get publications by user categories"
+      operationId: "getPublicationsOfUser"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/publication"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+  /subscription:
+    get:
+      deprecated: true
+      summary: "Find all subscriptions"
+      tags:
+        - "subscription"
+      description: "Returns all subscriptions"
+      operationId: "getSubscription"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/subscription"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+    post:
+      deprecated: true
+      tags:
+        - "subscription"
+      summary: "Create request to subscription by reader"
+      description: ""
+      operationId: "createSubscription"
+      x-codegen-request-body-name: subscription_create
+      requestBody:
+        description: create subscription
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/subscription_create"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+  /subscription/{id}:
+    put:
+      deprecated: true
+      tags:
+        - "subscription"
+      summary: "Update subscription by id"
+      description: " reader can update: expired_at , admin can update: all"
+      operationId: "updatesubScription"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of subscription to return
+          schema:
+            type: integer
+      x-codegen-request-body-name: subscription_update
+      requestBody:
+        description: Update date subscription
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/subscription_update"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+    delete:
+      deprecated: true
+      tags:
+        - "subscription"
+      summary: "Delete a subscription"
+      description: ""
+      operationId: "deleteSubscription"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "subscription id to delete"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+  /category:
+    post:
+      tags:
+        - "category"
+      summary: "Create category"
+      description: ""
+      operationId: "createCategory"
+      x-codegen-request-body-name: category_create
+      requestBody:
+        description: Create category by name
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/category_create"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+    get:
+      summary: "Get all category & user subscription"
+      tags:
+        - "category"
+      description: "Returns all category & user subscription"
+      operationId: "getCategory"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/category"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+  /category/{id}:
+    delete:
+      tags:
+        - "category"
+      summary: "Delete category"
+      description: ""
+      operationId: "deleteCategory"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "category id to delete"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author"]
+    get:
+      deprecated: true
+      tags:
+        - "category"
+      summary: "Get all categories"
+      operationId: "getCategoriesById"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "user uuid"
+          required: true
+          schema:
+            type: string
+      description: "Will return all user categories"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/category"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+  /comment:
+    post:
+      tags:
+        - "comment"
+      summary: "Create comment"
+      description: ""
+      operationId: "createComment"
+      x-codegen-request-body-name: comment_create
+      requestBody:
+        description: insert name of comment
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/comment_create"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+    get:
+      tags:
+        - "comment"
+      summary: "Find all comments by publication ID (uuid)"
+      description: "Returns all comment by publication_id (uuid)"
+      operationId: "getCommentsById"
+      parameters:
+        - name: "id"
+          in: "query"
+          description: "publication id"
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comment"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+  /comment/{id}:
+    get:
+      tags:
+        - "comment"
+      summary: "Find comment by comment ID"
+      description: "Returns comment by uuid"
+      operationId: "getCommentById"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "comment id"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comment"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client", "prospect"]
+    put:
+      tags:
+        - "comment"
+      summary: "Update comment by id"
+      description: ""
+      operationId: "updateComment"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "UUID of comment to return"
+          required: true
+          schema:
+            type: "string"
+      x-codegen-request-body-name: comment_update
+      requestBody:
+        description: "insert name of comment to update"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/comment_update"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+    delete:
+      tags:
+        - "comment"
+      summary: "Delete comment by id"
+      description: ""
+      operationId: "deleteComment"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "comment uuid to delete"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "sales", "compliance", "client"]
+  /comment/social/{id}:
+    put:
+      tags:
+        - "comment"
+      summary: "Like / dislike comment"
+      description: "update  Like / dislike comment by id"
+      operationId: "updateCommentSocial"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "comment id"
+          required: true
+          schema:
+            type: "string"
+      x-codegen-request-body-name: comment_social
+      requestBody:
+        description: "insert social:  Like / dislike"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/comment_social"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "author", "client"]
+  /contract:
+    get:
+      summary: "Find all contract"
+      tags:
+        - "contract"
+      description: "Returns all contracts"
+      operationId: "getContract"
+      parameters:
+        - name: limit
+          in: query
+          description: limit determines the number of rows that will be returned 5 / 10 / 15
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: skips the offset rows before beginning to return the rows - page 2 = 2 * row_count
+          required: false
+          schema:
+            type: integer
+        - name: from
+          in: query
+          description: from date
+          required: false
+          schema:
+            type: string
+            example: "YYYY-MM-DD"
+        - name: to
+          in: query
+          description: to date
+          required: false
+          schema:
+            type: string
+            example: "YYYY-MM-DD"
+        - name: period
+          in: query
+          required: false
+          schema:
+            enum:
+              - monthly
+              - quarterly
+              - half
+              - fully
+            type: string
+        - name: signed
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: company_id
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "1ccc4362-5c21-11ec-9663-9c7bef452e53"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contract"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    post:
+      tags:
+        - "contract"
+      summary: "Create request to contract by reader"
+      description: ""
+      operationId: "createContract"
+      x-codegen-request-body-name: contract_create
+      requestBody:
+        description: create contract
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/contract_create"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /contract/{id}:
+    get:
+      tags:
+        - "contract"
+      summary: "get contract by id"
+      description: " get contract by id"
+      operationId: "getContractById"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of contract to return
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    put:
+      tags:
+        - "contract"
+      summary: "Update contract by id"
+      description: " reader can update: expired_at , admin can update: all"
+      operationId: "updateContract"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of contract to return
+          schema:
+            type: string
+            format: uuid
+            x-codegen-request-body-name: contract_create
+      x-codegen-request-body-name: contract_update
+      requestBody:
+        description: Update date contract
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/contract_update"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    delete:
+      tags:
+        - "contract"
+      summary: "Delete a contract"
+      description: ""
+      operationId: "deleteContract"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "contract id to delete"
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /contract/pdf/{id}:
+    get:
+      summary: "create pdf and return pdf contract"
+      tags:
+        - "contract"
+      description: "Returns pdf for contract"
+      operationId: "createContractPdf"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of contract to return
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/pdf:
+              schema:
+                type: "string"
+                format: "binary"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /contract/invoice/{id}:
+    get:
+      tags:
+        - "contract"
+      summary: "get invoices by  contract id"
+      description: " get invoices by contract id"
+      operationId: "getInvocesByContractId"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of contract to return invoices contract
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/invoices"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /company:
+    get:
+      summary: "Find all company"
+      tags:
+        - "company"
+      description: "Returns all companies"
+      operationId: "getCompany"
+      parameters:
+        - name: limit
+          in: query
+          description: limit determines the number of rows that will be returned 5 / 10 / 15
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: skips the offset rows before beginning to return the rows - page 2 = 2 * row_count
+          required: false
+          schema:
+            type: integer
+        - name: type
+          in: query
+          required: false
+          schema:
+            enum:
+              - client
+              - prospect
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: "search"
+          in: "query"
+          description: "Will return companies that contain the search in name"
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/companies"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    post:
+      tags:
+        - "company"
+      summary: "Create request to company by reader"
+      description: ""
+      operationId: "createCompany"
+      x-codegen-request-body-name: company_create
+      requestBody:
+        description: create company
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/company_create"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /company/{id}:
+    get:
+      tags:
+        - "company"
+      summary: "get company by id"
+      description: " get company by id"
+      operationId: "getCompanyById"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of contract to return
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/company"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    put:
+      tags:
+        - "company"
+      summary: "Update company by id"
+      description: " reader can update: expired_at , admin can update: all"
+      operationId: "updateCompany"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of company to return
+          schema:
+            type: string
+            format: uuid
+      x-codegen-request-body-name: company_update
+      requestBody:
+        description: Update date company
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/company_update"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    delete:
+      tags:
+        - "company"
+      summary: "Delete a company"
+      description: ""
+      operationId: "deleteCompany"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "company id to delete"
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /company/contract/{id}:
+    get:
+      tags:
+        - "company"
+      summary: "get  by id"
+      description: " get contracts by company id"
+      operationId: "getContractsByCompanyId"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of company to return contracts company
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contracts"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /company/upgrade/{id}:
+    put:
+      tags:
+        - "company"
+      summary: "upgrade company to client by id"
+      description: " upgrade company to client by id"
+      operationId: "upgradeCompany"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of company to upgrade
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "201":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /invoice:
+    get:
+      summary: "Find all invoices"
+      tags:
+        - "invoice"
+      description: "Returns all invoices"
+      operationId: "getInvoices"
+      parameters:
+        - name: limit
+          in: query
+          description: limit determines the number of rows that will be returned 5 / 10 / 15
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: skips the offset rows before beginning to return the rows - page 2 = 2 * row_count
+          required: false
+          schema:
+            type: integer
+        - name: from
+          in: query
+          description: date to search from
+          required: false
+          schema:
+            type: string
+            example: "YYYY-MM-DD"
+        - name: to
+          in: query
+          description: date to search to
+          required: false
+          schema:
+            type: string
+            example: "YYYY-MM-DD"
+        - name: status
+          in: query
+          description: status of invoice
+          required: false
+          schema:
+            type: string
+            enum:
+              - approved
+              - pending
+              - rejected
+        - name: company_id
+          in: query
+          description: serch by company Id
+          required: false
+          schema:
+            type: string
+            example: 207b9f1d-5ccf-11ec-9663-9c7bef452e53
+        - name: invoice_id
+          in: query
+          description: search by invoice id
+          required: false
+          schema:
+            type: string
+            example: 89218b7c-5dbe-11ec-9663-9c7bef452e53
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/invoices"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+    post:
+      tags:
+        - "invoice"
+      summary: "Create request to invoice by reader"
+      description: ""
+      operationId: "createInvoice"
+      x-codegen-request-body-name: invoice_create
+      requestBody:
+        description: create invoice
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/invoice_create"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/invoice_pdf"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /invoice/pdf/{id}:
+    get:
+      summary: "create pdf and return pdf invoice"
+      tags:
+        - "invoice"
+      description: "Returns pdf for invoice"
+      operationId: "createInvoicePdf"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of invoice to return
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/pdf:
+              schema:
+                type: "string"
+                format: "binary"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /prospect/{company_id}:
+    put:
+      tags:
+        - "prospect"
+      summary: "update prospect"
+      operationId: "updateProspect"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: "Update prospect by company_id"
+          required: true
+          schema:
+            type: string
+      x-codegen-request-body-name: prospect_update
+      requestBody:
+        description: update a prospect
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/prospect_update"
+      responses:
+        "201":
+          description: "Successful operation"
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2: ["admin", "sales"]
+  /settings/notification:
+    get:
+      tags:
+        - "settings"
+      summary: "get users notifications settings"
+      description: "get users notifications settings"
+      operationId: "getNotificationsSettings"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/notifications_settings"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2:
+            ["admin", "author", "sales", "compliance", "client", "prospect"]
+    put:
+      tags:
+        - "settings"
+      summary: "update  or create notifications settings"
+      description: ""
+      operationId: "updateNotificationsSettings"
+      x-codegen-request-body-name: notifications_settings_update
+      requestBody:
+        description: insert settings notification content
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/notifications_settings_update"
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - bearerAuth: []
+          OAuth2:
+            ["admin", "author", "sales", "compliance", "client", "prospect"]
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://localhost:8096
+          scopes:
+            "admin": Grants access to admin operations
+            "author": Grants access to author operations
+            "sales": Grants access to sales operations
+            "compliance": Grants access to compliance operations
+            "client": Grants access to client operations
+            "prospect": Grants access to prospect operations
+  schemas:
+    meta_data:
+      type: object
+      properties:
+        sum_rows:
+          type: integer
+        limit:
+          type: integer
+        page:
+          type: integer
+        sum_pages:
+          type: integer
+    get_utils:
+      properties:
+        country:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Italy
+              country_code:
+                type: string
+                example: IT
+        country_full_details:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Italy
+              country_code:
+                type: string
+                example: IT
+              dialing_code:
+                type: string
+                example: "39"
+        theme:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+                example: material ui
+        api:
+          type: array
+          description: Array with all the possible channels.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: WS
+        control:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: twostep
+        model:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: KYC
+        language:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Italian
+              language_code:
+                type: string
+                example: it
+    auth:
+      description: Auth object
+      type: object
+      properties:
+        username:
+          description: username to login
+          example: ehilel
+          type: string
+        password:
+          description: password to login
+          example: "12345678"
+          type: string
+          minLength: 3
+          maxLength: 20
+          format: password
+        device_id:
+          nullable: true
+          description: Device id used from the app of verification
+          type: string
+      required:
+        - username
+        - password
+    update_password:
+      description: Auth reset password by new password
+      example:
+        password: password
+      type: object
+      properties:
+        password:
+          description: New password
+          type: string
+      required:
+        - password
+    register_auth:
+      description: Register auth object
+      type: object
+      properties:
+        six_digits:
+          type: string
+      required:
+        - six_digits
+    forgot_password:
+      description: Auth forgot password email or phone
+      type: object
+      properties:
+        email:
+          description: Email (***@**.**)
+          type: string
+        phone:
+          description: Phone (+***-*********)
+          type: string
+    reset_password:
+      description: Auth reset password by new password and token
+      type: object
+      properties:
+        new_password:
+          description: (Aa12345678**)
+          type: string
+        new_password_confirm:
+          description: Phone (Aa12345678**)
+          type: string
+      required:
+        - new_password
+        - new_password_confirm
+    change_password:
+      description: Auth change password by new password
+      type: object
+      properties:
+        old_password:
+          description: (Aa12345678**)
+          type: string
+        new_password:
+          description: (Aa12345678**)
+          type: string
+        new_password_confirm:
+          description: Phone (Aa12345678**)
+          type: string
+      required:
+        - old_password
+        - new_password
+        - new_password_confirm
+    user_login:
+      type: object
+      properties:
+        name:
+          type: string
+        token:
+          type: string
+        avatar:
+          type: "string"
+        type:
+          type: "string"
+    user_create:
+      properties:
+        name:
+          example: "john doe"
+          type: string
+        username:
+          example: "john doe"
+          type: string
+        level:
+          type: string
+          format: uuid
+          example: "d2581387-4d2b-11ec-8f4c-10e7c6179426"
+        email:
+          type: string
+          format: email
+        phone:
+          type: object
+          properties:
+            number:
+              type: string
+              example: "0523558539"
+              description: cellphone number
+              pattern: '^[0-9\-]{1,20}$'
+            dialing_code:
+              type: string
+              example: "972"
+              description: dialing code of the country
+              pattern: "^[0-9]{1,4}$"
+        categories:
+          type: array
+          example:
+            [
+              "4c9b048d-4c27-11ec-8f4c-10e7c6179426",
+              "13b5d04c-4dc7-11ec-ae2c-0068ebbf7c92"
+            ]
+          description: "associate categories (uuid-s) array to user "
+          items:
+            type: string
+            example: "4c9b048d-4c27-11ec-8f4c-10e7c6179426"
+        company:
+          type: string
+          example: "fdbfe942-4dc7-11ec-ae2c-0068ebbf7c92"
+          description: "associate company (uuid) to user"
+        position:
+          type: string
+          example: "CTO"
+          description: "associate company position (role) to user"
+      required:
+        - name
+        - email
+        - username
+    user_update:
+      properties:
+        name:
+          example: "john doe"
+          type: string
+        username:
+          example: "john doe"
+          type: string
+        email:
+          type: string
+          format: email
+        categories:
+          type: array
+          example:
+            [
+              "4c9b048d-4c27-11ec-8f4c-10e7c6179426",
+              "13b5d04c-4dc7-11ec-ae2c-0068ebbf7c92"
+            ]
+          description: "associate categories (uuid-s) array to user "
+          items:
+            type: string
+            example: "4c9b048d-4c27-11ec-8f4c-10e7c6179426"
+        position:
+          type: string
+          example: "CTO"
+          description: "associate company position (role) to user"
+        status:
+          type: boolean
+    users:
+      description: "Object of user profiles"
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 54ba044b-24d2-11ec-b5a1-10e7c6179426
+              created_at:
+                type: string
+                example: "2021-10-14T14:50:29.000Z"
+              name:
+                type: string
+                example: name
+              username:
+                type: string
+                example: username
+              email:
+                type: string
+                format: email
+              last_connected_at:
+                type: string
+                example: "2021-10-14T14:50:29.000Z"
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    user:
+      description: "Array of users"
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        level:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: object
+          properties:
+            number:
+              type: string
+              example: "0523558539"
+              description: cellphone number
+              pattern: '^[0-9\-]{1,20}$'
+            dialing_code:
+              type: string
+              example: "972"
+              description: dialing code of the country
+              pattern: "^[0-9]{1,4}$"
+        connection_count:
+          type: integer
+        last_connected_at:
+          type: string
+        category:
+          type: array
+          example: "['7460a7f9-29dd-11ec-b5a1-10e7c6179426', '7460a7f9-29dd-11ec-b5a1-10e7c6179426']"
+          description: "associated categories (uuid-s) array of the user"
+          items:
+            type: string
+          nullable: true
+        company:
+          type: string
+          example: "7460a7f9-29dd-11ec-b5a1-10e7c6179426"
+          description: "associateed company (uuid) of the user"
+          nullable: true
+        position:
+          type: string
+          example: "CTO"
+          description: "associated company (uuid) of user"
+          nullable: true
+        created_at:
+          type: string
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    publication_by_author_id:
+      type: object
+      properties:
+        publications:
+          type: array
+          items:
+            type: "object"
+            properties:
+              id:
+                type: "string"
+              status:
+                enum:
+                  - published
+                  - draft
+                type: "string"
+              title:
+                type: "string"
+              description:
+                type: "string"
+              content:
+                type: "string"
+              image:
+                type: string
+              author_name:
+                type: "string"
+              created_at:
+                type: "string"
+                example: "YYYY-MM-DD"
+                pattern: '^\d{4}-\d{2}-\d{2}$'
+              updated_at:
+                type: string
+                example: "YYYY-MM-DD"
+                pattern: '^\d{4}-\d{2}-\d{2}$'
+              shares:
+                type: "integer"
+              views:
+                type: "integer"
+              likes:
+                type: "integer"
+              dislikes:
+                type: "integer"
+              comments:
+                type: "integer"
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    statistics_by_author_id:
+      type: object
+      properties:
+        published:
+          type: object
+          properties:
+            posts:
+              type: integer
+            total_words:
+              type: integer
+            average_word_count:
+              type: number
+            comments:
+              type: integer
+            views:
+              type: integer
+            shares:
+              type: integer
+            most_read:
+              type: string
+            most_interacted:
+              type: string
+        drafts:
+          type: object
+          properties:
+            saved:
+              type: integer
+            total_words:
+              type: integer
+            average_word_count:
+              type: number
+    two_factor_verification_mobile_answer:
+      description: Contains device id and confirmation number to verify
+      type: object
+      properties:
+        device_id:
+          type: string
+        origin:
+          type: string
+        confirmation_number:
+          type: integer
+      required:
+        - device_id
+        - confirmation_number
+    publication_create:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        content:
+          type: object
+        type:
+          type: string
+          enum:
+            - dead
+            - live
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+              file_name_system:
+                type: string
+              file_type:
+                type: string
+        categories:
+          description: Array of Category ID's
+          type: array
+          items:
+            type: string
+            description: Category ID
+            example: "tH1s-iSaR4nD0M-5tR1n9-th4t-Sh0u1d-B3-An-1d"
+        tags:
+          description: Array of Tags (Keywords) that describe the publication
+          type: array
+          items:
+            type: object
+            description: "name = new tag, id = existing tag."
+            properties:
+              name:
+                type: string
+              id:
+                type: string
+        events:
+          description: Array of Events
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              date:
+                type: string
+                example: "YYYY-MM-DD"
+        title_video:
+          type: string
+        link_video:
+          type: string
+        title_pdf:
+          type: string
+        file_pdf:
+          type: string
+      required:
+        - description
+        - title
+        - categories
+        - type
+    publication:
+      type: object
+      properties:
+        publications:
+          type: array
+          items:
+            type: "object"
+            properties:
+              id:
+                type: "string"
+              author_name:
+                type: "string"
+              title:
+                type: "string"
+              description:
+                type: "string"
+              content:
+                type: "string"
+              views:
+                type: "integer"
+              likes:
+                type: "integer"
+              dislikes:
+                type: "integer"
+              shares:
+                type: "integer"
+              comments:
+                type: "integer"
+              created_at:
+                type: "string"
+              updated_at:
+                type: string
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    publication_by_id:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        author_name:
+          type: "string"
+        title:
+          type: "string"
+        description:
+          type: "string"
+        content:
+          type: "string"
+        views:
+          type: "integer"
+        likes:
+          type: "integer"
+        dislikes:
+          type: "integer"
+        shares:
+          type: "integer"
+        comments:
+          type: "integer"
+        created_at:
+          type: "string"
+        updated_at:
+          type: string
+    publication_update:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "title of publication"
+        content:
+          type: object
+          example: {}
+        description:
+          type: string
+          example: "description of publication"
+        categories:
+          description: Array of Category ID's
+          type: array
+          items:
+            type: string
+            description: Category ID
+            example: "tH1s-iSaR4nD0M-5tR1n9-th4t-Sh0u1d-B3-An-1d"
+        tags:
+          description: Array of Tags (Keywords) that describe the publication
+          type: array
+          items:
+            type: object
+            description: "name = new tag, id = existing tag."
+            properties:
+              name:
+                type: string
+              id:
+                type: string
+        events:
+          description: Array of Events
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              date:
+                type: string
+                example: "YYYY-MM-DD"
+              id:
+                type: string
+                description: Add this if you want to update a specific Event
+                example: "tH1s-iSaR4nD0M-5tR1n9-th4t-Sh0u1d-B3-An-1d"
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+              file_name_system:
+                type: string
+              file_type:
+                type: string
+    publication_type:
+      type: object
+      properties:
+        type:
+          type: string
+          example: dislike
+      required:
+        - type
+    subscription:
+      type: "object"
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 4
+        created_at:
+          type: string
+          example: "2020-09-24T22:07:07.000Z"
+        user_id:
+          type: integer
+          format: int64
+          example: 8
+        category_id:
+          type: integer
+          format: int64
+          example: 5
+        expired_at:
+          type: string
+          example: "2021-06-05T21:00:00.000Z"
+        is_aprove:
+          type: boolean
+          example: false
+        is_suspended:
+          type: boolean
+          example: false
+    subscription_create:
+      type: object
+      properties:
+        category_id:
+          type: integer
+        expired_at:
+          type: string
+          example: "2021-12-12"
+      required:
+        - category_id
+        - expired_at
+    subscription_update:
+      type: object
+      properties:
+        expired_at:
+          type: string
+          example: "2021-12-12"
+        is_aprove:
+          type: boolean
+          example: true
+        is_suspended:
+          type: boolean
+          example: true
+    comment:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: uuid
+          example: "dca5357b-4c3f-11ec-ae2c-0068ebbf7c92"
+        user:
+          type: "string"
+          description: "the user name"
+        likes:
+          type: "integer"
+          format: "int32"
+        dislikes:
+          type: "integer"
+          format: "int32"
+        content:
+          type: "string"
+          description: "Comment Status"
+        date:
+          type: "string"
+          format: "date-time"
+    comment_create:
+      type: object
+      properties:
+        publication_id:
+          type: string
+          format: uuid
+          example: "dca5357b-4c3f-11ec-ae2c-0068ebbf7c92"
+        content:
+          type: string
+          example: "content"
+        comment_id:
+          type: string
+          format: uuid
+          example: "dca5357b-4c3f-11ec-ae2c-0068ebbf7c92"
+      required:
+        - publication_id
+        - content
+    comment_update:
+      type: object
+      properties:
+        content:
+          type: string
+          example: "new content"
+      required:
+        - content
+    comment_social:
+      type: object
+      properties:
+        type:
+          type: string
+          example: "like"
+      required:
+        - type
+    category:
+      type: "object"
+      properties:
+        category_id:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+          description: "Comment Status"
+        publications:
+          type: "integer"
+          format: "int64"
+        subscription_id:
+          type: "integer"
+          format: "int64"
+        created_at:
+          type: "string"
+          format: "date-time"
+        expired_at:
+          type: "string"
+          format: "date-time"
+    category_create:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "title of category"
+      required:
+        - name
+    contract:
+      type: "object"
+      properties:
+        sales:
+          type: string
+          example: ca242228-4d2c-11ec-8f4c-10e7c6179426
+        company:
+          type: string
+          example: 4b921ec5-4d35-11ec-a58b-9c7bef452fa0
+        currency:
+          type: string
+          example: AMD
+        start_at:
+          type: string
+          example: "2021-12-12 22:15:11"
+        amount:
+          type: number
+          format: int64
+          example: 4
+        members:
+          type: integer
+          format: int64
+          example: 5
+        periodicity:
+          enum:
+            - fully
+            - half
+            - quarterly
+            - monthly
+          type: string
+    contracts:
+      type: "object"
+      properties:
+        contract:
+          type: array
+          items:
+            type: object
+            properties:
+              sales:
+                type: string
+                example: ca242228-4d2c-11ec-8f4c-10e7c6179426
+              company:
+                type: string
+                example: 4b921ec5-4d35-11ec-a58b-9c7bef452fa0
+              currency:
+                type: string
+                example: AMD
+              start_at:
+                type: string
+                example: "2021-12-12 22:15:11"
+              amount:
+                type: number
+                format: int64
+                example: 4
+              members:
+                type: integer
+                format: int64
+                example: 5
+              periodicity:
+                enum:
+                  - fully
+                  - half
+                  - quarterly
+                  - monthly
+                type: string
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    contract_create:
+      type: object
+      properties:
+        sales:
+          type: string
+          example: ca242228-4d2c-11ec-8f4c-10e7c6179426
+        id:
+          type: string
+          example: 4b921ec5-4d35-11ec-a58b-9c7bef452fa0
+        amount:
+          type: number
+          format: int64
+          example: 4
+        members:
+          type: integer
+          format: int64
+          example: 5
+        periodicity:
+          enum:
+            - fully
+            - half
+            - quarterly
+            - monthly
+          type: string
+        currency:
+          type: string
+          example: AMD
+        vat:
+          type: boolean
+        start_at:
+          type: string
+          example: "2021-12-12 22:15:11"
+      required:
+        - sales
+        - id
+        - amount
+        - members
+        - periodicity
+        - currency
+        - start_at
+    contract_update:
+      type: object
+      properties:
+        sales:
+          type: string
+          example: ca242228-4d2c-11ec-8f4c-10e7c6179426
+        id:
+          type: string
+          example: 4b921ec5-4d35-11ec-a58b-9c7bef452fa0
+        amount:
+          type: number
+          format: int64
+          example: 4
+        members:
+          type: integer
+          format: int64
+          example: 5
+        periodicity:
+          enum:
+            - fully
+            - half
+            - quarterly
+            - monthly
+          type: string
+        currency:
+          type: string
+          example: AMD
+        vat:
+          type: boolean
+        start_at:
+          type: string
+          example: "2021-12-12 22:15:11"
+    invoice_create:
+      type: object
+      properties:
+        invoice_date:
+          type: string
+          example: "2021-12-12 22:15:11"
+        amount:
+          type: number
+          example: 450
+        status:
+          enum:
+            - approved
+            - pending
+            - rejected
+          type: string
+        contract_id:
+          type: string
+          example: 4b921ec5-4d35-11ec-a58b-9c7bef452fa0
+      required:
+        - invoice_date
+        - amount
+        - contract_id
+    invoices:
+      type: "object"
+      properties:
+        invoices:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: "d2581387-4d2b-11ec-8f4c-10e7c6179426"
+              company_name:
+                type: string
+              invoice_date:
+                type: string
+                example: "2021-12-12 22:15:11"
+              amount:
+                type: number
+                example: 450
+              status:
+                enum:
+                  - approved
+                  - pending
+                  - rejected
+                type: string
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    invoice_pdf:
+      type: string
+    prospect_update:
+      properties:
+        sales_agent:
+          type: string
+          example: "4c9b048d-4c27-11ec-8f4c-10e7c6179426"
+        start_at:
+          type: string
+          example: "2021-12-12 22:15:11"
+        end_at:
+          type: string
+          example: "2021-12-12 22:15:11"
+    companies:
+      type: "object"
+      properties:
+        company:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: boolean
+              id:
+                type: string
+                example: aba24f03-5016-11ec-a58b-9c7bef452fa0
+              name:
+                type: string
+                example: backend
+              type:
+                enum:
+                  - client
+                  - prospect
+                type: string
+              country:
+                type: string
+                example: IL
+              start_at:
+                type: string
+                example: "2021-12-12 22:15:11"
+              contract_status:
+                type: boolean
+
+        meta_data:
+          $ref: "#/components/schemas/meta_data"
+    company:
+      type: "object"
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: backend
+        type:
+          type: string
+          enum:
+            - client
+            - prospect
+        country:
+          type: string
+          example: IL
+        contract:
+          type: string
+          format: uuid
+        start_at:
+          type: string
+          example: "2021-12-12 22:15:11"
+    company_create:
+      type: "object"
+      properties:
+        country:
+          type: string
+          example: IL
+        name:
+          type: string
+          example: backend
+        start_at:
+          type: string
+          example: "2021-12-12"
+        end_at:
+          type: string
+          example: "2021-12-22"
+        type:
+          enum:
+            - client
+            - prospect
+          type: string
+        members:
+          type: array
+          items:
+            type: object
+            properties:
+              member_name:
+                type: string
+              email:
+                type: string
+                format: email
+              position:
+                type: string
+              categories:
+                type: array
+                items:
+                  type: string
+      required:
+        - country
+        - name
+        - start_at
+    company_update:
+      type: "object"
+      properties:
+        country:
+          type: string
+          example: IL
+        name:
+          type: string
+          example: backend
+        status:
+          type: boolean
+    notifications_settings_update:
+      type: object
+      properties:
+        settings:
+          type: object
+          example: {}
+        is_active:
+          type: boolean
+    notifications_settings:
+      type: object
+      properties:
+        settings:
+          type: object
+          example: {}
+        is_active:
+          type: boolean

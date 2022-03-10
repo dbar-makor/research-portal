@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import{ useState } from 'react';
 import { format } from 'date-fns';
 import Avatar from '@material-ui/core/Avatar';
-import { Divider, Grid, Typography, makeStyles, IconButton } from '@material-ui/core';
+import { Divider, Grid, Typography } from '@material-ui/core';
 
 import { ReactComponent as FbIcon } from '../../../assets/icons/fb.svg';
 import { ReactComponent as TtrIcon } from '../../../assets/icons/ttr.svg';
@@ -12,15 +12,11 @@ import { FacebookShareButton, WhatsappShareButton, TwitterShareButton } from 're
 const AuthorInfo = (props) => {
 	const { lastDate } = props;
 	const classes = useStyles();
-	const [auther, setAuth] = useState({
+	const [auther] = useState({
 		name: 'Eliyahu Hillel',
 		avatar: 'https://image.pngaaa.com/419/263419-middle.png',
 	});
 
-	useEffect(() => {
-		console.log(auther, 'AUTHOE');
-		console.log(document.URL, 'YRL~');
-	});
 	return (
 		<Grid item xs={12}>
 			<Divider className={classes.divider}></Divider>

@@ -1,4 +1,4 @@
-import { Divider, Grid, Typography, Collapse, TextField, Button } from '@material-ui/core';
+import { Divider, Grid, Typography, TextField } from '@material-ui/core';
 import {
 	useStyles,
 	StyledCollape,
@@ -54,12 +54,9 @@ function Comment(props) {
 								'dd.MM.yyy',
 							)}`}</Typography>
 						</Grid>
-						{userType && userType != 'prospect' ? (
+						{userType && userType !== 'prospect' ? (
 							<Grid item style={{ marginLeft: 15 }}>
-								<Typography
-									className={classes.replay}
-									onClick={() => setOpenReply(!openReply)}
-								>
+								<Typography className={classes.replay} onClick={() => setOpenReply(!openReply)}>
 									Reply
 								</Typography>
 							</Grid>
@@ -72,9 +69,7 @@ function Comment(props) {
 									) : (
 										<ArrowDown style={{ margin: '2px 5px 1px 0px' }} />
 									)}
-									{`${comment.replies.length} ${
-										comment.replies.length > 1 ? 'Replies' : 'Reply'
-									}`}
+									{`${comment.replies.length} ${comment.replies.length > 1 ? 'Replies' : 'Reply'}`}
 								</Typography>
 							</Grid>
 						)}
@@ -104,7 +99,7 @@ function Comment(props) {
 									</Grid>
 									<Grid item>
 										<StyledButton
-											disabled={reply.content != '' ? false : true}
+											disabled={reply.content !== '' ? false : true}
 											style={{ width: 70 }}
 											onClick={() => repalyHendleChange(reply)}
 										>

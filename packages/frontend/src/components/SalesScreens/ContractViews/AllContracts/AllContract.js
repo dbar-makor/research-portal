@@ -215,12 +215,7 @@ function AllContracts() {
 
 						{loadingContract && !contractsRows && (
 							<Grid item xs={12} align="center" style={{ height: 'calc(100vh - 539px)' }}>
-								<CircularProgress
-									size={40}
-									thickness={4}
-									value={100}
-									style={{ marginTop: '8%' }}
-								/>
+								<CircularProgress size={40} thickness={4} value={100} style={{ marginTop: '8%' }} />
 							</Grid>
 						)}
 						{contractsRows && !loadingContract && (

@@ -17,11 +17,7 @@ const SalesUsersView = (props) => {
 							{props.salesData.length ? (
 								<Grid container>
 									<Grid item xs={6} className={classes.scrollableTableContainer}>
-										<TableComponent
-											data={props.salesData}
-											pageType="salesUsers"
-											ref={props.lastItemRef}
-										/>
+										<TableComponent data={props.salesData} pageType="salesUsers" ref={props.lastItemRef} />
 									</Grid>
 									{props.chosenUser && props.chosenUser.type === 'sales' && (
 										<Grid item xs={6}>
@@ -36,9 +32,7 @@ const SalesUsersView = (props) => {
 							) : (
 								<Grid container>
 									<Grid item xs={6}>
-										<Typography className={classes.noMatches}>
-											No matches found
-										</Typography>
+										<Typography className={classes.noMatches}>No matches found</Typography>
 									</Grid>
 								</Grid>
 							)}

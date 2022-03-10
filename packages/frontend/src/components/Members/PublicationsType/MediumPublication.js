@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	upperHalf: {
 		isplay: 'flex',
 		backgroundSize: 'cover',
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '20px',
 		color: '#0f0f0f',
 	},
-}));
+});
 const MediumPublication = ({ publication }) => {
 	const classes = useStyles();
 
@@ -68,9 +67,7 @@ const MediumPublication = ({ publication }) => {
 							xs={12}
 							className={classes.upperHalf}
 							style={{
-								backgroundImage: chooseImage(publication)
-									? `url(${chooseImage(publication)})`
-									: 'none',
+								backgroundImage: chooseImage(publication) ? `url(${chooseImage(publication)})` : 'none',
 								backgroundColor: '#74b2f0',
 							}}
 						></Grid>
@@ -90,9 +87,7 @@ const MediumPublication = ({ publication }) => {
 								</Grid>
 								<Grid item xs={12}>
 									<Grid item>
-										<Typography>
-											{truncateDescription(publication.description)}
-										</Typography>
+										<Typography>{truncateDescription(publication.description)}</Typography>
 									</Grid>
 								</Grid>
 								<Grid item xs={12}>
@@ -108,40 +103,3 @@ const MediumPublication = ({ publication }) => {
 };
 export default MediumPublication;
 
-//  <Grid item xs={6} key={publication.id}>
-//       <Grid container direction="column" className={classes.wrapper}>
-//         <Link  to={`article/${publication.id}`}>
-//           <Grid item xs={12}>
-//             {chooseImage(publication) ? <img src={chooseImage(publication)} className={classes.upperHalf}></img> : <div className={classes.noImage}></div>}
-//           </Grid>
-//         </Link>
-//         <Grid item xs={12}>
-//           <Grid container direction="column" className={classes.lowerHalf}>
-//             <Grid item>
-//               <Grid container direction="column">
-//                 <Grid item>
-//                   <Typography variant="h5" className={classes.title}>
-//                     {publication.title}
-//                   </Typography>
-//                 </Grid>
-//                 <Grid item>
-//                   <Typography variant="body2">{truncateDescription(publication.description)}</Typography>
-//                 </Grid>
-//               </Grid>
-//             </Grid>
-//             <Grid container justifyContent="space-between">
-//               <Grid item>
-//                 <Typography variant="body2" className={classes.author}>
-//                   {publication.name}
-//                 </Typography>
-//               </Grid>
-//               <Grid item>
-//                 <Typography variant="body2" className={classes.date}>
-//                   {format(new Date(publication.published_at), 'dd MMM, yyyy')}
-//                 </Typography>
-//               </Grid>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-//       </Grid>
-//     </Grid>

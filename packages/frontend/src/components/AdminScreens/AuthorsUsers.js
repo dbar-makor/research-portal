@@ -102,11 +102,7 @@ function AuthorsUsers() {
 										// onWheel={(e) => setWheel(e.nativeEvent.wheelDelta)}
 										// onScroll={(e) => handleScroll(e)}
 									>
-										<TableComponent
-											data={authorsData}
-											pageType="authorsUsers"
-											ref={lastItemRef}
-										/>
+										<TableComponent data={authorsData} pageType="authorsUsers" ref={lastItemRef} />
 									</Grid>
 									{chosenUser && chosenUser.type === 'author' && (
 										<Grid item xs={6}>
@@ -124,9 +120,7 @@ function AuthorsUsers() {
 							) : (
 								<Grid container>
 									<Grid item xs={6}>
-										<Typography className={classes.noMatches}>
-											No matches found
-										</Typography>
+										<Typography className={classes.noMatches}>No matches found</Typography>
 									</Grid>
 								</Grid>
 							)}

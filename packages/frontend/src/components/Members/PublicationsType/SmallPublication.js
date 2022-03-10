@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	date: {
 		fontSize: [13, '!important'],
 		fontWeight: 100,
@@ -97,8 +96,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	backdrop: {
 		'zIndex': '2',
-		'width': 'inherit',
-		'height': 'inherit',
+		// 'width': 'inherit',
+		// 'height': 'inherit',
 		'position': 'absolute',
 		'opacity': 0,
 		'transition': 'opacity 0.7s',
@@ -126,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
 		'backgroundColor': '#fff',
 		'marginRight': 12,
 		'padding': '9px 11px',
-		'backgroundColor': '#fff',
 		'& path': {
 			fill: 'red',
 		},
@@ -149,7 +147,8 @@ const useStyles = makeStyles((theme) => ({
 			},
 		},
 	},
-}));
+});
+
 const SmallPublication = ({ publication }) => {
 	const classes = useStyles();
 
@@ -181,9 +180,7 @@ const SmallPublication = ({ publication }) => {
 							xs={12}
 							className={classes.sideHalf}
 							style={{
-								backgroundImage: chooseImage(publication)
-									? `url(${chooseImage(publication)})`
-									: 'none',
+								backgroundImage: chooseImage(publication) ? `url(${chooseImage(publication)})` : 'none',
 								backgroundColor: '#74b2f0',
 							}}
 						></Grid>
@@ -209,9 +206,7 @@ const SmallPublication = ({ publication }) => {
 									</Typography>
 								</Grid>
 								<Grid item xs={12} align="baseline">
-									<Typography style={{ fontSize: '14px', color: '#868DA2' }}>
-										{publication.name}
-									</Typography>
+									<Typography style={{ fontSize: '14px', color: '#868DA2' }}>{publication.name}</Typography>
 								</Grid>
 							</Grid>
 						</Grid>

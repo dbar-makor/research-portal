@@ -45,9 +45,7 @@ const AuthorsUsersView = (props) => {
 							) : (
 								<Grid container>
 									<Grid item xs={6}>
-										<Typography className={classes.noMatches}>
-											No matches found
-										</Typography>
+										<Typography className={classes.noMatches}>No matches found</Typography>
 									</Grid>
 								</Grid>
 							)}

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Grid, Typography, TextField } from '@material-ui/core';
 import { format } from 'date-fns';
 import { useStyles } from '../../styles/InfoStyles';

@@ -27,11 +27,7 @@ function SubscriberDetails(props) {
 							<Typography style={{ fontSize: '20px' }}>Info</Typography>
 							<Grid container alignItems="center">
 								<Grid item xs={11}>
-									{!isEdit ? (
-										<SubscriberInfo info={subscriber} />
-									) : (
-										<SubscriberInfoEdit info={subscriber} />
-									)}
+									{!isEdit ? <SubscriberInfo info={subscriber} /> : <SubscriberInfoEdit info={subscriber} />}
 								</Grid>
 								<Grid item xs={1} style={{ paddingTop: '25px' }}>
 									<StyledBtn onClick={() => (!isEdit ? setIsEdit(!isEdit) : sendEdit())}>

@@ -115,11 +115,7 @@ function MainSalesScreen() {
 										// onScroll={handleScroll}
 									>
 										{/* <Grid container style={{height: "100%"}}> */}
-										<TableComponent
-											data={companiesData}
-											pageType="companies"
-											ref={lastItemRef}
-										/>
+										<TableComponent data={companiesData} pageType="companies" ref={lastItemRef} />
 										{/* </Grid> */}
 										{/* <TableComponent data={companiesData} pageType='companies' scrollIndex={scrollIndex}/> */}
 									</Grid>
@@ -139,9 +135,7 @@ function MainSalesScreen() {
 							) : (
 								<Grid container>
 									<Grid item xs={6}>
-										<Typography className={classes.noMatches}>
-											No matches found
-										</Typography>
+										<Typography className={classes.noMatches}>No matches found</Typography>
 									</Grid>
 								</Grid>
 							)}

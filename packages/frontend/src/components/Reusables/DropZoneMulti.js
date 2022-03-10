@@ -45,7 +45,6 @@ function DropZoneMulti(props) {
 					)}
 				</Grid>
 			</Grid>
-
 			<Grid container className={classes.attachmentsScrolledContainer}>
 				<Grid item xs={12}>
 					{localForm.attachments && localForm.attachments.length

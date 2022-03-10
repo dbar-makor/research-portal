@@ -62,10 +62,15 @@ const AuthorsNewArticle = (props) => {
 
 	useEffect(() => {
 		if (chosenResearch) {
+<<<<<<< HEAD
 			console.log("there's a chosenResearch");
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
+=======
+			console.log('there\'s a chosenResearch');
+			const coverImg = chosenResearch.attachments.find((attachment) => attachment.file_type === 'main_bg');
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 			const otherFiles = chosenResearch.attachments.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
@@ -104,12 +109,20 @@ const AuthorsNewArticle = (props) => {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
+			const otherFiles = publication.attachments?.filter((attachment) => attachment.file_type !== 'main_bg');
+=======
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 			const coverImg = publication.attachments?.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
 			const otherFiles = publication.attachments?.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
+>>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 			// let categoriesIDs = publication.categories?.map(category => category.id)
 			const editedLocalForm = { ...publication, attachments: otherFiles };
 			// let editedLocalForm = {...publication, attachments: otherFiles, content: JSON.stringify(publication.content)};
@@ -154,10 +167,7 @@ const AuthorsNewArticle = (props) => {
 				tags: tagsForServer,
 				description: description,
 				status: 'published',
-				content:
-					typeof formToSend.content === 'string'
-						? JSON.parse(formToSend.content)
-						: formToSend.content,
+				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
 			};
 			console.log('formToSend', formToSend);
 		} else if (buttonMarker === 'save-draft') {
@@ -168,10 +178,7 @@ const AuthorsNewArticle = (props) => {
 				tags: tagsForServer,
 				description: description,
 				status: 'draft',
-				content:
-					typeof formToSend.content === 'string'
-						? JSON.parse(formToSend.content)
-						: formToSend.content,
+				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
 			};
 		} else if (buttonMarker === 'preview') {
 			formToSend = {
@@ -278,12 +285,7 @@ const AuthorsNewArticle = (props) => {
 				categories: formCats,
 			});
 			if (chosenResearch) {
-				validateEditedLivePublication(
-					{ categories: formCats },
-					errors,
-					setErrors,
-					setValidationResult,
-				);
+				validateEditedLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
 			} else {
 				validateLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
 			}

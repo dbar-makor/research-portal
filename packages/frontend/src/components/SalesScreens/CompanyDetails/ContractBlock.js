@@ -38,25 +38,17 @@ function ContractBlock(props) {
 								{props.contract.signed ? (
 									<>
 										<GreenCheckIcon style={{ marginLeft: '7px' }} />
-										<Typography className={classes.currentContractHeader}>
-											Current Contract
-										</Typography>
+										<Typography className={classes.currentContractHeader}>Current Contract</Typography>
 									</>
 								) : (
 									<>
-										<WarningIcon
-											style={{ marginLeft: '7px', fill: '#FF3939', fontSize: '20px' }}
-										/>
-										<Typography className={classes.noCurrentContractHeader}>
-											Missing Signature
-										</Typography>
+										<WarningIcon style={{ marginLeft: '7px', fill: '#FF3939', fontSize: '20px' }} />
+										<Typography className={classes.noCurrentContractHeader}>Missing Signature</Typography>
 									</>
 								)}
 							</>
 						) : (
-							<Typography className={classes.noCurrentContractHeader}>
-								No Contract Yet
-							</Typography>
+							<Typography className={classes.noCurrentContractHeader}>No Contract Yet</Typography>
 						)}
 					</Grid>
 				</Grid>
@@ -73,9 +65,7 @@ function ContractBlock(props) {
 					</Grid>
 					<Grid item>
 						<Typography className={classes.fieldContent}>
-							{props.contractStatus || props.title === 'last'
-								? props.contract.sales_agent.name
-								: '-'}
+							{props.contractStatus || props.title === 'last' ? props.contract.sales_agent.name : '-'}
 						</Typography>
 
 						{/* <Typography className={classes.fieldContent}>{chosenCompany.prospect_trial.sales_agent.name}</Typography> */}
@@ -103,9 +93,7 @@ function ContractBlock(props) {
 					</Grid>
 					<Grid item>
 						<Typography className={classes.fieldContent}>
-							{props.contractStatus || props.title === 'last'
-								? props.contract.periodicity
-								: '-'}
+							{props.contractStatus || props.title === 'last' ? props.contract.periodicity : '-'}
 						</Typography>
 					</Grid>
 				</Grid>

@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { BASE_URL, END_POINT } from '../../../utils/constants';
-import { Divider, Grid, Typography, SvgIcon } from '@material-ui/core';
+import { BASE_URL } from '../../../utils/constants';
+import { Divider, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import { ReactComponent as FileEmpty } from '../../../assets/icons/fileEmpty.svg';
 function Attachments(props) {
@@ -10,8 +9,6 @@ function Attachments(props) {
 	const downloadFile = (fileName) => {
 		window.open(`${BASE_URL}/assets/${fileName}`, '_blank');
 	};
-
-	console.log(attachments);
 
 	const attachment = (file, idx) => {
 		return (

@@ -71,10 +71,7 @@ function ContractAndInvoicesContent(props) {
 			<Grid item xs={12}>
 				<Grid container justifyContent="space-between" alignItems="center">
 					<Grid item xs={5}>
-						<Typography
-							style={{ textAlign: 'left', fontSize: '16px' }}
-							className={classes.modalHeader}
-						>
+						<Typography style={{ textAlign: 'left', fontSize: '16px' }} className={classes.modalHeader}>
 							History
 						</Typography>
 					</Grid>
@@ -98,25 +95,23 @@ function ContractAndInvoicesContent(props) {
 							<TableHead>
 								{rowHeaders.map((row, index) => {
 									return (
+<<<<<<< HEAD
 										<HeaderCells
 											key={index}
 											style={{ textAlign: row.align, width: row.width }}
 										>
 											{row.name}
 										</HeaderCells>
+=======
+										<HeaderCells style={{ textAlign: row.align, width: row.width }}>{row.name}</HeaderCells>
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 									);
 								})}
 							</TableHead>
 							<TableBody>
 								{filterdContract &&
 									filterdContract.map((contract, i) => {
-										return (
-											<ContractRow
-												contract={contract}
-												status={sortStatus}
-												clientName={clientName}
-											/>
-										);
+										return <ContractRow contract={contract} status={sortStatus} clientName={clientName} />;
 									})}
 							</TableBody>
 						</Table>

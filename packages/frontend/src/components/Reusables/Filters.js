@@ -79,13 +79,9 @@ function Filters(props) {
 							InputProps={{
 								endAdornment: (
 									<SearchIcon
-<<<<<<< HEAD
 										onClick={() =>
 											dispatch(setProperty({ key: 'search', value: localSearch }))
 										}
-=======
-										onClick={(e) => dispatch(setProperty({ key: 'search', value: localSearch }))}
->>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 										className={classes.searchIcon}
 										style={{ cursor: 'pointer' }}
 									/>

@@ -1,5 +1,3 @@
-//import NewNewCompanyStepper from "../SalesScreens/NewCompanyStepper";
-import clsx from 'clsx';
 import { isValid, format } from 'date-fns';
 
 export function validateCompany(fieldValues, errors, setErrors, setValidationResult, company) {
@@ -151,7 +149,6 @@ export function validateContract(fieldValues, errors, setErrors, setValidationRe
 export function validateEditedContract(fieldValues, errors, setErrors, setValidationResult) {
 	const temp = { ...errors };
 	const someFields = ['currency', 'amount', 'periodicity', 'members'];
-	const allFields = ['sales', 'currency', 'amount', 'periodicity', 'members'];
 
 	someFields.forEach((field) => {
 		if (field in fieldValues) {
@@ -394,14 +391,6 @@ export function validateEditedDeadPublication(
 	const temp = { ...errors };
 	console.log('temp', temp);
 	const someFields = ['title', 'description'];
-	const allFields =
-		selectedValue === 'pdf'
-			? ['title', 'description', 'categories', 'title_pdf', 'file_pdf']
-			: ['title', 'description', 'categories', 'title_video', 'link_video'];
-
-	//coverImage is validated independently, not here
-	//event date is validated independently, not here
-
 	someFields.forEach((field) => {
 		if (field in fieldValues) {
 			temp[field] = fieldValues[field] ? '' : 'This field is required';
@@ -466,11 +455,6 @@ export function validateLivePublication(fieldValues, errors, setErrors, setValid
 
 export function validateEditedLivePublication(fieldValues, errors, setErrors, setValidationResult) {
 	const temp = { ...errors };
-	console.log('temp', temp);
-	const allFields = ['title', 'categories'];
-
-	//coverImage, event date are validated independently, not here
-
 	if ('title' in fieldValues) {
 		temp['title'] = fieldValues['title'] ? '' : 'This field is required';
 	}

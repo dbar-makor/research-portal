@@ -5,7 +5,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import { ReactComponent as BlueShape } from '../../assets/icons/blueBorder.svg';
-import { Switch, useHistory, useRouteMatch, useParams } from 'react-router-dom';
+import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from '../../styles/AccountSettingsStyles';
 import EditProfile from './EditProfile';
@@ -20,7 +20,6 @@ function AccountSettings() {
 	const chosenRouteName = window.location.pathname.replace('/settings/', '');
 	const history = useHistory();
 	const classes = useStyles(chosenRouteName === 'contract_trails' ? 'on' : 'off');
-	const params = useParams();
 	const { path, url } = useRouteMatch();
 
 	const handleRoute = (type) => {
@@ -80,7 +79,10 @@ function AccountSettings() {
 								<Grid item>
 									<Grid container alignItems="center">
 										<Grid item style={{ paddingInline: '24px 16px' }}>
-											<Avatar style={{ width: 54, height: 54 }} src={`${userContent.avatar}`} />
+											<Avatar
+												style={{ width: 54, height: 54 }}
+												src={`${userContent.avatar}`}
+											/>
 										</Grid>
 										<Grid item>
 											<Typography>{userContent.name}</Typography>
@@ -92,7 +94,11 @@ function AccountSettings() {
 										<Grid
 											item
 											xs={12}
-											className={chosenRouteName === 'edit' ? classes.chosenRoute : classes.notChosen}
+											className={
+												chosenRouteName === 'edit'
+													? classes.chosenRoute
+													: classes.notChosen
+											}
 											onClick={() => handleRoute('edit')}
 										>
 											{/*
@@ -102,24 +108,38 @@ function AccountSettings() {
 											<Grid container alignItems="center">
 												<Grid item>
 													<PersonIcon
-														className={chosenRouteName === 'edit' ? classes.iconOn : classes.icon}
+														className={
+															chosenRouteName === 'edit'
+																? classes.iconOn
+																: classes.icon
+														}
 													/>
 												</Grid>
 												<Grid item>
-													<Typography style={{ fontSize: 14 }}>Edit Profile</Typography>
+													<Typography style={{ fontSize: 14 }}>
+														Edit Profile
+													</Typography>
 												</Grid>
 											</Grid>
 										</Grid>
 										<Grid
 											item
 											xs={12}
-											className={chosenRouteName === 'settings' ? classes.chosenRoute : classes.notChosen}
+											className={
+												chosenRouteName === 'settings'
+													? classes.chosenRoute
+													: classes.notChosen
+											}
 											onClick={() => handleRoute('settings')}
 										>
 											<Grid container alignItems="center">
 												<Grid item>
 													<SettingsIcon
-														className={chosenRouteName === 'settings' ? classes.iconOn : classes.icon}
+														className={
+															chosenRouteName === 'settings'
+																? classes.iconOn
+																: classes.icon
+														}
 													/>
 												</Grid>
 												<Grid item>
@@ -131,18 +151,26 @@ function AccountSettings() {
 											item
 											xs={12}
 											className={
-												chosenRouteName === 'contract_trails' ? classes.chosenRoute : classes.notChosen
+												chosenRouteName === 'contract_trails'
+													? classes.chosenRoute
+													: classes.notChosen
 											}
 											onClick={() => handleRoute('contract_trails')}
 										>
 											<Grid container alignItems="center">
 												<Grid item>
 													<InsertDriveFileIcon
-														className={chosenRouteName === 'contract_trails' ? classes.iconOn : classes.icon}
+														className={
+															chosenRouteName === 'contract_trails'
+																? classes.iconOn
+																: classes.icon
+														}
 													/>
 												</Grid>
 												<Grid item>
-													<Typography style={{ fontSize: 14 }}>Contracts & Trials</Typography>
+													<Typography style={{ fontSize: 14 }}>
+														Contracts & Trials
+													</Typography>
 												</Grid>
 											</Grid>
 										</Grid>
@@ -151,7 +179,12 @@ function AccountSettings() {
 							</Grid>
 						</Grid>
 						<Grid item xs={12}>
-							<Grid container style={{ height: '100%' }} direction="column" justifyContent="flex-end">
+							<Grid
+								container
+								style={{ height: '100%' }}
+								direction="column"
+								justifyContent="flex-end"
+							>
 								<Grid item style={{ paddingBlock: 32 }}>
 									<Divider style={{ margin: 'auto', width: '75%', marginBottom: '26px' }} />
 									<Typography

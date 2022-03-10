@@ -61,20 +61,16 @@ const ContractEditMain = forwardRef((props, ref) => {
 									<ArrowForwardIosIcon style={{ fontSize: 16, alignSelf: 'center', color: '#000' }} />
 								</Grid>
 								<Grid item>
-<<<<<<< HEAD
-									<Typography style={{ fontSize: 16, color: '#000' }}>{`Editing Contract of ${format(
-=======
+								
 									<Typography
 										style={{ fontSize: 16, color: '#000' }}
 									>{`Editing Contract of ${format(
-<<<<<<< HEAD
-=======
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
->>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
+
 										new Date(contract.start_at),
 										'dd MMM, yyyy',
 									)} `}</Typography>
 								</Grid>
+
 							</Grid>
 						</Grid>
 					</Grid>

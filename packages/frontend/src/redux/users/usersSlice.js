@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../utils/constants';
-import { createSelector } from 'reselect';
 import { setParams } from '../../utils/helpers/helperFunctions';
 
 // import { BASE_URL, END_POINT } from '../../utils/constants'
@@ -55,7 +54,15 @@ export const selectUsersOffset = (state) => state.users.offset;
 export const selectUsersLimit = (state) => state.users.limit;
 export const selectUsersMetaData = (state) => state.users.metaData;
 export const selectUsersHasMore = (state) => state.users.hasMore;
-
+export const {
+	getUsersData,
+	setLoading,
+	deleteUser,
+	setUsersByType,
+	setUserProperty,
+	setMetaData,
+	setUserHasMore,
+} = usersSlice.actions;
 //action thunk
 
 export const getUsersByTypeAsync = (offset, limit, search, type, status) => async (dispatch, getState) => {
@@ -105,31 +112,4 @@ export const getUsersDataAsync = () => async (dispatch) => {
 		dispatch(setLoading(false));
 	}
 };
-
-// export const deleteUserAsync = (id) => async (dispatch) => {
-
-//   try{
-//     console.log("delete")
-//     console.log(`${BASE_URL}${END_POINT.USER}/${id}`)
-//     const res = await axios.delete(`${BASE_URL}${END_POINT.USER}/${id}`);
-//     console.log("res", res)
-//     if(res.status === 200){
-//         console.log("delete successful");
-//         dispatch(getUsersDataAsync());
-//     }
-//   }catch(err){
-//     console.log(err.message);
-//   }
-// }
-
-export const {
-	getUsersData,
-	setLoading,
-	deleteUser,
-	setUsersByType,
-	setUserProperty,
-	setMetaData,
-	setUserHasMore,
-} = usersSlice.actions;
-
 export default usersSlice.reducer;

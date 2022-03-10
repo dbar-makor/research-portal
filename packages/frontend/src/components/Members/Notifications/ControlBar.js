@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useStyles } from '../../../styles/AllNotificationStyle';
 import { StyledTextField } from '../../../styles/MainStyles';
-import { Grid, Typography, Button, TextField, Chip, Divider } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { Grid, Typography } from '@material-ui/core';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
-import * as webSocketService from '../../../services/websocket';
 
 function ControlBar({ setSearchTerm, makeAllRead }) {
 	const classes = useStyles();
 	const [localSearch, setLocalSearch] = useState('');
-
-	const token = useSelector((state) => state.auth.token);
-
 	const handleSearch = (e) => {
 		if (e.key && e.key === 'Enter' && localSearch !== '') {
 			setSearchTerm(localSearch);

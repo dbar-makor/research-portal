@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Grid, Typography, Button, TextField, Chip, Divider } from '@material-ui/core';
+import { useState, useEffect } from 'react';
+import { Grid, Typography } from '@material-ui/core';
 import * as webSocketService from '../../../services/websocket';
 import { useSelector } from 'react-redux';
-import { CallMissedSharp } from '@material-ui/icons';
 import { useStyles } from '../../../styles/AllNotificationStyle';
 import ControlBar from './ControlBar';
 import NotificationBox from './NotificationBox';
@@ -23,9 +22,10 @@ function AllNotifications() {
 		const ws = webSocketService.sendEvent(message, token);
 		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
+			let allNotifications;
 			switch (data.type) {
 				case 'notifcations':
-					const allNotifications = data.notifications;
+					allNotifications = data.notifications;
 					setNotifications([...allNotifications]);
 					break;
 				default:
@@ -50,7 +50,7 @@ function AllNotifications() {
 		const data = {
 			type: 'mark-all-read',
 		};
-		const ws = webSocketService.sendEvent(data, token);
+		 webSocketService.sendEvent(data, token);
 		setMarkAsRead((prev) => prev + 1);
 	};
 
@@ -78,7 +78,13 @@ function AllNotifications() {
 							{filteredNotifications.length &&
 								filteredNotifications.map((item) => {
 									const content = JSON.parse(item.content);
-									return <NotificationBox key={item.id} content={content} isRead={item.is_read} />;
+									return (
+										<NotificationBox
+											key={item.id}
+											content={content}
+											isRead={item.is_read}
+										/>
+									);
 								})}
 						</Grid>
 					</Grid>

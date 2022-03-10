@@ -207,9 +207,7 @@ function Contract({
 												options={salesmenArr}
 												formObject={contract}
 												handler={(e) => {
-													e
-														? handleContract(e.id, 'sales')
-														: handleContract(e, 'sales');
+													e ? handleContract(e.id, 'sales') : handleContract(e, 'sales');
 												}}
 												error={errors.sales}
 												inputValue={inputValueSales}
@@ -300,9 +298,7 @@ function Contract({
 						<Grid item xs={12} className={`${classes.padding3000px} ${classes.vatGroupWrapper}`}>
 							<Divider className={classes.divider} />
 							<Grid item xs={6} className={classes.vatGroup}>
-								<Typography className={`${classes.indiLabel} ${classes.vatLabel1}`}>
-									Include
-								</Typography>
+								<Typography className={`${classes.indiLabel} ${classes.vatLabel1}`}>Include</Typography>
 								<StatusSwitch
 									name="vat"
 									onChange={(e) => handleContract(e.target.checked, 'vat')}
@@ -328,17 +324,10 @@ function Contract({
 											<Typography className={classes.amountType}>
 												{contract.currency && contract.amount && contract.periodicity
 													? `${
-														typeof contract.currency === 'string'
-															? currenciesArr.find(
-																(currency) =>
-																	currency.code ===
-																			contract.currency,
-																  ).symbol
-															: contract.currency.symbol
-													  }${(
-														contract.amount *
-															periodToNum[contract.periodicity]
-													  ).toLocaleString()}`
+															typeof contract.currency === 'string'
+																? currenciesArr.find((currency) => currency.code === contract.currency).symbol
+																: contract.currency.symbol
+													  }${(contract.amount * periodToNum[contract.periodicity]).toLocaleString()}`
 													: '0'}
 											</Typography>
 										</Grid>
@@ -375,9 +364,7 @@ function Contract({
 											inputProps: {
 												autoComplete: 'off',
 												decimalNo: 0,
-												minValue: chosenCompany.members
-													? chosenCompany.members.length
-													: 0,
+												minValue: chosenCompany.members ? chosenCompany.members.length : 0,
 											},
 										}}
 									/>
@@ -410,9 +397,7 @@ function Contract({
 					<Grid container>
 						<Divider className={classes.divider} style={{ width: '100%', marginTop: 25 }} />
 						<Grid item>
-							<Typography className={classes.comment}>
-								*Changes will apply from next payment
-							</Typography>
+							<Typography className={classes.comment}>*Changes will apply from next payment</Typography>
 						</Grid>
 					</Grid>
 					<Grid container className={classes.btnContainer} justifyContent="flex-end">

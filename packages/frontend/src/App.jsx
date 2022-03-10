@@ -382,8 +382,7 @@ function App() {
 					</Switch>
 				</div>
 			</MuiPickersUtilsProvider>
-			{isAuthenticated &&
-				(isMember ? <FooterMember style={{ position: 'absolute', bottom: 0 }} /> : <></>)}
+			{isAuthenticated && (isMember ? <FooterMember style={{ position: 'absolute', bottom: 0 }} /> : <></>)}
 		</ThemeProvider>
 	);
 }

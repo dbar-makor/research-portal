@@ -60,19 +60,19 @@ function AllContracts() {
 
 	const inputHandler = (e, type) => {
 		switch (type) {
-		case 'PERIOD':
-			setFilterdPeriod(e.target.name);
-			setFilters({ ...filters, period: e.target.value });
-			break;
-		case 'STATUS':
-			setStatus(e.target.name);
-			setFilters({ ...filters, signed: e.target.value });
-			break;
-		case 'COMPANY_NAME':
-			e !== null
-				? setFilters({ ...filters, company_id: e.id })
-				: setFilters({ ...filters, company_id: '' });
-			break;
+			case 'PERIOD':
+				setFilterdPeriod(e.target.name);
+				setFilters({ ...filters, period: e.target.value });
+				break;
+			case 'STATUS':
+				setStatus(e.target.name);
+				setFilters({ ...filters, signed: e.target.value });
+				break;
+			case 'COMPANY_NAME':
+				e !== null
+					? setFilters({ ...filters, company_id: e.id })
+					: setFilters({ ...filters, company_id: '' });
+				break;
 		}
 	};
 	const getCompaniesNames = async () => {
@@ -216,12 +216,7 @@ function AllContracts() {
 
 						{loadingContract && !contractsRows && (
 							<Grid item xs={12} align="center" style={{ height: 'calc(100vh - 539px)' }}>
-								<CircularProgress
-									size={40}
-									thickness={4}
-									value={100}
-									style={{ marginTop: '8%' }}
-								/>
+								<CircularProgress size={40} thickness={4} value={100} style={{ marginTop: '8%' }} />
 							</Grid>
 						)}
 						{contractsRows && !loadingContract && (

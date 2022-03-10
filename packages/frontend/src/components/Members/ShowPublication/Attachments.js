@@ -55,7 +55,7 @@ function Attachments(props) {
 					</Grid>
 					{attachments.length > 0
 						? attachments.map((file, idx) => {
-							return attachment(file, idx);
+								return attachment(file, idx);
 						  })
 						: noAttachments()}
 				</Grid>

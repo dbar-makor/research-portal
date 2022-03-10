@@ -87,9 +87,7 @@ function TagsAutoComplete({
 								// Regular option
 								return option.name;
 							}}
-							getOptionSelected={(option, value) =>
-								option.name === value.name || option.name === value
-							}
+							getOptionSelected={(option, value) => option.name === value.name || option.name === value}
 							renderInput={(params) => {
 								return (
 									<TextField

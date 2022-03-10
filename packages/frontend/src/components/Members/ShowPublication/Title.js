@@ -21,9 +21,7 @@ function Title(props) {
 							<ArrowRight />
 						</Grid>
 						<Grid item>
-							<Typography style={{ fontSize: 14, color: '#000000', fontWeight: 'bold' }}>
-								{title}
-							</Typography>
+							<Typography style={{ fontSize: 14, color: '#000000', fontWeight: 'bold' }}>{title}</Typography>
 						</Grid>
 					</Grid>
 				</Grid>

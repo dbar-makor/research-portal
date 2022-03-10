@@ -24,9 +24,7 @@ function Test() {
 					<div {...getRootProps()}>
 						<input {...getInputProps()} />
 						<IconButton className={classes.iconButton} onClick={handleOpen}>
-							<FileUpload
-								className={selectedValue === 'a' ? classes.arrow2Style : classes.arrowStyle}
-							/>
+							<FileUpload className={selectedValue === 'a' ? classes.arrow2Style : classes.arrowStyle} />
 						</IconButton>
 					</div>
 				)}

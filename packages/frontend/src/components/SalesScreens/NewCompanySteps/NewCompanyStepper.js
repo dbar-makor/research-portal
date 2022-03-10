@@ -71,41 +71,41 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 
 	function getStepContent(step) {
 		switch (step) {
-		case 0:
-			return (
-				<InfoStep
-					company={company}
-					setCompany={setCompany}
-					handleCompany={handleCompany}
-					classes={classes}
-					errors={errors1}
-					setErrors={setErrors1}
-					validationResult={validationResult1}
-					setValidationResult={setValidationResult1}
-					setUploadedImage={setUploadedImage}
-					uploadedImage={uploadedImage}
-					inputValue={inputValue}
-					setInputValue={setInputValue}
-				/>
-			);
-		case 1:
-			return (
-				<MembersStep
-					company={company}
-					setCompany={setCompany}
-					currentMember={currentMember}
-					setCurrentMember={setCurrentMember}
-					initStateMember={initStateMember}
-					handleSubmit={handleSubmit}
-					classes={classes}
-					errors={errors2}
-					setErrors={setErrors2}
-					validationResult={validationResult2}
-					setValidationResult={setValidationResult2}
-				/>
-			);
-		default:
-			return 'Unknown step';
+			case 0:
+				return (
+					<InfoStep
+						company={company}
+						setCompany={setCompany}
+						handleCompany={handleCompany}
+						classes={classes}
+						errors={errors1}
+						setErrors={setErrors1}
+						validationResult={validationResult1}
+						setValidationResult={setValidationResult1}
+						setUploadedImage={setUploadedImage}
+						uploadedImage={uploadedImage}
+						inputValue={inputValue}
+						setInputValue={setInputValue}
+					/>
+				);
+			case 1:
+				return (
+					<MembersStep
+						company={company}
+						setCompany={setCompany}
+						currentMember={currentMember}
+						setCurrentMember={setCurrentMember}
+						initStateMember={initStateMember}
+						handleSubmit={handleSubmit}
+						classes={classes}
+						errors={errors2}
+						setErrors={setErrors2}
+						validationResult={validationResult2}
+						setValidationResult={setValidationResult2}
+					/>
+				);
+			default:
+				return 'Unknown step';
 		}
 	}
 
@@ -245,11 +245,7 @@ const NewCompanyStepper = ({ handleClose, open }) => {
                             </Grid> */}
 
 								<Grid container className={classes.stepperGroup}>
-									<Stepper
-										alternativeLabel
-										activeStep={activeStep}
-										connector={<StepperConnector />}
-									>
+									<Stepper alternativeLabel activeStep={activeStep} connector={<StepperConnector />}>
 										<Step>
 											<StepLabel
 												StepIconComponent={StepperIcons}
@@ -261,11 +257,7 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 										<Step>
 											<StepLabel
 												StepIconComponent={StepperIcons}
-												onClick={
-													activeStep === 0 && validationResult1
-														? handleNext
-														: () => {}
-												}
+												onClick={activeStep === 0 && validationResult1 ? handleNext : () => {}}
 											>
 												{steps[1]}
 											</StepLabel>
@@ -279,10 +271,7 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 										{activeStep === 0 ? (
 											<div></div>
 										) : (
-											<OutlinedButton
-												onClick={handleBack}
-												className={classes.buttonBack}
-											>
+											<OutlinedButton onClick={handleBack} className={classes.buttonBack}>
 												{' '}
 												Back{' '}
 											</OutlinedButton>
@@ -301,9 +290,7 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 												<FilledButton
 													onClick={handleSubmit}
 													className={classes.buttonNext}
-													disabled={
-														!validationResult2 || company.members.length < 1
-													}
+													disabled={!validationResult2 || company.members.length < 1}
 												>
 													{' '}
 													Create{' '}

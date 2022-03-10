@@ -36,18 +36,12 @@ const AuthorsNewArticleView = (props) => {
 							<Grid item xs={12}>
 								<Grid container justifyContent="space-between" alignItems="flex-end">
 									<Grid item xs={12}>
-										<Grid
-											container
-											className={classes.marginBottom25}
-											justifyContent="space-between"
-										>
+										<Grid container className={classes.marginBottom25} justifyContent="space-between">
 											<Grid item xs={12}>
 												<AtricleTitleTextField
 													variant="outlined"
 													value={props.localForm.title}
-													onChange={(e) =>
-														props.handleChange(e.target.value, 'title')
-													}
+													onChange={(e) => props.handleChange(e.target.value, 'title')}
 													style={{ width: '100%' }}
 													placeholder="Article Title*"
 													error={!!props.errors.title}
@@ -81,22 +75,18 @@ const AuthorsNewArticleView = (props) => {
 
 											{...(props.chosenResearch &&
 												Object.keys(props.chosenResearch.content).length && {
-												defaultValue:
+													defaultValue:
 														typeof props.chosenResearch.content !== 'string'
 															? JSON.stringify(props.chosenResearch.content)
 															: props.chosenResearch.content,
-											})}
+												})}
 											{...(props.location.state?.from === 'prearticle' &&
-												Object.keys(props.location.state?.publication.content)
-													.length && {
-												defaultValue:
-														typeof props.location.state?.publication.content !==
-														'string'
-															? JSON.stringify(
-																props.location.state?.publication.content,
-															  )
+												Object.keys(props.location.state?.publication.content).length && {
+													defaultValue:
+														typeof props.location.state?.publication.content !== 'string'
+															? JSON.stringify(props.location.state?.publication.content)
 															: props.location.state.publication.content,
-											})}
+												})}
 											controls={[
 												'bold',
 												'italic',
@@ -118,11 +108,9 @@ const AuthorsNewArticleView = (props) => {
 											]}
 										/>
 									</Grid>
-									{props.contentNotOK.focus &&
-										props.contentNotOK.everTyped &&
-										!props.contentNotOK.isText && (
+									{props.contentNotOK.focus && props.contentNotOK.everTyped && !props.contentNotOK.isText && (
 										<Grid item xs={6} style={{ color: 'red', marginLeft: 8 }}>
-												This field is required
+											This field is required
 										</Grid>
 									)}
 								</Grid>
@@ -134,9 +122,7 @@ const AuthorsNewArticleView = (props) => {
 							<Grid item xs={12}>
 								<Grid container>
 									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>
-											Information
-										</Typography>
+										<Typography className={classes.subHeaderRight}>Information</Typography>
 									</Grid>
 									<Grid item xs={9}>
 										<DropZone
@@ -180,10 +166,7 @@ const AuthorsNewArticleView = (props) => {
 
 							<Divider className={classes.divider} />
 							<Grid item xs={12}>
-								<Grid
-									container
-									className={`${classes.marginTop15} ${classes.eventsScrolledContainer}`}
-								>
+								<Grid container className={`${classes.marginTop15} ${classes.eventsScrolledContainer}`}>
 									<Grid item xs={3}>
 										<Typography className={classes.subHeaderRight}>Events</Typography>
 									</Grid>
@@ -229,9 +212,7 @@ const AuthorsNewArticleView = (props) => {
 													value={props.currentEvent.date}
 													className={classes.eventDatePicker}
 													InputAdornmentProps={{ position: 'end' }}
-													keyboardIcon={
-														<CalendarIcon className={classes.calendarIcon} />
-													}
+													keyboardIcon={<CalendarIcon className={classes.calendarIcon} />}
 													onChange={(date) => {
 														props.setCurrentEvent({
 															...props.currentEvent,
@@ -258,8 +239,7 @@ const AuthorsNewArticleView = (props) => {
 												>
 													<AddIcon
 														className={clsx(classes.addIcon, {
-															[classes.addIconDisabled]:
-																!props.ifCurrentEventFilled,
+															[classes.addIconDisabled]: !props.ifCurrentEventFilled,
 														})}
 													/>
 												</AddButton>
@@ -279,12 +259,7 @@ const AuthorsNewArticleView = (props) => {
 													<Grid item xs={5}>
 														<StyledTextField
 															onChange={(e) =>
-																props.updatePropertyField(
-																	index,
-																	e.target.value,
-																	'title',
-																	'events',
-																)
+																props.updatePropertyField(index, e.target.value, 'title', 'events')
 															}
 															value={event.title}
 															variant="outlined"
@@ -309,19 +284,10 @@ const AuthorsNewArticleView = (props) => {
 															InputAdornmentProps={{ position: 'end' }}
 															keyboardIcon={
 																props.localForm.events[index].date ? null : (
-																	<CalendarIcon
-																		className={classes.calendarIcon}
-																	/>
+																	<CalendarIcon className={classes.calendarIcon} />
 																)
 															}
-															onChange={(date) =>
-																props.updatePropertyField(
-																	index,
-																	date,
-																	'date',
-																	'events',
-																)
-															}
+															onChange={(date) => props.updatePropertyField(index, date, 'date', 'events')}
 															style={{ width: '100%', maxHeight: '53px' }}
 															PopoverProps={{
 																classes: { paper: classes.calendarPaper },
@@ -329,10 +295,7 @@ const AuthorsNewArticleView = (props) => {
 														/>
 													</Grid>
 													<Grid item xs={1}>
-														<DeleteButton
-															disableRipple
-															onClick={() => props.deleteItem(index, 'events')}
-														>
+														<DeleteButton disableRipple onClick={() => props.deleteItem(index, 'events')}>
 															<ClearIcon className={classes.clearIcon} />
 														</DeleteButton>
 													</Grid>
@@ -347,9 +310,7 @@ const AuthorsNewArticleView = (props) => {
 							<Grid item xs={12}>
 								<Grid container className={classes.marginTop15}>
 									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>
-											Attachments
-										</Typography>
+										<Typography className={classes.subHeaderRight}>Attachments</Typography>
 									</Grid>
 									<Grid item xs={9}>
 										<DropZoneMulti
@@ -365,20 +326,14 @@ const AuthorsNewArticleView = (props) => {
 							</Grid>
 						</Grid>
 						<Grid item xs={12}>
-							<Grid
-								container
-								justifyContent="space-between"
-								className={classes.buttonsContainer}
-							>
+							<Grid container justifyContent="space-between" className={classes.buttonsContainer}>
 								{((props.chosenResearch && props.chosenResearch.status === 'draft') ||
 									!props.chosenResearch) && (
 									<OutlinedButton onClick={() => props.sendPublication('save-draft')}>
 										Save Draft
 									</OutlinedButton>
 								)}
-								<OutlinedButton onClick={() => props.sendPublication('preview')}>
-									Preview
-								</OutlinedButton>
+								<OutlinedButton onClick={() => props.sendPublication('preview')}>Preview</OutlinedButton>
 								<FilledButton
 									disabled={
 										!props.validationResult ||

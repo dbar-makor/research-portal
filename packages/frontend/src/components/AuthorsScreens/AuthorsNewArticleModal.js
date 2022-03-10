@@ -40,9 +40,7 @@ function AuthorsNewArticleModal({ handleClose, open }) {
 						<Grid item xs={12}>
 							<Grid container>
 								<Grid item xs={12}>
-									<Typography className={classes.articleType}>
-										Select the type of article
-									</Typography>
+									<Typography className={classes.articleType}>Select the type of article</Typography>
 								</Grid>
 							</Grid>
 						</Grid>
@@ -50,10 +48,7 @@ function AuthorsNewArticleModal({ handleClose, open }) {
 							<Grid item xs={12}>
 								<Grid container>
 									<Grid item xs={5}>
-										<Button
-											className={classes.buttonStyle}
-											onClick={() => history.push('/new-article')}
-										>
+										<Button className={classes.buttonStyle} onClick={() => history.push('/new-article')}>
 											<Grid container>
 												<Grid item xs={12}>
 													<Grid container>
@@ -66,9 +61,7 @@ function AuthorsNewArticleModal({ handleClose, open }) {
 													</Grid>
 													<Grid container>
 														<Grid item xs={12} className={classes.articleTitle2}>
-															<Typography className="articleTitle">
-																Write an Article
-															</Typography>
+															<Typography className="articleTitle">Write an Article</Typography>
 														</Grid>
 													</Grid>
 												</Grid>
@@ -77,10 +70,7 @@ function AuthorsNewArticleModal({ handleClose, open }) {
 									</Grid>
 									<Grid item xs={2}></Grid>
 									<Grid item xs={5}>
-										<Button
-											className={classes.button2Style}
-											onClick={() => history.push('/upload-article')}
-										>
+										<Button className={classes.button2Style} onClick={() => history.push('/upload-article')}>
 											<Grid container>
 												<Grid item xs={12}>
 													<Grid container>
@@ -90,9 +80,7 @@ function AuthorsNewArticleModal({ handleClose, open }) {
 													</Grid>
 													<Grid container>
 														<Grid item xs={12} className={classes.uploadTitle}>
-															<Typography className="uploadTitle">
-																Upload Files
-															</Typography>
+															<Typography className="uploadTitle">Upload Files</Typography>
 														</Grid>
 													</Grid>
 												</Grid>

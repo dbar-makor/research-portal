@@ -50,12 +50,12 @@ function ContractsTable(props) {
 											header === 'Status'
 												? 'center'
 												: header === 'Actions'
-													? 'center'
-													: header === 'Amount'
-														? 'right'
-														: header === 'Yearly Cost'
-															? 'right'
-															: 'none',
+												? 'center'
+												: header === 'Amount'
+												? 'right'
+												: header === 'Yearly Cost'
+												? 'right'
+												: 'none',
 									}}
 								>
 									{header}

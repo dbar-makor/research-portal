@@ -212,14 +212,12 @@ function TopBar(props) {
 											placeholder="Idea/Ticker"
 											InputProps={{
 												endAdornment: (
-<<<<<<< HEAD
 													<SearchIcon
 														className={classes.searchIcon}
 														style={{ cursor: 'pointer' }}
 													/>
-=======
 													<SearchIcon className={classes.searchIcon} style={{ cursor: 'pointer' }} />
->>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
+
 												),
 											}}
 										/>
@@ -237,7 +235,6 @@ function TopBar(props) {
 								<Link to={'/companies'} className={classes.styledLinks}>
 									Companies
 								</Link>
-<<<<<<< HEAD
 							</Grid>
 							<Grid>
 								<Link to={'/contracts'} className={classes.styledLinks}>
@@ -352,111 +349,6 @@ function TopBar(props) {
 						</Grid>
 					</Grid>
 				);
-=======
-							</Grid>
-							<Grid>
-								<Link to={'/contracts'} className={classes.styledLinks}>
-									Contracts
-								</Link>
-							</Grid>
-							<Grid>
-								<Link to={'/invoices'} className={classes.styledLinks}>
-									Invoices
-								</Link>
-							</Grid>
-						</Grid>
-					</Grid>
-				);
-			case 'author':
-				return (
-					<Grid item xs={3} style={{ marginRight: 113 }}>
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<Link to={'/researches'} className={classes.styledLinks}>
-									My Articles
-								</Link>
-							</Grid>
-						</Grid>
-					</Grid>
-				);
-			case 'admin':
-				return (
-					<Grid item xs={3} style={{ marginRight: 113 }}>
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<Grid container alignItems="center">
-									<Grid item>
-										<Typography
-											style={{
-												fontSize: 16,
-												color: '#fffff',
-												cursor: 'pointer',
-												fontWeight: 300,
-											}}
-											onClick={() => handleToggle('user_mgmt')}
-										>
-											Users Managment
-										</Typography>
-									</Grid>
-									<Grid item>
-										<IconButton
-											size="small"
-											ref={userMgmtRef}
-											aria-controls={openUserMgmt ? 'composition-menu' : undefined}
-											aria-expanded={openUserMgmt ? 'true' : undefined}
-											aria-haspopup="true"
-											onClick={() => handleToggle('user_mgmt')}
-										>
-											{openUserMgmt ? (
-												<ExpandLessIcon style={{ color: '#ffff' }} />
-											) : (
-												<ExpandMoreIcon style={{ color: '#ffff' }} />
-											)}
-										</IconButton>
-									</Grid>
-								</Grid>
-								<Popper
-									open={openUserMgmt}
-									anchorEl={userMgmtRef.current}
-									role={undefined}
-									placement="bottom"
-									transition
-									disablePortal
-									modifiers={{
-										offset: {
-											enabled: true,
-											offset: userType === 'client' ? '-150, 10' : '-80, 10',
-										},
-									}}
-								>
-									{({ TransitionProps, placement }) => (
-										<Grow
-											{...TransitionProps}
-											style={{
-												transformOrigin: placement === 'bottom-start' ? 'right top' : 'right bottom',
-											}}
-										>
-											<Paper>
-												<ClickAwayListener onClickAway={(e) => handleClose(e, 'user_mgmt')}>
-													<MenuList
-														autoFocusItem={open}
-														id="composition-menu"
-														aria-labelledby="composition-button"
-													>
-														<MenuItem onClick={() => adminGoTo('/sales')}>Sales</MenuItem>
-														<MenuItem onClick={() => adminGoTo('/companies')}>Companies Page</MenuItem>
-														<MenuItem onClick={() => adminGoTo('/authors')}>Authors Page</MenuItem>
-													</MenuList>
-												</ClickAwayListener>
-											</Paper>
-										</Grow>
-									)}
-								</Popper>
-							</Grid>
-						</Grid>
-					</Grid>
-				);
->>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 		}
 	};
 	const redirect = (type) => {
@@ -478,9 +370,6 @@ function TopBar(props) {
 						<Toolbar>
 							<Grid item xs={4} className={classes.gridSpacing} style={{ marginLeft: '380px' }}>
 								<Link
-<<<<<<< HEAD
-									to={userType === 'author' ? '/researches' : userType === 'sales' ? '/companies' : '/home'}
-=======
 									to={
 										userType === 'author'
 											? '/researches'
@@ -488,7 +377,6 @@ function TopBar(props) {
 											? '/companies'
 											: '/home'
 									}
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 									className={classes.link}
 								>
 									<MakorLogo />

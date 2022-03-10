@@ -3,7 +3,6 @@ const settings_query = require('../../sql/queries/settings');
 const db_helper = require('../../utils/db_helper');
 const ws_service = require('../services/ws_service');
 const session_manager = require('../../utils/session_manager');
-const { error } = require('../../logger');
 const { result } = require('lodash');
 
 const send_notification = async (notifiers, content_id) => {
@@ -73,7 +72,7 @@ const send_notification = async (notifiers, content_id) => {
 
 			// )
 			//for all of thoes who are not connected
-			for (notifier of notifiers) {
+			for (const notifier of notifiers) {
 				const [res_settings_notifications] = await db_helper.get(
 					settings_query.get_notifications_settings(session.user_id),
 				);
@@ -84,7 +83,7 @@ const send_notification = async (notifiers, content_id) => {
 >>>>>>> c7002297c0167df11929209b77da14040815ff78
 				if (res_settings_notifications.is_active && settings.publications.new_publications) {
 					// create notification object for users not connected
-					notification = {
+					const notification = {
 						is_sent: false,
 						is_read: false,
 						user_id: notifier,

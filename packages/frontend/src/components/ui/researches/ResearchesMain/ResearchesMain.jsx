@@ -4,7 +4,7 @@ import * as researchAction from '../../../../redux/researches/researchesSlice';
 
 import ResearchesMainView from './ResearchesMain.view';
 
-const ResearchesMain = (props) => {
+const ResearchesMain = () => {
 	const dispatch = useDispatch();
 	const researches = useSelector((state) => state.researches.articles);
 
@@ -12,9 +12,7 @@ const ResearchesMain = (props) => {
 		dispatch(researchAction.getResearchesDataAsync());
 	}, []);
 
-	useEffect(() => {
-		console.log('researches!!!', researches);
-	}, [researches]);
+	useEffect(() => {}, [researches]);
 
 	return <ResearchesMainView researches={researches} />;
 };

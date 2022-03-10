@@ -36,11 +36,7 @@ function SubscriberInfoEdit(prop) {
 					<Grid item xs={12} style={{ paddingTop: '50px' }}>
 						<Grid container>
 							<Grid item xs={12}>
-								<StyledTextField
-									id="standard-basic"
-									label="Paid"
-									value={info.paid.toString()}
-								/>
+								<StyledTextField id="standard-basic" label="Paid" value={info.paid.toString()} />
 							</Grid>
 						</Grid>
 					</Grid>

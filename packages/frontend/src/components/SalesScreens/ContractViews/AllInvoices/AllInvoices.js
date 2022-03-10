@@ -60,20 +60,20 @@ function AllInvoices() {
 
 	const inputHandler = (e, type) => {
 		switch (type) {
-		case 'STATUS':
-			setTransactionStatus(e.target.name);
-			setFilters({ ...filters, status: e.target.value });
-			break;
-		case 'INVOICE_ID':
-			setFilters({ ...filters, invoice_id: invoiceId });
-			break;
-		case 'COMPANY_NAME':
-			e !== null
-				? setFilters({ ...filters, company_id: e.id })
-				: setFilters({ ...filters, company_id: '' });
-			break;
-		default:
-			break;
+			case 'STATUS':
+				setTransactionStatus(e.target.name);
+				setFilters({ ...filters, status: e.target.value });
+				break;
+			case 'INVOICE_ID':
+				setFilters({ ...filters, invoice_id: invoiceId });
+				break;
+			case 'COMPANY_NAME':
+				e !== null
+					? setFilters({ ...filters, company_id: e.id })
+					: setFilters({ ...filters, company_id: '' });
+				break;
+			default:
+				break;
 		}
 	};
 
@@ -228,12 +228,7 @@ function AllInvoices() {
 
 						{loadingInvoices && (
 							<Grid item xs={12} align="center" style={{ height: 'calc(100vh - 539px)' }}>
-								<CircularProgress
-									size={40}
-									thickness={4}
-									value={100}
-									style={{ marginTop: '8%' }}
-								/>
+								<CircularProgress size={40} thickness={4} value={100} style={{ marginTop: '8%' }} />
 							</Grid>
 						)}
 						{invoiceRows && !loadingInvoices && (

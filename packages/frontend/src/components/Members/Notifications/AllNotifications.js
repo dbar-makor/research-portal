@@ -24,12 +24,12 @@ function AllNotifications() {
 		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
 			switch (data.type) {
-			case 'notifcations':
-				const allNotifications = data.notifications;
-				setNotifications([...allNotifications]);
-				break;
-			default:
-				break;
+				case 'notifcations':
+					const allNotifications = data.notifications;
+					setNotifications([...allNotifications]);
+					break;
+				default:
+					break;
 			}
 		};
 	}, [markAsRead]);
@@ -78,13 +78,7 @@ function AllNotifications() {
 							{filteredNotifications.length &&
 								filteredNotifications.map((item) => {
 									const content = JSON.parse(item.content);
-									return (
-										<NotificationBox
-											key={item.id}
-											content={content}
-											isRead={item.is_read}
-										/>
-									);
+									return <NotificationBox key={item.id} content={content} isRead={item.is_read} />;
 								})}
 						</Grid>
 					</Grid>

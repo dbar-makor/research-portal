@@ -9,9 +9,9 @@ export const disableSnackBar = () => (dispatch) => {
 
 export const setSnackBar =
 	(type, message, timeout = 2000) =>
-		(dispatch) => {
-			dispatch({ type: SET_SNACKBAR, payload: { type, message, timeout } });
-			timeoutInstance = setTimeout(() => {
-				dispatch({ type: DISABLE_SNACKBAR });
-			}, timeout);
-		};
+	(dispatch) => {
+		dispatch({ type: SET_SNACKBAR, payload: { type, message, timeout } });
+		timeoutInstance = setTimeout(() => {
+			dispatch({ type: DISABLE_SNACKBAR });
+		}, timeout);
+	};

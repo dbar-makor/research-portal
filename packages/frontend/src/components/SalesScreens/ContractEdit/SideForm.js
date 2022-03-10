@@ -43,10 +43,9 @@ function SideForm(props) {
 
 			try {
 				const contractSignerID = contractSigner.id ? contractSigner.id : contractSigner;
-				const res = await axios.put(
-					`${BASE_URL}${END_POINT.CONTRACT}/${chosenContract.contract_id}`,
-					{ signer_user: contractSignerID },
-				);
+				const res = await axios.put(`${BASE_URL}${END_POINT.CONTRACT}/${chosenContract.contract_id}`, {
+					signer_user: contractSignerID,
+				});
 
 				if (res.status === 200) {
 					console.log('put succeded');
@@ -57,9 +56,7 @@ function SideForm(props) {
 			}
 		} else {
 			if (!signerInputValue) {
-				dispatch(
-					actionSnackBar.setSnackBar('error', 'Please choose a recipient for the email', 1000),
-				);
+				dispatch(actionSnackBar.setSnackBar('error', 'Please choose a recipient for the email', 1000));
 			}
 			if (!activeSidebar) {
 				dispatch(actionSnackBar.setSnackBar('error', 'Please finish update first', 1000));
@@ -82,10 +79,9 @@ function SideForm(props) {
 
 	const presentPDFContract = async () => {
 		try {
-			const res = await axios.get(
-				`${BASE_URL}${END_POINT.CONTRACT}/pdf/${chosenContract.contract_id}`,
-				{ headers: { Accept: 'application/pdf' } },
-			);
+			const res = await axios.get(`${BASE_URL}${END_POINT.CONTRACT}/pdf/${chosenContract.contract_id}`, {
+				headers: { Accept: 'application/pdf' },
+			});
 
 			if (res.status === 200) {
 				const pdfString = res.data.pdf;
@@ -115,10 +111,7 @@ function SideForm(props) {
 						<Grid item xs={12} className={classes.progressBarItem}>
 							<Grid container className={classes.progressBarContainer}>
 								<CircularProgress className={classes.progressBar} />
-								<Typography className={classes.progressbarTitle}>
-									{' '}
-									Updating Files...{' '}
-								</Typography>
+								<Typography className={classes.progressbarTitle}> Updating Files... </Typography>
 							</Grid>
 						</Grid>
 					) : (
@@ -155,9 +148,7 @@ function SideForm(props) {
 							<Grid item xs={12} style={{ margin: '32px 0px 0px 16px' }}>
 								<Grid container direction="column" spacing={3}>
 									<Grid item xs={11}>
-										<Typography className={classes.sectionTitle}>
-											Resend for signature to?
-										</Typography>
+										<Typography className={classes.sectionTitle}>Resend for signature to?</Typography>
 									</Grid>
 									<Grid item xs={11}>
 										<Grid container className={classes.formRow}>
@@ -179,11 +170,7 @@ function SideForm(props) {
 											<Grid item xs={1}>
 												<Typography
 													className={classes.send}
-													style={
-														activeSidebar && signerInputValue
-															? { color: '#1C67FF' }
-															: {}
-													}
+													style={activeSidebar && signerInputValue ? { color: '#1C67FF' } : {}}
 													onClick={sendEmail}
 												>
 													Send

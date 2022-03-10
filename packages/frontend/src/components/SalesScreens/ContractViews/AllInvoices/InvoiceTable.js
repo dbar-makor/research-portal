@@ -71,10 +71,10 @@ function InvoiceTable(props) {
 											header === 'Amount'
 												? 'center'
 												: header === 'Status'
-													? 'center'
-													: header === 'Download'
-														? 'center'
-														: 'none',
+												? 'center'
+												: header === 'Download'
+												? 'center'
+												: 'none',
 									}}
 								>
 									{header}
@@ -88,18 +88,13 @@ function InvoiceTable(props) {
 						invoiceRows.map((invoice, idx) => {
 							return (
 								<TableRow>
-									<TableCell
-										style={{ textTransform: 'uppercase', fontWeight: 'bold' }}
-									>{`#${invoice.id.slice(0, 6)}`}</TableCell>
-									<TableCell style={{ textTransform: 'capitalize' }}>
-										{invoice.company_name}
-									</TableCell>
-									<TableCell>
-										{format(new Date(invoice.invoice_date), 'dd MMM, yyyy')}
-									</TableCell>
-									<TableCell
-										style={{ textAlign: 'center' }}
-									>{`${invoice.amount}`}</TableCell>
+									<TableCell style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>{`#${invoice.id.slice(
+										0,
+										6,
+									)}`}</TableCell>
+									<TableCell style={{ textTransform: 'capitalize' }}>{invoice.company_name}</TableCell>
+									<TableCell>{format(new Date(invoice.invoice_date), 'dd MMM, yyyy')}</TableCell>
+									<TableCell style={{ textAlign: 'center' }}>{`${invoice.amount}`}</TableCell>
 									<TableCell style={{ textAlign: 'center' }}>
 										{invoice.status === 'pending' ? (
 											<Pending />

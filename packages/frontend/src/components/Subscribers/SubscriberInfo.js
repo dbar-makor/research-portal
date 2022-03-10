@@ -36,9 +36,7 @@ function Subscriberinfo(props) {
 								<StyledTitleTypography>Paid:</StyledTitleTypography>
 							</Grid>
 							<Grid item xs={12}>
-								<Typography style={{ fontSize: '16px' }}>
-									{info.paid === true ? 'Yes' : 'No'}
-								</Typography>
+								<Typography style={{ fontSize: '16px' }}>{info.paid === true ? 'Yes' : 'No'}</Typography>
 							</Grid>
 						</Grid>
 					</Grid>

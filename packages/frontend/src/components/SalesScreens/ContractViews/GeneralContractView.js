@@ -29,9 +29,7 @@ function GeneralContractView() {
 					<BlueBorder />
 					<Grid item xs={12}>
 						<Grid container justifyContent="center">
-							<Typography className={classes.modalTitle}>
-								{chosenCompany?.name}'s Contract
-							</Typography>
+							<Typography className={classes.modalTitle}>{chosenCompany?.name}'s Contract</Typography>
 						</Grid>
 					</Grid>
 				</Grid>
@@ -45,11 +43,7 @@ function GeneralContractView() {
 					/>
 				)}
 				{step === 2 && (
-					<SendContractView
-						setStep={setStep}
-						contractCopy={contractCopy}
-						setContractCopy={setContractCopy}
-					/>
+					<SendContractView setStep={setStep} contractCopy={contractCopy} setContractCopy={setContractCopy} />
 				)}
 			</Grid>
 		</Grid>

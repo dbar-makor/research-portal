@@ -19,11 +19,7 @@ const ResearchesMainView = (props) => {
 							<Grid item xs={6}>
 								<Grid container>
 									<Grid item xs={12}>
-										<img
-											alt="Article"
-											src={`${props.researches[0].image}`}
-											className={classes.bigImage}
-										/>
+										<img alt="Article" src={`${props.researches[0].image}`} className={classes.bigImage} />
 									</Grid>
 									<Grid item xs={12}>
 										<Typography className={classes.bigDescription}>
@@ -56,10 +52,7 @@ const ResearchesMainView = (props) => {
 								<Grid container justifyContent="space-between">
 									{props.researches.slice(1).map((item, index) => (
 										<Grid item xs={12} key={index}>
-											<Link
-												to={{ pathname: `/article/${item.id}` }}
-												className={classes.smallLink}
-											>
+											<Link to={{ pathname: `/article/${item.id}` }} className={classes.smallLink}>
 												<Grid
 													container
 													justifyContent="space-between"
@@ -72,14 +65,10 @@ const ResearchesMainView = (props) => {
 													<Grid item xs={7}>
 														<Grid container justifyContent="flex-start">
 															<Grid item xs={12}>
-																<Typography className={classes.smallTitle}>
-																	{item.title}
-																</Typography>
+																<Typography className={classes.smallTitle}>{item.title}</Typography>
 															</Grid>
 															<Grid item xs={12}>
-																<Typography
-																	className={classes.smallAuthorName}
-																>
+																<Typography className={classes.smallAuthorName}>
 																	{item.author_name}
 																</Typography>
 															</Grid>

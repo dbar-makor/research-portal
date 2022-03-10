@@ -48,8 +48,8 @@ function DropZone(props) {
 									? `${uploadedImage.slice(0, 20)}...`
 									: uploadedImage
 								: uploadedImage.file_name?.length > 20
-									? `${uploadedImage.file_name.slice(0, 20)}...`
-									: uploadedImage.file_name}
+								? `${uploadedImage.file_name.slice(0, 20)}...`
+								: uploadedImage.file_name}
 						</Typography>
 						<DeleteButton
 							disableRipple
@@ -73,9 +73,7 @@ function DropZone(props) {
 								<Typography className={classes.uploadText}>&nbsp;{purpose}</Typography>
 							</Grid>
 							<Grid item xs={12}>
-								<Typography className={classes.onlyPng}>
-									.jpg, .png, .svg .jfif .webp
-								</Typography>
+								<Typography className={classes.onlyPng}>.jpg, .png, .svg .jfif .webp</Typography>
 							</Grid>
 						</Grid>
 					</Grid>

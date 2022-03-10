@@ -45,34 +45,33 @@ function DropZoneMulti(props) {
 					)}
 				</Grid>
 			</Grid>
-
 			<Grid container className={classes.attachmentsScrolledContainer}>
 				<Grid item xs={12}>
 					{localForm.attachments && localForm.attachments.length
 						? localForm.attachments.map((file, index) => (
-							<Grid
-								container
-								alignItems="center"
-								justifyContent="space-between"
-								className={classes.attachmentLine}
-								key={index}
-							>
-								<Grid item xs={8}>
-									<Typography>
-										{file.file_name.length > 20
-											? `${file.file_name.slice(0, 20)}...`
-											: file.file_name}
-									</Typography>
+								<Grid
+									container
+									alignItems="center"
+									justifyContent="space-between"
+									className={classes.attachmentLine}
+									key={index}
+								>
+									<Grid item xs={8}>
+										<Typography>
+											{file.file_name.length > 20
+												? `${file.file_name.slice(0, 20)}...`
+												: file.file_name}
+										</Typography>
+									</Grid>
+									<Grid item xs={1}>
+										<DeleteButton
+											disableRipple
+											onClick={() => deleteItem(index, 'attachments')}
+										>
+											<ClearIcon className={classes.clearIcon} />
+										</DeleteButton>
+									</Grid>
 								</Grid>
-								<Grid item xs={1}>
-									<DeleteButton
-										disableRipple
-										onClick={() => deleteItem(index, 'attachments')}
-									>
-										<ClearIcon className={classes.clearIcon} />
-									</DeleteButton>
-								</Grid>
-							</Grid>
 						  ))
 						: null}
 				</Grid>

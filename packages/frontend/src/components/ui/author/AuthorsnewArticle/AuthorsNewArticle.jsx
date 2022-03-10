@@ -63,9 +63,7 @@ const AuthorsNewArticle = (props) => {
 	useEffect(() => {
 		if (chosenResearch) {
 			console.log('there\'s a chosenResearch');
-			const coverImg = chosenResearch.attachments.find(
-				(attachment) => attachment.file_type === 'main_bg',
-			);
+			const coverImg = chosenResearch.attachments.find((attachment) => attachment.file_type === 'main_bg');
 			const otherFiles = chosenResearch.attachments.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
@@ -105,9 +103,7 @@ const AuthorsNewArticle = (props) => {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
 			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
-			const otherFiles = publication.attachments?.filter(
-				(attachment) => attachment.file_type !== 'main_bg',
-			);
+			const otherFiles = publication.attachments?.filter((attachment) => attachment.file_type !== 'main_bg');
 			// let categoriesIDs = publication.categories?.map(category => category.id)
 			const editedLocalForm = { ...publication, attachments: otherFiles };
 			// let editedLocalForm = {...publication, attachments: otherFiles, content: JSON.stringify(publication.content)};
@@ -152,10 +148,7 @@ const AuthorsNewArticle = (props) => {
 				tags: tagsForServer,
 				description: description,
 				status: 'published',
-				content:
-					typeof formToSend.content === 'string'
-						? JSON.parse(formToSend.content)
-						: formToSend.content,
+				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
 			};
 			console.log('formToSend', formToSend);
 		} else if (buttonMarker === 'save-draft') {
@@ -166,10 +159,7 @@ const AuthorsNewArticle = (props) => {
 				tags: tagsForServer,
 				description: description,
 				status: 'draft',
-				content:
-					typeof formToSend.content === 'string'
-						? JSON.parse(formToSend.content)
-						: formToSend.content,
+				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
 			};
 		} else if (buttonMarker === 'preview') {
 			formToSend = {
@@ -276,12 +266,7 @@ const AuthorsNewArticle = (props) => {
 				categories: formCats,
 			});
 			if (chosenResearch) {
-				validateEditedLivePublication(
-					{ categories: formCats },
-					errors,
-					setErrors,
-					setValidationResult,
-				);
+				validateEditedLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
 			} else {
 				validateLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
 			}

@@ -56,10 +56,7 @@ function Comment(props) {
 						</Grid>
 						{userType && userType != 'prospect' ? (
 							<Grid item style={{ marginLeft: 15 }}>
-								<Typography
-									className={classes.replay}
-									onClick={() => setOpenReply(!openReply)}
-								>
+								<Typography className={classes.replay} onClick={() => setOpenReply(!openReply)}>
 									Reply
 								</Typography>
 							</Grid>
@@ -72,9 +69,7 @@ function Comment(props) {
 									) : (
 										<ArrowDown style={{ margin: '2px 5px 1px 0px' }} />
 									)}
-									{`${comment.replies.length} ${
-										comment.replies.length > 1 ? 'Replies' : 'Reply'
-									}`}
+									{`${comment.replies.length} ${comment.replies.length > 1 ? 'Replies' : 'Reply'}`}
 								</Typography>
 							</Grid>
 						)}

@@ -32,9 +32,7 @@ function DateInputUnit({
 					disableToolbar
 					// placdeholder={label}
 					className={datePickerClass}
-					keyboardIcon={
-						<IconCalendar style={{ width: iconFontSize }} className={classes.calendarIcon} />
-					}
+					keyboardIcon={<IconCalendar style={{ width: iconFontSize }} className={classes.calendarIcon} />}
 				/>
 				{/* <Typography variant="caption">
           {label}

@@ -65,12 +65,7 @@ function AllPublicationsTabs({ fetchStatistics }) {
 				<Grid item xs={12}>
 					<Grid container className={classes.barWrapper}>
 						<Grid item xs={4}>
-							<Tabs
-								value={value}
-								onChange={handleChange}
-								className={classes.tabs}
-								aria-label="tabs"
-							>
+							<Tabs value={value} onChange={handleChange} className={classes.tabs} aria-label="tabs">
 								<Tab label="Published" {...a11yProps(0)} className={classes.tab} />
 								<Tab label="Drafts" {...a11yProps(1)} className={classes.tab} />
 							</Tabs>
@@ -97,9 +92,7 @@ function AllPublicationsTabs({ fetchStatistics }) {
 										);
 									})
 								) : (
-									<Typography className={classes.noPublications}>
-										No published publications yet
-									</Typography>
+									<Typography className={classes.noPublications}>No published publications yet</Typography>
 								)}
 							</TabPanel>
 

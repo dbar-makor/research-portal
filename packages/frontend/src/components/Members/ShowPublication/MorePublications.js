@@ -85,9 +85,7 @@ function MorePublications(props) {
 									<Grid item>
 										<Grid container>
 											<Grid item xs={12}>
-												<Typography className={classes.title}>
-													{publication.title}
-												</Typography>
+												<Typography className={classes.title}>{publication.title}</Typography>
 											</Grid>
 											<Grid item style={{ paddingTop: 5 }}>
 												<Typography variant="body2">

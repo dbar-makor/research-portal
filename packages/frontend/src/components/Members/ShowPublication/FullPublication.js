@@ -102,27 +102,18 @@ function FullPublication({ publication }) {
 				{chosenPublication && !loadingPub && (
 					<>
 						{location.state && location.state.from === 'new-publication' && (
-							<Grid
-								item
-								xs={11}
-								style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}
-							>
+							<Grid item xs={11} style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
 								<FilledButton onClick={backToEditing}> Back to Editing </FilledButton>
 							</Grid>
 						)}
 						<Grid item xs={5}>
 							<Grid container>
-								<Title
-									title={chosenPublication.title}
-									description={chosenPublication.description}
-								/>
+								<Title title={chosenPublication.title} description={chosenPublication.description} />
 
 								<AuthorInfo
 									auther={chosenPublication.author}
 									lastDate={
-										chosenPublication.updated_at
-											? chosenPublication.updated_at
-											: chosenPublication.created_at
+										chosenPublication.updated_at ? chosenPublication.updated_at : chosenPublication.created_at
 									}
 								/>
 								{chosenPublication.type === 'live' ? (
@@ -146,22 +137,17 @@ function FullPublication({ publication }) {
 										}}
 									/>
 								)}
-								{(chosenPublication.commments !== null ||
-									chosenPublication.commments !== undefined) &&
+								{(chosenPublication.commments !== null || chosenPublication.commments !== undefined) &&
 								userType !== 'author' ? (
-										<Comments
-											comments={chosenPublication.comments}
-											pubId={chosenPublication.id}
-										/>
-									) : null}
-								{(chosenPublication.categories !== null ||
-									chosenPublication.categories !== undefined) &&
+									<Comments comments={chosenPublication.comments} pubId={chosenPublication.id} />
+								) : null}
+								{(chosenPublication.categories !== null || chosenPublication.categories !== undefined) &&
 								userType !== 'author' ? (
-										<MorePublications
-											categories={chosenPublication.categories}
-											title={chosenPublication.title}
-										/>
-									) : null}
+									<MorePublications
+										categories={chosenPublication.categories}
+										title={chosenPublication.title}
+									/>
+								) : null}
 							</Grid>
 						</Grid>
 					</>

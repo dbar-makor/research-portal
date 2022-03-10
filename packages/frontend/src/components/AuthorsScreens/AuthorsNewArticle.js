@@ -119,15 +119,10 @@ function AuthorsNewArticle() {
 	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
-<<<<<<< HEAD
-			console.log('there\'s a chosenResearch');
-			const coverImg = chosenResearch.attachments.find((attachment) => attachment.file_type === 'main_bg');
-=======
 			console.log("there's a chosenResearch");
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 			const otherFiles = chosenResearch.attachments.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
@@ -166,17 +161,12 @@ function AuthorsNewArticle() {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
-<<<<<<< HEAD
-			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
-			const otherFiles = publication.attachments?.filter((attachment) => attachment.file_type !== 'main_bg');
-=======
 			const coverImg = publication.attachments?.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
 			const otherFiles = publication.attachments?.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 			// let categoriesIDs = publication.categories?.map(category => category.id)
 			const editedLocalForm = { ...publication, attachments: otherFiles };
 			// let editedLocalForm = {...publication, attachments: otherFiles, content: JSON.stringify(publication.content)};
@@ -228,7 +218,10 @@ function AuthorsNewArticle() {
 				tags: tagsForServer,
 				description: description,
 				status: 'published',
-				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
+				content:
+					typeof formToSend.content === 'string'
+						? JSON.parse(formToSend.content)
+						: formToSend.content,
 			};
 			console.log('formToSend', formToSend);
 		} else if (buttonMarker === 'save-draft') {
@@ -239,7 +232,10 @@ function AuthorsNewArticle() {
 				tags: tagsForServer,
 				description: description,
 				status: 'draft',
-				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
+				content:
+					typeof formToSend.content === 'string'
+						? JSON.parse(formToSend.content)
+						: formToSend.content,
 			};
 		} else if (buttonMarker === 'preview') {
 			formToSend = {
@@ -346,7 +342,12 @@ function AuthorsNewArticle() {
 				categories: formCats,
 			});
 			if (chosenResearch) {
-				validateEditedLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
+				validateEditedLivePublication(
+					{ categories: formCats },
+					errors,
+					setErrors,
+					setValidationResult,
+				);
 			} else {
 				validateLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
 			}
@@ -491,7 +492,11 @@ function AuthorsNewArticle() {
 							<Grid item xs={12}>
 								<Grid container justifyContent="space-between" alignItems="flex-end">
 									<Grid item xs={12}>
-										<Grid container className={classes.marginBottom25} justifyContent="space-between">
+										<Grid
+											container
+											className={classes.marginBottom25}
+											justifyContent="space-between"
+										>
 											<Grid item xs={12}>
 												<AtricleTitleTextField
 													variant="outlined"
@@ -538,16 +543,11 @@ function AuthorsNewArticle() {
 											{...(location.state?.from === 'prearticle' &&
 												Object.keys(location.state?.publication.content).length && {
 													defaultValue:
-<<<<<<< HEAD
-														typeof location.state?.publication.content !== 'string'
-															? JSON.stringify(location.state?.publication.content)
-=======
 														typeof location.state?.publication.content !==
 														'string'
 															? JSON.stringify(
 																	location.state?.publication.content,
 															  )
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 															: location.state.publication.content,
 												})}
 											controls={[
@@ -585,7 +585,9 @@ function AuthorsNewArticle() {
 							<Grid item xs={12}>
 								<Grid container>
 									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>Information</Typography>
+										<Typography className={classes.subHeaderRight}>
+											Information
+										</Typography>
 									</Grid>
 									<Grid item xs={9}>
 										<DropZone
@@ -629,7 +631,10 @@ function AuthorsNewArticle() {
 
 							<Divider className={classes.divider} />
 							<Grid item xs={12}>
-								<Grid container className={`${classes.marginTop15} ${classes.eventsScrolledContainer}`}>
+								<Grid
+									container
+									className={`${classes.marginTop15} ${classes.eventsScrolledContainer}`}
+								>
 									<Grid item xs={3}>
 										<Typography className={classes.subHeaderRight}>Events</Typography>
 									</Grid>
@@ -675,7 +680,9 @@ function AuthorsNewArticle() {
 													value={currentEvent.date}
 													className={classes.eventDatePicker}
 													InputAdornmentProps={{ position: 'end' }}
-													keyboardIcon={<CalendarIcon className={classes.calendarIcon} />}
+													keyboardIcon={
+														<CalendarIcon className={classes.calendarIcon} />
+													}
 													onChange={(date) => {
 														setCurrentEvent({ ...currentEvent, date: date });
 														validateEvent(
@@ -692,7 +699,11 @@ function AuthorsNewArticle() {
 											</Grid>
 
 											<Grid item xs={1}>
-												<AddButton disableRipple disabled={!ifCurrentEventFilled} onClick={addEvent}>
+												<AddButton
+													disableRipple
+													disabled={!ifCurrentEventFilled}
+													onClick={addEvent}
+												>
 													<AddIcon
 														className={clsx(classes.addIcon, {
 															[classes.addIconDisabled]: !ifCurrentEventFilled,
@@ -714,7 +725,14 @@ function AuthorsNewArticle() {
 												>
 													<Grid item xs={5}>
 														<StyledTextField
-															onChange={(e) => updatePropertyField(index, e.target.value, 'title', 'events')}
+															onChange={(e) =>
+																updatePropertyField(
+																	index,
+																	e.target.value,
+																	'title',
+																	'events',
+																)
+															}
 															value={event.title}
 															variant="outlined"
 															placeholder="Title"
@@ -738,10 +756,19 @@ function AuthorsNewArticle() {
 															InputAdornmentProps={{ position: 'end' }}
 															keyboardIcon={
 																localForm.events[index].date ? null : (
-																	<CalendarIcon className={classes.calendarIcon} />
+																	<CalendarIcon
+																		className={classes.calendarIcon}
+																	/>
 																)
 															}
-															onChange={(date) => updatePropertyField(index, date, 'date', 'events')}
+															onChange={(date) =>
+																updatePropertyField(
+																	index,
+																	date,
+																	'date',
+																	'events',
+																)
+															}
 															style={{ width: '100%', maxHeight: '53px' }}
 															PopoverProps={{
 																classes: { paper: classes.calendarPaper },
@@ -749,7 +776,10 @@ function AuthorsNewArticle() {
 														/>
 													</Grid>
 													<Grid item xs={1}>
-														<DeleteButton disableRipple onClick={() => deleteItem(index, 'events')}>
+														<DeleteButton
+															disableRipple
+															onClick={() => deleteItem(index, 'events')}
+														>
 															<ClearIcon className={classes.clearIcon} />
 														</DeleteButton>
 													</Grid>
@@ -764,7 +794,9 @@ function AuthorsNewArticle() {
 							<Grid item xs={12}>
 								<Grid container className={classes.marginTop15}>
 									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>Attachments</Typography>
+										<Typography className={classes.subHeaderRight}>
+											Attachments
+										</Typography>
 									</Grid>
 									<Grid item xs={9}>
 										<DropZoneMulti
@@ -780,14 +812,26 @@ function AuthorsNewArticle() {
 							</Grid>
 						</Grid>
 						<Grid item xs={12}>
-							<Grid container justifyContent="space-between" className={classes.buttonsContainer}>
-								{((chosenResearch && chosenResearch.status === 'draft') || !chosenResearch) && (
-									<OutlinedButton onClick={() => sendPublication('save-draft')}>Save Draft</OutlinedButton>
+							<Grid
+								container
+								justifyContent="space-between"
+								className={classes.buttonsContainer}
+							>
+								{((chosenResearch && chosenResearch.status === 'draft') ||
+									!chosenResearch) && (
+									<OutlinedButton onClick={() => sendPublication('save-draft')}>
+										Save Draft
+									</OutlinedButton>
 								)}
-								<OutlinedButton onClick={() => sendPublication('preview')}>Preview</OutlinedButton>
+								<OutlinedButton onClick={() => sendPublication('preview')}>
+									Preview
+								</OutlinedButton>
 								<FilledButton
 									disabled={
-										!validationResult || !validationResultEvent || !coverImageOK.final || !contentNotOK.isText
+										!validationResult ||
+										!validationResultEvent ||
+										!coverImageOK.final ||
+										!contentNotOK.isText
 									}
 									onClick={() => sendPublication('done')}
 								>

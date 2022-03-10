@@ -81,21 +81,10 @@ const AuthorsNewArticleView = (props) => {
 															: props.chosenResearch.content,
 												})}
 											{...(props.location.state?.from === 'prearticle' &&
-<<<<<<< HEAD
 												Object.keys(props.location.state?.publication.content).length && {
 													defaultValue:
 														typeof props.location.state?.publication.content !== 'string'
 															? JSON.stringify(props.location.state?.publication.content)
-=======
-												Object.keys(props.location.state?.publication.content)
-													.length && {
-													defaultValue:
-														typeof props.location.state?.publication.content !==
-														'string'
-															? JSON.stringify(
-																	props.location.state?.publication.content,
-															  )
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 															: props.location.state.publication.content,
 												})}
 											controls={[

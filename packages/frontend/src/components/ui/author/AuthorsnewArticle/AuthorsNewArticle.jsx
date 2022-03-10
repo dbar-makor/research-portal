@@ -62,15 +62,8 @@ const AuthorsNewArticle = (props) => {
 
 	useEffect(() => {
 		if (chosenResearch) {
-<<<<<<< HEAD
 			console.log('there\'s a chosenResearch');
 			const coverImg = chosenResearch.attachments.find((attachment) => attachment.file_type === 'main_bg');
-=======
-			console.log("there's a chosenResearch");
-			const coverImg = chosenResearch.attachments.find(
-				(attachment) => attachment.file_type === 'main_bg',
-			);
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 			const otherFiles = chosenResearch.attachments.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);

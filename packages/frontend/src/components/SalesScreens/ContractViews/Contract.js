@@ -15,7 +15,6 @@ import ButtonRow from './ButtonRow';
 import { useHistory } from 'react-router-dom';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 
-<<<<<<< HEAD
 const chargePeriods = [
 	{
 		value: 'monthly',
@@ -416,9 +415,6 @@ function Contract({
 export default Contract;
 
 const useStyles = makeStyles((theme) => ({
-=======
-const useStyles = makeStyles({
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 	page: {
 		position: 'relative',
 		height: 650,

@@ -10,7 +10,6 @@ function Attachments(props) {
 		window.open(`${BASE_URL}/assets/${fileName}`, '_blank');
 	};
 
-
 	const attachment = (file, idx) => {
 		return (
 			<Grid item key={idx} className={classes.contentGrid}>
@@ -53,13 +52,8 @@ function Attachments(props) {
 					</Grid>
 					{attachments.length > 0
 						? attachments.map((file, idx) => {
-<<<<<<< HEAD
 								return attachment(file, idx);
 						  })
-=======
-							return attachment(file, idx);
-						})
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 						: noAttachments()}
 				</Grid>
 			</Grid>

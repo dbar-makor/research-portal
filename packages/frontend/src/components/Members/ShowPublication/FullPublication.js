@@ -88,18 +88,27 @@ function FullPublication() {
 				{chosenPublication && !loadingPub && (
 					<>
 						{location.state && location.state.from === 'new-publication' && (
-							<Grid item xs={11} style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
+							<Grid
+								item
+								xs={11}
+								style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}
+							>
 								<FilledButton onClick={backToEditing}> Back to Editing </FilledButton>
 							</Grid>
 						)}
 						<Grid item xs={5}>
 							<Grid container>
-								<Title title={chosenPublication.title} description={chosenPublication.description} />
+								<Title
+									title={chosenPublication.title}
+									description={chosenPublication.description}
+								/>
 
 								<AuthorInfo
 									auther={chosenPublication.author}
 									lastDate={
-										chosenPublication.updated_at ? chosenPublication.updated_at : chosenPublication.created_at
+										chosenPublication.updated_at
+											? chosenPublication.updated_at
+											: chosenPublication.created_at
 									}
 								/>
 								{chosenPublication.type === 'live' ? (
@@ -123,13 +132,9 @@ function FullPublication() {
 										}}
 									/>
 								)}
-								{(chosenPublication.commments !== null || chosenPublication.commments !== undefined) &&
+								{(chosenPublication.commments !== null ||
+									chosenPublication.commments !== undefined) &&
 								userType !== 'author' ? (
-<<<<<<< HEAD
-									<Comments comments={chosenPublication.comments} pubId={chosenPublication.id} />
-								) : null}
-								{(chosenPublication.categories !== null || chosenPublication.categories !== undefined) &&
-=======
 									<Comments
 										comments={chosenPublication.comments}
 										pubId={chosenPublication.id}
@@ -137,7 +142,6 @@ function FullPublication() {
 								) : null}
 								{(chosenPublication.categories !== null ||
 									chosenPublication.categories !== undefined) &&
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 								userType !== 'author' ? (
 									<MorePublications
 										categories={chosenPublication.categories}

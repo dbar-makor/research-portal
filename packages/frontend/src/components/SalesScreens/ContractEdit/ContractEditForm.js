@@ -113,7 +113,11 @@ function ContractEditForm(props) {
 					<Grid item xs={12}>
 						<Grid container alignItems="center" spacing={1}>
 							<Grid item xs={5}>
-								<StyledTextField variant="outlined" value={contractForm.companyName.name} disabled />
+								<StyledTextField
+									variant="outlined"
+									value={contractForm.companyName.name}
+									disabled
+								/>
 							</Grid>
 							<Grid item xs={5}>
 								{salesmenArr && (
@@ -189,7 +193,9 @@ function ContractEditForm(props) {
 								/>{' '}
 							</Grid>
 							<Grid item xs={1}>
-								<Typography style={{ textAlign: 'center', fontSize: 14, fontWeight: 'bold' }}>per</Typography>
+								<Typography style={{ textAlign: 'center', fontSize: 14, fontWeight: 'bold' }}>
+									per
+								</Typography>
 							</Grid>
 							<Grid item xs={5}>
 								<AutoCompleteUnit
@@ -229,7 +235,9 @@ function ContractEditForm(props) {
 								<GreenSwitch checked={contractForm.vat} />
 							</Grid>
 							<Grid item>
-								<Typography style={{ fontSize: 16, fontWeight: 'bold' }}>VAT Included</Typography>
+								<Typography style={{ fontSize: 16, fontWeight: 'bold' }}>
+									VAT Included
+								</Typography>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -240,20 +248,17 @@ function ContractEditForm(props) {
 					>
 						<Grid container alignItems="center">
 							<Grid item xs={3}>
-								<Typography style={{ fontSize: 16, color: '#868DA2' }}>Yearly Amount</Typography>
+								<Typography style={{ fontSize: 16, color: '#868DA2' }}>
+									Yearly Amount
+								</Typography>
 							</Grid>
 							<Grid item xs={4} className={classes.boxStyle}>
 								<Typography className={classes.amountType}>
 									{contractForm.currency && contractForm.amount && contractForm.periodicity
 										? `${contractForm.currency.symbol}
                               ${(
-<<<<<<< HEAD
-																contractForm.amount * periodToNum[contractForm.periodicity]
-															).toLocaleString()}`
-=======
 									contractForm.amount * periodToNum[contractForm.periodicity]
 								).toLocaleString()}`
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 										: '0'}
 								</Typography>
 							</Grid>
@@ -285,7 +290,9 @@ function ContractEditForm(props) {
 										inputProps: {
 											autoComplete: 'off',
 											decimalNo: 0,
-											minValue: chosenCompany.members ? chosenCompany.members.length : 0,
+											minValue: chosenCompany.members
+												? chosenCompany.members.length
+												: 0,
 										},
 									}}
 								/>

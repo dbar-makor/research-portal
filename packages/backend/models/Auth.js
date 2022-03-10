@@ -378,7 +378,11 @@ Auth.changePassword = async (payload, result) => {
 			}
 		});
 
+<<<<<<< HEAD
 		const proccess_data = {
+=======
+		let proccess_data = {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 			password: SHA256.hex(new_password),
 		};
 		await db_helper.update(query.update_user_by_id(proccess_data, user.id), proccess_data);
@@ -574,7 +578,11 @@ const connection_with_app_confirmation_to_sms = async (user, location, result) =
 		if (!user.phone.dialing_code || !user.phone.number) {
 			return result({ status: 404 });
 		}
+<<<<<<< HEAD
 		const phone = '+' + user.phone.dialing_code + user.phone.number;
+=======
+		let phone = '+' + user.phone.dialing_code + user.phone.number;
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		const device_type = 'web';
 		const token_type = 'login';
 		const six_digits = Math.floor(100000 + Math.random() * 900000);

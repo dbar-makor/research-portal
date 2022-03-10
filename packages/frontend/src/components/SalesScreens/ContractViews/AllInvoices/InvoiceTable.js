@@ -71,10 +71,10 @@ function InvoiceTable(props) {
 											header === 'Amount'
 												? 'center'
 												: header === 'Status'
-													? 'center'
-													: header === 'Download'
-														? 'center'
-														: 'none',
+												? 'center'
+												: header === 'Download'
+												? 'center'
+												: 'none',
 									}}
 								>
 									{header}

@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CircularProgress, Grid, IconButton, makeStyles } from '@material-ui/core';
+import { CircularProgress, Grid, IconButton } from '@material-ui/core';
 import AuthorInfo from './AuthorInfo';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
-import { useState } from 'react';
 import Title from './Title';
 import Content from './Content';
 import Events from './Events';
@@ -17,9 +16,8 @@ import * as actionSnackBar from '../../../redux/SnackBar/action';
 import { useDispatch, useSelector } from 'react-redux';
 import PdfViewer from './PdfViewer';
 import { FilledButton } from '../../../styles/MainStyles';
-import { selectChosenResearch, getChosenResearchAsync } from '../../../redux/researches/chosenResearchSlice';
 
-function FullPublication({ publication }) {
+function FullPublication() {
 	const dispatch = useDispatch();
 	const { pubId } = useParams();
 	const [chosenPublication, setChosenPublication] = useState();
@@ -27,11 +25,9 @@ function FullPublication({ publication }) {
 	const location = useLocation();
 	const history = useHistory();
 	const userType = useSelector((state) => state.auth.userContent?.type);
-	const savedPublication = useSelector(selectChosenResearch);
 
 	useEffect(() => {
 		if (userType === 'author') {
-			console.log('user is author');
 			setChosenPublication(location.state?.publication);
 		}
 	}, []);
@@ -45,8 +41,6 @@ function FullPublication({ publication }) {
 				if (resp.status === 200) {
 					setLoadingPub(false);
 					setChosenPublication(resp.data);
-					console.log('resp.data', resp.data);
-					const view = await axios.put(`${BASE_URL}${END_POINT.PUBLICATION}/view/${id}`);
 				} else {
 					console.log(resp.status, 'RESP STATUS');
 				}
@@ -67,25 +61,17 @@ function FullPublication({ publication }) {
 
 	useEffect(() => {
 		if (userType === 'client' || userType === 'prospect') {
-			console.log(pubId);
 			getPublication(pubId);
 		}
 	}, []);
 
 	const backToEditing = () => {
-		// dispatch(changeChosenResearch(chosenPublication));
-		// if(chosenPublication.id){
-		//   // console.log("back to editing here, there is a saved pub!", savedPublication)
-		//   dispatch(getChosenResearchAsync(chosenPublication.id))
-		// }
-
 		history.push({
 			pathname: chosenPublication.type === 'live' ? '/new-article' : '/upload-article',
 			state: { publication: location.state?.publication, from: 'prearticle' },
 		});
 	};
 
-	console.log('{location.state', location.state);
 	return (
 		<>
 			<Grid
@@ -149,19 +135,19 @@ function FullPublication({ publication }) {
 								{(chosenPublication.commments !== null ||
 									chosenPublication.commments !== undefined) &&
 								userType !== 'author' ? (
-										<Comments
-											comments={chosenPublication.comments}
-											pubId={chosenPublication.id}
-										/>
-									) : null}
+									<Comments
+										comments={chosenPublication.comments}
+										pubId={chosenPublication.id}
+									/>
+								) : null}
 								{(chosenPublication.categories !== null ||
 									chosenPublication.categories !== undefined) &&
 								userType !== 'author' ? (
-										<MorePublications
-											categories={chosenPublication.categories}
-											title={chosenPublication.title}
-										/>
-									) : null}
+									<MorePublications
+										categories={chosenPublication.categories}
+										title={chosenPublication.title}
+									/>
+								) : null}
 							</Grid>
 						</Grid>
 					</>

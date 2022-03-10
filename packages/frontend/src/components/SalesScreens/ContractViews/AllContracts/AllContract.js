@@ -60,19 +60,19 @@ function AllContracts() {
 
 	const inputHandler = (e, type) => {
 		switch (type) {
-		case 'PERIOD':
-			setFilterdPeriod(e.target.name);
-			setFilters({ ...filters, period: e.target.value });
-			break;
-		case 'STATUS':
-			setStatus(e.target.name);
-			setFilters({ ...filters, signed: e.target.value });
-			break;
-		case 'COMPANY_NAME':
-			e !== null
-				? setFilters({ ...filters, company_id: e.id })
-				: setFilters({ ...filters, company_id: '' });
-			break;
+			case 'PERIOD':
+				setFilterdPeriod(e.target.name);
+				setFilters({ ...filters, period: e.target.value });
+				break;
+			case 'STATUS':
+				setStatus(e.target.name);
+				setFilters({ ...filters, signed: e.target.value });
+				break;
+			case 'COMPANY_NAME':
+				e !== null
+					? setFilters({ ...filters, company_id: e.id })
+					: setFilters({ ...filters, company_id: '' });
+				break;
 		}
 	};
 	const getCompaniesNames = async () => {

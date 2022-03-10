@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { parseISO, formatDistanceToNow } from 'date-fns';
@@ -63,7 +62,6 @@ const AlertNotification = ({ key, notifi, setCountAlerts, handleClose }) => {
 					<Grid item xs={12}>
 						<Grid
 							container
-							direction="column"
 							direction="column"
 							justifyContent="center"
 							alignItems="flex-start"

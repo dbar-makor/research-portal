@@ -234,7 +234,7 @@ const useStyles = makeStyles((theme) => ({
 		position: 'absolute',
 		top: '15vh',
 		left: '35vw',
-		height: '\'535px',
+		height: "'535px",
 		flexDirection: 'column',
 		alignItems: 'center',
 		// paddingLeft: "60px",

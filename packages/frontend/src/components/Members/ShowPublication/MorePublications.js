@@ -1,9 +1,44 @@
-import { Grid, IconButton } from '@material-ui/core';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
-import { makeStyles, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+
+const useStyles = makeStyles({
+	author: {
+		fontSize: [13, '!important'],
+		fontWeight: 100,
+		color: '#868DA2',
+		// position: 'absolute',
+		// bottom: 30,
+	},
+	wrapper: {
+		width: 240,
+	},
+	title: {
+		fontSize: [20, '!important'],
+		fontWeight: 'bold',
+		color: '#0F0F0F',
+	},
+	upperHalf: {
+		display: 'flex',
+		backgroundSize: 'cover',
+		backgroundRepeat: 'no-repeat',
+		justifyContent: 'flex-end',
+		height: 160,
+		borderRadius: '8px',
+		position: 'relative',
+	},
+	lowerHalf: {
+		// display: 'flex',
+		// position: 'relative',
+		backgroundColor: '#fff',
+		flexDirection: 'column',
+		height: 170,
+		padding: '12px 0px 12px 5px ',
+		justifyContent: 'space-between',
+	},
+});
 
 function MorePublications(props) {
 	const { categories, title } = props;
@@ -107,38 +142,4 @@ function MorePublications(props) {
 
 export default MorePublications;
 
-const useStyles = makeStyles((theme) => ({
-	author: {
-		fontSize: [13, '!important'],
-		fontWeight: 100,
-		color: '#868DA2',
-		// position: 'absolute',
-		// bottom: 30,
-	},
-	wrapper: {
-		width: 240,
-	},
-	title: {
-		fontSize: [20, '!important'],
-		fontWeight: 'bold',
-		color: '#0F0F0F',
-	},
-	upperHalf: {
-		display: 'flex',
-		backgroundSize: 'cover',
-		backgroundRepeat: 'no-repeat',
-		justifyContent: 'flex-end',
-		height: 160,
-		borderRadius: '8px',
-		position: 'relative',
-	},
-	lowerHalf: {
-		// display: 'flex',
-		// position: 'relative',
-		backgroundColor: '#fff',
-		flexDirection: 'column',
-		height: 170,
-		padding: '12px 0px 12px 5px ',
-		justifyContent: 'space-between',
-	},
-}));
+

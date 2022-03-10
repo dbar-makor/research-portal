@@ -10,24 +10,24 @@ function UserInfoBlock(props) {
 	const userFields =
 		chosenUser.type === 'sales'
 			? [
-				'username',
-				'last_client_added',
-				'email',
-				'last_prospect_added',
-				'created_at',
-				'total_clients',
-				'last_connected_at',
-				'total_prospects',
+					'username',
+					'last_client_added',
+					'email',
+					'last_prospect_added',
+					'created_at',
+					'total_clients',
+					'last_connected_at',
+					'total_prospects',
 			  ]
 			: [
-				'username',
-				'last_publication',
-				'email',
-				'most_read',
-				'created_at',
-				'total_views',
-				'last_connected_at',
-				'total_published',
+					'username',
+					'last_publication',
+					'email',
+					'most_read',
+					'created_at',
+					'total_views',
+					'last_connected_at',
+					'total_published',
 			  ];
 
 	const dateFields = [
@@ -58,8 +58,8 @@ function UserInfoBlock(props) {
 													{chosenUser[field]
 														? dateFields.some((dateField) => dateField === field)
 															? format(
-																new Date(chosenUser[field]),
-																'HH:mm dd/MM/yyyy',
+																	new Date(chosenUser[field]),
+																	'HH:mm dd/MM/yyyy',
 															  )
 															: chosenUser[field]
 														: '-'}
@@ -79,8 +79,8 @@ function UserInfoBlock(props) {
 												{chosenUser[field]
 													? dateFields.some((dateField) => dateField === field)
 														? format(
-															new Date(chosenUser[field]),
-															'HH:mm dd/MM/yyyy',
+																new Date(chosenUser[field]),
+																'HH:mm dd/MM/yyyy',
 														  )
 														: chosenUser[field]
 													: '-'}

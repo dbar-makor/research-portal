@@ -62,7 +62,7 @@ const AuthorsNewArticle = (props) => {
 
 	useEffect(() => {
 		if (chosenResearch) {
-			console.log('there\'s a chosenResearch');
+			console.log("there's a chosenResearch");
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
@@ -104,7 +104,9 @@ const AuthorsNewArticle = (props) => {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
-			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
+			const coverImg = publication.attachments?.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
 			const otherFiles = publication.attachments?.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);

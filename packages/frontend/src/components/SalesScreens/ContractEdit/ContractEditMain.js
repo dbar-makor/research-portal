@@ -68,9 +68,9 @@ const ContractEditMain = forwardRef((props, ref) => {
 									<Typography
 										style={{ fontSize: 16, color: '#000' }}
 									>{`Editing Contract of ${format(
-											new Date(contract.start_at),
-											'dd MMM, yyyy',
-										)} `}</Typography>
+										new Date(contract.start_at),
+										'dd MMM, yyyy',
+									)} `}</Typography>
 								</Grid>
 							</Grid>
 						</Grid>

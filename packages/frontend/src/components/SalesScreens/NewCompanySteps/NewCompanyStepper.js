@@ -71,41 +71,41 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 
 	function getStepContent(step) {
 		switch (step) {
-		case 0:
-			return (
-				<InfoStep
-					company={company}
-					setCompany={setCompany}
-					handleCompany={handleCompany}
-					classes={classes}
-					errors={errors1}
-					setErrors={setErrors1}
-					validationResult={validationResult1}
-					setValidationResult={setValidationResult1}
-					setUploadedImage={setUploadedImage}
-					uploadedImage={uploadedImage}
-					inputValue={inputValue}
-					setInputValue={setInputValue}
-				/>
-			);
-		case 1:
-			return (
-				<MembersStep
-					company={company}
-					setCompany={setCompany}
-					currentMember={currentMember}
-					setCurrentMember={setCurrentMember}
-					initStateMember={initStateMember}
-					handleSubmit={handleSubmit}
-					classes={classes}
-					errors={errors2}
-					setErrors={setErrors2}
-					validationResult={validationResult2}
-					setValidationResult={setValidationResult2}
-				/>
-			);
-		default:
-			return 'Unknown step';
+			case 0:
+				return (
+					<InfoStep
+						company={company}
+						setCompany={setCompany}
+						handleCompany={handleCompany}
+						classes={classes}
+						errors={errors1}
+						setErrors={setErrors1}
+						validationResult={validationResult1}
+						setValidationResult={setValidationResult1}
+						setUploadedImage={setUploadedImage}
+						uploadedImage={uploadedImage}
+						inputValue={inputValue}
+						setInputValue={setInputValue}
+					/>
+				);
+			case 1:
+				return (
+					<MembersStep
+						company={company}
+						setCompany={setCompany}
+						currentMember={currentMember}
+						setCurrentMember={setCurrentMember}
+						initStateMember={initStateMember}
+						handleSubmit={handleSubmit}
+						classes={classes}
+						errors={errors2}
+						setErrors={setErrors2}
+						validationResult={validationResult2}
+						setValidationResult={setValidationResult2}
+					/>
+				);
+			default:
+				return 'Unknown step';
 		}
 	}
 

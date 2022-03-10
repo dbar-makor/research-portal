@@ -119,7 +119,7 @@ function AuthorsNewArticle() {
 	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
-			console.log('there\'s a chosenResearch');
+			console.log("there's a chosenResearch");
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
@@ -161,7 +161,9 @@ function AuthorsNewArticle() {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 			console.log('half baked publication', publication);
-			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
+			const coverImg = publication.attachments?.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
 			const otherFiles = publication.attachments?.filter(
 				(attachment) => attachment.file_type !== 'main_bg',
 			);
@@ -533,21 +535,21 @@ function AuthorsNewArticle() {
 
 											{...(chosenResearch &&
 												Object.keys(chosenResearch.content).length && {
-												defaultValue:
+													defaultValue:
 														typeof chosenResearch.content !== 'string'
 															? JSON.stringify(chosenResearch.content)
 															: chosenResearch.content,
-											})}
+												})}
 											{...(location.state?.from === 'prearticle' &&
 												Object.keys(location.state?.publication.content).length && {
-												defaultValue:
+													defaultValue:
 														typeof location.state?.publication.content !==
 														'string'
 															? JSON.stringify(
-																location.state?.publication.content,
+																	location.state?.publication.content,
 															  )
 															: location.state.publication.content,
-											})}
+												})}
 											controls={[
 												'bold',
 												'italic',

@@ -257,8 +257,8 @@ function ContractEditForm(props) {
 									{contractForm.currency && contractForm.amount && contractForm.periodicity
 										? `${contractForm.currency.symbol}
                               ${(
-			contractForm.amount * periodToNum[contractForm.periodicity]
-		).toLocaleString()}`
+									contractForm.amount * periodToNum[contractForm.periodicity]
+								).toLocaleString()}`
 										: '0'}
 								</Typography>
 							</Grid>

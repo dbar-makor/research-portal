@@ -10,20 +10,20 @@ const initialState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
 	switch (action.type) {
-	case SET_SNACKBAR:
-		return {
-			...state,
-			visible: true,
-			timeout: action.payload.timeout,
-			message: action.payload.message,
-			type: action.payload.type,
-		};
-	case DISABLE_SNACKBAR:
-		return {
-			...state,
-			visible: false,
-		};
-	default:
-		return state;
+		case SET_SNACKBAR:
+			return {
+				...state,
+				visible: true,
+				timeout: action.payload.timeout,
+				message: action.payload.message,
+				type: action.payload.type,
+			};
+		case DISABLE_SNACKBAR:
+			return {
+				...state,
+				visible: false,
+			};
+		default:
+			return state;
 	}
 };

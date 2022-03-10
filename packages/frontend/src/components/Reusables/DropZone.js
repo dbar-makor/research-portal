@@ -1,5 +1,4 @@
-import React from 'react';
-import { Grid, Typography, TextField } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/AuthorsStyles';
 import { DeleteButton } from '../../styles/MainStyles';
 import { ReactComponent as ImageIcon } from '../../assets/icons/iconImage.svg';
@@ -13,10 +12,8 @@ function DropZone(props) {
 		uploadedImage,
 		setUploadedImage,
 		purpose = 'cover image*',
-		fileOK,
 		setFileOK,
 		fileTypes,
-		multi,
 	} = props;
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: fileTypes });
 
@@ -48,8 +45,8 @@ function DropZone(props) {
 									? `${uploadedImage.slice(0, 20)}...`
 									: uploadedImage
 								: uploadedImage.file_name?.length > 20
-									? `${uploadedImage.file_name.slice(0, 20)}...`
-									: uploadedImage.file_name}
+								? `${uploadedImage.file_name.slice(0, 20)}...`
+								: uploadedImage.file_name}
 						</Typography>
 						<DeleteButton
 							disableRipple

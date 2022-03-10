@@ -1,21 +1,17 @@
 import { useStyles } from '../../../styles/AllNotificationStyle';
-import { Grid, Typography, Button, TextField, Chip, Divider } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { ReactComponent as FoldedPaper } from '../../../assets/icons/FoldedPaper.svg';
-import { ReactComponent as FoldedPaperChecked } from '../../../assets/icons/FoldedPaperChecked.svg';
 import { ReactComponent as Like } from '../../../assets/icons/Like.svg';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
-import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
-import { LinearScale } from '@material-ui/icons';
+
 import { useHistory } from 'react-router';
-import { format, parseISO, formatDistanceToNow } from 'date-fns';
+import { parseISO, formatDistanceToNow } from 'date-fns';
 
 function chooseIcon(type) {
 	switch (type) {
-	case 'new publication':
-		return <FoldedPaper style={{ transform: 'scale(1.6)' }} />;
-	default:
-		return <Like />;
+		case 'new publication':
+			return <FoldedPaper style={{ transform: 'scale(1.6)' }} />;
+		default:
+			return <Like />;
 	}
 }
 

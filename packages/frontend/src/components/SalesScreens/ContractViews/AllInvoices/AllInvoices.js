@@ -60,20 +60,20 @@ function AllInvoices() {
 
 	const inputHandler = (e, type) => {
 		switch (type) {
-		case 'STATUS':
-			setTransactionStatus(e.target.name);
-			setFilters({ ...filters, status: e.target.value });
-			break;
-		case 'INVOICE_ID':
-			setFilters({ ...filters, invoice_id: invoiceId });
-			break;
-		case 'COMPANY_NAME':
-			e !== null
-				? setFilters({ ...filters, company_id: e.id })
-				: setFilters({ ...filters, company_id: '' });
-			break;
-		default:
-			break;
+			case 'STATUS':
+				setTransactionStatus(e.target.name);
+				setFilters({ ...filters, status: e.target.value });
+				break;
+			case 'INVOICE_ID':
+				setFilters({ ...filters, invoice_id: invoiceId });
+				break;
+			case 'COMPANY_NAME':
+				e !== null
+					? setFilters({ ...filters, company_id: e.id })
+					: setFilters({ ...filters, company_id: '' });
+				break;
+			default:
+				break;
 		}
 	};
 

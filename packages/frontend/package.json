@@ -30,6 +30,7 @@
 		"date-fns": "^2.26.0",
 		"draft-js": "^0.11.7",
 		"draft-js-export-html": "^1.4.1",
+		"eslint-plugin-unused-imports": "^2.0.0",
 		"lodash": "^4.17.21",
 		"moment": "^2.29.1",
 		"mui-rte": "^1.29.0",
@@ -48,7 +49,7 @@
 		"react-pdf": "^5.6.0",
 		"react-redux": "^7.2.6",
 		"react-router-dom": "^5.3.0",
-		"react-scripts": "4.0.3",
+		"react-scripts": "^5.0.0",
 		"react-share": "^4.4.0",
 		"redirect": "^0.2.0",
 		"redux-devtools-extension": "^2.13.9",
@@ -59,14 +60,12 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build",
 		"lint": "eslint \"src/**/*.{js,jsx}\" --fix",
 		"format": "prettier --write \"src/**/*.{js,jsx}\""
 	},
 	"eslintConfig": {
 		"extends": [
-			"react-app",
-			"react-app/jest"
+			"react-app"
 		]
 	},
 	"browserslist": {

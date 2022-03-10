@@ -81,22 +81,22 @@ const AuthorsNewArticleView = (props) => {
 
 											{...(props.chosenResearch &&
 												Object.keys(props.chosenResearch.content).length && {
-												defaultValue:
+													defaultValue:
 														typeof props.chosenResearch.content !== 'string'
 															? JSON.stringify(props.chosenResearch.content)
 															: props.chosenResearch.content,
-											})}
+												})}
 											{...(props.location.state?.from === 'prearticle' &&
 												Object.keys(props.location.state?.publication.content)
 													.length && {
-												defaultValue:
+													defaultValue:
 														typeof props.location.state?.publication.content !==
 														'string'
 															? JSON.stringify(
-																props.location.state?.publication.content,
+																	props.location.state?.publication.content,
 															  )
 															: props.location.state.publication.content,
-											})}
+												})}
 											controls={[
 												'bold',
 												'italic',
@@ -121,10 +121,10 @@ const AuthorsNewArticleView = (props) => {
 									{props.contentNotOK.focus &&
 										props.contentNotOK.everTyped &&
 										!props.contentNotOK.isText && (
-										<Grid item xs={6} style={{ color: 'red', marginLeft: 8 }}>
+											<Grid item xs={6} style={{ color: 'red', marginLeft: 8 }}>
 												This field is required
-										</Grid>
-									)}
+											</Grid>
+										)}
 								</Grid>
 							</Grid>
 						</Grid>

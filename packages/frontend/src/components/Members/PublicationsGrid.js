@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Grid, makeStyles, Divider } from '@material-ui/core';
+import { Grid, Divider } from '@material-ui/core';
 import BigPublication from './PublicationsType/BigPublication';
 import SmallPublication from './PublicationsType/SmallPublication';
 import MainPublication from './PublicationsType/MainPublication';
@@ -21,7 +20,7 @@ function PublicationsGrid(props) {
 					// .filter((pub) => pub.type === 'live')
 					.map((publication, index) => {
 						if (filter) return <MainPublication publication={publication}></MainPublication>;
-						if (index == big) {
+						if (index === big) {
 							return (
 								<Grid container>
 									<BigPublication publication={publication}></BigPublication>

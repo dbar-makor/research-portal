@@ -445,15 +445,15 @@ function CompanyInfo() {
 					<Grid item xs={6}>
 						{chosenCompany.type === 'client' &&
 						(chosenCompany.contract_status || chosenCompany.last_contract) ? (
-								<Grid container justifyContent="flex-end">
-									<LinkButton
-										className={classes.upgradeBtn}
-										onClick={() => openContractDialong(chosenCompany.id)}
-									>
+							<Grid container justifyContent="flex-end">
+								<LinkButton
+									className={classes.upgradeBtn}
+									onClick={() => openContractDialong(chosenCompany.id)}
+								>
 									Contracts & Invoices
-									</LinkButton>
-								</Grid>
-							) : null}
+								</LinkButton>
+							</Grid>
+						) : null}
 						<ContractsModal
 							onClose={() => closeContractDialong()}
 							isOpen={openDialog}

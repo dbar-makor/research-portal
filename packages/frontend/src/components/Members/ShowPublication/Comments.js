@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Divider, Grid, Typography } from '@material-ui/core';
 import axios from 'axios';
 import { useState } from 'react';
@@ -66,7 +65,7 @@ function Comments(props) {
 								className={classes.commentSec}
 							>{`Comments (${comments.length})`}</Typography>
 						</Grid>
-						{userType && userType != 'prospect' && openAddCmnt !== true ? (
+						{userType && userType !== 'prospect' && openAddCmnt !== true ? (
 							<Grid item xs={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
 								<StyledButton onClick={() => setOpenAddCmnt(!openAddCmnt)}>
 									Add Comment
@@ -104,7 +103,7 @@ function Comments(props) {
 									<Grid item>
 										<StyledButton
 											onClick={() => addComment(newComment)}
-											disabled={newComment.content != '' ? false : true}
+											disabled={newComment.content !== '' ? false : true}
 										>
 											Comment
 										</StyledButton>

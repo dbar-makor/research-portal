@@ -65,7 +65,9 @@ function NotificationBox({ content, isRead }) {
 									<Typography className={classes.notType}>{content.type}</Typography>
 								</Grid>
 								<Grid item>
-									<Typography className={classes.notTime}>{TimeAgo(content.time)}</Typography>
+									<Typography className={classes.notTime}>
+										{TimeAgo(content.time)}
+									</Typography>
 									{/* <Typography className={classes.notTime}>{format(new Date(content.time) , 'dd MMM , yyyy')}</Typography> */}
 								</Grid>
 							</Grid>

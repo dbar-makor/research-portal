@@ -27,7 +27,11 @@ function ButtonRow({
 					</Grid>
 
 					<Grid item className={classes.btnWrapper}>
-						<FilledButton className={classes.submitStyle} onClick={handlerRight} disabled={!validationResult}>
+						<FilledButton
+							className={classes.submitStyle}
+							onClick={handlerRight}
+							disabled={!validationResult}
+						>
 							{textButtonRight}
 						</FilledButton>
 					</Grid>

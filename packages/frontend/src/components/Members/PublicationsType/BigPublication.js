@@ -192,7 +192,9 @@ const BigPublication = ({ publication }) => {
 							xs={12}
 							className={classes.sideHalf}
 							style={{
-								backgroundImage: chooseImage(publication) ? `url(${chooseImage(publication)})` : 'none',
+								backgroundImage: chooseImage(publication)
+									? `url(${chooseImage(publication)})`
+									: 'none',
 								backgroundColor: '#74b2f0',
 							}}
 						></Grid>

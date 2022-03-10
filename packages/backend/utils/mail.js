@@ -120,7 +120,7 @@ const first_letter = `
     <div class="text-center">
       <table id="container">
         <tbody>
-`
+`;
 const end_letter = `
           <tr>
             <td id="info">
@@ -161,10 +161,10 @@ const end_letter = `
     </div>
   </body>
 </html>
-`
+`;
 
 const forgotPassword = (link) => {
-  return `${first_letter}
+	return `${first_letter}
           <tr>
             <td id="credeantials">
               <p>Hello,</p><br />
@@ -183,10 +183,10 @@ const forgotPassword = (link) => {
             </td>
           </tr>
           ${end_letter}
-  `
-}
+  `;
+};
 const signContract = (user, link) => {
-  return `${first_letter}
+	return `${first_letter}
           <tr>
             <td id="credeantials">
               <p>Hello ${user.name},</p><br />
@@ -204,10 +204,10 @@ const signContract = (user, link) => {
             </td>
           </tr>
           ${end_letter}
-  `
-}
+  `;
+};
 const confirm_user = (sixDigits) => {
-  return `${first_letter}
+	return `${first_letter}
           <tr>
             <td id="credeantials">
               <p>Hello,</p><br />
@@ -223,11 +223,11 @@ const confirm_user = (sixDigits) => {
             </td>
           </tr>
           ${end_letter}
-  `
-}
+  `;
+};
 
 const user_get_access = (name, username, new_password, url) => {
-  return `${first_letter}
+	return `${first_letter}
           <tr>
             <td id="credeantials">
               <p>Hello ${name},</p><br />
@@ -245,11 +245,11 @@ const user_get_access = (name, username, new_password, url) => {
             </td>
           </tr>
           ${end_letter}
-  `
-}
+  `;
+};
 
 const reset_password = () => {
-  return `${first_letter}
+	return `${first_letter}
           <tr>
             <td id="credeantials">
               <p>Hello,</p><br />
@@ -262,13 +262,13 @@ const reset_password = () => {
               <p>Enigma Support Team</p>
             </td>
           </tr>
-          ${end_letter}`
-}
+          ${end_letter}`;
+};
 
 module.exports = {
-  forgotPassword,
-  confirm_user,
-  user_get_access,
-  reset_password,
-  signContract,
-}
+	forgotPassword,
+	confirm_user,
+	user_get_access,
+	reset_password,
+	signContract,
+};

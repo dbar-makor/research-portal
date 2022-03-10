@@ -1,4 +1,4 @@
-import{ useState } from 'react';
+import { useState } from 'react';
 import { format } from 'date-fns';
 import Avatar from '@material-ui/core/Avatar';
 import { Divider, Grid, Typography } from '@material-ui/core';

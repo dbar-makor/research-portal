@@ -68,7 +68,9 @@ function Settings() {
 					<Grid item xs={12}>
 						<Grid container>
 							<Grid item xs={12}>
-								<Typography style={{ fontSize: 24, color: '#000', marginLeft: 10 }}>Settings</Typography>
+								<Typography style={{ fontSize: 24, color: '#000', marginLeft: 10 }}>
+									Settings
+								</Typography>
 							</Grid>
 							<Grid item xs={12}>
 								<Grid container alignItems="center">
@@ -79,7 +81,9 @@ function Settings() {
 										/>
 									</Grid>
 									<Grid item>
-										<Typography style={{ color: '#1C67FF', fontSize: 16 }}>Notifications</Typography>
+										<Typography style={{ color: '#1C67FF', fontSize: 16 }}>
+											Notifications
+										</Typography>
 									</Grid>
 								</Grid>
 							</Grid>
@@ -90,61 +94,81 @@ function Settings() {
 							<Grid item xs={6}>
 								<Grid container direction="column">
 									<Grid item>
-										<Typography style={{ marginLeft: 10, color: '#868DA2', fontSize: 14 }}>
+										<Typography
+											style={{ marginLeft: 10, color: '#868DA2', fontSize: 14 }}
+										>
 											Publications
 										</Typography>
 									</Grid>
 									{userSettings.settings.publications &&
-										Object.entries(userSettings.settings.publications).map(([key, value], idx) => {
-											return (
-												<Grid item key={idx}>
-													<Grid container alignItems="center">
-														<Grid item>
-															<GreenSwitch
-																disabled={userSettings.is_active ? false : true}
-																checked={value}
-																onChange={(e) => handleToggle(e, 'publications', key)}
-															/>
-														</Grid>
-														<Grid item>
-															<Typography style={{ textTransform: 'capitalize' }}>
-																{key.replace('_', ' ')}
-															</Typography>
+										Object.entries(userSettings.settings.publications).map(
+											([key, value], idx) => {
+												return (
+													<Grid item key={idx}>
+														<Grid container alignItems="center">
+															<Grid item>
+																<GreenSwitch
+																	disabled={
+																		userSettings.is_active ? false : true
+																	}
+																	checked={value}
+																	onChange={(e) =>
+																		handleToggle(e, 'publications', key)
+																	}
+																/>
+															</Grid>
+															<Grid item>
+																<Typography
+																	style={{ textTransform: 'capitalize' }}
+																>
+																	{key.replace('_', ' ')}
+																</Typography>
+															</Grid>
 														</Grid>
 													</Grid>
-												</Grid>
-											);
-										})}
+												);
+											},
+										)}
 								</Grid>
 							</Grid>
 							<Grid item xs={6}>
 								<Grid container direction="column">
 									<Grid item>
-										<Typography style={{ marginLeft: 10, color: '#868DA2', fontSize: 14 }}>
+										<Typography
+											style={{ marginLeft: 10, color: '#868DA2', fontSize: 14 }}
+										>
 											Replies
 										</Typography>
 									</Grid>
 									{userSettings.settings.replies &&
-										Object.entries(userSettings.settings.replies).map(([key, value], idx) => {
-											return (
-												<Grid item key={idx}>
-													<Grid container alignItems="center">
-														<Grid item>
-															<GreenSwitch
-																disabled={userSettings.is_active ? false : true}
-																checked={value}
-																onChange={(e) => handleToggle(e, 'replies', key)}
-															/>
-														</Grid>
-														<Grid item>
-															<Typography style={{ textTransform: 'capitalize' }}>
-																{key.replace('_', ' ')}
-															</Typography>
+										Object.entries(userSettings.settings.replies).map(
+											([key, value], idx) => {
+												return (
+													<Grid item key={idx}>
+														<Grid container alignItems="center">
+															<Grid item>
+																<GreenSwitch
+																	disabled={
+																		userSettings.is_active ? false : true
+																	}
+																	checked={value}
+																	onChange={(e) =>
+																		handleToggle(e, 'replies', key)
+																	}
+																/>
+															</Grid>
+															<Grid item>
+																<Typography
+																	style={{ textTransform: 'capitalize' }}
+																>
+																	{key.replace('_', ' ')}
+																</Typography>
+															</Grid>
 														</Grid>
 													</Grid>
-												</Grid>
-											);
-										})}
+												);
+											},
+										)}
 								</Grid>
 							</Grid>
 							<Grid item></Grid>

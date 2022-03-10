@@ -65,12 +65,19 @@ function MembersMain() {
 	}, [search]);
 	//
 	return (
-		<Grid container justifyContent="center" style={{ paddingBlock: 32, minHeight: 'calc(100vh - 300px)' }}>
+		<Grid
+			container
+			justifyContent="center"
+			style={{ paddingBlock: 32, minHeight: 'calc(100vh - 300px)' }}
+		>
 			<Grid item xs={7} style={{ paddingInline: 14 }}>
 				<Grid container justifyContent="space-between" alignItems="center">
 					<Grid item xs={3}>
 						<FormControl style={{ width: '100%' }} className={classes.selectFormControl}>
-							<InputLabel shrink={false} style={{ color: '#9C9C9C', zIndex: 1, marginLeft: 16 }}>
+							<InputLabel
+								shrink={false}
+								style={{ color: '#9C9C9C', zIndex: 1, marginLeft: 16 }}
+							>
 								{category.name !== '' ? '' : 'categories'}
 							</InputLabel>
 							<Select

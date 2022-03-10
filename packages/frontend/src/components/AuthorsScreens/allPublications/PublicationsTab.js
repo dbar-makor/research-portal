@@ -118,7 +118,9 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 						xs={12}
 						className={classes.upperHalf}
 						style={{
-							backgroundImage: chooseImage(publication) ? `url(${chooseImage(publication)})` : 'none',
+							backgroundImage: chooseImage(publication)
+								? `url(${chooseImage(publication)})`
+								: 'none',
 							backgroundColor: '#74b2f0',
 						}}
 					>

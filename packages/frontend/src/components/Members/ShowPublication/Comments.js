@@ -61,11 +61,15 @@ function Comments(props) {
 				<Grid item xs={12}>
 					<Grid container justifyContent="space-between" alignItems="center">
 						<Grid item xs={6}>
-							<Typography className={classes.commentSec}>{`Comments (${comments.length})`}</Typography>
+							<Typography
+								className={classes.commentSec}
+							>{`Comments (${comments.length})`}</Typography>
 						</Grid>
 						{userType && userType !== 'prospect' && openAddCmnt !== true ? (
 							<Grid item xs={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-								<StyledButton onClick={() => setOpenAddCmnt(!openAddCmnt)}>Add Comment</StyledButton>
+								<StyledButton onClick={() => setOpenAddCmnt(!openAddCmnt)}>
+									Add Comment
+								</StyledButton>
 							</Grid>
 						) : null}
 					</Grid>
@@ -84,7 +88,9 @@ function Comments(props) {
 									inputProps={{
 										classes: { input: classes.some },
 									}}
-									onChange={(e) => setNewComment({ ...newComment, content: e.target.value })}
+									onChange={(e) =>
+										setNewComment({ ...newComment, content: e.target.value })
+									}
 								/>
 							</Grid>
 							<Grid item xs={12} style={{ paddingTop: 10 }}>

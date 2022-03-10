@@ -6,42 +6,42 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/CompanyService')
+const Controller = require('./Controller');
+const service = require('../services/CompanyService');
 const createCompany = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createCompany)
-}
+	await Controller.handleRequest(request, response, service.createCompany);
+};
 
 const deleteCompany = async (request, response) => {
-  await Controller.handleRequest(request, response, service.deleteCompany)
-}
+	await Controller.handleRequest(request, response, service.deleteCompany);
+};
 
 const getCompany = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getCompany)
-}
+	await Controller.handleRequest(request, response, service.getCompany);
+};
 
 const getCompanyById = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getCompanyById)
-}
+	await Controller.handleRequest(request, response, service.getCompanyById);
+};
 
 const getContractsByCompanyId = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getContractsByCompanyId)
-}
+	await Controller.handleRequest(request, response, service.getContractsByCompanyId);
+};
 
 const updateCompany = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateCompany)
-}
+	await Controller.handleRequest(request, response, service.updateCompany);
+};
 
 const upgradeCompany = async (request, response) => {
-  await Controller.handleRequest(request, response, service.upgradeCompany)
-}
+	await Controller.handleRequest(request, response, service.upgradeCompany);
+};
 
 module.exports = {
-  createCompany,
-  deleteCompany,
-  getCompany,
-  getCompanyById,
-  getContractsByCompanyId,
-  updateCompany,
-  upgradeCompany,
-}
+	createCompany,
+	deleteCompany,
+	getCompany,
+	getCompanyById,
+	getContractsByCompanyId,
+	updateCompany,
+	upgradeCompany,
+};

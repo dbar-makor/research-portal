@@ -1,12 +1,4 @@
-import {
-	Divider,
-	Grid,
-	IconButton,
-	Popover,
-	TableCell,
-	TableRow,
-	Typography,
-} from '@material-ui/core';
+import { Divider, Grid, IconButton, Popover, TableCell, TableRow, Typography } from '@material-ui/core';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { format } from 'date-fns';
@@ -51,12 +43,14 @@ function ContractRow(props) {
 			<TableCell style={{ color: contract.signed === true ? '#00CA80' : '#FF3939' }}>
 				{contract.signed === true ? 'Signed' : 'Unsigned'}
 			</TableCell>
-			<TableCell style={{ width: 215 }}>{`${format(new Date(contract.start_at), 'dd MMM , yyyy')} - ${format(
-				new Date(contract.end_at),
-				'dd MMM, yyyy',
-			)}`}</TableCell>
+			<TableCell style={{ width: 215 }}>{`${format(
+				new Date(contract.start_at),
+				'dd MMM , yyyy',
+			)} - ${format(new Date(contract.end_at), 'dd MMM, yyyy')}`}</TableCell>
 			<TableCell style={{ textTransform: 'capitalize' }}>{contract.company_name}</TableCell>
-			<TableCell style={{ width: 100, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+			<TableCell
+				style={{ width: 100, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+			>
 				{contract.company_country.length > 6
 					? `${contract.company_country.slice(0, 6)}...`
 					: contract.company_country}
@@ -64,7 +58,9 @@ function ContractRow(props) {
 			<TableCell style={{ textTransform: 'capitalize' }}>
 				{contract.periodicity === 'fully' ? 'Yearly' : contract.periodicity}
 			</TableCell>
-			<TableCell style={{ textAlign: 'right' }}>{`${contract.currency.symbol}${contract.amount}`}</TableCell>
+			<TableCell
+				style={{ textAlign: 'right' }}
+			>{`${contract.currency.symbol}${contract.amount}`}</TableCell>
 			<TableCell style={{ fontWeight: 'bold', textAlign: 'right' }}>{`${
 				contract.currency.symbol
 			}${calcYearlyCost(contract.amount, contract.periodicity)}`}</TableCell>
@@ -90,7 +86,9 @@ function ContractRow(props) {
 						<Grid item xs={11} style={{ marginLeft: '16px' }}>
 							<Grid container spacing={1} spacing={1} direction="column">
 								<Grid item>
-									<Typography style={{ fontSize: '12px', color: '#B8C3D8' }}>Download</Typography>
+									<Typography style={{ fontSize: '12px', color: '#B8C3D8' }}>
+										Download
+									</Typography>
 								</Grid>
 								<Grid item style={{ cursor: 'pointer' }}>
 									<Typography style={{ fontSize: '14px' }}>Contract</Typography>
@@ -102,7 +100,9 @@ function ContractRow(props) {
 									<Divider />
 								</Grid>
 								<Grid item>
-									<Typography style={{ fontSize: '12px', color: '#B8C3D8' }}>Actions</Typography>
+									<Typography style={{ fontSize: '12px', color: '#B8C3D8' }}>
+										Actions
+									</Typography>
 								</Grid>
 								<Grid item>
 									<Typography
@@ -113,7 +113,9 @@ function ContractRow(props) {
 									</Typography>
 								</Grid>
 								<Grid item style={{ cursor: 'pointer' }} onClick={handleClose}>
-									<Typography style={{ fontSize: '14px', color: '#FF3939' }}>Cancel</Typography>
+									<Typography style={{ fontSize: '14px', color: '#FF3939' }}>
+										Cancel
+									</Typography>
 								</Grid>
 							</Grid>
 						</Grid>

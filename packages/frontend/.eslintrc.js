@@ -15,7 +15,10 @@ module.exports = {
 	plugins: ['react'],
 	settings: {
 		react: {
-			version: 'latest',
+			version: 'detect',
 		},
+	},
+	rules: {
+		'react/prop-types': 'off',
 	},
 };

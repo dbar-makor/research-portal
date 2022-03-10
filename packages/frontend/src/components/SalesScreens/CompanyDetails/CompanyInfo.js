@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Grid, Typography, Divider, TextField, InputAdornment } from '@material-ui/core';
+import { Grid, Typography, Divider, TextField } from '@material-ui/core';
 import { useStyles } from '../../../styles/InfoStyles';
 import {
 	GreenFilledButton,
@@ -19,7 +19,6 @@ import clsx from 'clsx';
 import InitialCompanyStateBlock from './InitialCompanyStateBlock';
 import { formatDistance } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import {
 	selectChosenCompany,
 	getChosenCompanyAsync,
@@ -31,17 +30,12 @@ import { BASE_URL, END_POINT } from '../../../utils/constants';
 import axios from 'axios';
 import {
 	getCompaniesDataAsync,
-	selectCompaniesData,
 	selectSearch,
 	selectType,
 	selectStatus,
-	selectCompaniesLoading,
-	selectCompaniesMetaData,
-	setProperty,
 	selectOffset,
 	selectLimit,
 } from '../../../redux/companies/companiesSlice';
-import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
 import { Autocomplete } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
 import { ReactComponent as WhiteCheckIcon } from '../../../assets/icons/IconWhiteCheck.svg';
@@ -53,7 +47,6 @@ function CompanyInfo() {
 	const currentCompany = useSelector(selectChosenCompany);
 	const classes = useStyles();
 	const dispatch = useDispatch();
-	const mainClasses = useMainStyles();
 	const [trialPeriod, setTrialPeriod] = useState();
 	const [openAlert, setOpenAlert] = useState(false);
 	const search = useSelector(selectSearch);
@@ -445,15 +438,15 @@ function CompanyInfo() {
 					<Grid item xs={6}>
 						{chosenCompany.type === 'client' &&
 						(chosenCompany.contract_status || chosenCompany.last_contract) ? (
-								<Grid container justifyContent="flex-end">
-									<LinkButton
-										className={classes.upgradeBtn}
-										onClick={() => openContractDialong(chosenCompany.id)}
-									>
+							<Grid container justifyContent="flex-end">
+								<LinkButton
+									className={classes.upgradeBtn}
+									onClick={() => openContractDialong(chosenCompany.id)}
+								>
 									Contracts & Invoices
-									</LinkButton>
-								</Grid>
-							) : null}
+								</LinkButton>
+							</Grid>
+						) : null}
 						<ContractsModal
 							onClose={() => closeContractDialong()}
 							isOpen={openDialog}

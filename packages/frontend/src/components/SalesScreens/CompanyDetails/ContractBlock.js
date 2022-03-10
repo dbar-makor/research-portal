@@ -133,7 +133,7 @@ function ContractBlock(props) {
 						<Typography className={classes.yearlyCostContent}>
 							{props.contractStatus || props.title === 'last'
 								? `${props.contract.currency.symbol}${(
-									props.contract.amount * periodToNum[props.contract.periodicity]
+										props.contract.amount * periodToNum[props.contract.periodicity]
 								  ).toLocaleString()}`
 								: '-'}
 						</Typography>

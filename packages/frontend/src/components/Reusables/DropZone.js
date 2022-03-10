@@ -48,8 +48,8 @@ function DropZone(props) {
 									? `${uploadedImage.slice(0, 20)}...`
 									: uploadedImage
 								: uploadedImage.file_name?.length > 20
-									? `${uploadedImage.file_name.slice(0, 20)}...`
-									: uploadedImage.file_name}
+								? `${uploadedImage.file_name.slice(0, 20)}...`
+								: uploadedImage.file_name}
 						</Typography>
 						<DeleteButton
 							disableRipple

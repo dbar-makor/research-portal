@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 
 import axios from 'axios';
-import { format } from 'date-fns';
 //MUI
-import {
-	Grid,
-	IconButton,
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Typography,
-} from '@material-ui/core';
+import { Grid, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 
 import { useStyles } from '../../../styles/ContarctsModalStyles';
 import SelectInputUnit from '../../Reusables/SelectInputUnit';
@@ -107,9 +96,12 @@ function ContractAndInvoicesContent(props) {
 					<TableContainer style={{ height: 540 }}>
 						<Table stickyHeader size="small">
 							<TableHead>
-								{rowHeaders.map((row, i) => {
+								{rowHeaders.map((row, index) => {
 									return (
-										<HeaderCells style={{ textAlign: row.align, width: row.width }}>
+										<HeaderCells
+											key={index}
+											style={{ textAlign: row.align, width: row.width }}
+										>
 											{row.name}
 										</HeaderCells>
 									);

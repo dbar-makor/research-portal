@@ -6,7 +6,7 @@
 	"scripts": {
 		"prestart": "npm install",
 		"start": "nodemon index.js",
-		"format": "prettier --write \"src/**/*.js\"",
+		"format": "prettier --write **/*.js",
 		"lint": "eslint --fix"
 	},
 	"keywords": [

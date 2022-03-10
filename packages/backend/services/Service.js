@@ -1,7 +1,7 @@
 class Service {
-  static successResponse(data, status) {
-    return { data, status }
-  }
+	static successResponse(data, status) {
+		return { data, status };
+	}
 }
 
-module.exports = Service
+module.exports = Service;

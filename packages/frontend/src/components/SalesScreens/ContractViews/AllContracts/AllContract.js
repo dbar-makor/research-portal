@@ -1,9 +1,8 @@
 import { Grid, Typography, CircularProgress } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder.svg';
-import DateInputUnit from '../../../Reusables/DateInputUnit';
 import SelectInputUnit from '../../../Reusables/SelectInputUnit';
-import { useStyles, StyledTextField, AddButton } from '../../../../styles/MainStyles';
+import { useStyles } from '../../../../styles/MainStyles';
 import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
 import RangeDatePicker from '../../../Reusables/RangeDatePicker';
 import ContractsTable from './ContractsTable';
@@ -60,19 +59,19 @@ function AllContracts() {
 
 	const inputHandler = (e, type) => {
 		switch (type) {
-		case 'PERIOD':
-			setFilterdPeriod(e.target.name);
-			setFilters({ ...filters, period: e.target.value });
-			break;
-		case 'STATUS':
-			setStatus(e.target.name);
-			setFilters({ ...filters, signed: e.target.value });
-			break;
-		case 'COMPANY_NAME':
-			e !== null
-				? setFilters({ ...filters, company_id: e.id })
-				: setFilters({ ...filters, company_id: '' });
-			break;
+			case 'PERIOD':
+				setFilterdPeriod(e.target.name);
+				setFilters({ ...filters, period: e.target.value });
+				break;
+			case 'STATUS':
+				setStatus(e.target.name);
+				setFilters({ ...filters, signed: e.target.value });
+				break;
+			case 'COMPANY_NAME':
+				e !== null
+					? setFilters({ ...filters, company_id: e.id })
+					: setFilters({ ...filters, company_id: '' });
+				break;
 		}
 	};
 	const getCompaniesNames = async () => {

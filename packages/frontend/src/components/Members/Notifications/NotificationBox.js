@@ -12,10 +12,10 @@ import { format, parseISO, formatDistanceToNow } from 'date-fns';
 
 function chooseIcon(type) {
 	switch (type) {
-	case 'new publication':
-		return <FoldedPaper style={{ transform: 'scale(1.6)' }} />;
-	default:
-		return <Like />;
+		case 'new publication':
+			return <FoldedPaper style={{ transform: 'scale(1.6)' }} />;
+		default:
+			return <Like />;
 	}
 }
 

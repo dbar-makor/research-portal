@@ -6,37 +6,37 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/CommentService')
+const Controller = require('./Controller');
+const service = require('../services/CommentService');
 const createComment = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createComment)
-}
+	await Controller.handleRequest(request, response, service.createComment);
+};
 
 const deleteComment = async (request, response) => {
-  await Controller.handleRequest(request, response, service.deleteComment)
-}
+	await Controller.handleRequest(request, response, service.deleteComment);
+};
 
 const getCommentById = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getCommentById)
-}
+	await Controller.handleRequest(request, response, service.getCommentById);
+};
 
 const getCommentsById = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getCommentsById)
-}
+	await Controller.handleRequest(request, response, service.getCommentsById);
+};
 
 const updateComment = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateComment)
-}
+	await Controller.handleRequest(request, response, service.updateComment);
+};
 
 const updateCommentSocial = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateCommentSocial)
-}
+	await Controller.handleRequest(request, response, service.updateCommentSocial);
+};
 
 module.exports = {
-  createComment,
-  deleteComment,
-  getCommentById,
-  getCommentsById,
-  updateComment,
-  updateCommentSocial,
-}
+	createComment,
+	deleteComment,
+	getCommentById,
+	getCommentsById,
+	updateComment,
+	updateCommentSocial,
+};

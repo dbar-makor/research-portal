@@ -328,15 +328,15 @@ function Contract({
 											<Typography className={classes.amountType}>
 												{contract.currency && contract.amount && contract.periodicity
 													? `${
-														typeof contract.currency === 'string'
-															? currenciesArr.find(
-																(currency) =>
-																	currency.code ===
+															typeof contract.currency === 'string'
+																? currenciesArr.find(
+																		(currency) =>
+																			currency.code ===
 																			contract.currency,
 																  ).symbol
-															: contract.currency.symbol
+																: contract.currency.symbol
 													  }${(
-														contract.amount *
+															contract.amount *
 															periodToNum[contract.periodicity]
 													  ).toLocaleString()}`
 													: '0'}

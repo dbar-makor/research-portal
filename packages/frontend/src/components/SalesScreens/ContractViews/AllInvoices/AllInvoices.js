@@ -4,7 +4,7 @@ import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder
 import { ReactComponent as SearchIcon } from '../../../../assets/icons/IconSearch.svg';
 
 import SelectInputUnit from '../../../Reusables/SelectInputUnit';
-import { useStyles, StyledTextField, AddButton } from '../../../../styles/MainStyles';
+import { useStyles, StyledTextField } from '../../../../styles/MainStyles';
 import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
 import InvoiceTable from './InvoiceTable';
 import RangeDatePicker from '../../../Reusables/RangeDatePicker';
@@ -51,7 +51,7 @@ function AllInvoices() {
 		setFilters((prevState) => ({ ...prevState, to: to }));
 	};
 
-	const hendlerForInvoiceId = (e, value) => {
+	const hendlerForInvoiceId = (e) => {
 		if (e.key && e.key === 'Enter') {
 			console.log(e.target.value);
 			setFilters({ ...filters, invoice_id: invoiceId });
@@ -60,20 +60,20 @@ function AllInvoices() {
 
 	const inputHandler = (e, type) => {
 		switch (type) {
-		case 'STATUS':
-			setTransactionStatus(e.target.name);
-			setFilters({ ...filters, status: e.target.value });
-			break;
-		case 'INVOICE_ID':
-			setFilters({ ...filters, invoice_id: invoiceId });
-			break;
-		case 'COMPANY_NAME':
-			e !== null
-				? setFilters({ ...filters, company_id: e.id })
-				: setFilters({ ...filters, company_id: '' });
-			break;
-		default:
-			break;
+			case 'STATUS':
+				setTransactionStatus(e.target.name);
+				setFilters({ ...filters, status: e.target.value });
+				break;
+			case 'INVOICE_ID':
+				setFilters({ ...filters, invoice_id: invoiceId });
+				break;
+			case 'COMPANY_NAME':
+				e !== null
+					? setFilters({ ...filters, company_id: e.id })
+					: setFilters({ ...filters, company_id: '' });
+				break;
+			default:
+				break;
 		}
 	};
 

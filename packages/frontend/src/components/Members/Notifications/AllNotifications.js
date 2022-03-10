@@ -24,12 +24,12 @@ function AllNotifications() {
 		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
 			switch (data.type) {
-			case 'notifcations':
-				const allNotifications = data.notifications;
-				setNotifications([...allNotifications]);
-				break;
-			default:
-				break;
+				case 'notifcations':
+					const allNotifications = data.notifications;
+					setNotifications([...allNotifications]);
+					break;
+				default:
+					break;
 			}
 		};
 	}, [markAsRead]);

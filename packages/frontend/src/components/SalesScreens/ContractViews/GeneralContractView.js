@@ -1,63 +1,10 @@
-import { Grid, Typography, makeStyles, Button, Divider } from '@material-ui/core';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { ReactComponent as BlueBorder } from '../../../assets/icons/blueBorder.svg';
-import * as actionSnackBar from '../../../redux/SnackBar/action';
 import Contract from './Contract';
 import SendContractView from './SendContractView';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeChosenCompany, selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import axios from 'axios';
-import { BASE_URL, END_POINT } from '../../../utils/constants';
-import { useHistory } from 'react-router-dom';
-
-function GeneralContractView() {
-	const classes = useStyles();
-	const [step, setStep] = useState(1);
-	const chosenCompany = useSelector(selectChosenCompany);
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const [contractCopy, setContractCopy] = useState({});
-	// const loggedinSalesPersonBigObject = useSelector((state) => state.auth.userContent);
-	// const loggedinSalesPerson = {id: loggedinSalesPersonBigObject.id, name:loggedinSalesPersonBigObject.name};
-
-	//contract state is being updated when its step children get unmounted
-
-	return (
-		<Grid container justifyContent="center" className={classes.modalContainer}>
-			<Grid item xs={10} className={classes.modalBox}>
-				<Grid container justifyContent="center">
-					<BlueBorder />
-					<Grid item xs={12}>
-						<Grid container justifyContent="center">
-							<Typography className={classes.modalTitle}>
-								{chosenCompany?.name}'s Contract
-							</Typography>
-						</Grid>
-					</Grid>
-				</Grid>
-
-				{step === 1 && (
-					<Contract
-						setStep={setStep}
-						stepperMode={true}
-						// contractCopy={contractCopy}
-						setContractCopy={setContractCopy}
-					/>
-				)}
-				{step === 2 && (
-					<SendContractView
-						setStep={setStep}
-						contractCopy={contractCopy}
-						setContractCopy={setContractCopy}
-					/>
-				)}
-			</Grid>
-		</Grid>
-	);
-}
-
-export default GeneralContractView;
-
+import { useSelector } from 'react-redux';
+import { selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
 const useStyles = makeStyles({
 	modalContainer: {
 		backgroundColor: '#fff',
@@ -86,3 +33,47 @@ const useStyles = makeStyles({
 		fontFamily: 'Inter',
 	},
 });
+
+function GeneralContractView() {
+	const classes = useStyles();
+	const [step, setStep] = useState(1);
+	const chosenCompany = useSelector(selectChosenCompany);
+	const [contractCopy, setContractCopy] = useState({});
+
+	//contract state is being updated when its step children get unmounted
+
+	return (
+		<Grid container justifyContent="center" className={classes.modalContainer}>
+			<Grid item xs={10} className={classes.modalBox}>
+				<Grid container justifyContent="center">
+					<BlueBorder />
+					<Grid item xs={12}>
+						<Grid container justifyContent="center">
+							<Typography className={classes.modalTitle}>
+								{chosenCompany?.name} &apos s Contract
+							</Typography>
+						</Grid>
+					</Grid>
+				</Grid>
+
+				{step === 1 && (
+					<Contract
+						setStep={setStep}
+						stepperMode={true}
+						// contractCopy={contractCopy}
+						setContractCopy={setContractCopy}
+					/>
+				)}
+				{step === 2 && (
+					<SendContractView
+						setStep={setStep}
+						contractCopy={contractCopy}
+						setContractCopy={setContractCopy}
+					/>
+				)}
+			</Grid>
+		</Grid>
+	);
+}
+
+export default GeneralContractView;

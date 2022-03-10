@@ -1,14 +1,28 @@
-import { useEffect } from 'react';
 import { Grid, Typography, TextField, Chip, makeStyles } from '@material-ui/core';
-import { Autocomplete, createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyledTextField, StyledAutoComplete } from '../../styles/MainStyles';
-import { validateMember } from '../Reusables/validationFunctions';
-import * as utilsAction from '../../redux/utils/utilsSlice';
+import { StyledAutoComplete } from '../../styles/MainStyles';
 
 const filter = createFilterOptions();
+const useStyles = makeStyles({
+	chipContainer: {
+		marginTop: '10px',
+	},
+	chipItem: {
+		marginBottom: '5px',
+		marginRight: '3px',
+	},
+	chip: {
+		backgroundColor: '#EDEFF3',
+		border: 'none',
+	},
+	arrowIcon: {
+		'& .MuiSvgIcon-root': {
+			color: '#1C67FF',
+		},
+	},
+});
 
 function TagsAutoComplete({
 	formObject,
@@ -16,19 +30,12 @@ function TagsAutoComplete({
 	handler,
 	label = '',
 	className = '',
-	chipClassName,
-	chipContainerClassName,
 	error = null,
 	chipVariant = 'outlined',
 }) {
 	const classes = useStyles();
-	const dispatch = useDispatch();
 	const tagsArr = useSelector((state) => state.utils.utils.tag);
 	const tagsArrNames = tagsArr?.map((tag) => tag.name);
-
-	const tagIDsArr = tagsArr?.map((item) => item.id);
-	// const itemIndex = parentArr && parentArr.length && parentArr.findIndex(item => item.id === formObject.id)
-
 	const deleteItem = (index) => {
 		const tagsCopy = [...formObject];
 		console.log('tagsCopy', tagsCopy);
@@ -129,22 +136,3 @@ function TagsAutoComplete({
 }
 
 export default TagsAutoComplete;
-
-const useStyles = makeStyles({
-	chipContainer: {
-		marginTop: '10px',
-	},
-	chipItem: {
-		marginBottom: '5px',
-		marginRight: '3px',
-	},
-	chip: {
-		backgroundColor: '#EDEFF3',
-		border: 'none',
-	},
-	arrowIcon: {
-		'& .MuiSvgIcon-root': {
-			color: '#1C67FF',
-		},
-	},
-});

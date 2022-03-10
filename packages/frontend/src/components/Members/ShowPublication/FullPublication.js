@@ -149,19 +149,19 @@ function FullPublication({ publication }) {
 								{(chosenPublication.commments !== null ||
 									chosenPublication.commments !== undefined) &&
 								userType !== 'author' ? (
-										<Comments
-											comments={chosenPublication.comments}
-											pubId={chosenPublication.id}
-										/>
-									) : null}
+									<Comments
+										comments={chosenPublication.comments}
+										pubId={chosenPublication.id}
+									/>
+								) : null}
 								{(chosenPublication.categories !== null ||
 									chosenPublication.categories !== undefined) &&
 								userType !== 'author' ? (
-										<MorePublications
-											categories={chosenPublication.categories}
-											title={chosenPublication.title}
-										/>
-									) : null}
+									<MorePublications
+										categories={chosenPublication.categories}
+										title={chosenPublication.title}
+									/>
+								) : null}
 							</Grid>
 						</Grid>
 					</>

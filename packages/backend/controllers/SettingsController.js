@@ -6,17 +6,17 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller')
-const service = require('../services/SettingsService')
+const Controller = require('./Controller');
+const service = require('../services/SettingsService');
 const getNotificationsSettings = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getNotificationsSettings)
-}
+	await Controller.handleRequest(request, response, service.getNotificationsSettings);
+};
 
 const updateNotificationsSettings = async (request, response) => {
-  await Controller.handleRequest(request, response, service.updateNotificationsSettings)
-}
+	await Controller.handleRequest(request, response, service.updateNotificationsSettings);
+};
 
 module.exports = {
-  getNotificationsSettings,
-  updateNotificationsSettings,
-}
+	getNotificationsSettings,
+	updateNotificationsSettings,
+};

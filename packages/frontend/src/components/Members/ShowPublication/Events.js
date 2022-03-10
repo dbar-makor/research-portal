@@ -50,7 +50,7 @@ function Events(props) {
 					</Grid>
 					{events.length > 0
 						? events.map((event, idx) => {
-							return Event(event, idx);
+								return Event(event, idx);
 						  })
 						: noEvents()}
 				</Grid>

@@ -81,24 +81,24 @@ function TopBar(props) {
 		webSocket.current.onmessage = (message) => {
 			message = JSON.parse(message.data);
 			switch (message.type) {
-			case 'alert':
-				console.log('NOTIFICATIONS', message.notifications);
-				setNotifications([...message.notifications]);
-				break;
-			case 'succeed':
-				console.log('succeed');
-				break;
-			default:
-				let send = {
-					type: 'get-notifications',
-					is_new: true,
-					id: message.id,
-				};
-				send = JSON.stringify(send);
-				webSocket.current.send(send);
-				setCountAlerts((counter) => counter + 1);
-				setNewNotification(true);
-				break;
+				case 'alert':
+					console.log('NOTIFICATIONS', message.notifications);
+					setNotifications([...message.notifications]);
+					break;
+				case 'succeed':
+					console.log('succeed');
+					break;
+				default:
+					let send = {
+						type: 'get-notifications',
+						is_new: true,
+						id: message.id,
+					};
+					send = JSON.stringify(send);
+					webSocket.current.send(send);
+					setCountAlerts((counter) => counter + 1);
+					setNewNotification(true);
+					break;
 			}
 		};
 		return () => webSocket.current.close();
@@ -156,204 +156,204 @@ function TopBar(props) {
 	}
 	const hendleBarOptions = (userType) => {
 		switch (userType) {
-		case 'admin':
-			return null;
-		case 'client' || 'prospect':
-			return (
-				<Grid item xs={8}>
-					<Grid container>
-						<Grid item xs={4}>
-							<Grid container style={{ marginTop: '10px', marginLeft: '-25px' }}>
-								<Grid item xs={4}>
-									<Link to="/home" className={classes.link}>
-										<Typography className={classes.title}>Home</Typography>
-									</Link>
-								</Grid>
-								<Grid item xs={4}>
-									<Link to={'/'} className={classes.styledLinks}>
+			case 'admin':
+				return null;
+			case 'client' || 'prospect':
+				return (
+					<Grid item xs={8}>
+						<Grid container>
+							<Grid item xs={4}>
+								<Grid container style={{ marginTop: '10px', marginLeft: '-25px' }}>
+									<Grid item xs={4}>
+										<Link to="/home" className={classes.link}>
+											<Typography className={classes.title}>Home</Typography>
+										</Link>
+									</Grid>
+									<Grid item xs={4}>
+										<Link to={'/'} className={classes.styledLinks}>
 											Ideas
-									</Link>
-								</Grid>
-								<Grid item xs={4}>
-									<Link to={'/'} className={classes.styledLinks}>
+										</Link>
+									</Grid>
+									<Grid item xs={4}>
+										<Link to={'/'} className={classes.styledLinks}>
 											Mkt Calendar
-									</Link>
+										</Link>
+									</Grid>
 								</Grid>
 							</Grid>
-						</Grid>
-						<Grid item xs={7}>
-							<Grid
-								container
-								direction="row"
-								justifyContent="flex-end"
-								alignItems="center"
-								style={{ marginLeft: '-25px' }}
-							>
-								<Grid item xs={3} style={{ paddingLeft: '50px' }}>
-									<SelectInputUnit
-										className={classes.select}
-										mode="minimalistic"
-										variant="standard"
-										optionLabelField="name"
-										valueField="value"
-										placeholder="All Regions"
-										optionsArray={options}
-									></SelectInputUnit>
-								</Grid>
+							<Grid item xs={7}>
+								<Grid
+									container
+									direction="row"
+									justifyContent="flex-end"
+									alignItems="center"
+									style={{ marginLeft: '-25px' }}
+								>
+									<Grid item xs={3} style={{ paddingLeft: '50px' }}>
+										<SelectInputUnit
+											className={classes.select}
+											mode="minimalistic"
+											variant="standard"
+											optionLabelField="name"
+											valueField="value"
+											placeholder="All Regions"
+											optionsArray={options}
+										></SelectInputUnit>
+									</Grid>
 
-								<Grid item xs={8} style={{ paddingRight: '250px' }}>
-									<StyledTextField
-										className={classes.search}
-										// value={localSearch}
-										// onChange={(e) => setLocalSearch(e.target.value)}
-										// onKeyDown={(e) => (e.key === 'Enter' ? dispatch(setProperty({ key: 'search', value: localSearch })) : null)}
-										variant="filled"
-										fullWidth
-										placeholder="Idea/Ticker"
-										InputProps={{
-											endAdornment: (
-												<SearchIcon
-													className={classes.searchIcon}
-													style={{ cursor: 'pointer' }}
-												/>
-											),
-										}}
-									/>
+									<Grid item xs={8} style={{ paddingRight: '250px' }}>
+										<StyledTextField
+											className={classes.search}
+											// value={localSearch}
+											// onChange={(e) => setLocalSearch(e.target.value)}
+											// onKeyDown={(e) => (e.key === 'Enter' ? dispatch(setProperty({ key: 'search', value: localSearch })) : null)}
+											variant="filled"
+											fullWidth
+											placeholder="Idea/Ticker"
+											InputProps={{
+												endAdornment: (
+													<SearchIcon
+														className={classes.searchIcon}
+														style={{ cursor: 'pointer' }}
+													/>
+												),
+											}}
+										/>
+									</Grid>
 								</Grid>
 							</Grid>
 						</Grid>
 					</Grid>
-				</Grid>
-			);
-		case 'sales':
-			return (
-				<Grid item xs={3} style={{ marginRight: 113 }}>
-					<Grid container justifyContent="space-between">
-						<Grid item>
-							<Link to={'/companies'} className={classes.styledLinks}>
+				);
+			case 'sales':
+				return (
+					<Grid item xs={3} style={{ marginRight: 113 }}>
+						<Grid container justifyContent="space-between">
+							<Grid item>
+								<Link to={'/companies'} className={classes.styledLinks}>
 									Companies
-							</Link>
-						</Grid>
-						<Grid>
-							<Link to={'/contracts'} className={classes.styledLinks}>
-									Contracts
-							</Link>
-						</Grid>
-						<Grid>
-							<Link to={'/invoices'} className={classes.styledLinks}>
-									Invoices
-							</Link>
-						</Grid>
-					</Grid>
-				</Grid>
-			);
-		case 'author':
-			return (
-				<Grid item xs={3} style={{ marginRight: 113 }}>
-					<Grid container justifyContent="flex-end">
-						<Grid item>
-							<Link to={'/researches'} className={classes.styledLinks}>
-									My Articles
-							</Link>
-						</Grid>
-					</Grid>
-				</Grid>
-			);
-		case 'admin':
-			return (
-				<Grid item xs={3} style={{ marginRight: 113 }}>
-					<Grid container justifyContent="flex-end">
-						<Grid item>
-							<Grid container alignItems="center">
-								<Grid item>
-									<Typography
-										style={{
-											fontSize: 16,
-											color: '#fffff',
-											cursor: 'pointer',
-											fontWeight: 300,
-										}}
-										onClick={() => handleToggle('user_mgmt')}
-									>
-											Users Managment
-									</Typography>
-								</Grid>
-								<Grid item>
-									<IconButton
-										size="small"
-										ref={userMgmtRef}
-										aria-controls={openUserMgmt ? 'composition-menu' : undefined}
-										aria-expanded={openUserMgmt ? 'true' : undefined}
-										aria-haspopup="true"
-										onClick={() => handleToggle('user_mgmt')}
-									>
-										{openUserMgmt ? (
-											<ExpandLessIcon style={{ color: '#ffff' }} />
-										) : (
-											<ExpandMoreIcon style={{ color: '#ffff' }} />
-										)}
-									</IconButton>
-								</Grid>
+								</Link>
 							</Grid>
-							<Popper
-								open={openUserMgmt}
-								anchorEl={userMgmtRef.current}
-								role={undefined}
-								placement="bottom"
-								transition
-								disablePortal
-								modifiers={{
-									offset: {
-										enabled: true,
-										offset: userType === 'client' ? '-150, 10' : '-80, 10',
-									},
-								}}
-							>
-								{({ TransitionProps, placement }) => (
-									<Grow
-										{...TransitionProps}
-										style={{
-											transformOrigin:
+							<Grid>
+								<Link to={'/contracts'} className={classes.styledLinks}>
+									Contracts
+								</Link>
+							</Grid>
+							<Grid>
+								<Link to={'/invoices'} className={classes.styledLinks}>
+									Invoices
+								</Link>
+							</Grid>
+						</Grid>
+					</Grid>
+				);
+			case 'author':
+				return (
+					<Grid item xs={3} style={{ marginRight: 113 }}>
+						<Grid container justifyContent="flex-end">
+							<Grid item>
+								<Link to={'/researches'} className={classes.styledLinks}>
+									My Articles
+								</Link>
+							</Grid>
+						</Grid>
+					</Grid>
+				);
+			case 'admin':
+				return (
+					<Grid item xs={3} style={{ marginRight: 113 }}>
+						<Grid container justifyContent="flex-end">
+							<Grid item>
+								<Grid container alignItems="center">
+									<Grid item>
+										<Typography
+											style={{
+												fontSize: 16,
+												color: '#fffff',
+												cursor: 'pointer',
+												fontWeight: 300,
+											}}
+											onClick={() => handleToggle('user_mgmt')}
+										>
+											Users Managment
+										</Typography>
+									</Grid>
+									<Grid item>
+										<IconButton
+											size="small"
+											ref={userMgmtRef}
+											aria-controls={openUserMgmt ? 'composition-menu' : undefined}
+											aria-expanded={openUserMgmt ? 'true' : undefined}
+											aria-haspopup="true"
+											onClick={() => handleToggle('user_mgmt')}
+										>
+											{openUserMgmt ? (
+												<ExpandLessIcon style={{ color: '#ffff' }} />
+											) : (
+												<ExpandMoreIcon style={{ color: '#ffff' }} />
+											)}
+										</IconButton>
+									</Grid>
+								</Grid>
+								<Popper
+									open={openUserMgmt}
+									anchorEl={userMgmtRef.current}
+									role={undefined}
+									placement="bottom"
+									transition
+									disablePortal
+									modifiers={{
+										offset: {
+											enabled: true,
+											offset: userType === 'client' ? '-150, 10' : '-80, 10',
+										},
+									}}
+								>
+									{({ TransitionProps, placement }) => (
+										<Grow
+											{...TransitionProps}
+											style={{
+												transformOrigin:
 													placement === 'bottom-start'
 														? 'right top'
 														: 'right bottom',
-										}}
-									>
-										<Paper>
-											<ClickAwayListener
-												onClickAway={(e) => handleClose(e, 'user_mgmt')}
-											>
-												<MenuList
-													autoFocusItem={open}
-													id="composition-menu"
-													aria-labelledby="composition-button"
+											}}
+										>
+											<Paper>
+												<ClickAwayListener
+													onClickAway={(e) => handleClose(e, 'user_mgmt')}
 												>
-													<MenuItem onClick={() => adminGoTo('/sales')}>
+													<MenuList
+														autoFocusItem={open}
+														id="composition-menu"
+														aria-labelledby="composition-button"
+													>
+														<MenuItem onClick={() => adminGoTo('/sales')}>
 															Sales
-													</MenuItem>
-													<MenuItem onClick={() => adminGoTo('/companies')}>
+														</MenuItem>
+														<MenuItem onClick={() => adminGoTo('/companies')}>
 															Companies Page
-													</MenuItem>
-													<MenuItem onClick={() => adminGoTo('/authors')}>
+														</MenuItem>
+														<MenuItem onClick={() => adminGoTo('/authors')}>
 															Authors Page
-													</MenuItem>
-												</MenuList>
-											</ClickAwayListener>
-										</Paper>
-									</Grow>
-								)}
-							</Popper>
+														</MenuItem>
+													</MenuList>
+												</ClickAwayListener>
+											</Paper>
+										</Grow>
+									)}
+								</Popper>
+							</Grid>
 						</Grid>
 					</Grid>
-				</Grid>
-			);
+				);
 		}
 	};
 	const redirect = (type) => {
 		switch (type) {
-		case 'all_notfications':
-			history.push('/all_notfications');
-			setOpenNotification(false);
+			case 'all_notfications':
+				history.push('/all_notfications');
+				setOpenNotification(false);
 		}
 	};
 
@@ -372,8 +372,8 @@ function TopBar(props) {
 										userType === 'author'
 											? '/researches'
 											: userType === 'sales'
-												? '/companies'
-												: '/home'
+											? '/companies'
+											: '/home'
 									}
 									className={classes.link}
 								>

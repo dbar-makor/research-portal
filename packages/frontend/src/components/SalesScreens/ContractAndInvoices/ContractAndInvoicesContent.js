@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 
 import axios from 'axios';
-import { format } from 'date-fns';
 //MUI
-import {
-	Grid,
-	IconButton,
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Typography,
-} from '@material-ui/core';
+import { Grid, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 
 import { useStyles } from '../../../styles/ContarctsModalStyles';
 import SelectInputUnit from '../../Reusables/SelectInputUnit';
@@ -107,11 +96,24 @@ function ContractAndInvoicesContent(props) {
 					<TableContainer style={{ height: 540 }}>
 						<Table stickyHeader size="small">
 							<TableHead>
-								{rowHeaders.map((row, i) => {
+								{rowHeaders.map((row, index) => {
 									return (
+<<<<<<< HEAD
 										<HeaderCells style={{ textAlign: row.align, width: row.width }}>
 											{row.name}
 										</HeaderCells>
+=======
+<<<<<<< HEAD
+										<HeaderCells
+											key={index}
+											style={{ textAlign: row.align, width: row.width }}
+										>
+											{row.name}
+										</HeaderCells>
+=======
+										<HeaderCells style={{ textAlign: row.align, width: row.width }}>{row.name}</HeaderCells>
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 									);
 								})}
 							</TableHead>

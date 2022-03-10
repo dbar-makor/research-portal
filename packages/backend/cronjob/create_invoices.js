@@ -6,7 +6,11 @@ require('moment-precise-range-plugin');
 const invoiceCreation = async (amount, contract_id, invoice_date) => {
 	console.log('createInvoice');
 	invoice_date = moment(invoice_date).format('YYYY-MM-DD hh:mm:ss');
+<<<<<<< HEAD
 	const invoice = {
+=======
+	let invoice = {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		amount: amount,
 		contract_id: contract_id,
 		invoice_date: invoice_date,
@@ -27,6 +31,7 @@ const createInvoices = async () => {
 		const res_contracts = await db_helper.get(query.get_all_active_contracts());
 		if (res_contracts) {
 			// let today = new Date(2000, 01, 01)
+<<<<<<< HEAD
 			const today = moment(new Date(), 'YYYY-MM-DD');
 			for (contract of res_contracts) {
 				const contract_date = moment(contract.start_at, 'YYYY-MM-DD');
@@ -34,6 +39,15 @@ const createInvoices = async () => {
 				const end_of_month = today.endOf('month');
 				const day_end_of_month = end_of_month.format('D');
 				const day_contract_date = contract_date.format('D');
+=======
+			let today = moment(new Date(), 'YYYY-MM-DD');
+			for (contract of res_contracts) {
+				let contract_date = moment(contract.start_at, 'YYYY-MM-DD');
+				let diff = moment.preciseDiff(today, contract_date, true);
+				let end_of_month = today.endOf('month');
+				let day_end_of_month = end_of_month.format('D');
+				let day_contract_date = contract_date.format('D');
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				//  console.log('today:', today, '   contract_date:', contract_date, '   end_of_month', end_of_month)
 				switch (contract.periodicity) {
 					case 'monthly':

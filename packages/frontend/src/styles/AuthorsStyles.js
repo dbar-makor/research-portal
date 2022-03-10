@@ -1,7 +1,6 @@
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles, withStyles, TextField, Button, IconButton } from '@material-ui/core';
+import { makeStyles, withStyles, TextField } from '@material-ui/core';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles(() => ({
 	'newArticleContainer': {
 		marginTop: '4.3vh',
 	},
@@ -48,7 +47,6 @@ export const useStyles = makeStyles((theme) => ({
 		fontSize: '14px',
 	},
 	'plusIcon': {
-		// marginLeft: '24px',
 		'paddingLeft': 0,
 		'&:hover': {
 			backgroundColor: 'transparent',
@@ -56,8 +54,6 @@ export const useStyles = makeStyles((theme) => ({
 	},
 	'eventContainer': {
 		marginBottom: '15px',
-		// maxHeight: '47px'
-		// minHeight: '80px'
 	},
 	'datePicker': {
 		marginRight: '15px',
@@ -66,9 +62,7 @@ export const useStyles = makeStyles((theme) => ({
 		width: '100%',
 	},
 	'&.MUIRichTextEditor-container': {},
-	'marginRight15': {
-		// marginRight: '15px'
-	},
+	'marginRight15': {},
 	'marginLeft15': {
 		marginLeft: '15px',
 	},
@@ -87,38 +81,7 @@ export const useStyles = makeStyles((theme) => ({
 		fontSize: '14px',
 		color: '#999999',
 	},
-	// eventsScrolledContainer: {
-	//   maxHeight: 237,
-	//   overflow: 'auto',
-	//   '&::-webkit-scrollbar': {
-	//     width: '3px',
-	//     height: '3px'
-	//   },
-	//   '&::-webkit-scrollbar-track': {
-	//     boxShadow: 'inset 0 0 5px #FFFFFF',
-	//     borderRadius: '10px'
-	//   },
-	//   '&::-webkit-scrollbar-thumb': {
-	//     backgroundColor: 'grey',
-	//     borderRadius: '10px'
-	//   }
-	// },
-	// attachmentsScrolledContainer: {
-	//   maxHeight: 146,
-	//   overflow: 'auto',
-	//   '&::-webkit-scrollbar': {
-	//     width: '3px',
-	//     height: '3px'
-	//   },
-	//   '&::-webkit-scrollbar-track': {
-	//     boxShadow: 'inset 0 0 5px #FFFFFF',
-	//     borderRadius: '10px'
-	//   },
-	//   '&::-webkit-scrollbar-thumb': {
-	//     backgroundColor: 'grey',
-	//     borderRadius: '10px'
-	//   }
-	// },
+
 	'chipContainer': {
 		marginTop: '10px',
 	},
@@ -128,23 +91,8 @@ export const useStyles = makeStyles((theme) => ({
 	},
 	'hashtagsContainer': {
 		marginTop: '16px',
-		// maxHeight: '76px',
-		// overflow: 'auto',
-		// '&::-webkit-scrollbar': {
-		//   width: '3px',
-		//   height: '3px'
-		// },
-		// '&::-webkit-scrollbar-track': {
-		//   boxShadow: 'inset 0 0 5px #FFFFFF',
-		//   borderRadius: '10px'
-		// },
-		// '&::-webkit-scrollbar-thumb': {
-		//   backgroundColor: 'grey',
-		//   borderRadius: '10px'
-		// }
 	},
 	'hashtag': {
-		// marginRight: '5px',
 		color: 'blue',
 	},
 	'clearHashtag': {
@@ -161,10 +109,6 @@ export const useStyles = makeStyles((theme) => ({
 		'height': '43px',
 		'& .MuiOutlinedInput-root': {
 			'borderRadius': '8px',
-			// color: '#B6B6B6',
-			// '&:hover': {
-			//   backgroundColor: '#212121'
-			// },
 			'& fieldset': {
 				borderColor: '#A5AFC233',
 			},
@@ -185,7 +129,6 @@ export const useStyles = makeStyles((theme) => ({
 						backgroundColor: 'transparent',
 					},
 				},
-				//   boxShadow: 'none'
 			},
 			'& .MuiInputBase-input': {
 				'padding': '11px',
@@ -261,7 +204,6 @@ export const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#EDEFF3',
 		height: '1px',
 		width: '100%',
-		// marginTop: '15px'
 	},
 	'uploadAttachment': {
 		borderRadius: '8px',
@@ -269,15 +211,10 @@ export const useStyles = makeStyles((theme) => ({
 		padding: '10px',
 		minHeight: '120px',
 	},
-	'autoCompleteChips': {
-		// marginBottom: '4px'
-	},
+	'autoCompleteChips': {},
 	'tagsInputContainer': {
 		marginTop: '16px',
 	},
-	// tagsInputContainerRow:{
-	//   marginTop: 0
-	// },
 	'dateStyle': {
 		'& .MuiOutlinedInput-input': {
 			padding: '10.6px',
@@ -360,15 +297,6 @@ export const useStyles = makeStyles((theme) => ({
 		maxHeight: '75px',
 		borderTop: 'none',
 		borderRadius: '0px 0px 8px 8px',
-		// "&:hover": {
-		//   backgroundColor: "#0044CD",
-		//   boxShadow: "0px 6px 10px #00185829",
-		//   transition: ".3s",
-		// },
-		// "&.Mui-disabled": {
-		//   backgroundColor: "#ACB1BF",
-		//   color: "#868DA2",
-		// },
 	},
 	'attachmentLine': {
 		marginTop: '15px',
@@ -471,13 +399,11 @@ export const useStyles = makeStyles((theme) => ({
 		},
 	},
 	'arrow2Style': {
-		// paddingRight: 13,
 		'& path': {
 			'fill': '#1C67FF',
 			'cursor': 'pointer',
 			'& .disabled': {
 				fill: '#868DA2',
-				// padding: "1px 5px 1px 1px",
 			},
 		},
 		'& .makeStyles-iconButton-672': {
@@ -560,10 +486,6 @@ export const AtricleTitleTextField = withStyles({
 				opacity: 1,
 			},
 		},
-
-		// "& .notselected":{
-		//   color: "#868DA2"
-		// },
 	},
 })(TextField);
 
@@ -576,16 +498,6 @@ export const CustomTextField = withStyles((theme) => ({
 		'& .MuiOutlinedInput-root': {
 			backgroundColor: theme.palette.background.main,
 			borderRadius: 5,
-			// check if not needed:
-			// '& fieldset': {
-			//   borderColor: '#212121'
-			// },
-			// '&:hover fieldset': {
-			//   border: '1px solid #212121'
-			// },
-			// '&.Mui-focused fieldset': {
-			//   border: '1px solid #212121'
-			// }
 		},
 		'& .MuiOutlinedInput-inputMarginDense': {
 			padding: '13px 8px',

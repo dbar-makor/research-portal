@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+//const { get_order_book } = require('../helpers/handle_ob_generator_message')
+const { SchemaVersionContext } = require('twilio/lib/rest/events/v1/schema/version');
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 const { update_session, get_session } = require('../../utils/session_manager');
 const module_notification = require('../module/Notification');
 const handle_message = async (ws, message) => {
@@ -16,7 +21,11 @@ const handle_message = async (ws, message) => {
 						const new_notification = await module_notification.set_new_notification(data.id);
 					}
 					if (notifications) {
+<<<<<<< HEAD
 						const send_data = {
+=======
+						let send_data = {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 							type: 'alert',
 							notifications,
 						};
@@ -54,7 +63,11 @@ const handle_message = async (ws, message) => {
 			case 'get-all-notiofications':
 				const all_notifications = await module_notification.get_all_notifications(session.user_id);
 				if (all_notifications) {
+<<<<<<< HEAD
 					const send = {
+=======
+					let send = {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 						type: 'notifcations',
 						notifications: all_notifications,
 					};

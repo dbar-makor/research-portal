@@ -2,8 +2,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import { useStyles } from '../../../styles/ContarctsModalStyles';
 import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
 import ContractAndInvoicesContent from './ContractAndInvoicesContent';
-
-import { useEffect, useState } from 'react';
 import SubHeaderModal from '../../Reusables/SubHeaderModal';
 
 function ContractsModal(props) {

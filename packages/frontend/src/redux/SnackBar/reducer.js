@@ -4,10 +4,9 @@ const initialState = {
 	visible: false,
 	timeout: 3000,
 	message: '',
-	type: 'success', // error | warning | info | success
+	type: 'success',
 };
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case SET_SNACKBAR:

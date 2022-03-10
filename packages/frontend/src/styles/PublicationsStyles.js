@@ -1,7 +1,7 @@
-import { Button, Collapse, SvgIcon, TextField } from '@material-ui/core';
+import { Button, Collapse, TextField } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles({
 	divider: {
 		backgroundColor: '#EDEFF3',
 		height: '1px',
@@ -156,9 +156,9 @@ export const useStyles = makeStyles((theme) => ({
 			marginTop: '0px',
 		},
 	},
-}));
+});
 
-export const StyledButton = withStyles((theme) => ({
+export const StyledButton = withStyles({
 	root: {
 		'width': '138px',
 		'height': '30px',
@@ -171,9 +171,9 @@ export const StyledButton = withStyles((theme) => ({
 			backgroundColor: '#1c67ffb3',
 		},
 	},
-}))(Button);
+})(Button);
 
-export const StyledCancelButton = withStyles((theme) => ({
+export const StyledCancelButton = withStyles({
 	root: {
 		'width': '138px',
 		'height': '30px',
@@ -188,9 +188,9 @@ export const StyledCancelButton = withStyles((theme) => ({
 			color: '#000',
 		},
 	},
-}))(Button);
+})(Button);
 
-export const StyledCollape = withStyles((theme) => ({
+export const StyledCollape = withStyles({
 	root: {
 		'width': 'auto',
 		'&  .MuiCollapse-wrapperInner ': {
@@ -198,7 +198,7 @@ export const StyledCollape = withStyles((theme) => ({
 			justifyContent: 'flex-end',
 		},
 	},
-}))(Collapse);
+})(Collapse);
 
 export const StyledTextField = withStyles({
 	root: {

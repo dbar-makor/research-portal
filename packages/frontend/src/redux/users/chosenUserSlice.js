@@ -14,6 +14,9 @@ export const chosenUserSlice = createSlice({
 	},
 });
 
+export const { changeChosenUser, setLoading } = chosenUserSlice.actions;
+
+
 //selectors
 
 export const selectChosenUserData = (state) => state.chosenUser.chosenUser;
@@ -24,7 +27,6 @@ export const getUserByIdAsync = (id) => async (dispatch) => {
 	try {
 		const res = await axios.get(`${BASE_URL}${END_POINT.USER}/${id}`);
 		if (res.status === 200) {
-			console.log('res DARTA', res.data);
 			dispatch(changeChosenUser(res.data));
 		}
 	} catch (error) {
@@ -32,22 +34,5 @@ export const getUserByIdAsync = (id) => async (dispatch) => {
 	}
 };
 
-// export const deleteUserAsync = (id) => async (dispatch) => {
-
-//   try{
-//     console.log("delete")
-//     console.log(`${BASE_URL}${END_POINT.COMPANY}/${id}`)
-//     const res = await axios.delete(`${BASE_URL}${END_POINT.USER}/${id}`);
-//     console.log("res", res)
-//     if(res.status === 200){
-//         console.log("delete successful");
-//         dispatch(setChosenUser(null));
-//     }
-//   }catch(err){
-//     console.log(err.message);
-//   }
-// }
-
-export const { changeChosenUser, setLoading } = chosenUserSlice.actions;
 
 export default chosenUserSlice.reducer;

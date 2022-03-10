@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { useEffect } from 'react';
+import { Grid } from '@material-ui/core';
 import Filters from '../Reusables/Filters';
 import MainSalesScreen from './MainSalesScreen';
 import { useStyles } from '../../styles/MainStyles';

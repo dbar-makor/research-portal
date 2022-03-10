@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import Filters from '../Reusables/Filters';
-import SalesUsers from './SalesUsers';
+import SalesUsers from '../ui/admin/SalesUsers/SalesUsers.jsx';
 import { useStyles } from '../../styles/MainStyles';
 import SubHeader from '../Reusables/SubHeader';
 import { useSelector, useDispatch } from 'react-redux';

@@ -1,7 +1,7 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 
-function ContractAndTrails(){
-return <Grid item>Contract & trails</Grid>;
+function ContractAndTrails() {
+	return <Grid item>Contract & trails</Grid>;
 }
 
-export default ContractAndTrails
+export default ContractAndTrails;

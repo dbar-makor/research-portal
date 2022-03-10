@@ -15,7 +15,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Filters from '../Reusables/Filters';
-import UserInfo from './UserInfo';
+import UserInfo from '../AdminScreens/UserInfo';
 import MembersTable from '../SalesScreens/MembersDetails/MembersTable';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import { selectChosenUserData } from '../../redux/users/chosenUserSlice';
@@ -63,7 +63,7 @@ function SalesUsers() {
 
 			observer.current = new IntersectionObserver((entries) => {
 				if (entries[0].isIntersecting && hasMore) {
-					let newOffset = userOffset + userLimit;
+					const newOffset = userOffset + userLimit;
 					// console.log("containerRef.current?.scrollHeight",containerRef.current?.scrollHeight)
 					dispatch(setUserProperty({ key: 'offset', value: newOffset }));
 				}

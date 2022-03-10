@@ -6,19 +6,21 @@ import { useEffect } from 'react';
 import * as subscribersAction from '../../redux/subscribers/subscribersSlice';
 
 function SubscribersMain(props) {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-useEffect(() => {
-  dispatch(subscribersAction.getSubscribersAsync());
-}, []);
+	useEffect(() => {
+		dispatch(subscribersAction.getSubscribersAsync());
+	}, []);
 
-return <Grid container>
-    <Grid item xs={12}>
-      <Typography style={{textAlign: 'center' , fontSize : '40px'}}>Subscribers</Typography>
-    </Grid>
-      <SubscribersTable/>
-      <SubscriberDetails/>
-  </Grid>;
+	return (
+		<Grid container>
+			<Grid item xs={12}>
+				<Typography style={{ textAlign: 'center', fontSize: '40px' }}>Subscribers</Typography>
+			</Grid>
+			<SubscribersTable />
+			<SubscriberDetails />
+		</Grid>
+	);
 }
 
 export default SubscribersMain;

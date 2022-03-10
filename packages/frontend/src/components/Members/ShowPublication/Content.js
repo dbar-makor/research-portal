@@ -5,51 +5,56 @@ import MUIRichTextEditor from 'mui-rte';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
 function Content(props) {
-  const { contentBlocks } = props;
-  const classes = useStyles();
+	const { contentBlocks } = props;
+	const classes = useStyles();
 
-
-  return (
-    <Grid item xs={12}>
-      <Divider className={classes.divider} style={{ marginTop: 10 }}></Divider>
-      <Grid container>
-        {contentBlocks !== '{}' ?
-        <StyledEditor defaultValue={typeof contentBlocks === 'object' ? JSON.stringify(contentBlocks) : contentBlocks} controls={[]} readOnly={true} />
-        :
-         <Typography>No Content</Typography>
-      }
-      </Grid>
-    </Grid>
-  );
+	return (
+		<Grid item xs={12}>
+			<Divider className={classes.divider} style={{ marginTop: 10 }}></Divider>
+			<Grid container>
+				{contentBlocks !== '{}' ? (
+					<StyledEditor
+						defaultValue={
+							typeof contentBlocks === 'object' ? JSON.stringify(contentBlocks) : contentBlocks
+						}
+						controls={[]}
+						readOnly={true}
+					/>
+				) : (
+					<Typography>No Content</Typography>
+				)}
+			</Grid>
+		</Grid>
+	);
 }
 
 export default Content;
 
 const StyledEditor = withStyles((theme) => ({
-  root: {
-    height: '100%',
-    '& #mui-rte-container': {
-      height: '100%',
-      margin: '0px',
-    },
-  },
-  toolbar: {
-    border: 'none',
-    padding: 'none',
-  },
-  container: {
-    height: '100%',
-    maxHeight: '100%',
-    width: '100%',
-    maxWidth: '100%',
-  },
-  editor: {
-    padding: 'none',
-    borderRadius: '0px',
-    border: 'none',
-    height: '100%',
-    maxHeight: '100%',
-    width: 'inharit',
-    maxWidth: 'inharit',
-  },
+	root: {
+		'height': '100%',
+		'& #mui-rte-container': {
+			height: '100%',
+			margin: '0px',
+		},
+	},
+	toolbar: {
+		border: 'none',
+		padding: 'none',
+	},
+	container: {
+		height: '100%',
+		maxHeight: '100%',
+		width: '100%',
+		maxWidth: '100%',
+	},
+	editor: {
+		padding: 'none',
+		borderRadius: '0px',
+		border: 'none',
+		height: '100%',
+		maxHeight: '100%',
+		width: 'inharit',
+		maxWidth: 'inharit',
+	},
 }))(MUIRichTextEditor);

@@ -25,8 +25,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { FilledButton, OutlinedButton } from '../../../styles/MainStyles';
-import InfoStep from './InfoStep';
-import MembersStep from './MembersStep';
+import InfoStep from '../NewCompanySteps/InfoStep';
+import MembersStep from '../NewCompanySteps/MembersStep';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 import SubHeaderModal from '../../Reusables/SubHeaderModal';
 
@@ -71,41 +71,41 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 
 	function getStepContent(step) {
 		switch (step) {
-			case 0:
-				return (
-					<InfoStep
-						company={company}
-						setCompany={setCompany}
-						handleCompany={handleCompany}
-						classes={classes}
-						errors={errors1}
-						setErrors={setErrors1}
-						validationResult={validationResult1}
-						setValidationResult={setValidationResult1}
-						setUploadedImage={setUploadedImage}
-						uploadedImage={uploadedImage}
-						inputValue={inputValue}
-						setInputValue={setInputValue}
-					/>
-				);
-			case 1:
-				return (
-					<MembersStep
-						company={company}
-						setCompany={setCompany}
-						currentMember={currentMember}
-						setCurrentMember={setCurrentMember}
-						initStateMember={initStateMember}
-						handleSubmit={handleSubmit}
-						classes={classes}
-						errors={errors2}
-						setErrors={setErrors2}
-						validationResult={validationResult2}
-						setValidationResult={setValidationResult2}
-					/>
-				);
-			default:
-				return 'Unknown step';
+		case 0:
+			return (
+				<InfoStep
+					company={company}
+					setCompany={setCompany}
+					handleCompany={handleCompany}
+					classes={classes}
+					errors={errors1}
+					setErrors={setErrors1}
+					validationResult={validationResult1}
+					setValidationResult={setValidationResult1}
+					setUploadedImage={setUploadedImage}
+					uploadedImage={uploadedImage}
+					inputValue={inputValue}
+					setInputValue={setInputValue}
+				/>
+			);
+		case 1:
+			return (
+				<MembersStep
+					company={company}
+					setCompany={setCompany}
+					currentMember={currentMember}
+					setCurrentMember={setCurrentMember}
+					initStateMember={initStateMember}
+					handleSubmit={handleSubmit}
+					classes={classes}
+					errors={errors2}
+					setErrors={setErrors2}
+					validationResult={validationResult2}
+					setValidationResult={setValidationResult2}
+				/>
+			);
+		default:
+			return 'Unknown step';
 		}
 	}
 
@@ -227,14 +227,14 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 								{/* <Grid item xs={4}>
                                 <Grid container justifyContent='center'>
                                     <BlueBorder />
-                                </Grid>                      
+                                </Grid>
                             </Grid> */}
 								{/* <Grid item xs={4}>
                                 <Grid container justifyContent='flex-end'>
                                     <IconButton className={classes.closeButton} onClick={handleClose}>
                                         <CloseIcon />
-                                    </IconButton>     
-                                </Grid>         
+                                    </IconButton>
+                                </Grid>
                             </Grid> */}
 								{/* <Grid item xs={12}>
                                 <Grid container justifyContent="center">

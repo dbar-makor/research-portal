@@ -1,25 +1,25 @@
-import { createStore, applyMiddleware } from '@reduxjs/toolkit'
-import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware } from '@reduxjs/toolkit';
+import thunkMiddleware from 'redux-thunk';
 // import { createLogger } from 'redux-logger'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import createRootReducer from './reducers'
+import { composeWithDevTools } from 'redux-devtools-extension';
+import createRootReducer from './reducers';
 
-export default function configureAppStore (preloadedState) {
-  // console.log('preloadedState', preloadedState)
-  // console.log('thunkMiddleware', thunkMiddleware)
-  // const logger = createLogger()
-  const middlewares = [thunkMiddleware] // logger]
-  console.log('middlewares', middlewares)
-  const middlewareEnhancer = applyMiddleware(...middlewares)
+export default function configureAppStore(preloadedState) {
+	// console.log('preloadedState', preloadedState)
+	// console.log('thunkMiddleware', thunkMiddleware)
+	// const logger = createLogger()
+	const middlewares = [thunkMiddleware]; // logger]
+	console.log('middlewares', middlewares);
+	const middlewareEnhancer = applyMiddleware(...middlewares);
 
-  const enhancers = [middlewareEnhancer]
-  const composedEnhancers = composeWithDevTools(...enhancers)
+	const enhancers = [middlewareEnhancer];
+	const composedEnhancers = composeWithDevTools(...enhancers);
 
-  const store = createStore(createRootReducer(), preloadedState, composedEnhancers)
+	const store = createStore(createRootReducer(), preloadedState, composedEnhancers);
 
-  // if (process.env.NODE_ENV !== 'production' && module.hot) {
-  //   module.hot.accept('./reducers', () => store.replaceReducer(createRootReducer))
-  // }
+	// if (process.env.NODE_ENV !== 'production' && module.hot) {
+	//   module.hot.accept('./reducers', () => store.replaceReducer(createRootReducer))
+	// }
 
-  return store
+	return store;
 }

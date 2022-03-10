@@ -1,12 +1,14 @@
 module.exports = {
 	root: true,
-	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-	parser: '@typescript-eslint/parser',
+	extends: ['eslint:recommended'],
 	parserOptions: {
-		project: 'tsconfig.json',
+		ecmaVersion: 6,
 		sourceType: 'module',
+		ecmaFeatures: {
+			jsx: true,
+		},
 	},
-	plugins: ['unused-imports', '@typescript-eslint'],
+	plugins: ['unused-imports'],
 	rules: {
 		'indent': ['error', 'tab'],
 		'quotes': ['error', 'single'],
@@ -31,12 +33,15 @@ module.exports = {
 		'no-inline-comments': 'error',
 		'eqeqeq': 'error',
 		'no-console': 'warn',
-		'@typescript-eslint/no-unused-vars': ['error'],
-		'@typescript-eslint/no-empty-interface': 'off',
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
-		'@typescript-eslint/ban-ts-comment': 'off',
-		'@typescript-eslint/no-require-imports': ['error'],
-		'unused-imports/no-unused-imports': 'error',
-		'@typescript-eslint/no-non-null-assertion': 'off',
+		'prefer-const': [
+			'error',
+			{
+				destructuring: 'any',
+				ignoreReadBeforeAssign: false,
+			},
+		],
+	},
+	env: {
+		node: true,
 	},
 };

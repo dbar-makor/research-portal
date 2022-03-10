@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { IconButton, Input, InputAdornment, Popover } from '@material-ui/core';
 import { ReactComponent as Calendar } from '../../assets/icons/iconCalendar.svg';
 import { DateRangePicker } from 'react-date-range';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useStyles } from '../../styles/MainStyles';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import moment from 'moment';
-import clsx from 'clsx';
-
-// const max_days_allowed = 7
 
 export default function RangeDatePicker(props) {
-	const { from, to, setFrom, setTo, max_days_allowed, renderFrom } = props;
+	const { from, to, setFrom, setTo, max_days_allowed } = props;
 	const stylingProps = {
 		clearable: from !== 'DD/MM/YYYY' && to !== 'DD/MM/YYYY' && from && to,
 	};
@@ -56,7 +53,7 @@ export default function RangeDatePicker(props) {
 		}
 	};
 
-	const handleCalanderOpen = (e) => {
+	const handleCalanderOpen = () => {
 		setAnchorEl(calendarIconRef.current);
 		calendarIconRef.current && DateRangePicker && setOpen(true);
 	};

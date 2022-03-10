@@ -7,7 +7,11 @@ const Category = () => {};
 //create category
 Category.createCategory = async (payload, result) => {
 	try {
+<<<<<<< HEAD
 		const processed_data = { name: payload.categoryCreate.name };
+=======
+		let processed_data = { name: payload.categoryCreate.name };
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		const categs = await db_helper.update(category_sql.create_category(processed_data), processed_data);
 
 		if (!categs || categs.affectedRows < 1) {

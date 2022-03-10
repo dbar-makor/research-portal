@@ -3,15 +3,25 @@ const get_categories_by_publication_id = (publication_id) => {
 };
 
 const get_users_by_category_id = (category_id) => {
+<<<<<<< HEAD
 	return `SELECT u.id
     FROM user u
     INNER JOIN user_has_category uc
+=======
+	return `SELECT u.id  
+    FROM user u   
+    INNER JOIN user_has_category uc  
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
     ON u.id = uc.user_id WHERE u.is_active=1 AND uc.category_id=${category_id};`;
 };
 const insert_notification = (data) => {
 	return `
   INSERT INTO notification (${Object.keys(data)})
+<<<<<<< HEAD
   VALUES (${Object.values(data).map(() => '?')});`;
+=======
+  VALUES (${Object.values(data).map((key) => '?')});`;
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 };
 const get_notifications_by_user_id = (user_id) => {
 	return `SELECT n.uuid as id, n.is_read ,content.content, n.is_new  FROM notification n
@@ -25,7 +35,11 @@ const get_all_notifications_by_user_id = (user_id) => {
 };
 const update_notification = (notification) => {
 	return `
+<<<<<<< HEAD
   UPDATE notification
+=======
+  UPDATE notification 
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
   SET ${Object.keys(notification).map((key) => `${key} = ? `)}
   WHERE id = ${notification.id}`;
 };

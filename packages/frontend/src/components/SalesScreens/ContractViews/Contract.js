@@ -324,9 +324,22 @@ function Contract({
 												{contract.currency && contract.amount && contract.periodicity
 													? `${
 															typeof contract.currency === 'string'
+<<<<<<< HEAD
+																? currenciesArr.find(
+																		(currency) =>
+																			currency.code ===
+																			contract.currency,
+																  ).symbol
+																: contract.currency.symbol
+													  }${(
+															contract.amount *
+															periodToNum[contract.periodicity]
+													  ).toLocaleString()}`
+=======
 																? currenciesArr.find((currency) => currency.code === contract.currency).symbol
 																: contract.currency.symbol
 													  }${(contract.amount * periodToNum[contract.periodicity]).toLocaleString()}`
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
 													: '0'}
 											</Typography>
 										</Grid>

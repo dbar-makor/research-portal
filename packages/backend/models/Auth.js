@@ -33,8 +33,13 @@ const Auth = () => {};
 Auth.createAuth = async (payload, result) => {
 	const { password, username, device_id } = payload.auth;
 	const { origin, 'userIp': user_ip, 'device-origin': device_origin, type, connection_by_app } = payload;
+<<<<<<< HEAD
 	const is_2fa_active = process.env.IS_TWO_FACTOR_AUTH_ACTIVATED === 'true' ? true : false;
 	const location = await global_helper.get_location(user_ip);
+=======
+	let is_2fa_active = process.env.IS_TWO_FACTOR_AUTH_ACTIVATED === 'true' ? true : false;
+	let location = await global_helper.get_location(user_ip);
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 	try {
 		const [user] = await db_helper.get(
 			query.get_user_by_username_and_password(username, SHA256.hex(password)),
@@ -331,7 +336,11 @@ Auth.resetPassword = async (payload, result) => {
 			}
 		});
 
+<<<<<<< HEAD
 		const proccess_data = {
+=======
+		let proccess_data = {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 			password: SHA256.hex(new_password),
 		};
 		await db_helper.update(query.update_user_by_id(proccess_data, user.id), proccess_data);

@@ -12,7 +12,11 @@ const return_pdf = (file_name) => {
 			console.log('path_upload', path_upload);
 			if (fs.existsSync(path_upload)) {
 				console.log('file  exist');
+<<<<<<< HEAD
 				const pdf = await fs.readFileSync(path_upload).toString('base64');
+=======
+				let pdf = await fs.readFileSync(path_upload).toString('base64');
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				return resolve(pdf);
 			} else {
 				console.log('file does not exist');

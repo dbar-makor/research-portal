@@ -23,7 +23,11 @@ const send_notification = async (notifiers, content_id) => {
 					settings_query.get_notifications_settings(session.user_id),
 				);
 				if (!res_settings_notifications) return result({ status: 500 });
+<<<<<<< HEAD
 				const settings = JSON.parse(res_settings_notifications.settings);
+=======
+				let settings = JSON.parse(res_settings_notifications.settings);
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				console.log('settings', settings);
 				let notification;
 				//create notification data to save in db
@@ -45,7 +49,11 @@ const send_notification = async (notifiers, content_id) => {
 					);
 					if (!inserted_notification) return result({ status: 500 });
 					// send notification
+<<<<<<< HEAD
 					const data = {
+=======
+					let data = {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 						id: inserted_notification.uuid,
 						is_read: 0,
 						content,
@@ -68,7 +76,11 @@ const send_notification = async (notifiers, content_id) => {
 				const [res_settings_notifications] = await db_helper.get(
 					settings_query.get_notifications_settings(session.user_id),
 				);
+<<<<<<< HEAD
 				const settings = JSON.parse(res_settings_notifications.settings);
+=======
+				let settings = JSON.parse(res_settings_notifications.settings);
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				if (res_settings_notifications.is_active && settings.publications.new_publications) {
 					// create notification object for users not connected
 					const notification = {

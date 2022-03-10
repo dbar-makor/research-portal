@@ -216,6 +216,8 @@ function TopBar(props) {
 														className={classes.searchIcon}
 														style={{ cursor: 'pointer' }}
 													/>
+													<SearchIcon className={classes.searchIcon} style={{ cursor: 'pointer' }} />
+
 												),
 											}}
 										/>

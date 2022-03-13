@@ -9,7 +9,6 @@ export const useMapData = () => {
 	const [mapData, setMapData] = useState(null);
 	const [mapLoading, setMapLoading] = useState(false);
 	const [mapError, setMapError] = useState(false);
-
 	const [citiesData, setCitiesData] = useState(null);
 
 	const getMapData = async () => {
@@ -17,7 +16,9 @@ export const useMapData = () => {
 
 		try {
 			delete axios.defaults.headers.common['Authorization'];
+
 			const res = await axios.get(jsonUrl);
+
 			if (res.status === 200) {
 				setMapLoading(false);
 				setMapData(res.data.features);

@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/MainStyles';
-import SubHeader from '../Reusables/SubHeader';
 import TableComponent from '../Reusables/TableComponent';
 import {
 	selectSalesUsersData,
@@ -9,15 +8,11 @@ import {
 	selectUsersOffset,
 	selectUsersLimit,
 	selectUsersLoading,
-	selectUsersMetaData,
 	selectUsersHasMore,
 } from '../../redux/users/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Filters from '../Reusables/Filters';
 import UserInfo from '../AdminScreens/UserInfo';
-import MembersTable from '../SalesScreens/MembersDetails/MembersTable';
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import { selectChosenUserData } from '../../redux/users/chosenUserSlice';
 
 function SalesUsers() {
@@ -27,7 +22,6 @@ function SalesUsers() {
 	const chosenUser = useSelector(selectChosenUserData);
 
 	const loading = useSelector(selectUsersLoading);
-	const metaData = useSelector(selectUsersMetaData);
 
 	const userOffset = useSelector(selectUsersOffset);
 	const userLimit = useSelector(selectUsersLimit);
@@ -52,8 +46,6 @@ function SalesUsers() {
 
 	const lastItemRef = useCallback(
 		(node) => {
-			console.log('lastItemRef cb runs. node:', node);
-
 			if (loading) {
 				return;
 			}

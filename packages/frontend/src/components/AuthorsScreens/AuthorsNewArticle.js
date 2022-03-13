@@ -1,38 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-	Grid,
-	Typography,
-	TextField,
-	Button,
-	IconButton,
-	Chip,
-	withStyles,
-	Divider,
-} from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab';
-import { useStyles, AtricleTitleTextField, CustomTextField } from '../../styles/AuthorsStyles';
+import { useState, useEffect, useRef } from 'react';
+import { Grid, Typography, Divider } from '@material-ui/core';
+import { useStyles, AtricleTitleTextField } from '../../styles/AuthorsStyles';
 import MUIRichTextEditor from 'mui-rte';
-import CropOriginalIcon from '@material-ui/icons/CropOriginal';
 import AddIcon from '@material-ui/icons/Add';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { END_POINT, BASE_URL } from '../../utils/constants';
 import clsx from 'clsx';
-import { convertToRaw, convertFromRaw } from 'draft-js';
+import { convertToRaw } from 'draft-js';
 import ClearIcon from '@material-ui/icons/Clear';
 
 import axios from 'axios';
-import * as researchAction from '../../redux/researches/researchesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { isValid } from 'date-fns';
 import { ReactComponent as CalendarIcon } from '../../assets/icons/iconCalendar.svg';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import SubHeader from '../Reusables/SubHeader';
 import {
 	StyledTextField,
-	StyledAutoComplete,
 	OutlinedButton,
 	FilledButton,
 	AddButton,
@@ -50,7 +34,6 @@ import DropZone from '../Reusables/DropZone';
 import DropZoneMulti from '../Reusables/DropZoneMulti';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';
 import TagsAutoComplete from '../Reusables/TagsAutoComplete';
-import * as utilsAction from '../../redux/utils/utilsSlice';
 
 function AuthorsNewArticle() {
 	const classes = useStyles();
@@ -93,14 +76,19 @@ function AuthorsNewArticle() {
 	const [errors, setErrors] = useState({});
 	const [validationResult, setValidationResult] = useState(false);
 	const [errorsEvent, setErrorsEvent] = useState({});
-	const [validationResultEvent, setValidationResultEvent] = useState(true); //true as default because not mandatory
+	const [validationResultEvent, setValidationResultEvent] = useState(true);
 	const [coverImageOK, setCoverImageOK] = useState({ initial: true, final: false });
 	const [contentNotOK, setContentNotOK] = useState({ focus: false, isText: false, everTyped: false });
 	const showEditorError = contentNotOK.focus && contentNotOK.everTyped && !contentNotOK.isText;
 
-	useEffect(() => {
-		console.log('chosenResearch', chosenResearch);
-	}, []);
+	const executeScroll = () => {
+		if (localForm.events.length) {
+			const lastIndex = tableRowsRefs.current.length - 1;
+			if (scrollLocation === 'bottom') {
+				tableRowsRefs.current[lastIndex].scrollIntoView();
+			}
+		}
+	};
 
 	useEffect(() => {
 		if (localForm) {
@@ -119,7 +107,6 @@ function AuthorsNewArticle() {
 	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
-			console.log('there\'s a chosenResearch');
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
@@ -150,8 +137,6 @@ function AuthorsNewArticle() {
 				if (!chosenResearch.categories.length || !chosenResearch.title) {
 					setValidationResult(false);
 				}
-				if (JSON.parse(chosenResearch.content)) {
-				}
 			}
 		}
 	}, [chosenResearch]);
@@ -160,7 +145,6 @@ function AuthorsNewArticle() {
 	useEffect(() => {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
-			console.log('half baked publication', publication);
 			const coverImg = publication.attachments?.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
@@ -189,13 +173,6 @@ function AuthorsNewArticle() {
 		}
 	}, [location.state]);
 
-	//log validation status
-	// !validationResult || !validationResultEvent || !coverImageOK.final || !contentNotOK.isText
-	console.log('validationResult', validationResult);
-	console.log('validationResultEvent', validationResultEvent);
-	console.log('coverImageOK.final', coverImageOK.final);
-	console.log('contentNotOK.isText', contentNotOK.isText);
-
 	const sendPublication = async (buttonMarker) => {
 		const attachmentsCopy = [...localForm.attachments];
 		if (coverImage?.file_name) {
@@ -223,7 +200,6 @@ function AuthorsNewArticle() {
 						? JSON.parse(formToSend.content)
 						: formToSend.content,
 			};
-			console.log('formToSend', formToSend);
 		} else if (buttonMarker === 'save-draft') {
 			formToSend = {
 				...formToSend,
@@ -246,7 +222,6 @@ function AuthorsNewArticle() {
 				description: description,
 				created_at: new Date(),
 			};
-			console.log('form to send to preview screen', formToSend);
 			history.push({
 				pathname: '/prearticle',
 				state: { publication: formToSend, from: 'new-publication' },
@@ -282,15 +257,6 @@ function AuthorsNewArticle() {
 			dispatch(changeChosenResearch(null));
 		};
 	}, []);
-
-	const executeScroll = () => {
-		if (localForm.events.length) {
-			const lastIndex = tableRowsRefs.current.length - 1;
-			if (scrollLocation === 'bottom') {
-				tableRowsRefs.current[lastIndex].scrollIntoView();
-			}
-		}
-	};
 
 	const handleChange = (value, key) => {
 		setLocalForm({ ...localForm, [key]: value });
@@ -475,7 +441,7 @@ function AuthorsNewArticle() {
 
 	//checking if user ever entered the rich editor field
 
-	const handleEditorOnFocus = (event) => {
+	const handleEditorOnFocus = () => {
 		setContentNotOK((prevState) => ({ ...prevState, focus: true }));
 	};
 

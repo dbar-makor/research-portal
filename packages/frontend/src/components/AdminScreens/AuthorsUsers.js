@@ -8,7 +8,6 @@ import {
 	selectUsersOffset,
 	selectUsersLimit,
 	selectUsersLoading,
-	selectUsersMetaData,
 	selectUsersHasMore,
 } from '../../redux/users/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';

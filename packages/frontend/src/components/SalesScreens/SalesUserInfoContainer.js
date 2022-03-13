@@ -14,7 +14,6 @@ import {
 	selectLimit,
 } from '../../redux/companies/companiesSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectChosenCompany } from '../../redux/companies/chosenCompanySlice';
 
 export default function SalesUserInfoContainer() {
 	const classes = useStyles();
@@ -30,7 +29,6 @@ export default function SalesUserInfoContainer() {
 	// const [limit, setLimit] = useState(15)
 	const [scrollIndex, setScrollIndex] = useState(0);
 	const scrollRef = useRef();
-	const chosenCompany = useSelector(selectChosenCompany);
 
 	// const fetchCompaniesData = AwesomeDebouncePromise(dispatch(getCompaniesDataAsync(offset, limit, search, type, status)), 500)
 
@@ -45,10 +43,6 @@ export default function SalesUserInfoContainer() {
 
 		// fetchCompaniesData()
 	}, [search, type, status]);
-
-	useEffect(() => {
-		console.log('chosenCompany', chosenCompany);
-	}, [chosenCompany]);
 
 	const handleScroll = (e) => {
 		// setScroll('top')

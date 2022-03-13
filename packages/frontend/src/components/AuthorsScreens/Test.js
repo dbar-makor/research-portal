@@ -9,8 +9,10 @@ function Test() {
 	//     console.log(acceptedFiles);
 	//   };
 	const classes = useStyles();
+	// eslint-disable-next-line no-unused-vars
 	const [selectedValue, setSelectedValue] = React.useState('a');
 
+	// eslint-disable-next-line no-unused-vars
 	const [open, setOpen] = useState(false);
 
 	const handleOpen = () => {

@@ -44,6 +44,17 @@ function NewUserModal(props) {
 		validateUser({ [key]: value }, errors, setErrors, setValidationResult);
 	};
 
+	const clearAndClose = () => {
+		setNewUser({
+			name: '',
+			username: '',
+			email: '',
+			country: null,
+		});
+		setInputValueCountry('');
+		handleClose();
+	};
+
 	const sendNewUser = async () => {
 		const userToSend = { ...newUser, country: newUser.country.code, type: userType };
 		// const userTypeToSend = userType === 'author' ? 'authors' : 'sales'
@@ -62,17 +73,6 @@ function NewUserModal(props) {
 			}
 			handleClose();
 		}
-	};
-
-	const clearAndClose = () => {
-		setNewUser({
-			name: '',
-			username: '',
-			email: '',
-			country: null,
-		});
-		setInputValueCountry('');
-		handleClose();
 	};
 
 	return (

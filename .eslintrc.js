@@ -40,6 +40,7 @@ module.exports = {
 				ignoreReadBeforeAssign: false,
 			},
 		],
+		'arrow-parens': ['error', 'always'],
 	},
 	env: {
 		node: true,

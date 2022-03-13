@@ -249,51 +249,8 @@ const useStyles = makeStyles({
 		color: '#868DA2',
 		fontSize: 16,
 		marginTop: 25,
-	},
+	}
 });
-
-const chargePeriods = [
-	{
-		value: 'monthly',
-		name: 'Month',
-	},
-	{
-		value: 'quarterly',
-		name: 'Quarter',
-	},
-	{
-		value: 'half',
-		name: 'Half-year',
-	},
-	{
-		value: 'fully',
-		name: 'Year',
-	},
-];
-
-const periodToNum = {
-	monthly: 12,
-	quarterly: 4,
-	half: 2,
-	fully: 1,
-};
-
-function Contract({
-	setStep,
-	setContractCopy,
-	stepperMode,
-	chosenContract,
-	setLoadingSidebar,
-	setActiveSidebar,
-}) {
-	const classes = useStyles();
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const loggedinSalesPersonBigObject = useSelector((state) => state.auth.userContent);
-	const loggedinSalesPerson = {
-		id: loggedinSalesPersonBigObject.id,
-		name: loggedinSalesPersonBigObject.name,
-	};
 
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
 	const salesmenArr = useSelector((state) => state.utils.utils.sales);
@@ -649,4 +606,3 @@ function Contract({
 }
 
 export default Contract;
-

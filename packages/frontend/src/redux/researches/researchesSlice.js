@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { BASE_URL, END_POINT } from '../../utils/constants';
-// import researches from '../../config/researchConfig.json'
 import researches from '../../config/researchesConfig.json';
-// import subsc from '../../config/subscribersDummyData.json'
 
 // Slice
 export const researchesSlice = createSlice({
@@ -18,6 +14,7 @@ export const researchesSlice = createSlice({
 		},
 	},
 });
+export const { getResearchesData } = researchesSlice.actions;
 
 export const getResearchesDataAsync = () => async (dispatch) => {
 	try {
@@ -30,6 +27,5 @@ export const getResearchesDataAsync = () => async (dispatch) => {
 	} catch (error) {}
 };
 
-export const { getResearchesData } = researchesSlice.actions;
 
 export default researchesSlice.reducer;

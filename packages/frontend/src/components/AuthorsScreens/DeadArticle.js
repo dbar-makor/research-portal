@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Grid, Typography, Button, TextField, Chip, Divider } from '@material-ui/core';
+import { useState, useEffect, useRef } from 'react';
+import { Grid, Typography, Button, Divider } from '@material-ui/core';
 import { END_POINT, BASE_URL } from '../../utils/constants';
 import ClearIcon from '@material-ui/icons/Clear';
 import axios from 'axios';
 import { isValid } from 'date-fns';
-import { DeleteButton } from '../../styles/MainStyles';
 import Radio from '@material-ui/core/Radio';
 import { selectChosenResearch, changeChosenResearch } from '../../redux/researches/chosenResearchSlice';
 import SubHeader from '../Reusables/SubHeader';
@@ -13,7 +12,13 @@ import { ReactComponent as FileUpload } from '../../assets/icons/fileUpload.svg'
 import { ReactComponent as InsertLink } from '../../assets/icons/insertLink.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import AddIcon from '@material-ui/icons/Add';
-import { StyledAutoComplete, StyledTextField, AddButton } from '../../styles/MainStyles';
+import {
+	DeleteButton,
+	StyledTextField,
+	AddButton,
+	OutlinedButton,
+	FilledButton,
+} from '../../styles/MainStyles';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { ReactComponent as CalendarIcon } from '../../assets/icons/iconCalendar.svg';
 import clsx from 'clsx';
@@ -25,9 +30,7 @@ import {
 } from '../Reusables/validationFunctions';
 import DropZone from '../Reusables/DropZone';
 import { useHistory, useLocation } from 'react-router';
-import { OutlinedButton, FilledButton } from '../../styles/MainStyles';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';
-
 import TagsAutoComplete from '../Reusables/TagsAutoComplete';
 
 function DeadArticle() {
@@ -37,24 +40,16 @@ function DeadArticle() {
 	const chosenResearch = useSelector(selectChosenResearch);
 	const [coverImage, setCoverImage] = useState(null);
 	const [coverImageOK, setCoverImageOK] = useState({ initial: true, final: false });
-	// const [pdfUpload, setPdfUpload] = useState({});
 	const [localCats, setLocalCats] = useState([]);
-	const [hashtagState, setHashtagState] = useState('');
 	const [localTags, setLocalTags] = useState([]);
-	const categoriesArr = useSelector((state) => state.utils.utils.category);
 	const [errors, setErrors] = useState({});
 	const [validationResult, setValidationResult] = useState(false);
 	const [errorsEvent, setErrorsEvent] = useState({});
-	const [validationResultEvent, setValidationResultEvent] = useState(true); //true as default because not mandatory
+	const [validationResultEvent, setValidationResultEvent] = useState(true);
 	const [currentEvent, setCurrentEvent] = useState({
 		date: null,
 		title: '',
 	});
-
-	const handleChangeRadio = (event) => {
-		setSelectedValue(event.target.value);
-	};
-
 	const initStateForm = {
 		title: '',
 		description: '',
@@ -74,7 +69,17 @@ function DeadArticle() {
 	const tableRowsRefs = useRef([]);
 	const [selectedValue, setSelectedValue] = useState('pdf');
 	const location = useLocation();
-
+	const handleChangeRadio = (event) => {
+		setSelectedValue(event.target.value);
+	};
+	const executeScroll = () => {
+		if (localForm.events.length) {
+			const lastIndex = tableRowsRefs.current.length - 1;
+			if (scrollLocation === 'bottom') {
+				tableRowsRefs.current[lastIndex].scrollIntoView();
+			}
+		}
+	};
 	useEffect(() => {
 		if (localForm) {
 			tableRowsRefs.current = tableRowsRefs.current.slice(0, localForm.events.length);
@@ -156,15 +161,6 @@ function DeadArticle() {
 			setCurrentEvent({ date: null, title: '' });
 		};
 	}, []);
-
-	const executeScroll = () => {
-		if (localForm.events.length) {
-			const lastIndex = tableRowsRefs.current.length - 1;
-			if (scrollLocation === 'bottom') {
-				tableRowsRefs.current[lastIndex].scrollIntoView();
-			}
-		}
-	};
 
 	const updatePropertyField = (rowIndex, value, key, category) => {
 		const categoryCopy = [...localForm[category]];
@@ -359,22 +355,6 @@ function DeadArticle() {
 			}
 		} catch (error) {}
 	};
-
-	const changeHashtags = (e) => {
-		let newTag = {};
-		if (e.keyCode === 13 && e.target.value !== '') {
-			setHashtagState('');
-			const tagsCopy = [...localForm.tags];
-			if (e.target.value.startsWith('#')) {
-				newTag = { name: e.target.value.slice(1) };
-			} else {
-				newTag = { name: e.target.value };
-			}
-			tagsCopy.push(newTag);
-			setLocalForm({ ...localForm, tags: tagsCopy });
-		}
-	};
-
 	const sendPublication = async (buttonMarker) => {
 		const attachmentsCopy = [];
 
@@ -407,7 +387,6 @@ function DeadArticle() {
 				status: 'published',
 			};
 		} else if (buttonMarker === 'save-draft') {
-			console.log("i'm a draft");
 			formToSend = {
 				...formToSend,
 				categories: categoriesForServer,
@@ -734,7 +713,6 @@ function DeadArticle() {
 												value={event.title}
 												variant="outlined"
 												placeholder="Title"
-												value={event.title}
 												className={classes.textField}
 												inputProps={{
 													maxLength: 50,
@@ -838,14 +816,10 @@ function DeadArticle() {
 									<input
 										type="file"
 										accept=".pdf"
-										style={{ marginBottom: '48px' }}
+										style={{ marginBottom: '48px', display: 'none' }}
 										disabled={selectedValue === 'video'}
 										onChange={onPDFUpload}
 										placeholder="Upload PDF"
-										// error={errors.file_pdf}
-										// value={pdfUpload.file_name || ""}
-										// style={{ visibility: 'hidden' }}
-										style={{ display: 'none' }}
 										id="raised-button-file"
 									/>
 									<label htmlFor="raised-button-file">
@@ -860,7 +834,7 @@ function DeadArticle() {
 													<DeleteButton
 														disableRipple
 														onClick={() => {
-															setLocalForm((prev) => ({
+															setLocalForm(() => ({
 																...localForm,
 																title_pdf: '',
 																file_pdf: '',

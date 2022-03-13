@@ -1,7 +1,14 @@
-import { useState } from 'react';
-import { Grid, Typography, TextField, makeStyles, MenuItem } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab';
+import { Grid,  makeStyles, MenuItem } from '@material-ui/core';
 import { StyledTextField } from '../../styles/MainStyles';
+const useStyles = makeStyles(() => ({
+	arrowIcon: {
+		'& .MuiSvgIcon-root': {
+			color: '#1C67FF',
+		},
+		'& .MuiSelect-nativeInput': {
+		},
+	},
+}));
 
 function SelectInputUnit({
 	className,
@@ -15,19 +22,10 @@ function SelectInputUnit({
 	placeholder,
 	error = null,
 	variant = 'outlined',
-	mod,
 }) {
-	//optionsArray prop expects an array of objects; in each object: value and label properties:
-	// [{value: "...", label: "..."}, {same}, {same}...]
 	const classes = useStyles();
-	//const [inputValue, setInputValue] = useState("");
-
 	return (
 		<Grid container className={className}>
-			{/* <Grid item xs={12}>
-        <Typography>{label}</Typography>
-      </Grid> */}
-
 			<Grid item xs={12}>
 				<StyledTextField
 					select
@@ -58,14 +56,3 @@ function SelectInputUnit({
 
 export default SelectInputUnit;
 
-const useStyles = makeStyles((theme) => ({
-	arrowIcon: {
-		'& .MuiSvgIcon-root': {
-			color: '#1C67FF',
-			//   backgroundColor: "#FFF",
-		},
-		'& .MuiSelect-nativeInput': {
-			//   backgroundColor: "#FFF",
-		},
-	},
-}));

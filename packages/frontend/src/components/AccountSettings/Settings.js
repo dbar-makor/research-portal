@@ -8,10 +8,7 @@ import * as actionSnackBar from '../../redux/SnackBar/action';
 
 function Settings() {
 	const [userSettings, setUserSettings] = useState(null);
-	const [loadingUserSettings, setLoadingUserSettings] = useState(true);
-
 	const dispatch = useDispatch();
-
 	const getUserSettings = async () => {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.SETTINGS}/notification`);

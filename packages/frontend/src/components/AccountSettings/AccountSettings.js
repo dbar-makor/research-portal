@@ -5,7 +5,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import { ReactComponent as BlueShape } from '../../assets/icons/blueBorder.svg';
-import { Switch, useHistory, useRouteMatch, useParams } from 'react-router-dom';
+import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from '../../styles/AccountSettingsStyles';
 import EditProfile from './EditProfile';
@@ -20,7 +20,6 @@ function AccountSettings() {
 	const chosenRouteName = window.location.pathname.replace('/settings/', '');
 	const history = useHistory();
 	const classes = useStyles(chosenRouteName === 'contract_trails' ? 'on' : 'off');
-	const params = useParams();
 	const { path, url } = useRouteMatch();
 
 	const handleRoute = (type) => {

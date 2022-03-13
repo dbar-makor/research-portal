@@ -1,36 +1,19 @@
 import { useEffect, useState } from 'react';
-
 import _ from 'lodash';
-import {
-	Grid,
-	Typography,
-	Table,
-	TableHead,
-	TableRow,
-	TableBody,
-	TableCell,
-	TextField,
-	Modal,
-	IconButton,
-	TableContainer,
-	Button,
-} from '@material-ui/core';
+import { Grid, Typography, Table, TableHead, TableRow, TableBody, IconButton } from '@material-ui/core';
 import { useStyles } from '../../../styles/InfoStyles';
 import MembersHeader from './MembersHeader';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectChosenCompany, getChosenCompanyAsync } from '../../../redux/companies/chosenCompanySlice';
-import { TableTextField, StatusSwitch, LightBlueButton } from '../../../styles/MainStyles';
+import { TableTextField, StatusSwitch, LightBlueButton, BinButton } from '../../../styles/MainStyles';
 import { ReactComponent as DeleteIcon } from '../../../assets/icons/IconTrash.svg';
 import { ReactComponent as LogsIcon } from '../../../assets/icons/IconLogs.svg';
 import { MembersTableCell, MembersTableRow } from '../../../styles/TableStyles';
-import { BinButton, SmallEditButton } from '../../../styles/MainStyles';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import { ReactComponent as EditIcon } from '../../../assets/icons/IconEdit.svg';
 import clsx from 'clsx';
 import CategoriesModal from './CategoriesModal';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import DeleteAlert from '../../Reusables/DeleteAlert';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 
@@ -53,17 +36,74 @@ function MembersTable() {
 		position: '',
 		categories: [],
 	});
-
-	let timer = 0;
-	const delay = 200;
-	let prevent = false;
-
 	const handleCloseModal = () => {
 		setOpenAddMember(false);
 	};
 	const handleOpenModal = () => {
 		setOpenAddMember(true);
 	};
+
+	const addMember = async (member) => {
+		const memberToAdd = {
+			...member,
+			name: member.member_name,
+			categories: member.categories.map((category) => category.id),
+			company: chosenCompany.id,
+		};
+		delete memberToAdd.member_name;
+		try {
+			const res = await axios.post(`${BASE_URL}${END_POINT.USER}`, memberToAdd);
+			if (res.status === 201 && chosenCompany) {
+				dispatch(getChosenCompanyAsync(chosenCompany.id));
+				console.log(res);
+				handleCloseModal();
+				setNewMember({
+					...newMember,
+					member_name: '',
+					email: '',
+					username: '',
+					position: '',
+					categories: [],
+				});
+				dispatch(actionSnackBar.setSnackBar('success', 'Member successfully added', 2000));
+			}
+		} catch (error) {
+			handleCloseModal();
+			setNewMember({
+				...newMember,
+				member_name: '',
+				email: '',
+				username: '',
+				position: '',
+				categories: [],
+			});
+			if (error.response.status === 402) {
+				dispatch(actionSnackBar.setSnackBar('error', 'This member already exists', 2000));
+			} else {
+				dispatch(actionSnackBar.setSnackBar('error', 'Add member failed', 2000));
+			}
+		}
+	};
+
+	const membersHeaderProps = {
+		allMembersAmount: membersRows && membersRows.length,
+		activeMembersAmount:
+			membersRows && membersRows.length && membersRows.filter((member) => member.status).length,
+		showAll,
+		setShowAll,
+		memberSearch,
+		setMemberSearch,
+		companyName: chosenCompany && chosenCompany.name,
+		addMember,
+		handleCloseModal,
+		handleOpenModal,
+		openAddMember,
+		newMember,
+		setNewMember,
+	};
+	let timer = 0;
+	const delay = 200;
+	let prevent = false;
 
 	useEffect(() => {
 		console.log('membersRows', membersRows);
@@ -183,69 +223,6 @@ function MembersTable() {
 		}
 	};
 
-	const addMember = async (member) => {
-		const memberToAdd = {
-			...member,
-			name: member.member_name,
-			categories: member.categories.map((category) => category.id),
-			company: chosenCompany.id,
-		};
-		delete memberToAdd.member_name;
-		try {
-			const res = await axios.post(`${BASE_URL}${END_POINT.USER}`, memberToAdd);
-			if (res.status === 201 && chosenCompany) {
-				dispatch(getChosenCompanyAsync(chosenCompany.id));
-				console.log(res);
-				handleCloseModal();
-				setNewMember({
-					...newMember,
-					member_name: '',
-					email: '',
-					username: '',
-					position: '',
-					categories: [],
-				});
-				dispatch(actionSnackBar.setSnackBar('success', 'Member successfully added', 2000));
-			}
-		} catch (error) {
-			handleCloseModal();
-			setNewMember({
-				...newMember,
-				member_name: '',
-				email: '',
-				username: '',
-				position: '',
-				categories: [],
-			});
-			if (error.response.status === 402) {
-				dispatch(actionSnackBar.setSnackBar('error', 'This member already exists', 2000));
-			} else {
-				dispatch(actionSnackBar.setSnackBar('error', 'Add member failed', 2000));
-			}
-		}
-	};
-
-	const membersHeaderProps = {
-		allMembersAmount: membersRows && membersRows.length,
-		// chosenCompany && chosenCompany.members && chosenCompany.members.length,
-		activeMembersAmount:
-			membersRows && membersRows.length && membersRows.filter((member) => member.status).length,
-		// chosenCompany &&
-		// chosenCompany.members &&
-		// chosenCompany.members.filter((member) => member.status).length,
-		showAll,
-		setShowAll,
-		memberSearch,
-		setMemberSearch,
-		companyName: chosenCompany && chosenCompany.name,
-		addMember,
-		handleCloseModal,
-		handleOpenModal,
-		openAddMember,
-		newMember,
-		setNewMember,
-	};
-
 	const categoriesProps = {
 		currentMember: chosenCompany && currentMember,
 		setCurrentMember,
@@ -264,7 +241,7 @@ function MembersTable() {
 	const handleBlur = (e, member, index) => {
 		if (
 			!e.relatedTarget ||
-			(e.relatedTarget && !e.relatedTarget.id === 'memberStatus' && e.target.id !== 'categories') //?????
+			(e.relatedTarget && !e.relatedTarget.id === 'memberStatus' && e.target.id !== 'categories')
 		) {
 			const rowsCopy = [...membersRows];
 			const updatedRow = { ...member, isEditMode: false };
@@ -272,8 +249,8 @@ function MembersTable() {
 			const past = originalRows.find((row) => row.id === member.id);
 
 			if (
-				_.isEqual(member, past) == false &&
-				_.isEqual({ ...member, isEditMode: true }, { ...past, isEditMode: true }) == false
+				_.isEqual(member, past) === false &&
+				_.isEqual({ ...member, isEditMode: true }, { ...past, isEditMode: true }) === false
 			) {
 				rowsCopy.splice(index, 1, updatedRow);
 				console.log(rowsCopy);
@@ -348,7 +325,7 @@ function MembersTable() {
 										}}
 										onClick={(ev) => {
 											console.log(ev);
-											if (ev.target.id !== 'categories' && ev.nodeName == 'INPUT') {
+											if (ev.target.id !== 'categories' && ev.nodeName === 'INPUT') {
 												console.log('here', ev);
 												timer = setTimeout(function () {
 													if (!prevent) {

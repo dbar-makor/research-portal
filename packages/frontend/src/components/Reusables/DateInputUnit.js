@@ -1,9 +1,15 @@
-import { Grid, Typography, TextField, InputAdornment, makeStyles } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { ReactComponent as IconCalendar } from '../../assets/icons/iconCalendar.svg';
-//import {validateEndDate} from "../Reusables/validationFunctions";
-
+export const useStyles = makeStyles(() => ({
+	calendarIcon: {
+		'& g': {
+			'& path': {
+				stroke: '#1C67FF',
+			},
+		},
+	},
+}));
 function DateInputUnit({
 	className = '',
 	label,
@@ -46,12 +52,4 @@ function DateInputUnit({
 
 export default DateInputUnit;
 
-export const useStyles = makeStyles((theme) => ({
-	calendarIcon: {
-		'& g': {
-			'& path': {
-				stroke: '#1C67FF',
-			},
-		},
-	},
-}));
+

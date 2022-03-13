@@ -98,35 +98,19 @@ function ContractAndInvoicesContent(props) {
 							<TableHead>
 								{rowHeaders.map((row, index) => {
 									return (
-<<<<<<< HEAD
 										<HeaderCells style={{ textAlign: row.align, width: row.width }}>
 											{row.name}
 										</HeaderCells>
-=======
-<<<<<<< HEAD
-										<HeaderCells
-											key={index}
-											style={{ textAlign: row.align, width: row.width }}
-										>
-											{row.name}
-										</HeaderCells>
-=======
-										<HeaderCells style={{ textAlign: row.align, width: row.width }}>{row.name}</HeaderCells>
->>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
->>>>>>> c7002297c0167df11929209b77da14040815ff78
+
+
 									);
 								})}
 							</TableHead>
 							<TableBody>
 								{filterdContract &&
-									filterdContract.map((contract, i) => {
-										return (
-											<ContractRow
-												contract={contract}
-												status={sortStatus}
-												clientName={clientName}
-											/>
-										);
+									filterdContract.map((contract, index) => {
+										return <ContractRow key={index} contract={contract} status={sortStatus} clientName={clientName} />;
+
 									})}
 							</TableBody>
 						</Table>

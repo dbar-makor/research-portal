@@ -1,12 +1,10 @@
-import React from 'react';
-import { useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import {
 	selectAuthorsUsersData,
 	setUserProperty,
 	selectUsersOffset,
 	selectUsersLimit,
 	selectUsersLoading,
-	selectUsersMetaData,
 	selectUsersHasMore,
 } from '../../../../redux/users/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenUserData } from '../../../../redux/users/chosenUserSlice';
 import AuthorsUsersView from './AuthorsUsers.view';
 
-const AuthorsUsers = (props) => {
+const AuthorsUsers = () => {
 	const dispatch = useDispatch();
 	const authorsData = useSelector(selectAuthorsUsersData);
 	const chosenUser = useSelector(selectChosenUserData);

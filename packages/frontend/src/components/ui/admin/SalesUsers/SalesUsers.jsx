@@ -1,5 +1,4 @@
 import React, { useRef, useCallback } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenUserData } from '../../../../redux/users/chosenUserSlice';
 import {
@@ -8,17 +7,15 @@ import {
 	selectUsersOffset,
 	selectUsersLimit,
 	selectUsersLoading,
-	selectUsersMetaData,
 	selectUsersHasMore,
 } from '../../../../redux/users/usersSlice';
 import SalesUsersView from './SalesUsers.view';
 
-const SalesUsers = (props) => {
+const SalesUsers = () => {
 	const dispatch = useDispatch();
 	const salesData = useSelector(selectSalesUsersData);
 	const chosenUser = useSelector(selectChosenUserData);
 	const loading = useSelector(selectUsersLoading);
-	const metaData = useSelector(selectUsersMetaData);
 	const userOffset = useSelector(selectUsersOffset);
 	const userLimit = useSelector(selectUsersLimit);
 	const hasMore = useSelector(selectUsersHasMore);

@@ -1,20 +1,12 @@
-import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { BASE_URL, END_POINT } from '../../../../utils/constants';
 
 import {
-	Grid,
-	IconButton,
 	makeStyles,
-	Popover,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
-	Typography,
 } from '@material-ui/core';
 
 import ContractRow from './ContractRow';
@@ -29,55 +21,8 @@ const headersName = [
 	'Yearly Cost',
 	'Actions',
 ];
-const signed = ['Unsigned', 'Signed'];
 
-function ContractsTable(props) {
-	const { contractsRows } = props;
-	const classes = useStyles();
-
-	return (
-		<TableContainer className={classes.tableContainer}>
-			<Table stickyHeader size="small" className={classes.table}>
-				<TableHead style={{ borderBottom: 'none' }}>
-					<TableRow>
-						{headersName.map((header, idx) => {
-							return (
-								<TableCell
-									className={classes.tableCellHeaders}
-									key={idx}
-									style={{
-										textAlign:
-											header === 'Status'
-												? 'center'
-												: header === 'Actions'
-												? 'center'
-												: header === 'Amount'
-												? 'right'
-												: header === 'Yearly Cost'
-												? 'right'
-												: 'none',
-									}}
-								>
-									{header}
-								</TableCell>
-							);
-						})}
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{contractsRows &&
-						contractsRows.map((contract, idx) => {
-							return <ContractRow contract={contract} key={idx} />;
-						})}
-				</TableBody>
-			</Table>
-		</TableContainer>
-	);
-}
-
-export default ContractsTable;
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	tableContainer: {
 		'maxHeight': 'calc(100vh - 265px)',
 		'&::-webkit-scrollbar': {
@@ -159,4 +104,52 @@ const useStyles = makeStyles((theme) => ({
 	tableCellBody: {
 		border: 'none',
 	},
-}));
+});
+
+function ContractsTable(props) {
+	const { contractsRows } = props;
+	const classes = useStyles();
+
+	return (
+		<TableContainer className={classes.tableContainer}>
+			<Table stickyHeader size="small" className={classes.table}>
+				<TableHead style={{ borderBottom: 'none' }}>
+					<TableRow>
+						{headersName.map((header, idx) => {
+							return (
+								<TableCell
+									className={classes.tableCellHeaders}
+									key={idx}
+									style={{
+										textAlign:
+											header === 'Status'
+												? 'center'
+												: header === 'Actions'
+												? 'center'
+												: header === 'Amount'
+												? 'right'
+												: header === 'Yearly Cost'
+												? 'right'
+												: 'none',
+									}}
+								>
+									{header}
+								</TableCell>
+							);
+						})}
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{contractsRows &&
+						contractsRows.map((contract, idx) => {
+							return <ContractRow contract={contract} key={idx} />;
+						})}
+				</TableBody>
+			</Table>
+		</TableContainer>
+	);
+}
+
+export default ContractsTable;
+
+

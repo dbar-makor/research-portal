@@ -4,11 +4,6 @@ import { BASE_URL, END_POINT } from '../../utils/constants';
 import { createSelector } from 'reselect';
 import { setParams } from '../../utils/helpers/helperFunctions';
 
-// import { BASE_URL, END_POINT } from '../../utils/constants'
-// import researches from '../../config/researchConfig.json'
-//import researches from '../../config/researchesConfig.json';
-// import subsc from '../../config/subscribersDummyData.json'
-
 export const companiesSlice = createSlice({
 	name: 'companies',
 	initialState: {
@@ -44,12 +39,11 @@ export const companiesSlice = createSlice({
 		setHasMore: (state, action) => {
 			state.hasMore = action.payload;
 		},
-		// deleteCompany: (state, action) => {
-		//   const companies =  state.companiesData
-		//   companies =  companies.filter(company => company.id !== action.payload)
-		// }
 	},
 });
+
+export const { getCompaniesData, setLoading, deleteCompany, setProperty, setCompanyProperty, setHasMore } =
+	companiesSlice.actions;
 
 //selectors
 
@@ -83,7 +77,6 @@ export const getCompaniesDataAsync = (offset, limit, search, type, status) => as
 			setParams(offset, limit, search, type, status),
 		);
 		if (res.status === 200) {
-			console.log('metaData', res.data.meta_data);
 			dispatch(setProperty({ key: 'metaData', value: res.data.meta_data }));
 			dispatch(setLoading(false));
 			if (res.data.meta_data.sum_rows > state.companies.companiesData.length) {
@@ -102,7 +95,6 @@ export const getCompaniesDataAsync = (offset, limit, search, type, status) => as
 			}
 		}
 	} catch (error) {
-		console.log(error, error.message);
 		dispatch(setLoading(false));
 	}
 };
@@ -117,8 +109,5 @@ export const deleteCompanyAsync = (id) => async (dispatch) => {
 		console.log(err.message);
 	}
 };
-
-export const { getCompaniesData, setLoading, deleteCompany, setProperty, setCompanyProperty, setHasMore } =
-	companiesSlice.actions;
 
 export default companiesSlice.reducer;

@@ -166,7 +166,6 @@ export const useStyles = makeStyles((theme) => ({
 	},
 	dateRangePopover: {
 		'& > .rdrDefinedRangesWrapper': {
-			// dispaly: 'none !important',
 			width: '0px',
 		},
 	},
@@ -228,13 +227,16 @@ export const TableTextField = withStyles({
 	root: {
 		'width': '100%',
 		'& .MuiInput-underline:before': {
-			borderBottom: '0.5px solid #868DA2', // Semi-transparent underline
+			 // Semi-transparent underline
+			borderBottom: '0.5px solid #868DA2',
 		},
 		'& .MuiInput-underline:hover:before': {
-			borderBottom: '0.5px solid #868DA2', // Solid underline on hover
+			// Solid underline on hover
+			borderBottom: '0.5px solid #868DA2',
 		},
 		'& .MuiInput-underline:after': {
-			borderBottom: '1px solid #1C67FF', // Solid underline on focus
+			// Solid underline on focus
+			borderBottom: '1px solid #1C67FF',
 		},
 		'& .MuiInput-root': {
 			'borderRadius': '8px',
@@ -264,7 +266,8 @@ export const TableTextField = withStyles({
 				'color': '#0F0F0F',
 				'cursor': 'pointer',
 				'& .MuiInput-underline:before': {
-					borderBottom: 'red', // Semi-transparent underline
+					 // Semi-transparent underline
+					borderBottom: 'red',
 				},
 			},
 		},
@@ -284,13 +287,6 @@ export const StyledAutoComplete = withStyles(() => ({
 	popupIndicatorOpen: {
 		transform: 'rotate(0deg)',
 	},
-	root: {
-		// '& .MuiFormControl-root ': {
-		//   '&:hover': {
-		//     backgroundColor: '#212121'
-		//   }
-		// }
-	},
 	inputRoot: {
 		'&.MuiOutlinedInput-root ': {
 			'borderRadius': '8px',
@@ -300,18 +296,6 @@ export const StyledAutoComplete = withStyles(() => ({
 				opacity: 1,
 			},
 		},
-		// '&.MuiIconButton-root': {
-		//   color: '#212529'
-		// },
-
-		// color: '#B6B6B6',
-		// fontWeight: 300,
-		// fontSize: 14,
-		// backgroundColor: '#262626',
-
-		// '&[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input:first-child': {
-		//   padding: '2px 0px 2px 0px'
-		// },
 		'&.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]': {
 			padding: '1px',
 		},
@@ -343,42 +327,20 @@ export const StyledAutoComplete = withStyles(() => ({
 		},
 	},
 	paper: {
-		// backgroundColor: '#262626',
-		// border: '1px solid #212121',
-		// margin: 0,
-		// marginTop: 5,
 		borderRadius: '8px',
-		// padding: 0,
-		// width: '100%'
-		// },
-		// '& .MuiAutocomplete-noOptions': {
-		//   color: '#B6B6B6',
-		//   fontSize: 14
-		// }
 	},
 	popupIndicator: {
 		'&.MuiAutocomplete-popupIndicator': {
 			'color': '#1C67FF',
 			'& .MuiSvgIcon-root': {
-				// width: '0.8em'
 			},
 		},
 	},
-	// option: {
-	//   '&.MuiAutocomplete-option': {
-	//     color: '#B6B6B6',
-	//     fontSize: 14
-	//   }
-	// },
 	clearIndicator: {
 		'&.MuiAutocomplete-clearIndicator': {
-			// color: '#B6B6B6',
-			// visibility: "visible",
 			'&:hover': {
-				// visibility: "visible"
 			},
 			'& .MuiSvgIcon-fontSizeSmall': {
-				// width: '0.6em'
 			},
 		},
 	},
@@ -400,14 +362,10 @@ export const OutlinedButton = withStyles({
 		'&:hover': {
 			backgroundPosition: 'left bottom',
 			backgroundColor: '#1C67FF',
-			color: '#FFFFFF',
-			// transition: '.3s'
-		},
+			color: '#FFFFFF',		},
 		'&:disabled': {
-			// backgroundColor: "#6b6b6b",
 			borderColor: '#ACB1BF',
 			color: '#ACB1BF',
-			// borderBottom: "none"
 		},
 	},
 })(Button);
@@ -477,9 +435,6 @@ export const DotsButton = withStyles({
 			color: '#ddd',
 			transition: '.3s',
 		},
-		// '&:disabled': {
-		//   color: '#868DA2'
-		// }
 	},
 })(IconButton);
 
@@ -526,7 +481,6 @@ export const DeleteRowButton = withStyles({
 			'backgroundColor': 'transparent',
 			'& path': {
 				padding: 10,
-				// boxShadow: '0px 3px 6px #00000029'
 				filter: 'drop-shadow(0px 3px 10px black)',
 				transition: '.3s',
 			},
@@ -568,17 +522,10 @@ export const EditDoneButton = withStyles({
 		'backgroundColor': '#00CA80',
 		'borderRadius': '50%',
 		'textTransform': 'none',
-		// "& path": {
-		//   fill: "#868DA2",
-		// },
 		'&:hover': {
 			backgroundColor: '#17DC94',
 			boxShadow: '0px 6px 10px #00654A29',
 			transition: '.3s',
-			// "& path": {
-			//   fill: "#FF3939",
-			//   transition: ".2s",
-			// },
 		},
 		'&:disabled': {
 			backgroundColor: '#ACB1BF',
@@ -689,7 +636,6 @@ export const LightBlueButton = withStyles({
 		'fontWeight': 400,
 		'fontSize': '16px',
 		'minWidth': '192px',
-		// textAlign: 'left',
 		'&:hover': {
 			'backgroundColor': '#1C67FF10',
 			'transition': '.3s',
@@ -731,7 +677,6 @@ export const StatusSwitch = withStyles({
 		width: 18,
 		height: 6,
 		padding: 0,
-		// display: 'flex',
 		overflow: 'inherit',
 	},
 	switchBase: {
@@ -747,9 +692,6 @@ export const StatusSwitch = withStyles({
 			backgroundColor: '#E2E4EA',
 			opacity: 1,
 		},
-		// "&.Mui-disabled + .MuiSwitch-track": {
-		//   backgroundColor: "#EEEEEE",
-		// }
 	},
 	thumb: {
 		width: 10,
@@ -768,36 +710,13 @@ export const CompanyStatusSwitch = withStyles({
 		width: 24,
 		height: 12,
 		padding: 0,
-		// display: 'flex',
 		overflow: 'inherit',
 	},
-	// switchBase: {
-	//   top: -2,
-	//   padding: 0,
-	//   left: '-3px',
-	//   color: '#FF3939',
-	//   '&$checked': {
-	//     color: '#00CA80',
-	//     left: -8
-	//   },
-	//   '&$checked + $track': {
-	//     backgroundColor: '#E2E4EA',
-	//     opacity: 1
-	//   },
-	//   // "&.Mui-disabled + .MuiSwitch-track": {
-	//   //   backgroundColor: "#EEEEEE",
-	//   // }
-	// },
 	thumb: {
 		width: 16,
 		height: 16,
 		boxShadow: '0px 1px 2px #00000029',
 	},
-	// checked: {},
-	// track: {
-	//   backgroundColor: '#E2E4EA',
-	//   opacity: 1
-	// }
 })(StatusSwitch);
 
 export const RedFilledButton = withStyles({

@@ -10,7 +10,7 @@ import {
 } from '../../../../redux/users/usersSlice';
 import SalesUsersScreenView from './SalesUsersScreen.view';
 
-const SalesUsersScreen = (props) => {
+const SalesUsersScreen = () => {
 	const dispatch = useDispatch();
 	const userOffset = useSelector(selectUsersOffset);
 	const userLimit = useSelector(selectUsersLimit);

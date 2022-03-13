@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles({
 	infoContainer: {
 		border: '1px solid #A5AFC233',
 		borderRadius: '8px',
@@ -345,4 +345,4 @@ export const useStyles = makeStyles((theme) => ({
 	memberRowSelected: {
 		backgroundColor: '#EDEFF3',
 	},
-}));
+});

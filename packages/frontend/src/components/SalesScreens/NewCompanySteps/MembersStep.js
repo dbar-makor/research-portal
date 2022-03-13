@@ -4,11 +4,61 @@ import { validateMember } from '../../Reusables/validationFunctions';
 import NewMembersTable from './NewMembersTable';
 import { AddButton, CheckButton } from '../../../styles/MainStyles';
 import AddIcon from '@material-ui/icons/Add';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { ReactComponent as CheckIcon } from '../../../assets/icons/IconGreenCheck.svg';
-import { useEffect, useState } from 'react';
-import { Grid, Typography, makeStyles, Button, IconButton, TextField } from '@material-ui/core';
-import { CollectionsBookmarkOutlined } from '@material-ui/icons';
+import { useState } from 'react';
+import { Grid, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+	fieldWrapper: {
+		'marginBottom': 16,
+		'marginLeft': 10,
+		'& path': {
+			fill: 'fff',
+		},
+	},
+	addIconWrapper: {
+		marginLeft: 14,
+	},
+	addIcon: {
+		fill: '#FFFFFF',
+		fontSize: '18px',
+		height: 28,
+		width: 28,
+	},
+	checkIconWrapper: {
+		marginLeft: 14,
+	},
+	checkIcon: {
+		// fontSize: '25px',
+		'height': 36,
+		'width': 36,
+		'& path': {
+			fill: '#fff',
+		},
+	},
+	paddingBottom20px: { paddingBottom: '20px' },
+	textFieldStyle: {
+		'borderColor': '#A5AFC233',
+		'& .MuiOutlinedInput-input': {
+			padding: '10.6px',
+		},
+		'& .MuiInputBase-input': {
+			fontFamily: 'inter',
+			fontSize: '.MuiInputBase-input',
+			borderRadius: '8px',
+		},
+		'& .MuiOutlinedInput-root': {
+			borderRadius: '8px',
+		},
+		'& .MuiOutlinedInput-notchedOutline': {
+			borderColor: '#A5AFC233',
+		},
+	},
+
+	chip: {
+		margin: '6px',
+	},
+});
 
 const MembersStep = ({
 	company,
@@ -18,19 +68,10 @@ const MembersStep = ({
 	initStateMember,
 	errors,
 	setErrors,
-	handleSubmit,
 	validationResult,
 	setValidationResult,
 }) => {
 	const [editedMemberIndex, setEditedMemberIndex] = useState(-1);
-
-	console.log('company from memberstep', company, 'members', company.members);
-	console.log(
-		'company.members[company.members.length -1][member_name]',
-		company.members[company.members.length - 1],
-	);
-	const memberKeys = company.members.length ? Object.keys(company.members[company.members.length - 1]) : [];
-	console.log('memberKeys', memberKeys);
 
 	const addMember = () => {
 		const updatedMembers = [...company.members, currentMember];
@@ -54,7 +95,6 @@ const MembersStep = ({
 		}));
 
 		validateMember({ [name]: value }, errors, setErrors, setValidationResult);
-		console.log('validationResult2 from updateMemberField', validationResult);
 	};
 	const classes = useStyles();
 
@@ -174,54 +214,4 @@ const MembersStep = ({
 
 export default MembersStep;
 
-const useStyles = makeStyles((theme) => ({
-	fieldWrapper: {
-		'marginBottom': 16,
-		'marginLeft': 10,
-		'& path': {
-			fill: 'fff',
-		},
-	},
-	addIconWrapper: {
-		marginLeft: 14,
-	},
-	addIcon: {
-		fill: '#FFFFFF',
-		fontSize: '18px',
-		height: 28,
-		width: 28,
-	},
-	checkIconWrapper: {
-		marginLeft: 14,
-	},
-	checkIcon: {
-		// fontSize: '25px',
-		'height': 36,
-		'width': 36,
-		'& path': {
-			fill: '#fff',
-		},
-	},
-	paddingBottom20px: { paddingBottom: '20px' },
-	textFieldStyle: {
-		'borderColor': '#A5AFC233',
-		'& .MuiOutlinedInput-input': {
-			padding: '10.6px',
-		},
-		'& .MuiInputBase-input': {
-			fontFamily: 'inter',
-			fontSize: '.MuiInputBase-input',
-			borderRadius: '8px',
-		},
-		'& .MuiOutlinedInput-root': {
-			borderRadius: '8px',
-		},
-		'& .MuiOutlinedInput-notchedOutline': {
-			borderColor: '#A5AFC233',
-		},
-	},
 
-	chip: {
-		margin: '6px',
-	},
-}));

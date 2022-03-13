@@ -1,7 +1,7 @@
 import { TextField, Button, withStyles } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-export const CssTextField = withStyles((theme) => ({
+export const CssTextField = withStyles({
 	root: {
 		'& .MuiOutlinedInput-root': {
 			'backgroundColor': '#262626',
@@ -42,7 +42,7 @@ export const CssTextField = withStyles((theme) => ({
 			marginLeft: 0,
 		},
 	},
-}))(TextField);
+})(TextField);
 
 export const useStyles = makeStyles((theme) => ({
 	shakeForm: {
@@ -212,11 +212,6 @@ export const useStyles = makeStyles((theme) => ({
 	additionalSecurityGrid: {
 		padding: '30px 0 15px 0',
 	},
-	loginCaptionTextStyle: {
-		width: '279px',
-		fontWeight: 300,
-		textAlign: 'center',
-	},
 	underOtpConfirmClock: {
 		[theme.breakpoints.down('sm')]: {
 			marginRight: '3vw',
@@ -319,24 +314,12 @@ export const useStyles = makeStyles((theme) => ({
 	mainTitle: {
 		color: '#000000',
 	},
-	desktopLoginContainer: {
-		marginTop: '11vh',
-		marginBottom: '11vh',
-		height: '570px',
-		padding: '82px 0',
-		[theme.breakpoints.up('sm')]: {
-			maxWidth: '580px',
-		},
-		[theme.breakpoints.up('lg')]: {
-			maxWidth: '720px',
-		},
-		[theme.breakpoints.up('xl')]: {
-			maxWidth: '820px',
-		},
-	},
 	loginCaptionTextStyle: {
 		fontSize: 13,
 		color: '#6b6b6b',
+		width: '279px',
+		fontWeight: 300,
+		textAlign: 'center',
 	},
 	loginBtn: {
 		'backgroundColor': '#0696d6',

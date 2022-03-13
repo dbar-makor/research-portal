@@ -30,11 +30,7 @@ const get_all_companies = ({ limit, offset, status, search }) => {
   ${
 		status !== undefined
 			? `(cli.status = ${status} 
-<<<<<<< HEAD
   OR p.status =  ${status}) ${search !== undefined ? 'AND' : ''} `
-=======
-  OR p.status =  ${status}) ${search !== undefined ? `AND` : ''} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			: ''
   }
    ${
@@ -57,11 +53,7 @@ const get_all_clients = ({ limit, offset, status, search }) => {
      ${
 			status !== undefined
 				? `cli.status = ${status} 
-<<<<<<< HEAD
      ${search !== undefined ? 'AND' : ''} `
-=======
-     ${search !== undefined ? `AND` : ''} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 				: ''
 		} ${search !== undefined ? `c.legal_name LIKE '%${search}%' ` : ''} 
      ORDER BY created_at DESC LIMIT ${limit} OFFSET ${offset};`;
@@ -78,11 +70,7 @@ const get_all_prospects = ({ limit, offset, status, search }) => {
    ${
 		status !== undefined
 			? ` 
-<<<<<<< HEAD
     p.status =  ${status} ${search !== undefined ? 'AND' : ''} `
-=======
-    p.status =  ${status} ${search !== undefined ? `AND` : ''} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			: ''
    }
     ${search !== undefined ? `c.legal_name LIKE '%${search}%' ` : ''} 
@@ -120,11 +108,7 @@ const get_sum_rows = ({ status, search }) => {
   ${
 		status !== undefined
 			? `(cli.status = ${status} 
-<<<<<<< HEAD
   OR p.status =  ${status}) ${search !== undefined ? 'AND' : ''} `
-=======
-  OR p.status =  ${status}) ${search !== undefined ? `AND` : ''} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			: ''
   }
    ${
@@ -146,11 +130,7 @@ const get_sum_rows_prospect = ({ status, search }) => {
   ${
 		status !== undefined
 			? ` 
-<<<<<<< HEAD
    p.status =  ${status} ${search !== undefined ? 'AND' : ''} `
-=======
-   p.status =  ${status} ${search !== undefined ? `AND` : ''} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			: ''
   }
    ${search !== undefined ? `c.legal_name LIKE '%${search}%' ` : ''} `;
@@ -166,11 +146,7 @@ const get_sum_rows_clients = ({ status, search }) => {
      ${
 			status !== undefined
 				? `cli.status = ${status} 
-<<<<<<< HEAD
      ${search !== undefined ? 'AND' : ''} `
-=======
-     ${search !== undefined ? `AND` : ''} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 				: ''
 		} ${search !== undefined ? `c.legal_name LIKE '%${search}%' ` : ''} `;
 };

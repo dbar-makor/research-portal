@@ -494,7 +494,8 @@ Company.getContractsByCompanyId = async (payload, result) => {
 			all_contracts.push(format_contract);
 		}
 		return result({ status: 200, data: all_contracts });
-	} catch (error) {
+	}
+} catch (error) {
 		console.log(error);
 		if (error.status) {
 			return result(error);

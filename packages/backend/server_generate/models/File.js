@@ -65,11 +65,7 @@ File.updateFile = async (payload, result) => {
 const upload_to_bucket = async (files) => {
 	for (const file of files) {
 		try {
-<<<<<<< HEAD
 			const res_file = await bucket_service.upload_file_to_bucket(file);
-=======
-			let res_file = await bucket_service.upload_file_to_bucket(file);
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			// console.log(res_file);
 			const filePath = './uploaded_files/' + file;
 			fs.unlinkSync(filePath);

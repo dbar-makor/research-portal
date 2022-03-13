@@ -27,11 +27,7 @@ function encrypt_api_key(api_key) {
 	return `${api_key.slice(0, 3)}${'*'.repeat(10)}`;
 }
 function encrypt_phone(phone) {
-<<<<<<< HEAD
 	const p_len = phone.length;
-=======
-	let p_len = phone.length;
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 	return `${phone.slice(0, 4)}${'*'.repeat(7)}${phone.slice(p_len - 3)}`;
 }
 
@@ -39,11 +35,7 @@ function encrypt_email(email) {
 	if (typeof email !== 'string') {
 		email = email[0];
 	}
-<<<<<<< HEAD
 	const split_email = email.split('@');
-=======
-	let split_email = email.split('@');
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 	split_email[0] = split_email[0][0] + '*'.repeat(split_email[0].length - 1);
 	return split_email[0] + '@' + split_email[1];
 }
@@ -110,17 +102,10 @@ const get_three_random_numbers = () => {
 };
 
 function generate_password(length) {
-<<<<<<< HEAD
 	let result = '';
 	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	const characters_length = characters.length;
 	for (let i = 0; i < length; i++) {
-=======
-	var result = '';
-	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	var characters_length = characters.length;
-	for (var i = 0; i < length; i++) {
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 		result += characters.charAt(Math.floor(Math.random() * characters_length));
 	}
 	return result;

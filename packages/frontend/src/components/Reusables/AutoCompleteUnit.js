@@ -1,9 +1,17 @@
-import { Grid, Typography, TextField, makeStyles } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab';
-import { mergeClasses } from '@material-ui/styles';
+import { Grid, TextField, makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { StyledTextField, StyledAutoComplete } from '../../styles/MainStyles';
+import { StyledAutoComplete } from '../../styles/MainStyles';
+
+const useStyles = makeStyles({
+	arrowIcon: {
+		'& .MuiSvgIcon-root': {
+			color: '#1C67FF',
+		},
+	},
+});
+
+
 function AutoCompleteUnit({
 	className,
 	name,
@@ -19,7 +27,6 @@ function AutoCompleteUnit({
 	setInputValue = () => {},
 }) {
 	const classes = useStyles();
-	//const [inputValue, setInputValue] = useState('');
 
 	return (
 		<Grid container className={className}>
@@ -71,10 +78,4 @@ function AutoCompleteUnit({
 
 export default AutoCompleteUnit;
 
-const useStyles = makeStyles((theme) => ({
-	arrowIcon: {
-		'& .MuiSvgIcon-root': {
-			color: '#1C67FF',
-		},
-	},
-}));
+

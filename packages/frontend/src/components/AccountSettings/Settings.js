@@ -8,10 +8,13 @@ import * as actionSnackBar from '../../redux/SnackBar/action';
 
 function Settings() {
 	const [userSettings, setUserSettings] = useState(null);
+	const [loadingUserSettings, setLoadingUserSettings] = useState(false);
 	const dispatch = useDispatch();
 	const getUserSettings = async () => {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.SETTINGS}/notification`);
+			setLoadingUserSettings(true);
+
 			if (res.status === 200) {
 				setLoadingUserSettings(false);
 				setUserSettings(res.data);
@@ -40,7 +43,6 @@ function Settings() {
 			settings: userSettings?.settings,
 			is_active: userSettings?.is_active,
 		};
-		console.log(objToSend);
 		if (objToSend.settings !== null && objToSend.settings !== undefined) {
 			try {
 				await axios.put(`${BASE_URL}${END_POINT.SETTINGS}/notification`, objToSend);
@@ -60,6 +62,7 @@ function Settings() {
 
 	return (
 		<Grid container style={{ padding: '49px 0px 0px 40px' }}>
+			{loadingUserSettings && <Typography>LOADING...</Typography>}
 			{userSettings && (
 				<>
 					<Grid item xs={12}>

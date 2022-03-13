@@ -249,8 +249,51 @@ const useStyles = makeStyles({
 		color: '#868DA2',
 		fontSize: 16,
 		marginTop: 25,
-	}
+	},
 });
+
+const chargePeriods = [
+	{
+		value: 'monthly',
+		name: 'Month',
+	},
+	{
+		value: 'quarterly',
+		name: 'Quarter',
+	},
+	{
+		value: 'half',
+		name: 'Half-year',
+	},
+	{
+		value: 'fully',
+		name: 'Year',
+	},
+];
+
+const periodToNum = {
+	monthly: 12,
+	quarterly: 4,
+	half: 2,
+	fully: 1,
+};
+
+function Contract({
+	setStep,
+	setContractCopy,
+	stepperMode,
+	chosenContract,
+	setLoadingSidebar,
+	setActiveSidebar,
+}) {
+	const classes = useStyles();
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const loggedinSalesPersonBigObject = useSelector((state) => state.auth.userContent);
+	const loggedinSalesPerson = {
+		id: loggedinSalesPersonBigObject.id,
+		name: loggedinSalesPersonBigObject.name,
+	};
 
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
 	const salesmenArr = useSelector((state) => state.utils.utils.sales);
@@ -312,8 +355,6 @@ const useStyles = makeStyles({
 				id: chosenCompany.id,
 			});
 			if (res.status === 200 || res.status === 201) {
-				console.log('post succeded');
-				console.log('res', res);
 				setContractCopy({ ...contract, contract_id: res.data.id });
 				setContract({});
 				dispatch(actionSnackBar.setSnackBar('success', 'Contract successfully created', 2000));
@@ -346,20 +387,18 @@ const useStyles = makeStyles({
 		contractCopy.currency = currency;
 		const sales = contract.sales?.id;
 		contractCopy.sales = sales;
-		// const signer_user = contract.signer_user?.id;
-		// contractCopy.signer_user = signer_user;
 
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.CONTRACT}/${contract_id}`, contractCopy);
 
 			if (res.status === 201 || res.status === 200) {
 				// dispatch(actionSnackBar.setSnackBar('success', 'Successfully updated', 2000));
-				console.log('contract updated successfully');
 				setLoadingSidebar(false);
 				setActiveSidebar(true);
 				setValidationResult(false);
 			}
 		} catch (error) {
+			/* eslint no-console: "off" */
 			console.log(error);
 			setLoadingSidebar(false);
 		}
@@ -399,7 +438,9 @@ const useStyles = makeStyles({
 												options={salesmenArr}
 												formObject={contract}
 												handler={(e) => {
-													e ? handleContract(e.id, 'sales') : handleContract(e, 'sales');
+													e
+														? handleContract(e.id, 'sales')
+														: handleContract(e, 'sales');
 												}}
 												error={errors.sales}
 												inputValue={inputValueSales}
@@ -490,7 +531,9 @@ const useStyles = makeStyles({
 						<Grid item xs={12} className={`${classes.padding3000px} ${classes.vatGroupWrapper}`}>
 							<Divider className={classes.divider} />
 							<Grid item xs={6} className={classes.vatGroup}>
-								<Typography className={`${classes.indiLabel} ${classes.vatLabel1}`}>Include</Typography>
+								<Typography className={`${classes.indiLabel} ${classes.vatLabel1}`}>
+									Include
+								</Typography>
 								<StatusSwitch
 									name="vat"
 									onChange={(e) => handleContract(e.target.checked, 'vat')}
@@ -517,9 +560,16 @@ const useStyles = makeStyles({
 												{contract.currency && contract.amount && contract.periodicity
 													? `${
 															typeof contract.currency === 'string'
-																? currenciesArr.find((currency) => currency.code === contract.currency).symbol
+																? currenciesArr.find(
+																		(currency) =>
+																			currency.code ===
+																			contract.currency,
+																  ).symbol
 																: contract.currency.symbol
-													  }${(contract.amount * periodToNum[contract.periodicity]).toLocaleString()}`
+													  }${(
+															contract.amount *
+															periodToNum[contract.periodicity]
+													  ).toLocaleString()}`
 													: '0'}
 											</Typography>
 										</Grid>
@@ -556,7 +606,9 @@ const useStyles = makeStyles({
 											inputProps: {
 												autoComplete: 'off',
 												decimalNo: 0,
-												minValue: chosenCompany.members ? chosenCompany.members.length : 0,
+												minValue: chosenCompany.members
+													? chosenCompany.members.length
+													: 0,
 											},
 										}}
 									/>
@@ -582,14 +634,16 @@ const useStyles = makeStyles({
 						handlerRight={handleSubmit}
 						textButtonLeft="Cancel"
 						textButtonRight="Done"
-				 />
+					/>
 				</Grid>
 			) : (
 				<>
 					<Grid container>
 						<Divider className={classes.divider} style={{ width: '100%', marginTop: 25 }} />
 						<Grid item>
-							<Typography className={classes.comment}>*Changes will apply from next payment</Typography>
+							<Typography className={classes.comment}>
+								*Changes will apply from next payment
+							</Typography>
 						</Grid>
 					</Grid>
 					<Grid container className={classes.btnContainer} justifyContent="flex-end">

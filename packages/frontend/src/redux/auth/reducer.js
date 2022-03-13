@@ -8,7 +8,6 @@ import {
 	CLEAR_2FA,
 	LOGOUT_SUCCESS,
 } from './constants';
-import StorageService from '../../services/storage';
 
 const initialState = {
 	token: '',
@@ -27,7 +26,6 @@ const initialState = {
 	},
 };
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case TOW_FA_STEP_ONE_SIX_DIGIT:

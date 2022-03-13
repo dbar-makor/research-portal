@@ -3,11 +3,6 @@ import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../utils/constants';
 import { setParams } from '../../utils/helpers/helperFunctions';
 
-// import { BASE_URL, END_POINT } from '../../utils/constants'
-// import researches from '../../config/researchConfig.json'
-//import researches from '../../config/researchesConfig.json';
-// import subsc from '../../config/subscribersDummyData.json'
-
 export const usersSlice = createSlice({
 	name: 'users',
 	initialState: {
@@ -76,7 +71,6 @@ export const getUsersByTypeAsync = (offset, limit, search, type, status) => asyn
 		if (res.status === 200) {
 			dispatch(setUserProperty({ key: 'metaData', value: res.data.meta_data }));
 			dispatch(setLoading(false));
-			console.log(res);
 			if (res.data.meta_data.sum_rows > state.users[type].length) {
 				dispatch(setUserProperty({ key: 'hasMore', value: true }));
 			} else {
@@ -86,10 +80,7 @@ export const getUsersByTypeAsync = (offset, limit, search, type, status) => asyn
 			if (offset === 0) {
 				dispatch(setUsersByType({ key: type, value: res.data.users }));
 			} else if (offset !== 0 && res.data.meta_data.sum_rows > state.users[type].length) {
-				console.log('offset NOW', offset);
-				console.log('state.users[type]', state.users[type]);
 				const dataCopy = [...state.users[type]];
-				console.log('dataCopy', dataCopy);
 				dataCopy.push(...res.data.users);
 				dispatch(setUsersByType({ key: type, value: dataCopy }));
 			}
@@ -108,7 +99,6 @@ export const getUsersDataAsync = () => async (dispatch) => {
 			dispatch(getUsersData(res.data.user));
 		}
 	} catch (error) {
-		console.log(error, error.message);
 		dispatch(setLoading(false));
 	}
 };

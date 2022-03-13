@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../utils/constants';
-import { FormControl, Grid, InputLabel, makeStyles, MenuItem, Select } from '@material-ui/core';
+import { FormControl, Grid, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledTextField } from '../../styles/MainStyles';
@@ -8,7 +8,6 @@ import { ReactComponent as SearchIcon } from '../../assets/icons/IconSearch.svg'
 import PublicationsGrid from './PublicationsGrid';
 import { useStyles } from '../../styles/PublicationsStyles';
 
-import { useHistory } from 'react-router-dom';
 import * as actionSnackBar from '../../redux/SnackBar/action';
 
 function MembersMain() {
@@ -16,7 +15,6 @@ function MembersMain() {
 	const classes = useStyles();
 	const [filter, setFilter] = useState(false);
 
-	const member = useSelector((state) => state.auth.userContent);
 	const userCategories = useSelector((state) => state.auth.userContent.categories);
 	const [publications, setPublications] = useState();
 	const [filterPublications, setFilterPublications] = useState();
@@ -52,7 +50,7 @@ function MembersMain() {
 	}, []);
 
 	useEffect(() => {
-		if (search == '') {
+		if (search === '') {
 			setFilterPublications(publications);
 		}
 		if (search !== '') {
@@ -90,6 +88,7 @@ function MembersMain() {
 								disableScrollLock
 							>
 								<MenuItem value={{ id: '', name: '' }}>All</MenuItem>
+								{/* eslint no-unused-vars: 0 */}
 								{Object.entries(userCategories).map(([key, value], idx) => {
 									return (
 										<MenuItem key={idx} value={value}>

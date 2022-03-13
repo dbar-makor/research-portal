@@ -1,5 +1,30 @@
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 
+const useStyles = makeStyles({
+	statisticsTitle: {
+		fontSize: 24,
+		marginBottom: 20,
+	},
+	publishedSection: {
+		marginBottom: 20,
+		paddingBottom: 20,
+		borderBottom: '1px solid #ECEEF2',
+	},
+	draftsSection: {},
+	statisticsSubtitle: {
+		color: '#868DA2',
+		fontSize: 16,
+		marginBottom: 12,
+	},
+	statRow: {
+		justifyContent: 'space-between',
+		marginBottom: 20,
+	},
+	fieldLabel: {
+		fontWeight: 600,
+	},
+});
+
 function AllPublicationsStatColumn({
 	publishedFieldLabels,
 	publishedFields,
@@ -10,8 +35,6 @@ function AllPublicationsStatColumn({
 	const classes = useStyles();
 	const pubStatistics = statistics.published;
 	const draftStatistics = statistics.drafts;
-	console.log('pubStatistics', pubStatistics);
-	console.log('draftStatistics', draftStatistics);
 
 	return (
 		<>
@@ -56,27 +79,4 @@ function AllPublicationsStatColumn({
 
 export default AllPublicationsStatColumn;
 
-const useStyles = makeStyles((theme) => ({
-	statisticsTitle: {
-		fontSize: 24,
-		marginBottom: 20,
-	},
-	publishedSection: {
-		marginBottom: 20,
-		paddingBottom: 20,
-		borderBottom: '1px solid #ECEEF2',
-	},
-	draftsSection: {},
-	statisticsSubtitle: {
-		color: '#868DA2',
-		fontSize: 16,
-		marginBottom: 12,
-	},
-	statRow: {
-		justifyContent: 'space-between',
-		marginBottom: 20,
-	},
-	fieldLabel: {
-		fontWeight: 600,
-	},
-}));
+

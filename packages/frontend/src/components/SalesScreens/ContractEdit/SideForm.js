@@ -1,21 +1,94 @@
-import { Grid, Typography, withStyles, Switch, Button, makeStyles, Divider } from '@material-ui/core';
+import { Grid, Typography, makeStyles, Divider } from '@material-ui/core';
 import { ReactComponent as ContractIcon } from '../../../assets/icons/contract.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeChosenCompany, selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import { StyledAutoComplete } from '../../../styles/MainStyles';
 import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { FilledButton } from '../../../styles/MainStyles';
 import { useHistory } from 'react-router-dom';
 
-function SideForm(props) {
-	const { activeSidebar, setActiveSidebar, chosenContract, setLoadingSidebar, loadingSidebar } = props;
+const useStyles = makeStyles({
+	rightColumn: {
+		height: '100%',
+		justifyContent: 'space-between',
+		alignContent: 'space-between',
+	},
+	sidebarWrapper: {
+		height: '80%',
+		marginLeft: 20,
+		borderRadius: 8,
+		border: '1px solid #A5AFC233',
+		backgroundColor: '#EDEFF3',
+	},
+	sidebar: {
+		height: '100%',
+	},
+	progressBarItem: {
+		height: '100%',
+	},
+	progressBarContainer: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: 'inherit',
+	},
+	progressBar: {
+		'& .MuiCircularProgress-svg': {
+			color: '#1C67FF',
+		},
+	},
+	progressbarTitle: {
+		color: '#868DA2',
+		marginTop: 20,
+	},
+	section: {
+		paddingBottom: 20,
+	},
+	sectionTitle: {
+		fontSize: 16,
+		color: '#868DA2',
+	},
+	pdfLink: {
+		'fontSize': 14,
+		'color': '#868DA2',
+		'textDecoration': 'underline',
+		'&:hover': {
+			cursor: 'pointer',
+		},
+	},
+	divider: {
+		margin: '0 auto',
+		width: '90%',
+	},
+	formRow: {
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		paddingBottom: 30,
+	},
+	textField: {
+		'& .MuiInputBase-root': {
+			color: (props) => (props.activeSidebar ? '#000' : '#868DA2'),
+		},
+		'& .MuiSvgIcon-root': {
+			fill: (props) => (props.activeSidebar ? '#1C67FF' : '#868DA2'),
+		},
+	},
+	send: {
+		'textDecoration': 'underline',
+		'color': '#868DA2',
+		'&:hover': {
+			cursor: (props) => (props.activeSidebar ? 'pointer' : 'default'),
+		},
+	},
+});
 
-	console.log('chosenContract', chosenContract);
+function SideForm(props) {
+	const { activeSidebar,chosenContract, loadingSidebar } = props;
+
 	const classes = useStyles(props);
 	const [contractSigner, setContractSigner] = useState(chosenContract?.signer_user);
 	const [signerInputValue, setSignerInputValue] = useState(chosenContract?.signer_user.name);
@@ -23,12 +96,9 @@ function SideForm(props) {
 	const dispatch = useDispatch();
 	const chosenCompany = useSelector(selectChosenCompany);
 	const history = useHistory();
-	console.log('active sidebar', activeSidebar);
 
-	console.log('chosenCompany from contract', chosenCompany);
 
 	const handleChange = (e) => {
-		console.log('e', e);
 		setContractSigner(e ? e.id : '');
 		if (e) {
 			setValidationResult((prev) => ({ ...prev, step1: true }));
@@ -51,7 +121,6 @@ function SideForm(props) {
 				);
 
 				if (res.status === 200) {
-					console.log('put succeded');
 					dispatch(actionSnackBar.setSnackBar('success', 'Contract successfully updated', 2000));
 				}
 			} catch (err) {
@@ -73,14 +142,6 @@ function SideForm(props) {
 		dispatch(changeChosenCompany(null));
 		history.push('/companies');
 	};
-
-	// const handleExit = () => {
-	//   if(contractSigner){
-	//     setContractCopy(prev => ({...prev, signer_user:contractSigner}));
-	//     history.push("/companies");
-
-	//   }
-	// }
 
 	const presentPDFContract = async () => {
 		try {
@@ -197,7 +258,6 @@ function SideForm(props) {
 									</Grid>
 								</Grid>
 							</Grid>
-							{/* <Divider className={classes.divider}  /> */}
 						</>
 					)}
 				</Grid>
@@ -220,86 +280,3 @@ function SideForm(props) {
 }
 
 export default SideForm;
-
-const useStyles = makeStyles({
-	rightColumn: {
-		// flexDirection: "column",
-		height: '100%',
-		justifyContent: 'space-between',
-		alignContent: 'space-between',
-	},
-	sidebarWrapper: {
-		height: '80%',
-		marginLeft: 20,
-		borderRadius: 8,
-		border: '1px solid #A5AFC233',
-		backgroundColor: '#EDEFF3',
-		//  width: "fit-content",
-	},
-	sidebar: {
-		height: '100%',
-	},
-	progressBarItem: {
-		height: '100%',
-	},
-	progressBarContainer: {
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-		height: 'inherit',
-	},
-	progressBar: {
-		'& .MuiCircularProgress-svg': {
-			color: '#1C67FF',
-		},
-	},
-	progressbarTitle: {
-		color: '#868DA2',
-		marginTop: 20,
-	},
-	section: {
-		paddingBottom: 20,
-	},
-	sectionTitle: {
-		fontSize: 16,
-		color: '#868DA2',
-	},
-	pdfLink: {
-		'fontSize': 14,
-		'color': '#868DA2',
-		'textDecoration': 'underline',
-		'&:hover': {
-			cursor: 'pointer',
-		},
-	},
-	divider: {
-		margin: '0 auto',
-		width: '90%',
-	},
-	formRow: {
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingBottom: 30,
-	},
-	textField: {
-		'& .MuiInputBase-root': {
-			color: (props) => (props.activeSidebar ? '#000' : '#868DA2'),
-		},
-		'& .MuiSvgIcon-root': {
-			fill: (props) => (props.activeSidebar ? '#1C67FF' : '#868DA2'),
-		},
-	},
-	send: {
-		'textDecoration': 'underline',
-		'color': '#868DA2',
-		'&:hover': {
-			cursor: (props) => (props.activeSidebar ? 'pointer' : 'default'),
-		},
-	},
-	btnContainer: {
-		// marginTop: -10
-	},
-	updateBtn: {
-		// marginTop: "-10px"
-	},
-});

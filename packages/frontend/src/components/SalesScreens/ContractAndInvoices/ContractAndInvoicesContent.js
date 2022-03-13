@@ -57,7 +57,6 @@ function ContractAndInvoicesContent(props) {
 				console.log(contracts, 'CONTRACT FILTER');
 			}
 		} catch (err) {
-			console.log(err.message);
 			alert(err.message);
 		}
 	};
@@ -96,21 +95,25 @@ function ContractAndInvoicesContent(props) {
 					<TableContainer style={{ height: 540 }}>
 						<Table stickyHeader size="small">
 							<TableHead>
-								{rowHeaders.map((row, index) => {
+								{rowHeaders.map((row) => {
 									return (
-										<HeaderCells style={{ textAlign: row.align, width: row.width }}>
+										<HeaderCells style={{ textAlign: row.align, width: row.width }} key={row.name}>
 											{row.name}
 										</HeaderCells>
-
-
 									);
 								})}
 							</TableHead>
 							<TableBody>
 								{filterdContract &&
 									filterdContract.map((contract, index) => {
-										return <ContractRow key={index} contract={contract} status={sortStatus} clientName={clientName} />;
-
+										return (
+											<ContractRow
+												key={index}
+												contract={contract}
+												status={sortStatus}
+												clientName={clientName}
+											/>
+										);
 									})}
 							</TableBody>
 						</Table>

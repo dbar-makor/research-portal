@@ -1,7 +1,6 @@
 import { Grid, makeStyles, Typography } from '@material-ui/core';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import { useState } from 'react';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import { BinButton, EditButton } from '../../../styles/MainStyles';
 import EditIcon from '@material-ui/icons/Edit';
@@ -12,180 +11,12 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenResearch, getChosenResearchAsync } from '../../../redux/researches/chosenResearchSlice';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
-// import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { ReactComponent as EmptyFile } from '../../../assets/icons/fileEmpty.svg';
 
 //after changes, this component shows a single publication card
 
-function truncateString(string, wordsNo) {
-	const descrptionArr = string.split(' ');
-	const descriptionLength = descrptionArr.length;
-	descrptionArr.splice(wordsNo);
-	const newDescription = descrptionArr.join(' ');
-	if (descriptionLength > wordsNo) return `${newDescription}...`;
-	return newDescription;
-}
-
-function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
-	const classes = useStyles();
-	const [openAlert, setOpenAlert] = useState(false);
-	const [redirectMarker, setRedirectMarker] = useState(false);
-	const [deleteID, setDeleteID] = useState('');
-
-	const history = useHistory();
-	const dispatch = useDispatch();
-	const chosenResearch = useSelector(selectChosenResearch);
-
-	useEffect(() => {
-		if (chosenResearch && chosenResearch.type === 'live' && redirectMarker) {
-			setRedirectMarker(false);
-			//change routing!
-			history.push('/new-article');
-		} else if (chosenResearch && chosenResearch.type === 'dead' && redirectMarker) {
-			setRedirectMarker(false);
-			//change routing!
-			history.push('/upload-article');
-		}
-	}, [chosenResearch]);
-
-	async function asyncDelete() {
-		try {
-			const res = await axios.delete(`${BASE_URL}${END_POINT.PUBLICATION}/${deleteID}`);
-			if (res.status === 201 || res.status === 200) {
-				console.log('delete successful');
-				fetchPublications();
-				dispatch(actionSnackBar.setSnackBar('success', 'Successfully deleted', 2000));
-				fetchStatistics();
-			}
-		} catch (error) {
-			dispatch(actionSnackBar.setSnackBar('error', 'Delete failed', 2000));
-		}
-	}
-
-	function handleEdit(id) {
-		dispatch(getChosenResearchAsync(id));
-		setRedirectMarker(true);
-	}
-
-	const handleCloseAlert = () => {
-		setOpenAlert(false);
-	};
-
-	function deletePublication() {
-		console.log('id deletePublication', deleteID);
-		asyncDelete(deleteID);
-		setOpenAlert(false);
-		setDeleteID('');
-	}
-
-	function handleDeleteBtn(id) {
-		setOpenAlert(true);
-		setDeleteID(id);
-	}
-
-	const handlePublish = async (id) => {
-		try {
-			const res = await axios.put(`${BASE_URL}${END_POINT.PUBLICATION}${END_POINT.PUBLISH}/${id}`);
-			if (res.status === 201 || res.status === 200) {
-				console.log('delete successful');
-				fetchPublications();
-				dispatch(actionSnackBar.setSnackBar('success', 'Successfully published', 2000));
-				fetchStatistics();
-			}
-		} catch (error) {
-			console.log(error);
-			dispatch(actionSnackBar.setSnackBar('error', 'publish failed', 2000));
-		}
-	};
-
-	function chooseImage(publication) {
-		let image = '';
-		let url = '';
-		if (publication?.attachments?.length) {
-			image = publication.attachments.find((attachment) => attachment.file_type === 'main_bg');
-			const imageName = image && image.file_name_system;
-			url = `${BASE_URL}${END_POINT.ASSETS}/${encodeURIComponent(imageName)}`;
-		}
-		return url;
-	}
-	return (
-		<>
-			<Grid item xs={4} className={classes.cardWrapper} key={publication.id}>
-				<Grid container className={classes.card}>
-					<Grid
-						item
-						xs={12}
-						className={classes.upperHalf}
-						style={{
-							backgroundImage: chooseImage(publication)
-								? `url(${chooseImage(publication)})`
-								: 'none',
-							backgroundColor: '#74b2f0',
-						}}
-					>
-						{
-							publication.status === 'published' ? (
-								<Grid className={classes.viewsBox}>
-									<VisibilityIcon></VisibilityIcon>
-									{publication.views}
-								</Grid>
-							) : null
-							// (
-							//   <Grid
-							//     className={`${classes.viewsBox} ${classes.draftBox}`}
-							//     onClick={() => {
-							//       handlePublish(publication.id)
-							//     }}
-							//   >
-							//     Publish
-							//   </Grid>
-							// )
-						}
-
-						{publication.type === 'dead' ? (
-							<Grid className={classes.typeIndicator}>
-								{publication.title_video ? (
-									<PlayArrowIcon className={classes.typeIcon} />
-								) : (
-									<EmptyFile className={classes.typeIcon} />
-								)}
-							</Grid>
-						) : (
-							<></>
-						)}
-					</Grid>
-					<Grid item xs={12} className={classes.backdrop}>
-						<BinButton className={classes.binBtn} onClick={() => handleDeleteBtn(publication.id)}>
-							<DeleteIcon />
-						</BinButton>
-						<EditButton className={classes.editBtn} onClick={() => handleEdit(publication.id)}>
-							<EditIcon />
-						</EditButton>
-					</Grid>
-					<Grid item xs={12} className={classes.lowerHalf}>
-						<Typography variant="h5" className={classes.pubTitle}>
-							{publication.title}
-						</Typography>
-						<Typography>{truncateString(publication.description, 10)}</Typography>
-					</Grid>
-				</Grid>
-			</Grid>
-			<DeleteAlert
-				open={openAlert}
-				handleClose={handleCloseAlert}
-				itemName={publication.title}
-				itemId={publication.id}
-				itemCategory="Publication"
-				deleteItem={deletePublication}
-			/>
-		</>
-	);
-}
-
-export default PublicationsTab;
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	cardWrapper: {
 		minWidth: 250,
 		maxWidth: 350,
@@ -223,8 +54,6 @@ const useStyles = makeStyles((theme) => ({
 		'color': '#1C67FF',
 		'& svg': {
 			height: 22,
-			// marginRight: 5,
-			// marginTop: 5
 		},
 	},
 	typeIndicator: {
@@ -276,8 +105,6 @@ const useStyles = makeStyles((theme) => ({
 		'display': 'flex',
 		'alignItems': 'center',
 		'justifyContent': 'center',
-		'height': 200,
-		'width': 380,
 		'top': 0,
 		'left': 0,
 		'borderRadius': '8px 8px 0 0',
@@ -287,17 +114,12 @@ const useStyles = makeStyles((theme) => ({
 			'backgroundColor': 'rgba(0,0,0,0.2)',
 			'-webkit-backdrop-filter': 'blur(7px)',
 			'backdropFilter': 'blur(7px)',
-			//filter: "blur(10px)",
 		},
 	},
-	// open:{
-
-	// },
 	binBtn: {
 		'backgroundColor': '#fff',
 		'marginRight': 12,
 		'padding': '9px 11px',
-		'backgroundColor': '#fff',
 		'& path': {
 			fill: 'red',
 		},
@@ -320,4 +142,159 @@ const useStyles = makeStyles((theme) => ({
 			},
 		},
 	},
-}));
+});
+
+function truncateString(string, wordsNo) {
+	const descrptionArr = string.split(' ');
+	const descriptionLength = descrptionArr.length;
+	descrptionArr.splice(wordsNo);
+	const newDescription = descrptionArr.join(' ');
+	if (descriptionLength > wordsNo) return `${newDescription}...`;
+	return newDescription;
+}
+
+function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
+	const classes = useStyles();
+	const [openAlert, setOpenAlert] = useState(false);
+	const [redirectMarker, setRedirectMarker] = useState(false);
+	const [deleteID, setDeleteID] = useState('');
+
+	const history = useHistory();
+	const dispatch = useDispatch();
+	const chosenResearch = useSelector(selectChosenResearch);
+
+	useEffect(() => {
+		if (chosenResearch && chosenResearch.type === 'live' && redirectMarker) {
+			setRedirectMarker(false);
+			//change routing!
+			history.push('/new-article');
+		} else if (chosenResearch && chosenResearch.type === 'dead' && redirectMarker) {
+			setRedirectMarker(false);
+			//change routing!
+			history.push('/upload-article');
+		}
+	}, [chosenResearch]);
+
+	async function asyncDelete() {
+		try {
+			const res = await axios.delete(`${BASE_URL}${END_POINT.PUBLICATION}/${deleteID}`);
+			if (res.status === 201 || res.status === 200) {
+				fetchPublications();
+				dispatch(actionSnackBar.setSnackBar('success', 'Successfully deleted', 2000));
+				fetchStatistics();
+			}
+		} catch (error) {
+			dispatch(actionSnackBar.setSnackBar('error', 'Delete failed', 2000));
+		}
+	}
+
+	function handleEdit(id) {
+		dispatch(getChosenResearchAsync(id));
+		setRedirectMarker(true);
+	}
+
+	const handleCloseAlert = () => {
+		setOpenAlert(false);
+	};
+
+	function deletePublication() {
+		asyncDelete(deleteID);
+		setOpenAlert(false);
+		setDeleteID('');
+	}
+
+	function handleDeleteBtn(id) {
+		setOpenAlert(true);
+		setDeleteID(id);
+	}
+
+	// const handlePublish = async (id) => {
+	// 	try {
+	// 		const res = await axios.put(`${BASE_URL}${END_POINT.PUBLICATION}${END_POINT.PUBLISH}/${id}`);
+	// 		if (res.status === 201 || res.status === 200) {
+	// 			console.log('delete successful');
+	// 			fetchPublications();
+	// 			dispatch(actionSnackBar.setSnackBar('success', 'Successfully published', 2000));
+	// 			fetchStatistics();
+	// 		}
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 		dispatch(actionSnackBar.setSnackBar('error', 'publish failed', 2000));
+	// 	}
+	// };
+
+	function chooseImage(publication) {
+		let image = '';
+		let url = '';
+		if (publication?.attachments?.length) {
+			image = publication.attachments.find((attachment) => attachment.file_type === 'main_bg');
+			const imageName = image && image.file_name_system;
+			url = `${BASE_URL}${END_POINT.ASSETS}/${encodeURIComponent(imageName)}`;
+		}
+		return url;
+	}
+	return (
+		<>
+			<Grid item xs={4} className={classes.cardWrapper} key={publication.id}>
+				<Grid container className={classes.card}>
+					<Grid
+						item
+						xs={12}
+						className={classes.upperHalf}
+						style={{
+							backgroundImage: chooseImage(publication)
+								? `url(${chooseImage(publication)})`
+								: 'none',
+							backgroundColor: '#74b2f0',
+						}}
+					>
+						{
+							publication.status === 'published' ? (
+								<Grid className={classes.viewsBox}>
+									<VisibilityIcon></VisibilityIcon>
+									{publication.views}
+								</Grid>
+							) : null
+						}
+
+						{publication.type === 'dead' ? (
+							<Grid className={classes.typeIndicator}>
+								{publication.title_video ? (
+									<PlayArrowIcon className={classes.typeIcon} />
+								) : (
+									<EmptyFile className={classes.typeIcon} />
+								)}
+							</Grid>
+						) : (
+							<></>
+						)}
+					</Grid>
+					<Grid item xs={12} className={classes.backdrop}>
+						<BinButton className={classes.binBtn} onClick={() => handleDeleteBtn(publication.id)}>
+							<DeleteIcon />
+						</BinButton>
+						<EditButton className={classes.editBtn} onClick={() => handleEdit(publication.id)}>
+							<EditIcon />
+						</EditButton>
+					</Grid>
+					<Grid item xs={12} className={classes.lowerHalf}>
+						<Typography variant="h5" className={classes.pubTitle}>
+							{publication.title}
+						</Typography>
+						<Typography>{truncateString(publication.description, 10)}</Typography>
+					</Grid>
+				</Grid>
+			</Grid>
+			<DeleteAlert
+				open={openAlert}
+				handleClose={handleCloseAlert}
+				itemName={publication.title}
+				itemId={publication.id}
+				itemCategory="Publication"
+				deleteItem={deletePublication}
+			/>
+		</>
+	);
+}
+
+export default PublicationsTab;

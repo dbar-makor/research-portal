@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import TabContext from '@material-ui/lab/TabContext';
 import PublicationsTab from './PublicationsTab';
-import dataResearches from '../../../config/researchesConfig.json';
 import TabPanel from './TabPanel';
 import Grid from '@material-ui/core/Grid';
 import { AddButton } from '../../../styles/MainStyles';
@@ -22,6 +20,66 @@ function a11yProps(index) {
 	};
 }
 
+const useStyles = makeStyles((theme) => ({
+	barWrapper: {
+		justifyContent: 'space-between',
+	},
+	newBtn: {
+		'borderRadius': 4,
+		'padding': '10px 15px 10px 15px',
+		'width': 100,
+		'display': 'inline-block',
+		'marginLeft': -100,
+		'color': '#fff',
+		'fontSize': 18,
+		'& span': {
+			display: 'flex',
+			justifyContent: 'space-between',
+		},
+	},
+	tabs: {
+		'& .MuiTabs-indicator': {
+			//borderBottom: "3px solid #1C67FF",
+			backgroundColor: '#1C67FF',
+		},
+	},
+	tab: {
+		fontWeight: '600',
+	},
+	tabPanel: {
+		display: 'flex',
+		flexWrap: 'wrap',
+	},
+	root: {
+		flexGrow: 1,
+		backgroundColor: theme.palette.background.paper,
+	},
+	dialog: {
+		// width: "536px",
+		// // position: "absolute",
+		// // top: "306px",
+		// // left: "692px",
+		//  height: "469px",
+	},
+	dialogPaper: {
+		width: '30vw',
+		height: '50vh',
+		// position: "absolute",
+		// top: "306px",
+		// left: "692px",
+		//height: "469px",
+	},
+	dialogBackDrop: {
+		backdropFilter: 'blur(2px)',
+		backgroundColor: '#00001e25',
+	},
+	noPublications: {
+		color: '#868DA2',
+		fontSize: '18px',
+		marginTop: '20px',
+	},
+}));
+
 function AllPublicationsTabs({ fetchStatistics }) {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
@@ -29,7 +87,6 @@ function AllPublicationsTabs({ fetchStatistics }) {
 	const publishedResearches = publications.filter((research) => research.status === 'published');
 	const draftResearches = publications.filter((research) => research.status === 'draft');
 	const [openNewPublication, setOpenNewPublication] = useState(false);
-	//const [statistics, setStatistics] = useState({})
 
 	const handleCloseNewPublication = () => {
 		setOpenNewPublication(false);
@@ -43,10 +100,10 @@ function AllPublicationsTabs({ fetchStatistics }) {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.USER}/publication`);
 			if (res.status === 200) {
-				console.log('get successful', res, 'data', res.data);
 				setPublications(res.data);
 			}
 		} catch (error) {
+			/* eslint no-console: 0 */
 			console.log(error, error.message);
 		}
 	}
@@ -132,68 +189,4 @@ function AllPublicationsTabs({ fetchStatistics }) {
 
 export default AllPublicationsTabs;
 
-const useStyles = makeStyles((theme) => ({
-	// appBar:{
-	//   backgroundColor: "#fff",
-	//   color: "#000",
-	//   boxShadow: "none",
-	//   marginLeft: 15,
-	// },
-	barWrapper: {
-		justifyContent: 'space-between',
-	},
-	newBtn: {
-		'borderRadius': 4,
-		'padding': '10px 15px 10px 15px',
-		'width': 100,
-		'display': 'inline-block',
-		'marginLeft': -100,
-		'color': '#fff',
-		'fontSize': 18,
-		'& span': {
-			display: 'flex',
-			justifyContent: 'space-between',
-		},
-	},
-	tabs: {
-		'& .MuiTabs-indicator': {
-			//borderBottom: "3px solid #1C67FF",
-			backgroundColor: '#1C67FF',
-		},
-	},
-	tab: {
-		fontWeight: '600',
-	},
-	tabPanel: {
-		display: 'flex',
-		flexWrap: 'wrap',
-	},
-	root: {
-		flexGrow: 1,
-		backgroundColor: theme.palette.background.paper,
-	},
-	dialog: {
-		// width: "536px",
-		// // position: "absolute",
-		// // top: "306px",
-		// // left: "692px",
-		//  height: "469px",
-	},
-	dialogPaper: {
-		width: '30vw',
-		height: '50vh',
-		// position: "absolute",
-		// top: "306px",
-		// left: "692px",
-		//height: "469px",
-	},
-	dialogBackDrop: {
-		backdropFilter: 'blur(2px)',
-		backgroundColor: '#00001e25',
-	},
-	noPublications: {
-		color: '#868DA2',
-		fontSize: '18px',
-		marginTop: '20px',
-	},
-}));
+

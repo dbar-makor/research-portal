@@ -19,18 +19,16 @@ export const useMapData = () => {
 			delete axios.defaults.headers.common['Authorization'];
 			const res = await axios.get(jsonUrl);
 			if (res.status === 200) {
-				console.log('map data', res.data.features);
 				setMapLoading(false);
 				setMapData(res.data.features);
 			}
 		} catch (err) {
 			setMapLoading(false);
 			setMapError(true);
-			console.log(err.message);
 		}
 	};
 
-	const getCitiesData = async () => {
+	const getCitiesData = () => {
 		const row = (d) => {
 			d.lat = +d.lat;
 			d.lng = +d.lng;
@@ -40,7 +38,6 @@ export const useMapData = () => {
 		//setCitiesLoading(true);
 		csv(citiesCSV, row).then((data) => {
 			setCitiesData(data);
-			console.log('citiesData', data);
 		});
 	};
 

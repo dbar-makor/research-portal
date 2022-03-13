@@ -1,10 +1,9 @@
-import { IconButton, Typography, Popover, withStyles, Grid, Divider } from '@material-ui/core';
+import { IconButton, Typography, Popover, withStyles, Grid } from '@material-ui/core';
 import { useStyles } from '../../../styles/ContarctsModalStyles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { useRef, useState } from 'react';
-import { LinkButton } from '../../../styles/MainStyles';
 import ContractEditMain from '../ContractEdit/ContractEditMain';
 function PaymentButtonBar(props) {
 	const { precentage, openInvoices, isOpen, clientName, contract } = props;
@@ -68,20 +67,6 @@ function PaymentButtonBar(props) {
 				}}
 			>
 				<Grid container direction="column" spacing={2} style={{ paddingTop: 12 }}>
-					{/* <Grid item xs={11} style={{ marginLeft: '16px' }}>
-            <Grid container direction="column" spacing={1}>
-              <Grid item xs={12}>
-                <Typography className={classes.popHeaders}>Download</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography className={classes.popContent}>Contract</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography className={classes.popContent}>All Invoices</Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Divider style={{ width: '113px', margin: '0px auto' }} /> */}
 					<Grid item xs={11} style={{ marginLeft: '16px' }}>
 						<Grid container spacing={1} direction="column">
 							<Grid item>

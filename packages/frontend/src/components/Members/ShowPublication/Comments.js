@@ -29,7 +29,6 @@ function Comments(props) {
 				dispatch(actionSnackBar.setSnackBar('success', 'comment successfully', 3000));
 				res = await axios.get(`${BASE_URL}${END_POINT.COMMENT}`, { params: { id: pubId } });
 				setLocalComments(res.data);
-				console.log(res.data);
 			}
 		} catch (err) {
 			dispatch(actionSnackBar.setSnackBar('error', 'Network error', 3000));

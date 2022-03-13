@@ -50,7 +50,6 @@ function MorePublications(props) {
 		try {
 			const resp = await axios.get(`${BASE_URL}${END_POINT.PUBLICATION}/user`);
 			if (resp.status === 200) {
-				console.log('HERE');
 				let filterdPublication = resp.data
 					.filter((pub) => {
 						const categoriesNames = pub.categories.map((category) => category.name);
@@ -63,9 +62,9 @@ function MorePublications(props) {
 				} else {
 					setMorePub(resp.data.slice(0, 3));
 				}
-				console.log(morePub);
 			}
 		} catch (err) {
+			/* eslint no-console: "off" */
 			console.log(err);
 		}
 	};

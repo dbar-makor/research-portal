@@ -14,9 +14,6 @@ function Filters(props) {
 	const [localSearch, setLocalSearch] = useState('');
 	const classes = useStyles();
 	const userType = pageType === 'salesUsers' ? 'sales' : pageType === 'authorsUsers' ? 'author' : '';
-
-	console.log('filters props', props);
-
 	useEffect(() => {
 		return () => {
 			dispatch(setProperty({ key: 'search', value: '' }));

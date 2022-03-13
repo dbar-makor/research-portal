@@ -167,7 +167,6 @@ const InfoStep = ({
 }) => {
 	const countriesArr = useSelector((state) => state.utils.utils.country);
 	const classes = useStyles();
-	console.log('company', company);
 	const dispatch = useDispatch();
 	//const [uploadedImage, setUploadedImage] = useState({})
 

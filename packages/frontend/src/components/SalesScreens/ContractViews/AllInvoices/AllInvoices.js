@@ -53,7 +53,6 @@ function AllInvoices() {
 
 	const hendlerForInvoiceId = (e) => {
 		if (e.key && e.key === 'Enter') {
-			console.log(e.target.value);
 			setFilters({ ...filters, invoice_id: invoiceId });
 		}
 	};
@@ -100,12 +99,10 @@ function AllInvoices() {
 						return;
 					}
 				}
-				console.log(params, 'PARAMS');
 			});
 			const resp = await axios.get(`${BASE_URL}${END_POINT.INVOICE}`, { params });
 			if (resp.status === 200) {
 				setLoadingInvoices(false);
-				console.log(resp.data);
 				setInvoiceRows(resp.data.invoices);
 			}
 		} catch (err) {
@@ -129,6 +126,7 @@ function AllInvoices() {
 				setCompaniesNames(companies);
 			}
 		} catch (err) {
+					/* eslint no-console: "off" */
 			console.log(err);
 		}
 	};

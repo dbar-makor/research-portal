@@ -38,7 +38,6 @@ function TagsAutoComplete({
 	const tagsArrNames = tagsArr?.map((tag) => tag.name);
 	const deleteItem = (index) => {
 		const tagsCopy = [...formObject];
-		console.log('tagsCopy', tagsCopy);
 		tagsCopy.splice(index, 1);
 		setFormObject(tagsCopy);
 	};
@@ -58,7 +57,6 @@ function TagsAutoComplete({
 							multiple
 							filterSelectedOptions
 							filterOptions={(options, params) => {
-								console.log('params', params);
 								const filtered = filter(options, params);
 
 								// Suggest the creation of a new value

@@ -27,7 +27,7 @@ import {
 	validateDeadPublication,
 	validateEvent,
 	validateEditedDeadPublication,
-} from '../Reusables/ValidationFunctions';
+} from '../Reusables/validationFunctions';
 import DropZone from '../Reusables/DropZone';
 import { useHistory, useLocation } from 'react-router';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';
@@ -90,7 +90,6 @@ function DeadArticle() {
 	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
-			console.log('chosenResearch', chosenResearch);
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
@@ -126,7 +125,6 @@ function DeadArticle() {
 	useEffect(() => {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
-			console.log('half baked publication', publication);
 			const coverImg = publication.attachments?.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);
@@ -157,7 +155,6 @@ function DeadArticle() {
 			setLocalForm(initStateForm);
 			setCoverImage(null);
 			setLocalCats([]);
-			setHashtagState('');
 			setCurrentEvent({ date: null, title: '' });
 		};
 	}, []);
@@ -305,15 +302,11 @@ function DeadArticle() {
 
 	const onPDFUpload = async (e) => {
 		const pdf = e.target.files[0];
-		console.log('pdf', pdf);
 		const formData = new FormData();
 		formData.append('file', pdf);
 		try {
 			const res = await axios.post(`${BASE_URL}${END_POINT.FILE}`, formData);
 			if (res.status === 200 && res.data.file) {
-				console.log('res', res);
-
-				console.log('res.data.file', res.data.file);
 				setLocalForm((prev) => ({ ...prev, file_pdf: res.data.file }));
 				if (chosenResearch) {
 					validateEditedDeadPublication(
@@ -334,6 +327,7 @@ function DeadArticle() {
 				}
 			}
 		} catch (error) {
+			/* eslint no-console: "off" */
 			console.log(error.message);
 		}
 	};
@@ -403,7 +397,6 @@ function DeadArticle() {
 			return;
 		}
 
-		console.log('formToSend', formToSend);
 		try {
 			let res;
 			// if (chosenResearch && chosenResearch.id) {

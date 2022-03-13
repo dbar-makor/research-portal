@@ -11,7 +11,7 @@ import {
 	selectOffset,
 	selectLimit,
 } from '../../../redux/companies/companiesSlice';
-import { validateCompany } from '../../Reusables/ValidationFunctions';
+import { validateCompany } from '../../Reusables/validationFunctions';
 import Dialog from '@material-ui/core/Dialog';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';

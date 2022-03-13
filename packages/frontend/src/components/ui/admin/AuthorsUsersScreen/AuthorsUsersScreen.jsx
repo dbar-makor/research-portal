@@ -1,6 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 import AuthorsUsersScreenView from './AuthorsUsersScreen.view';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -12,7 +10,7 @@ import {
 	getUsersByTypeAsync,
 } from '../../../../redux/users/usersSlice';
 
-const AuthorsUsersScreen = (props) => {
+const AuthorsUsersScreen = () => {
 	const dispatch = useDispatch();
 	const userOffset = useSelector(selectUsersOffset);
 	const userLimit = useSelector(selectUsersLimit);

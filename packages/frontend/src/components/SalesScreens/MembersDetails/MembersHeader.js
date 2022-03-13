@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
 import { Grid, Typography, Divider } from '@material-ui/core';
 import { useStyles } from '../../../styles/InfoStyles';
 import { AddButton, StyledTextField } from '../../../styles/MainStyles';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
-import { useSelector } from 'react-redux';
-import { selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
 import clsx from 'clsx';
 import AddIcon from '@material-ui/icons/Add';
 import AddMemberModal from './AddMemberModal';

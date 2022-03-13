@@ -1,4 +1,4 @@
-import React, { useState, unstableBatchedUpdates } from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
@@ -18,10 +18,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepperConnector from './StepperConnector';
 import StepperIcons from './StepperIcons';
-import Button from '@material-ui/core/Button';
-import { ReactComponent as BlueBorder } from '../../../assets/icons/blueBorder.svg';
 import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { FilledButton, OutlinedButton } from '../../../styles/MainStyles';
@@ -29,6 +26,55 @@ import InfoStep from '../NewCompanySteps/InfoStep';
 import MembersStep from '../NewCompanySteps/MembersStep';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 import SubHeaderModal from '../../Reusables/SubHeaderModal';
+
+const useStyles = makeStyles((theme) => ({
+	dialogBox: {
+		minWidth: 670,
+	},
+	dialogContainer: {
+		alignContent: 'space-between',
+		paddingTop: 30,
+	},
+	container: {
+		margin: '0 auto',
+	},
+	contractModalPaper: {
+		minWidth: 'calc(100vw - 1100px)',
+		minHeight: 'calc(100vh - 500px)',
+		height: '85vh',
+	},
+	modalBackDrop: {
+		backdropFilter: 'blur(2px)',
+		backgroundColor: '#00001e25',
+	},
+	stepperGroup: {
+		width: '100%',
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+	},
+	btnRow: {
+		justifyContent: 'space-between',
+		position: 'absolute',
+		bottom: '5vh',
+		width: '75%',
+	},
+	buttonBack: {
+		padding: '7px 40px',
+		fontSize: 17,
+	},
+	buttonNext: {
+		padding: '7px 80px',
+		fontSize: 17,
+	},
+	instructions: {
+		marginTop: -10,
+		marginBottom: theme.spacing(1),
+		flexDirection: 'column',
+	},
+	closeIcon: {
+		cursor: 'pointer',
+	},
+}));
 
 const NewCompanyStepper = ({ handleClose, open }) => {
 	const classes = useStyles();
@@ -67,7 +113,92 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [activeStep, setActiveStep] = useState(0);
 	const steps = ['Information', 'Members'];
-	console.log('I rendered');
+
+	//HANDLERS
+
+	const handleNext = () => {
+		setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	};
+
+	const handleBack = () => {
+		setActiveStep((prevActiveStep) => prevActiveStep - 1);
+	};
+
+	const handleCompany = (e, fieldIndicator) => {
+		let value;
+
+		if (
+			fieldIndicator === 'start_at' ||
+			fieldIndicator === 'end_at' ||
+			fieldIndicator === 'type' ||
+			fieldIndicator === 'categories' ||
+			fieldIndicator === 'country'
+		) {
+			value = e;
+		} else {
+			value = e.target.value;
+		}
+
+		let name;
+		if (
+			fieldIndicator === 'start_at' ||
+			fieldIndicator === 'end_at' ||
+			fieldIndicator === 'categories' ||
+			fieldIndicator === 'country' ||
+			fieldIndicator === 'type'
+		) {
+			name = fieldIndicator;
+		} else {
+			name = e.target.name;
+		}
+
+		setCompany((prev) => ({
+			...prev,
+			// status: "company",
+			[name]: value,
+		}));
+
+		validateCompany({ [name]: value }, errors1, setErrors1, setValidationResult1, company);
+	};
+
+	const handleSubmit = async () => {
+		//changing array of object categories into array of categories' IDs
+
+		const updatedMembers = [];
+		company.members.forEach((member) => {
+			const updatedMember = { ...member, categories: member.categories.map((category) => category.id) };
+			updatedMembers.push(updatedMember);
+		});
+
+		//also adding reply from server for uploaded image
+		const updatedCompany = {
+			...company,
+			members: updatedMembers,
+			logo: uploadedImage,
+			country: company.country.code,
+		};
+
+		try {
+			if (validationResult1 && validationResult2 && company.members.length >= 1) {
+				const res = await axios.post(`${BASE_URL}${END_POINT.COMPANY}`, updatedCompany);
+
+				if (res.status === 200 || res.status === 201) {
+					setCompany(initState);
+					dispatch(getCompaniesDataAsync(offset, limit, search, type, status));
+					setUploadedImage('');
+					setInputValue('');
+					setActiveStep(0);
+					setErrors1({});
+					setValidationResult1(false);
+					setValidationResult2(false);
+					dispatch(actionSnackBar.setSnackBar('success', 'Successfully created', 2000));
+				}
+			}
+		} catch (err) {
+			dispatch(actionSnackBar.setSnackBar('error', 'Creation failed', 2000));
+		}
+		handleClose();
+	};
 
 	function getStepContent(step) {
 		switch (step) {
@@ -109,97 +240,6 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 		}
 	}
 
-	//HANDLERS
-
-	const handleNext = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1);
-	};
-
-	const handleBack = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep - 1);
-	};
-
-	const handleCompany = (e, fieldIndicator) => {
-		let value;
-
-		if (
-			fieldIndicator === 'start_at' ||
-			fieldIndicator === 'end_at' ||
-			fieldIndicator === 'type' ||
-			fieldIndicator === 'categories' ||
-			fieldIndicator === 'country'
-		) {
-			value = e;
-		} else {
-			value = e.target.value;
-		}
-
-		let name;
-		if (
-			fieldIndicator === 'start_at' ||
-			fieldIndicator === 'end_at' ||
-			fieldIndicator === 'categories' ||
-			fieldIndicator === 'country' ||
-			fieldIndicator === 'type'
-		) {
-			name = fieldIndicator;
-		} else {
-			name = e.target.name;
-		}
-		console.log('company', company);
-
-		setCompany((prev) => ({
-			...prev,
-			// status: "company",
-			[name]: value,
-		}));
-
-		validateCompany({ [name]: value }, errors1, setErrors1, setValidationResult1, company);
-	};
-
-	const handleSubmit = async () => {
-		//changing array of object categories into array of categories' IDs
-
-		const updatedMembers = [];
-		company.members.forEach((member, index) => {
-			const updatedMember = { ...member, categories: member.categories.map((category) => category.id) };
-			updatedMembers.push(updatedMember);
-		});
-
-		//also adding reply from server for uploaded image
-		const updatedCompany = {
-			...company,
-			members: updatedMembers,
-			logo: uploadedImage,
-			country: company.country.code,
-		};
-
-		//setCompany(updatedCompany);
-		console.log('trying to send new company-out', company);
-		try {
-			if (validationResult1 && validationResult2 && company.members.length >= 1) {
-				const res = await axios.post(`${BASE_URL}${END_POINT.COMPANY}`, updatedCompany);
-
-				if (res.status === 200 || res.status === 201) {
-					console.log('post successful');
-					setCompany(initState);
-					dispatch(getCompaniesDataAsync(offset, limit, search, type, status));
-					setUploadedImage('');
-					setInputValue('');
-					setActiveStep(0);
-					setErrors1({});
-					// setErrors2({});
-					setValidationResult1(false);
-					setValidationResult2(false);
-					dispatch(actionSnackBar.setSnackBar('success', 'Successfully created', 2000));
-				}
-			}
-		} catch (err) {
-			dispatch(actionSnackBar.setSnackBar('error', 'Creation failed', 2000));
-		}
-		handleClose();
-	};
-
 	return utils ? (
 		<Dialog
 			className={classes.dialogBox}
@@ -224,28 +264,12 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 							<Grid container justifyContent="center">
 								<SubHeaderModal title="New Company" />
 								<Grid item xs={4} />
-								{/* <Grid item xs={4}>
-                                <Grid container justifyContent='center'>
-                                    <BlueBorder />
-                                </Grid>
-                            </Grid> */}
-								{/* <Grid item xs={4}>
-                                <Grid container justifyContent='flex-end'>
-                                    <IconButton className={classes.closeButton} onClick={handleClose}>
-                                        <CloseIcon />
-                                    </IconButton>
-                                </Grid>
-                            </Grid> */}
-								{/* <Grid item xs={12}>
-                                <Grid container justifyContent="center">
-                                    <Typography className={classes.modalTitle}>
-                                    New Company
-                                    </Typography>
-                                </Grid>
-                            </Grid> */}
-
 								<Grid container className={classes.stepperGroup}>
-									<Stepper alternativeLabel activeStep={activeStep} connector={<StepperConnector />}>
+									<Stepper
+										alternativeLabel
+										activeStep={activeStep}
+										connector={<StepperConnector />}
+									>
 										<Step>
 											<StepLabel
 												StepIconComponent={StepperIcons}
@@ -257,7 +281,11 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 										<Step>
 											<StepLabel
 												StepIconComponent={StepperIcons}
-												onClick={activeStep === 0 && validationResult1 ? handleNext : () => {}}
+												onClick={
+													activeStep === 0 && validationResult1
+														? handleNext
+														: () => {}
+												}
 											>
 												{steps[1]}
 											</StepLabel>
@@ -271,7 +299,10 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 										{activeStep === 0 ? (
 											<div></div>
 										) : (
-											<OutlinedButton onClick={handleBack} className={classes.buttonBack}>
+											<OutlinedButton
+												onClick={handleBack}
+												className={classes.buttonBack}
+											>
 												{' '}
 												Back{' '}
 											</OutlinedButton>
@@ -290,13 +321,14 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 												<FilledButton
 													onClick={handleSubmit}
 													className={classes.buttonNext}
-													disabled={!validationResult2 || company.members.length < 1}
+													disabled={
+														!validationResult2 || company.members.length < 1
+													}
 												>
 													{' '}
 													Create{' '}
 												</FilledButton>
 											)
-											// <FilledButton onClick={handleSubmit} className={classes.buttonNext} disabled = {!validationResult2 || company.members.length < 1}> Create </FilledButton>
 										}
 									</Grid>
 								</Grid>
@@ -313,67 +345,4 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 
 export default NewCompanyStepper;
 
-const useStyles = makeStyles((theme) => ({
-	// modalTitle: {
-	//     textAlign: 'center',
-	//     color: "#868DA2",
-	//     fontSize: "24px",
-	//     fontWeight: 400,
-	//     marginBottom: "1vh",
-	//     marginTop: "15px",
-	//   },
-	// root:{
-	//     position: "absolute",
-	//     top: "100px",
-	//     left: "554px",
-	// },
-	dialogBox: {
-		minWidth: 670,
-	},
-	dialogContainer: {
-		alignContent: 'space-between',
-		paddingTop: 30,
-		// minWidth: 650,
-		// overflowX: "hidden"
-	},
-	container: {
-		margin: '0 auto',
-	},
-	contractModalPaper: {
-		minWidth: 'calc(100vw - 1100px)',
-		minHeight: 'calc(100vh - 500px)',
-		height: '85vh',
-	},
-	modalBackDrop: {
-		backdropFilter: 'blur(2px)',
-		backgroundColor: '#00001e25',
-	},
-	stepperGroup: {
-		width: '100%',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-	},
-	btnRow: {
-		justifyContent: 'space-between',
-		position: 'absolute',
-		bottom: '5vh',
-		width: '75%',
-		//margin: "0 auto"
-	},
-	buttonBack: {
-		padding: '7px 40px',
-		fontSize: 17,
-	},
-	buttonNext: {
-		padding: '7px 80px',
-		fontSize: 17,
-	},
-	instructions: {
-		marginTop: -10,
-		marginBottom: theme.spacing(1),
-		flexDirection: 'column',
-	},
-	closeIcon: {
-		cursor: 'pointer',
-	},
-}));
+

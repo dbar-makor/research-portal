@@ -2,7 +2,6 @@ export let ws = null;
 
 let messages = [];
 export const connectWS = (token) => {
-	console.log('ws', ws);
 	if ((ws === null || ws.readyState === 3) && token) {
 		ws = new WebSocket(`ws://10.0.0.29:3040/?token=${token}`);
 	}
@@ -11,7 +10,6 @@ export const connectWS = (token) => {
 };
 
 export const sendEvent = (data, token) => {
-	// messages.push(data)
 	if (ws !== null) {
 		if (ws.readyState !== 1) {
 			messages.push(data);
@@ -24,18 +22,8 @@ export const sendEvent = (data, token) => {
 			});
 		};
 
-		// ws.onmessage = (event) => {
-		//   // ws.send(
-		//   //   JSON.stringify(dataToSend)
-		//   // );
-		//   if (event.data.size !== 0) {
-		//     const response = JSON.parse(event.data)
-		//     return response
-		//   }
-		// }
-
 		ws.onclose = () => {};
-		ws.onerror = (err) => {
+		ws.onerror = () => {
 			if (ws.code !== 4000) {
 				setTimeout(function () {
 					connectWS();
@@ -48,13 +36,12 @@ export const sendEvent = (data, token) => {
 	}
 };
 
-export const closeWS = (token) => {
+export const closeWS = () => {
 	if (ws) {
 		if (ws.readyState === 1) {
 			ws.send(JSON.stringify({ type: 'close-connection' }));
 			ws.close();
 			ws = null;
-			//  connectWS(token)
 		}
 	}
 };

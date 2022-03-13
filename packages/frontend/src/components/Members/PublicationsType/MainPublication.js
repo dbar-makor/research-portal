@@ -70,7 +70,9 @@ const MainPublication = ({ publication }) => {
 							xs={12}
 							className={classes.upperHalf}
 							style={{
-								backgroundImage: chooseImage(publication) ? `url(${chooseImage(publication)})` : 'none',
+								backgroundImage: chooseImage(publication)
+									? `url(${chooseImage(publication)})`
+									: 'none',
 								backgroundColor: '#74b2f0',
 							}}
 						></Grid>
@@ -84,7 +86,9 @@ const MainPublication = ({ publication }) => {
 							</Typography>
 						</Grid>
 						<Grid item>
-							<Typography variant="body2">{truncateDescription(publication.description)}</Typography>
+							<Typography variant="body2">
+								{truncateDescription(publication.description)}
+							</Typography>
 						</Grid>
 					</Grid>
 				</Grid>

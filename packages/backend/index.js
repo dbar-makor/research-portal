@@ -2,7 +2,7 @@ const config = require('./config');
 const logger = require('./logger');
 const ExpressServer = require('./expressServer');
 
-const launchServer = async () => {
+const launchServer = () => {
 	try {
 		this.expressServer = new ExpressServer(config.URL_PORT, config.OPENAPI_YAML);
 		this.expressServer.launch();

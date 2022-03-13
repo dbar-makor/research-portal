@@ -37,10 +37,10 @@ export default function RangeDatePicker(props) {
 			setFrom(moment(item.selection.startDate).format('DD/MM/YYYY'));
 			setTo(moment(item.selection.endDate).format('DD/MM/YYYY'));
 		} else {
-			const modifiedEndDate = moment(moment(item.selection.startDate).format('DD/MM/YYYY'), 'DD/MM/YYYY').add(
-				max_days_allowed,
-				'days',
-			);
+			const modifiedEndDate = moment(
+				moment(item.selection.startDate).format('DD/MM/YYYY'),
+				'DD/MM/YYYY',
+			).add(max_days_allowed, 'days');
 
 			setRange([{ ...item.selection, endDate: modifiedEndDate._d }]);
 			setFrom(moment(item.selection.startDate).format('DD/MM/YYYY'));

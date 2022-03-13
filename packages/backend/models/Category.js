@@ -7,7 +7,11 @@ const Category = () => {};
 //create category
 Category.createCategory = async (payload, result) => {
 	try {
+<<<<<<< HEAD
+		const processed_data = { name: payload.categoryCreate.name };
+=======
 		let processed_data = { name: payload.categoryCreate.name };
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		const categs = await db_helper.update(category_sql.create_category(processed_data), processed_data);
 
 		if (!categs || categs.affectedRows < 1) {
@@ -68,7 +72,11 @@ Category.getCategoriesById = async (payload, result) => {
 //remove category
 Category.deleteCategory = async (payload, result) => {
 	try {
+<<<<<<< HEAD
+		const processed_data = { category_uuid: payload.id };
+=======
 		let processed_data = { category_uuid: payload.id };
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		await db_helper.update(category_sql.delete_category(payload.id), processed_data);
 
 		return result({ status: 201 });

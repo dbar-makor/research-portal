@@ -67,7 +67,9 @@ const MediumPublication = ({ publication }) => {
 							xs={12}
 							className={classes.upperHalf}
 							style={{
-								backgroundImage: chooseImage(publication) ? `url(${chooseImage(publication)})` : 'none',
+								backgroundImage: chooseImage(publication)
+									? `url(${chooseImage(publication)})`
+									: 'none',
 								backgroundColor: '#74b2f0',
 							}}
 						></Grid>
@@ -87,7 +89,9 @@ const MediumPublication = ({ publication }) => {
 								</Grid>
 								<Grid item xs={12}>
 									<Grid item>
-										<Typography>{truncateDescription(publication.description)}</Typography>
+										<Typography>
+											{truncateDescription(publication.description)}
+										</Typography>
 									</Grid>
 								</Grid>
 								<Grid item xs={12}>
@@ -102,4 +106,3 @@ const MediumPublication = ({ publication }) => {
 	);
 };
 export default MediumPublication;
-

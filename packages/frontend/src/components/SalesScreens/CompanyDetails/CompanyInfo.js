@@ -120,7 +120,8 @@ function CompanyInfo() {
 		id: chosenCompany && chosenCompany.id,
 		title: 'prospect_trial',
 		type: chosenCompany && chosenCompany.type,
-		sales_agent: chosenCompany && chosenCompany.prospect_trial && chosenCompany.prospect_trial.sales_agent,
+		sales_agent:
+			chosenCompany && chosenCompany.prospect_trial && chosenCompany.prospect_trial.sales_agent,
 		start_at: chosenCompany && chosenCompany.prospect_trial && chosenCompany.prospect_trial.start_at,
 		end_at: chosenCompany && chosenCompany.prospect_trial && chosenCompany.prospect_trial.end_at,
 		trial_period: trialPeriod && trialPeriod,
@@ -130,7 +131,8 @@ function CompanyInfo() {
 		title: 'company_registered',
 		sales_agent:
 			chosenCompany && chosenCompany.company_registered && chosenCompany.company_registered.sales_agent,
-		start_at: chosenCompany && chosenCompany.company_registered && chosenCompany.company_registered.start_at,
+		start_at:
+			chosenCompany && chosenCompany.company_registered && chosenCompany.company_registered.start_at,
 	};
 
 	const deleteCompany = async (id) => {
@@ -195,7 +197,9 @@ function CompanyInfo() {
 		console.log('chosenCompany.country', chosenCompany.country);
 		console.log('currentCompany.country', currentCompany.country);
 		companyCopy.status = chosenCompany.status;
-		companyCopy.country = chosenCompany.country ? chosenCompany.country.code : currentCompany.country.code;
+		companyCopy.country = chosenCompany.country
+			? chosenCompany.country.code
+			: currentCompany.country.code;
 		companyCopy.name = chosenCompany.name ? chosenCompany.name : currentCompany.name;
 		// setChosenCompany(companyCopy)
 		console.log('companyCopy', companyCopy);
@@ -247,7 +251,9 @@ function CompanyInfo() {
 																color: '#0F0F0F',
 															},
 														}}
-														onChange={(e) => updateCompanyField('name', e.target.value)}
+														onChange={(e) =>
+															updateCompanyField('name', e.target.value)
+														}
 														// onBlur={() => sendUpdatedCompany()}
 													/>
 												) : (
@@ -262,20 +268,31 @@ function CompanyInfo() {
 											<Grid item xs={3}>
 												<Grid
 													container
-													alignItems={chosenCompany.isEditMode ? 'flex-start' : 'center'}
-													justifyContent={chosenCompany.isEditMode ? 'flex-end' : 'flex-start'}
+													alignItems={
+														chosenCompany.isEditMode ? 'flex-start' : 'center'
+													}
+													justifyContent={
+														chosenCompany.isEditMode ? 'flex-end' : 'flex-start'
+													}
 												>
 													<Grid item xs={3}>
 														{chosenCompany.isEditMode ? (
 															<CompanyStatusSwitch
 																checked={chosenCompany.status}
-																onChange={(e) => updateCompanyField('status', e.target.checked)}
+																onChange={(e) =>
+																	updateCompanyField(
+																		'status',
+																		e.target.checked,
+																	)
+																}
 															/>
 														) : (
 															<FiberManualRecordIcon
 																style={{
 																	fontSize: '14px',
-																	fill: chosenCompany.status ? '#00CA80' : '#FF3939',
+																	fill: chosenCompany.status
+																		? '#00CA80'
+																		: '#FF3939',
 																}}
 															/>
 														)}
@@ -283,11 +300,13 @@ function CompanyInfo() {
 													<Grid item xs={9}>
 														<Typography
 															style={{
-																marginLeft: chosenCompany.isEditMode && '12px',
+																marginLeft:
+																	chosenCompany.isEditMode && '12px',
 															}}
 															className={clsx({
 																[classes.statusActive]: chosenCompany.status,
-																[classes.statusInactive]: !chosenCompany.status,
+																[classes.statusInactive]:
+																	!chosenCompany.status,
 															})}
 														>
 															{chosenCompany.status ? 'Active' : 'Inactive'}
@@ -369,7 +388,9 @@ function CompanyInfo() {
 											<LocationIcon />
 										</Grid>
 										<Grid item>
-											<Typography className={classes.locationName}>{chosenCompany.country.name}</Typography>
+											<Typography className={classes.locationName}>
+												{chosenCompany.country.name}
+											</Typography>
 										</Grid>
 									</Grid>
 								)}
@@ -443,7 +464,10 @@ function CompanyInfo() {
 										Upgrade to Client
 									</GreenFilledButton>
 								) : (
-									<FilledButton className={classes.signBtn} onClick={() => history.push('/contract')}>
+									<FilledButton
+										className={classes.signBtn}
+										onClick={() => history.push('/contract')}
+									>
 										Sign a Contract
 									</FilledButton>
 								)}

@@ -115,12 +115,15 @@ function ContractRow(props) {
 				)}`}</StyledTableCell>
 				<StyledTableCell>{contract.agent}</StyledTableCell>
 				<StyledTableCell>{contract.members}</StyledTableCell>
-				<StyledTableCell style={{ textTransform: 'capitalize' }}>{contract.periodicity}</StyledTableCell>
-				<StyledTableCell>{`${contract.currency.symbol}${contract.amount.toLocaleString()}`}</StyledTableCell>
-				<StyledTableCell style={{ textAlign: 'center' }}>{`${contract.currency.symbol}${calcYearlyCost(
-					contract.amount,
-					contract.periodicity,
-				)}`}</StyledTableCell>
+				<StyledTableCell style={{ textTransform: 'capitalize' }}>
+					{contract.periodicity}
+				</StyledTableCell>
+				<StyledTableCell>{`${
+					contract.currency.symbol
+				}${contract.amount.toLocaleString()}`}</StyledTableCell>
+				<StyledTableCell style={{ textAlign: 'center' }}>{`${
+					contract.currency.symbol
+				}${calcYearlyCost(contract.amount, contract.periodicity)}`}</StyledTableCell>
 				<StyledTableCell style={{ textAlign: 'center' }}>
 					{contract.signed ? <Signed /> : <NotSigned />}
 				</StyledTableCell>
@@ -151,9 +154,17 @@ function ContractRow(props) {
 					<Collapse in={open} timeout="10" unmountOnExit>
 						<Typography variant="h6" gutterBottom component="div">
 							<Box>
-								<Grid container style={{ paddingBlock: 5 }} alignItems="center" direction="row">
+								<Grid
+									container
+									style={{ paddingBlock: 5 }}
+									alignItems="center"
+									direction="row"
+								>
 									<Grid item xs={4}>
-										<Typography style={{ fintSize: 14, color: '#868DA2' }} component="div">
+										<Typography
+											style={{ fintSize: 14, color: '#868DA2' }}
+											component="div"
+										>
 											Invoices
 										</Typography>
 									</Grid>
@@ -165,7 +176,9 @@ function ContractRow(props) {
 													onChange={(e) => searchInvoice(e.target.value)}
 													placeholder="Search"
 													InputProps={{
-														endAdornment: <SearchIcon className={classes.searchIcon} />,
+														endAdornment: (
+															<SearchIcon className={classes.searchIcon} />
+														),
 													}}
 												/>
 											</Grid>
@@ -175,10 +188,19 @@ function ContractRow(props) {
 								<Table size="small">
 									<TableHead>
 										<TableRow>
-											<TableCell className={classes.collapseTableHeaders}>No.</TableCell>
-											<TableCell className={classes.collapseTableHeaders}>Date</TableCell>
-											<TableCell className={classes.collapseTableHeaders}>Amount</TableCell>
-											<TableCell className={classes.collapseTableHeaders} style={{ textAlign: 'center' }}>
+											<TableCell className={classes.collapseTableHeaders}>
+												No.
+											</TableCell>
+											<TableCell className={classes.collapseTableHeaders}>
+												Date
+											</TableCell>
+											<TableCell className={classes.collapseTableHeaders}>
+												Amount
+											</TableCell>
+											<TableCell
+												className={classes.collapseTableHeaders}
+												style={{ textAlign: 'center' }}
+											>
 												View
 											</TableCell>
 											<TableCell
@@ -196,12 +218,20 @@ function ContractRow(props) {
 													<TableCell component="th" scope="row">
 														#{invoice.id?.slice(0, 6).toUpperCase()}
 													</TableCell>
-													<TableCell>{format(new Date(invoice.invoice_date), 'dd MMM, yyyy')}</TableCell>
+													<TableCell>
+														{format(
+															new Date(invoice.invoice_date),
+															'dd MMM, yyyy',
+														)}
+													</TableCell>
 													<TableCell style={{ fontWeight: 'bold' }}>{`${
 														contract.currency.symbol
 													}${invoice.amount.toLocaleString()}`}</TableCell>
 													<TableCell style={{ textAlign: 'center' }}>
-														<IconButton size="small" onClick={() => showInvoice(invoice.id)}>
+														<IconButton
+															size="small"
+															onClick={() => showInvoice(invoice.id)}
+														>
 															<Paper />
 														</IconButton>
 													</TableCell>

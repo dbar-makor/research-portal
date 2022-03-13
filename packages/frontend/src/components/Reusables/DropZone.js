@@ -7,14 +7,7 @@ import { useDropzone } from 'react-dropzone';
 
 function DropZone(props) {
 	const classes = useStyles();
-	const {
-		onDrop,
-		uploadedImage,
-		setUploadedImage,
-		purpose = 'cover image*',
-		setFileOK,
-		fileTypes,
-	} = props;
+	const { onDrop, uploadedImage, setUploadedImage, purpose = 'cover image*', setFileOK, fileTypes } = props;
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: fileTypes });
 
 	return (
@@ -70,7 +63,9 @@ function DropZone(props) {
 								<Typography className={classes.uploadText}>&nbsp;{purpose}</Typography>
 							</Grid>
 							<Grid item xs={12}>
-								<Typography className={classes.onlyPng}>.jpg, .png, .svg .jfif .webp</Typography>
+								<Typography className={classes.onlyPng}>
+									.jpg, .png, .svg .jfif .webp
+								</Typography>
 							</Grid>
 						</Grid>
 					</Grid>

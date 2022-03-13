@@ -116,7 +116,7 @@ Company.getCompany = async (payload, result) => {
 			return result({ status: 400 });
 		}
 		const FILTER_BY = { limit, offset, status, search, type };
-		let rea_companies = [];
+		const rea_companies = [];
 		//get all clients and prospects
 		if (!type) {
 			//TODO FILTER BY STATUS
@@ -174,7 +174,7 @@ Company.getCompany = async (payload, result) => {
 					const [res_contract_id] = await db_helper.get(
 						query.get_contract_by_company_id(company.id),
 					);
-					let custom_client = {
+					const custom_client = {
 						id: company.uuid,
 						status: company.cli_status ? true : false,
 						name: company.legal_name,
@@ -192,7 +192,7 @@ Company.getCompany = async (payload, result) => {
 					const [res_country] = await db_helper.get(
 						query.get_country_by_country_code(company.country),
 					);
-					let custom_prospect = {
+					const custom_prospect = {
 						id: company.uuid,
 						status: company.p_status ? true : false,
 						name: company.legal_name,
@@ -325,7 +325,7 @@ Company.getCompanyById = async (payload, result) => {
 		}
 		// prospect on
 		if (res_company.prospect_id && !res_company.client_id) {
-			let [res_prospect] = await db_helper.get(query.get_prospect_by_id(res_company.prospect_id));
+			const [res_prospect] = await db_helper.get(query.get_prospect_by_id(res_company.prospect_id));
 			const [res_country] = await db_helper.get(query.get_country_by_country_code(res_company.country));
 			if (!res_country) {
 				return result({ status: 404 });
@@ -455,7 +455,9 @@ Company.getContractsByCompanyId = async (payload, result) => {
 
 		const res_contracts = await db_helper.get(query.get_full_contracts_by_company_id(company_id));
 		//get the currency of company
-		let all_contracts = [];
+
+		const all_contracts = [];
+		for (const contract of res_contracts) {
 		for (contract of res_contracts) {
 			const [res_currency] = await db_helper.get(query.get_currency_by_contract_id(contract.id));
 			if (!res_currency) return result({ status: 404 });
@@ -464,7 +466,7 @@ Company.getContractsByCompanyId = async (payload, result) => {
 			if (contract.signer_user) {
 				[res_user] = await db_helper.get(query.get_user_by_user_id(contract.signer_user));
 			}
-			let format_contract = {
+			const format_contract = {
 				contract_id: contract.uuid,
 				amount: contract.amount,
 				currency: {

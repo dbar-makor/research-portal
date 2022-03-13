@@ -2,7 +2,7 @@ import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/styles';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles({
 	contractModalPaper: {
 		minWidth: 'calc(100vw - 966px)',
 		minHeight: 'calc(100vh - 200px)',
@@ -95,7 +95,7 @@ export const useStyles = makeStyles((theme) => ({
 		color: '#0F0F0F',
 		cursor: 'pointer',
 	},
-}));
+});
 
 export const StyledTextField = withStyles({
 	root: {

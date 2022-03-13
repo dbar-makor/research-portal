@@ -151,9 +151,14 @@ function InitialCompanyStateBlock(props) {
 			<Grid item xs={12}>
 				{props.type === 'prospect' ? (
 					<Grid container justifyContent="space-between" alignItems="center">
-						<Typography className={classes.blockHeader}>{props.title.replaceAll('_', ' ')}</Typography>
+						<Typography className={classes.blockHeader}>
+							{props.title.replaceAll('_', ' ')}
+						</Typography>
 						{trialEditMode ? (
-							<IconButton onClick={() => sendUpdatedTrial(props.id)} className={classes.editDoneBtn}>
+							<IconButton
+								onClick={() => sendUpdatedTrial(props.id)}
+								className={classes.editDoneBtn}
+							>
 								<EditDone />
 							</IconButton>
 						) : (
@@ -163,7 +168,9 @@ function InitialCompanyStateBlock(props) {
 						)}
 					</Grid>
 				) : (
-					<Typography className={classes.blockHeader}>{props.title.replaceAll('_', ' ')}</Typography>
+					<Typography className={classes.blockHeader}>
+						{props.title.replaceAll('_', ' ')}
+					</Typography>
 				)}
 			</Grid>
 			<Grid item xs={12} className={classes.marginBottom8}>

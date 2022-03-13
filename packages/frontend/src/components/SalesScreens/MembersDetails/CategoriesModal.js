@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Grid, Typography, Dialog } from '@material-ui/core';
 import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg';
 import { useStyles } from '../../../styles/InfoStyles';
@@ -23,11 +23,6 @@ function CategoriesModal(props) {
 		console.log('currentMember', currentMember);
 	}, [currentMember]);
 
-	// const sendAndClose = (member, id) => {
-	//   sendMember(member, id)
-	//   handleClose()
-	// }
-
 	return (
 		currentMember && (
 			<Dialog
@@ -40,7 +35,12 @@ function CategoriesModal(props) {
 					},
 				}}
 			>
-				<Grid container justifyContent="center" alignItems="center" className={classes.categoriesModalBox}>
+				<Grid
+					container
+					justifyContent="center"
+					alignItems="center"
+					className={classes.categoriesModalBox}
+				>
 					<Grid item xs={12}>
 						<Grid container justifyContent="flex-end">
 							<CloseIcon onClick={handleClose} className={classes.closeIcon} />
@@ -75,7 +75,9 @@ function CategoriesModal(props) {
 					</Grid>
 					<Grid item className={classes.saveBtn}>
 						<Grid container justifyContent="center">
-							<FilledButton onClick={() => sendMember(currentMember, currentMember.id)}>Save</FilledButton>
+							<FilledButton onClick={() => sendMember(currentMember, currentMember.id)}>
+								Save
+							</FilledButton>
 						</Grid>
 					</Grid>
 				</Grid>

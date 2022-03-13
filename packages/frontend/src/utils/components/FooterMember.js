@@ -1,15 +1,11 @@
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { ReactComponent as MakorIcon } from '../../assets/icons/makorLogo.svg';
-import { useSelector } from 'react-redux';
 import { useStyles } from '../../styles/MainStyles';
 import WorldMap from '../../components/Members/WorldMap';
 
 export default function FooterMember() {
-	const userCategories = useSelector((state) => state.auth.userContent.categories);
 	const classes = useStyles();
 	return (
 		<footer className={classes.memberFooter}>

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../utils/constants';
-import { createSelector } from 'reselect';
 
 export const contractSlice = createSlice({
 	name: 'contract',
@@ -17,13 +16,9 @@ export const contractSlice = createSlice({
 			state.contractData = action.payload;
 			state.loading = false;
 		},
-		sendContract: (state, action) => {},
-		// deleteCompany: (state, action) => {
-		//   const companies =  state.companiesData
-		//   companies =  companies.filter(company => company.id !== action.payload)
-		// }
 	},
 });
+export const { getContractData, setLoading } = contractSlice.actions;
 
 //selectors
 
@@ -41,27 +36,8 @@ export const getContractDataAsync = () => async (dispatch) => {
 			dispatch(getContractData(res.data.contract));
 		}
 	} catch (error) {
-		console.log(error, error.message);
 		dispatch(setLoading(false));
 	}
 };
-
-// export const deleteContractAsync = (id) => async (dispatch) => {
-
-//   try{
-//     console.log("delete")
-//     console.log(`${BASE_URL}${END_POINT.CONTRACT}/${id}`)
-//     const res = await axios.delete(`${BASE_URL}${END_POINT.CONTRACT}/${id}`);
-//     console.log("res", res)
-//     if(res.status === 200){
-//         console.log("delete successful");
-//         dispatch(getCompaniesDataAsync());
-//     }
-//   }catch(err){
-//     console.log(err.message);
-//   }
-// }
-
-export const { getContractData, setLoading } = contractSlice.actions;
 
 export default contractSlice.reducer;

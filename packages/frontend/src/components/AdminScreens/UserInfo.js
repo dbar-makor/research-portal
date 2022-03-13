@@ -161,7 +161,9 @@ function UserInfo() {
 																color: '#0F0F0F',
 															},
 														}}
-														onChange={(e) => updateUserField('name', e.target.value)}
+														onChange={(e) =>
+															updateUserField('name', e.target.value)
+														}
 														// onBlur={() => sendUpdatedCompany()}
 													/>
 												) : (
@@ -176,20 +178,31 @@ function UserInfo() {
 											<Grid item xs={3}>
 												<Grid
 													container
-													alignItems={chosenUser.isEditMode ? 'flex-start' : 'center'}
-													justifyContent={chosenUser.isEditMode ? 'flex-end' : 'flex-start'}
+													alignItems={
+														chosenUser.isEditMode ? 'flex-start' : 'center'
+													}
+													justifyContent={
+														chosenUser.isEditMode ? 'flex-end' : 'flex-start'
+													}
 												>
 													<Grid item xs={3}>
 														{chosenUser.isEditMode ? (
 															<CompanyStatusSwitch
 																checked={chosenUser.status}
-																onChange={(e) => updateUserField('status', e.target.checked)}
+																onChange={(e) =>
+																	updateUserField(
+																		'status',
+																		e.target.checked,
+																	)
+																}
 															/>
 														) : (
 															<FiberManualRecordIcon
 																style={{
 																	fontSize: '14px',
-																	fill: chosenUser.status ? '#00CA80' : '#FF3939',
+																	fill: chosenUser.status
+																		? '#00CA80'
+																		: '#FF3939',
 																}}
 															/>
 														)}
@@ -283,7 +296,9 @@ function UserInfo() {
 											<LocationIcon />
 										</Grid>
 										<Grid item>
-											<Typography className={classes.locationName}>{chosenUser.country.name}</Typography>
+											<Typography className={classes.locationName}>
+												{chosenUser.country.name}
+											</Typography>
 										</Grid>
 									</Grid>
 								)}

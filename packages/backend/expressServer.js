@@ -72,11 +72,11 @@ class ExpressServer {
 				apiSpec: this.openApiPath,
 				operationHandlers: path.join(__dirname),
 				fileUploader: { dest: config.FILE_UPLOAD_PATH },
-				validateRequests: true, //true by default
-				validateResponses: false, // false by default
+				validateRequests: true,
+				validateResponses: false,
 				validateSecurity: {
 					handlers: {
-						bearerAuth: async (req, scopes, schema) => {
+						bearerAuth: async (req) => {
 							const authenticate = await AuthenticateJWT.checkJWT(req);
 							if (authenticate === 'Unauthorized') {
 								throw { status: 401, message: 'Unauthorized' };
@@ -86,7 +86,11 @@ class ExpressServer {
 							}
 							return true;
 						},
+<<<<<<< HEAD
+						OAuth2: async (req) => {
+=======
 						OAuth2: async (req, scopes, schema) => {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 							const authorization = await Authorization.checkAuthorization(req);
 
 							if (authorization === 'ok') return true;
@@ -97,7 +101,11 @@ class ExpressServer {
 			}),
 		);
 
+<<<<<<< HEAD
+		this.app.use((err, req, res) => {
+=======
 		this.app.use((err, req, res, next) => {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 			// format errors
 			console.log('err ------------   ', err);
 			res.status(err.status || 500).end();

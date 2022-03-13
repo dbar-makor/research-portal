@@ -31,14 +31,18 @@ const get_contract = ({ limit, offset, from, to, period, signed, status, company
 			: ` ${
 					from !== undefined
 						? ` AND date(c.start_at) >= '${from}' `
+<<<<<<< HEAD
+						: `${to !== undefined ? ` AND date(c.end_at) <= '${to}'` : ''} `
+=======
 						: `${to !== undefined ? ` AND date(c.end_at) <= '${to}'` : ``} `
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 			  }`
 	} 
   
-    ${period ? `AND c.periodicity ='${period}'` : ``}
-    ${signed !== undefined ? `AND c.signed =${signed}` : ``}
-    ${status !== undefined ? `AND c.status =${status}` : ``}
-    ${company_id ? `AND co.uuid ='${company_id}'` : ``}
+    ${period ? `AND c.periodicity ='${period}'` : ''}
+    ${signed !== undefined ? `AND c.signed =${signed}` : ''}
+    ${status !== undefined ? `AND c.status =${status}` : ''}
+    ${company_id ? `AND co.uuid ='${company_id}'` : ''}
 
     LIMIT ${limit} OFFSET ${offset}
     ;
@@ -88,11 +92,11 @@ const get_sum_rows = ({ limit, offset, from, to, period, signed, status, company
   JOIN country count on count.iso_code_2=co.country 
   JOIN currency cur on cur.code = c.currency
   WHERE c.is_active=1
-  ${from !== undefined && to !== undefined ? ` AND c.start_at >= '${from}' AND c.end_at <= '${to}'` : ``} 
-  ${period ? `AND c.periodicity ='${period}'` : ``}
-  ${signed ? `AND c.signed =${signed}` : ``}
-  ${status ? `AND c.status =${status}` : ``}
-  ${company_id ? `AND co.uuid ='${company_id}'` : ``}
+  ${from !== undefined && to !== undefined ? ` AND c.start_at >= '${from}' AND c.end_at <= '${to}'` : ''} 
+  ${period ? `AND c.periodicity ='${period}'` : ''}
+  ${signed ? `AND c.signed =${signed}` : ''}
+  ${status ? `AND c.status =${status}` : ''}
+  ${company_id ? `AND co.uuid ='${company_id}'` : ''}
 
   LIMIT ${limit} OFFSET ${offset};
   `;

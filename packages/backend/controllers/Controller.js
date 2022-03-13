@@ -31,7 +31,11 @@ class Controller {
 		if (request.files && request.files.length > 0) {
 			const fileObject = request.files.find((file) => file.fieldname === fieldName);
 			if (fileObject) {
+<<<<<<< HEAD
+				const fileArray = fileObject.originalname.split('.');
+=======
 				let fileArray = fileObject.originalname.split('.');
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				let name_file = fileArray[0];
 				name_file = name_file.replace(' ', '');
 				name_file = name_file.replace('(', '');

@@ -51,7 +51,11 @@ User.createUser = async (payload, result) => {
 		}
 		const password = global_helper.generate_password(10);
 		processed_data.password = SHA256.hex(password);
+<<<<<<< HEAD
+		const categories = processed_data.categories;
+=======
 		let categories = processed_data.categories;
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		delete processed_data.categories;
 		const res = await db_helper.update(query.create_user(processed_data), processed_data);
 		send_reset_email(user, password);
@@ -59,14 +63,22 @@ User.createUser = async (payload, result) => {
 			return result({ status: 500 });
 		}
 		let any_category_fail = false;
+<<<<<<< HEAD
+		const user_id = res.insertId;
+=======
 		let user_id = res.insertId;
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		if (categories) {
 			for (category_uuid of categories) {
 				const [category_id_obj] = await db_helper.get(
 					category_query.get_category_id_by_uuid(category_uuid),
 				);
 				if (!category_id_obj) return result({ status: 404 });
+<<<<<<< HEAD
+				const user_category = { user_id, category_id: category_id_obj.id };
+=======
 				let user_category = { user_id, category_id: category_id_obj.id };
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				const res_categ = await db_helper.update(
 					query_user_has_category.create_user_has_category(user_category),
 					user_category,
@@ -165,7 +177,11 @@ User.getUsers = async (payload, result) => {
 		const FILTER_BY = await process_filter({ limit, offset, order_by, sort, search });
 		FILTER_BY.level_id = level_id;
 		FILTER_BY.status = status;
+<<<<<<< HEAD
+		const users = await db_helper.get(query.get_users(FILTER_BY));
+=======
 		let users = await db_helper.get(query.get_users(FILTER_BY));
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		if (!users) {
 			return result({ status: 404 });
 		}
@@ -288,7 +304,11 @@ User.updateUser = async (payload, result) => {
 		const unprocessed_payload = payload.userUpdate;
 		delete unprocessed_payload.id;
 		const data_processed = await process_payload(unprocessed_payload);
+<<<<<<< HEAD
+		const category_ids = data_processed.categories ? data_processed.categories : [];
+=======
 		let category_ids = data_processed.categories ? data_processed.categories : [];
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 		delete data_processed.categories;
 		const [res_user] = await db_helper.get(query.get_user_id_by_uuid(id, host));
 		let user_id;
@@ -308,7 +328,11 @@ User.updateUser = async (payload, result) => {
 				const [category_id_obj] = await db_helper.get(
 					category_query.get_category_id_by_uuid(category_uuid),
 				);
+<<<<<<< HEAD
+				const user_category = { user_id, category_id: category_id_obj.id };
+=======
 				let user_category = { user_id, category_id: category_id_obj.id };
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 				const res_categ = await db_helper.update(
 					query_user_has_category.create_user_has_category(user_category),
 					user_category,
@@ -365,8 +389,13 @@ User.getPublicationByAuthorId = async (payload, result) => {
 			return result({ status: 400 });
 		}
 		const res_publication = await db_helper.get(query.get_publications_by_author_id(id));
+<<<<<<< HEAD
+		const publications = [];
+		for (const publication of res_publication) {
+=======
 		let publications = [];
 		for (let publication of res_publication) {
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 			const attachments = await db_helper.get(query.get_attachments_by_publication_id(publication.id));
 			if (publication.type == 'live') {
 				const format_publication = {
@@ -580,7 +609,11 @@ const send_reset_email = async (user, password) => {
 function get_meta_data(filter_by) {
 	return new Promise(async (resolve, reject) => {
 		const { limit, offset } = filter_by;
+<<<<<<< HEAD
+		const [{ sum }] = await db_helper.get(query.get_sum_rows_users(filter_by));
+=======
 		let [{ sum }] = await db_helper.get(query.get_sum_rows_users(filter_by));
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 
 		const meta_data = {
 			sum_rows: sum,

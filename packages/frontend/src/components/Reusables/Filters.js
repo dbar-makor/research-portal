@@ -71,7 +71,9 @@ function Filters(props) {
 							value={localSearch}
 							onChange={(e) => setLocalSearch(e.target.value)}
 							onKeyDown={(e) =>
-								e.key === 'Enter' ? dispatch(setProperty({ key: 'search', value: localSearch })) : null
+								e.key === 'Enter'
+									? dispatch(setProperty({ key: 'search', value: localSearch }))
+									: null
 							}
 							variant="outlined"
 							fullWidth
@@ -82,6 +84,7 @@ function Filters(props) {
 										onClick={() =>
 											dispatch(setProperty({ key: 'search', value: localSearch }))
 										}
+
 										className={classes.searchIcon}
 										style={{ cursor: 'pointer' }}
 									/>
@@ -99,7 +102,9 @@ function Filters(props) {
 								valueField="value"
 								placeholder="Type"
 								value={type}
-								onChange={(e) => dispatch(setProperty({ key: 'type', value: e.target.value }))}
+								onChange={(e) =>
+									dispatch(setProperty({ key: 'type', value: e.target.value }))
+								}
 								optionsArray={typeArray}
 							/>
 						</Grid>
@@ -128,7 +133,11 @@ function Filters(props) {
 
 			<NewCompanyStepper open={pageType === 'companies' && open} handleClose={handleClose} />
 
-			<NewUserModal open={pageType !== 'companies' && open} userType={userType} handleClose={handleClose} />
+			<NewUserModal
+				open={pageType !== 'companies' && open}
+				userType={userType}
+				handleClose={handleClose}
+			/>
 		</Grid>
 	);
 }

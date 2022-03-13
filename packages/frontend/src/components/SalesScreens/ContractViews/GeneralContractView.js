@@ -5,6 +5,7 @@ import SendContractView from './SendContractView';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
+
 const useStyles = makeStyles({
 	modalContainer: {
 		backgroundColor: '#fff',

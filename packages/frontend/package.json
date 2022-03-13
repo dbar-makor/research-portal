@@ -63,11 +63,6 @@
 		"lint": "eslint \"src/**/*.{js,jsx}\" --fix",
 		"format": "prettier --write \"src/**/*.{js,jsx}\""
 	},
-	"eslintConfig": {
-		"extends": [
-			"react-app"
-		]
-	},
 	"browserslist": {
 		"production": [
 			">0.2%",

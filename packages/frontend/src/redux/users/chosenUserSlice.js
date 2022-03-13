@@ -29,6 +29,7 @@ export const getUserByIdAsync = (id) => async (dispatch) => {
 			dispatch(changeChosenUser(res.data));
 		}
 	} catch (error) {
+				/* eslint no-console: "off" */
 		console.log(error, error.message);
 	}
 };

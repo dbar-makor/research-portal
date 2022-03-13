@@ -26,6 +26,7 @@ export const getChosenCompanyAsync = (id) => async (dispatch) => {
 			dispatch(changeChosenCompany(res.data));
 		}
 	} catch (error) {
+				/* eslint no-console: "off" */
 		console.log(error, error.message);
 	}
 };

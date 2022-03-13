@@ -5,7 +5,7 @@ import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg
 import { FilledButton } from '../../../styles/MainStyles';
 import TextInputUnit from '../../Reusables/TextInputUnit';
 import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
-import { validateMember } from '../../Reusables/ValidationFunctions';
+import { validateMember } from '../../Reusables/validationFunctions';
 
 function AddMemberModal(props) {
 	const { open, handleClose, companyName, addMember, newMember, setNewMember } = props;
@@ -24,7 +24,6 @@ function AddMemberModal(props) {
 	};
 
 	const updateMemberField = (e) => {
-		console.log('e, fieldIndicator', e);
 		const value = e.target.value;
 		const name = e.target.name;
 		setNewMember({ ...newMember, [name]: value });

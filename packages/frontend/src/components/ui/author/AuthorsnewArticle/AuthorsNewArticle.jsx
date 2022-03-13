@@ -11,7 +11,7 @@ import {
 	validateLivePublication,
 	validateEvent,
 	validateEditedLivePublication,
-} from '../../../Reusables/ValidationFunctions';
+} from '../../../Reusables/validationFunctions';
 import AuthorsNewArticleView from './AuthorsNewArticle.view';
 
 const AuthorsNewArticle = () => {

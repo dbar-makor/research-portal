@@ -85,7 +85,6 @@ function ContractRow(props) {
 			});
 
 			if (res.status === 200) {
-				console.log('HERERERER');
 				const pdfString = res.data.pdf;
 
 				const byteCharacters = window.atob(pdfString);
@@ -105,7 +104,6 @@ function ContractRow(props) {
 		}
 	};
 
-	console.log(filterInvoices);
 	return (
 		<>
 			<TableRow style={{ backgroundColor: open ? '#f3f7ff' : '#ffffff' }}>

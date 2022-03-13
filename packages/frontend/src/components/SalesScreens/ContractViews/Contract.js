@@ -9,13 +9,12 @@ import { BASE_URL, END_POINT } from '../../../utils/constants';
 import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeChosenCompany, selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import { validateContract, validateEditedContract } from '../../Reusables/ValidationFunctions';
+import { validateContract, validateEditedContract } from '../../Reusables/validationFunctions';
 import { StatusSwitch, FilledButton } from '../../../styles/MainStyles';
 import ButtonRow from './ButtonRow';
 import { useHistory } from 'react-router-dom';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
-
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
 	page: {
 		position: 'relative',
 		height: 650,
@@ -238,19 +237,64 @@ const useStyles = makeStyles({
 		marginLeft: '14px',
 		marginTop: '3px',
 	},
+
 	amountType: {
 		color: '#1C67FF',
 		fontSize: '20px',
 		fontFamily: 'inter',
 		textAlignLast: 'center',
 	},
+
 	btnContainer: {},
 	comment: {
 		color: '#868DA2',
 		fontSize: 16,
 		marginTop: 25,
 	},
-});
+}));
+
+const chargePeriods = [
+	{
+		value: 'monthly',
+		name: 'Month',
+	},
+	{
+		value: 'quarterly',
+		name: 'Quarter',
+	},
+	{
+		value: 'half',
+		name: 'Half-year',
+	},
+	{
+		value: 'fully',
+		name: 'Year',
+	},
+];
+
+const periodToNum = {
+	monthly: 12,
+	quarterly: 4,
+	half: 2,
+	fully: 1,
+};
+
+function Contract({
+	setStep,
+	setContractCopy,
+	stepperMode,
+	chosenContract,
+	setLoadingSidebar,
+	setActiveSidebar,
+}) {
+	const classes = useStyles();
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const loggedinSalesPersonBigObject = useSelector((state) => state.auth.userContent);
+	const loggedinSalesPerson = {
+		id: loggedinSalesPersonBigObject.id,
+		name: loggedinSalesPersonBigObject.name,
+	};
 
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
 	const salesmenArr = useSelector((state) => state.utils.utils.sales);
@@ -344,6 +388,8 @@ const useStyles = makeStyles({
 		contractCopy.currency = currency;
 		const sales = contract.sales?.id;
 		contractCopy.sales = sales;
+		// const signer_user = contract.signer_user?.id;
+		// contractCopy.signer_user = signer_user;
 
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.CONTRACT}/${contract_id}`, contractCopy);
@@ -355,7 +401,7 @@ const useStyles = makeStyles({
 				setValidationResult(false);
 			}
 		} catch (error) {
-			/* eslint no-console: "off" */
+					/* eslint no-console: "off" */
 			console.log(error);
 			setLoadingSidebar(false);
 		}
@@ -614,6 +660,6 @@ const useStyles = makeStyles({
 			)}
 		</Grid>
 	);
-};
+}
 
 export default Contract;

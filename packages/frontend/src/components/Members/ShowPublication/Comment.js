@@ -31,7 +31,6 @@ function Comment(props) {
 		setOpenReply(false);
 	};
 
-	console.log(comment, 'COMMENT ITSELF');
 	return (
 		<Grid item style={{ paddingTop: 10 }}>
 			<Divider className={classes.divider}></Divider>

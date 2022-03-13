@@ -41,8 +41,6 @@ function FullPublication() {
 				if (resp.status === 200) {
 					setLoadingPub(false);
 					setChosenPublication(resp.data);
-				} else {
-					console.log(resp.status, 'RESP STATUS');
 				}
 			} catch (error) {
 				dispatch(actionSnackBar.setSnackBar('error', 'Faild to load publications', 2000));

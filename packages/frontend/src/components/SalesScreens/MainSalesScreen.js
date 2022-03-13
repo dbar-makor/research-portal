@@ -46,7 +46,6 @@ function MainSalesScreen() {
 
 	const lastItemRef = useCallback(
 		(node) => {
-			console.log('lastItemRef cb runs. node:', node);
 
 			if (loading) {
 				return;
@@ -58,7 +57,6 @@ function MainSalesScreen() {
 			observer.current = new IntersectionObserver((entries) => {
 				if (entries[0].isIntersecting && hasMore) {
 					const newOffset = offset + limit;
-					// console.log("containerRef.current?.scrollHeight",containerRef.current?.scrollHeight)
 					dispatch(setProperty({ key: 'offset', value: newOffset }));
 				}
 			});
@@ -68,19 +66,6 @@ function MainSalesScreen() {
 		},
 		[loading, hasMore],
 	);
-
-	// useEffect(() => {
-
-	//   if(companiesData?.length < 16) return;
-	//   // console.log( "scrollTop",containerRef.current?.scrollTop)
-	//   // const totalHeight =  containerRef.current?.scrollHeight;
-	//   // const scrollDistance =  containerRef.current ? ((companiesData.length / 10) - 1)*546 : totalHeight
-	//   // const wishedDistance = totalHeight - scrollDistance;
-
-	//   containerRef.current?.scrollTo({top: 500,left:0,behavior: "smooth"})
-
-	// }, [companiesData])
-
 	//Calling get companies whenever a call parameter changes offset changes by scrolling)
 	useEffect(() => {
 		dispatch(getCompaniesDataAsync(offset, limit, search, type, status));
@@ -92,10 +77,6 @@ function MainSalesScreen() {
 	useEffect(() => {
 		dispatch(setProperty({ key: 'offset', value: 0 }));
 	}, [search, type, status]);
-
-	useEffect(() => {
-		console.log('chosenCompany', chosenCompany);
-	}, [chosenCompany]);
 
 	return (
 		<Grid container justifyContent="center">

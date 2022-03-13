@@ -23,6 +23,7 @@ export const getUtilsAsync = () => async (dispatch) => {
 			dispatch(setUtils(res.data));
 		}
 	} catch (error) {
+		/* eslint no-console: "off" */
 		console.log(error, error.message);
 	}
 };

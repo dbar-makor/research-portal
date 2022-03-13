@@ -83,7 +83,7 @@ function AllPublications() {
 				setStatistics(res.data);
 			}
 		}
-  
+
 	useEffect(() => {
 		fetchStatistics();
 	}, []);

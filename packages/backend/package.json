@@ -4,10 +4,10 @@
 	"description": "Project research",
 	"main": "index.js",
 	"scripts": {
-		"prestart": "npm install",
+		"prestart": "yarn install",
 		"start": "nodemon index.js",
 		"format": "prettier --write **/*.js",
-		"lint": "eslint --fix"
+		"lint": "eslint **/*.js --fix"
 	},
 	"keywords": [
 		"openapi-generator",

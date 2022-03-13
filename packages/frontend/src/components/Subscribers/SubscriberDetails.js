@@ -1,13 +1,12 @@
-import { Button, Grid, InputBase, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import SubscriberInfo from './SubscriberInfo';
 import SubscriberInfoEdit from './SubscriberInfoEdit';
 
-function SubscriberDetails(props) {
+function SubscriberDetails() {
 	const subscriber = useSelector((state) => state.subscribers.chosenSubscriber);
-	const [editableSub, setEditableSub] = useState({ ...subscriber });
 	const [isEdit, setIsEdit] = useState(false);
 
 	const sendEdit = () => {
@@ -22,7 +21,6 @@ function SubscriberDetails(props) {
 				</Grid>
 				{subscriber ? (
 					<>
-						{/*SUB INFO */}
 						<Grid item xs={6} style={{ paddingBottom: 50 }}>
 							<Typography style={{ fontSize: '20px' }}>Info</Typography>
 							<Grid container alignItems="center">
@@ -40,7 +38,6 @@ function SubscriberDetails(props) {
 								</Grid>
 							</Grid>
 						</Grid>
-						{/*SUB LOGS */}
 						<Grid item xs={11}>
 							<Typography style={{ fontSize: '20px' }}>Logs</Typography>
 							<Grid container style={{ height: '350px', backgroundColor: 'lightyellow' }}>

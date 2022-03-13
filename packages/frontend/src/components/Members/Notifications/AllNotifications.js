@@ -50,7 +50,7 @@ function AllNotifications() {
 		const data = {
 			type: 'mark-all-read',
 		};
-		 webSocketService.sendEvent(data, token);
+		webSocketService.sendEvent(data, token);
 		setMarkAsRead((prev) => prev + 1);
 	};
 

@@ -27,7 +27,7 @@ import {
 	validateDeadPublication,
 	validateEvent,
 	validateEditedDeadPublication,
-} from '../Reusables/validationFunctions';
+} from '../Reusables/ValidationFunctions';
 import DropZone from '../Reusables/DropZone';
 import { useHistory, useLocation } from 'react-router';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';

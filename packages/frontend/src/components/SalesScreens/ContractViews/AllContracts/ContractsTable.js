@@ -1,4 +1,3 @@
-
 import {
 	makeStyles,
 	Table,
@@ -151,5 +150,3 @@ function ContractsTable(props) {
 }
 
 export default ContractsTable;
-
-

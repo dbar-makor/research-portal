@@ -1,6 +1,6 @@
 import TextInputUnit from '../../Reusables/TextInputUnit';
 import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
-import { validateMember } from '../../Reusables/validationFunctions';
+import { validateMember } from '../../Reusables/ValidationFunctions';
 import NewMembersTable from './NewMembersTable';
 import { AddButton, CheckButton } from '../../../styles/MainStyles';
 import AddIcon from '@material-ui/icons/Add';
@@ -213,5 +213,3 @@ const MembersStep = ({
 };
 
 export default MembersStep;
-
-

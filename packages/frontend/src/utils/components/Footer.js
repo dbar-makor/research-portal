@@ -39,7 +39,11 @@ export default function Footer() {
 									YOUR CATEGORIES
 								</Grid>
 								{userCategories.map((category) => (
-									<Grid xs={12} style={{ paddingBlock: 8, fontSize: '13px' }} key={category.name}>
+									<Grid
+										xs={12}
+										style={{ paddingBlock: 8, fontSize: '13px' }}
+										key={category.name}
+									>
 										{' '}
 										{category.name.toUpperCase()}
 									</Grid>

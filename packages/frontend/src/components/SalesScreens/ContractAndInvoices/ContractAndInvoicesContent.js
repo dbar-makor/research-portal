@@ -51,13 +51,10 @@ function ContractAndInvoicesContent(props) {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.COMPANY}${END_POINT.CONTRACT}/${id}`);
 			if (res.status === 200) {
-				console.log('res.data', res.data);
 				await setContracts(res.data);
 				await setFilterContract(res.data);
-				console.log(contracts, 'CONTRACT FILTER');
 			}
 		} catch (err) {
-			console.log(err.message);
 			alert(err.message);
 		}
 	};
@@ -98,19 +95,26 @@ function ContractAndInvoicesContent(props) {
 							<TableHead>
 								{rowHeaders.map((row, index) => {
 									return (
-										<HeaderCells style={{ textAlign: row.align, width: row.width }}>
+										<HeaderCells
+											key={index}
+											style={{ textAlign: row.align, width: row.width }}
+										>
 											{row.name}
 										</HeaderCells>
-
-
 									);
 								})}
 							</TableHead>
 							<TableBody>
 								{filterdContract &&
 									filterdContract.map((contract, index) => {
-										return <ContractRow key={index} contract={contract} status={sortStatus} clientName={clientName} />;
-
+										return (
+											<ContractRow
+												key={index}
+												contract={contract}
+												status={sortStatus}
+												clientName={clientName}
+											/>
+										);
 									})}
 							</TableBody>
 						</Table>

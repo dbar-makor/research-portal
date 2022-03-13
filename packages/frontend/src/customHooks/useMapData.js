@@ -30,7 +30,7 @@ export const useMapData = () => {
 		}
 	};
 
-	const getCitiesData = async () => {
+	const getCitiesData = () => {
 		const row = (d) => {
 			d.lat = +d.lat;
 			d.lng = +d.lng;
@@ -40,7 +40,6 @@ export const useMapData = () => {
 		//setCitiesLoading(true);
 		csv(citiesCSV, row).then((data) => {
 			setCitiesData(data);
-			console.log('citiesData', data);
 		});
 	};
 

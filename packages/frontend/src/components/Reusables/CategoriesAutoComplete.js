@@ -5,7 +5,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledTextField, StyledAutoComplete } from '../../styles/MainStyles';
-import { validateMember } from '../Reusables/validationFunctions';
+import { validateMember } from '../Reusables/ValidationFunctions';
 
 function CategoriesAutoComplete({
 	formObject,

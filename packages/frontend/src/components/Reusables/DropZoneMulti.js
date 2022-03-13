@@ -1,15 +1,13 @@
-import React from 'react';
-import { Grid, Typography, TextField } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/AuthorsStyles';
 import { DeleteButton } from '../../styles/MainStyles';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useDropzone } from 'react-dropzone';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
 import { ReactComponent as AttachmentIcon } from '../../assets/icons/iconDocument.svg';
 
 function DropZoneMulti(props) {
 	const classes = useStyles();
-	const { onDrop, purpose = 'your attachments', setFileOK, fileTypes, localForm, deleteItem } = props;
+	const { onDrop = 'your attachments', fileTypes, localForm, deleteItem } = props;
 	const {
 		getRootProps: getRootProps,
 		getInputProps: getInputProps,

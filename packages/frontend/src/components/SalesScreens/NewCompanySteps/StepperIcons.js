@@ -50,5 +50,3 @@ function StepperIcons(props) {
 }
 
 export default StepperIcons;
-
-

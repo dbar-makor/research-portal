@@ -1,12 +1,11 @@
-import { Grid,  makeStyles, MenuItem } from '@material-ui/core';
+import { Grid, makeStyles, MenuItem } from '@material-ui/core';
 import { StyledTextField } from '../../styles/MainStyles';
 const useStyles = makeStyles(() => ({
 	arrowIcon: {
 		'& .MuiSvgIcon-root': {
 			color: '#1C67FF',
 		},
-		'& .MuiSelect-nativeInput': {
-		},
+		'& .MuiSelect-nativeInput': {},
 	},
 }));
 
@@ -55,4 +54,3 @@ function SelectInputUnit({
 }
 
 export default SelectInputUnit;
-

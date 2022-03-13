@@ -92,7 +92,6 @@ const useStyles = makeStyles({
 	},
 });
 
-
 const ITEM_HEIGHT = 48;
 
 const NewMembersTable = ({
@@ -228,5 +227,3 @@ const NewMembersTable = ({
 };
 
 export default NewMembersTable;
-
-

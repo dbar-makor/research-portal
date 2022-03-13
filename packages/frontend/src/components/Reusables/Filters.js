@@ -84,7 +84,6 @@ function Filters(props) {
 										onClick={() =>
 											dispatch(setProperty({ key: 'search', value: localSearch }))
 										}
-
 										className={classes.searchIcon}
 										style={{ cursor: 'pointer' }}
 									/>

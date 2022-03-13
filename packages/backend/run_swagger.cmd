@@ -1,0 +1,1 @@
+java -jar openapi-generator-cli.jar  generate -i swagger.yaml -t templates\nodejs-express-server -g nodejs-express-server -o ./server_generate

@@ -14,7 +14,6 @@ server_generate/bucket_files
 *.jar
 *.env
 *.log
-*.cmd
 *.p8
 *.vscode
 

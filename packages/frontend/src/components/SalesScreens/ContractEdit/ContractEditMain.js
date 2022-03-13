@@ -1,6 +1,6 @@
-import { forwardRef, useRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import { Dialog, DialogTitle, Grid, IconButton, Typography, Button } from '@material-ui/core';
+import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/ContarctsModalStyles';
 import SubHeaderModal from '../../Reusables/SubHeaderModal';
 import SideForm from './SideForm';
@@ -12,8 +12,6 @@ const ContractEditMain = forwardRef((props, ref) => {
 	const classes = useStyles();
 	const { contract, clientName } = props;
 	const [openEdit, setOpenEdit] = useState(false);
-	// const [parentValidationResult, setParentValidationResult] = useState(true);
-	// const [parentContract, setParentContract] = useState(contract);
 	const [activeSidebar, setActiveSidebar] = useState(false);
 	const [loadingSidebar, setLoadingSidebar] = useState(false);
 
@@ -100,5 +98,7 @@ const ContractEditMain = forwardRef((props, ref) => {
 		</Dialog>
 	);
 });
+
+ContractEditMain.displayName = 'ContractEditMain';
 
 export default ContractEditMain;

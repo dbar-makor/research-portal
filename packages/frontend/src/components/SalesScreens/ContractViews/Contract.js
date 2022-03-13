@@ -249,9 +249,9 @@ const useStyles = makeStyles({
 		color: '#868DA2',
 		fontSize: 16,
 		marginTop: 25,
-	}
+	},
 });
-
+const Contract = () => {
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
 	const salesmenArr = useSelector((state) => state.utils.utils.sales);
 	const chosenCompany = useSelector(selectChosenCompany);
@@ -399,7 +399,9 @@ const useStyles = makeStyles({
 												options={salesmenArr}
 												formObject={contract}
 												handler={(e) => {
-													e ? handleContract(e.id, 'sales') : handleContract(e, 'sales');
+													e
+														? handleContract(e.id, 'sales')
+														: handleContract(e, 'sales');
 												}}
 												error={errors.sales}
 												inputValue={inputValueSales}
@@ -490,7 +492,9 @@ const useStyles = makeStyles({
 						<Grid item xs={12} className={`${classes.padding3000px} ${classes.vatGroupWrapper}`}>
 							<Divider className={classes.divider} />
 							<Grid item xs={6} className={classes.vatGroup}>
-								<Typography className={`${classes.indiLabel} ${classes.vatLabel1}`}>Include</Typography>
+								<Typography className={`${classes.indiLabel} ${classes.vatLabel1}`}>
+									Include
+								</Typography>
 								<StatusSwitch
 									name="vat"
 									onChange={(e) => handleContract(e.target.checked, 'vat')}
@@ -517,9 +521,16 @@ const useStyles = makeStyles({
 												{contract.currency && contract.amount && contract.periodicity
 													? `${
 															typeof contract.currency === 'string'
-																? currenciesArr.find((currency) => currency.code === contract.currency).symbol
+																? currenciesArr.find(
+																		(currency) =>
+																			currency.code ===
+																			contract.currency,
+																  ).symbol
 																: contract.currency.symbol
-													  }${(contract.amount * periodToNum[contract.periodicity]).toLocaleString()}`
+													  }${(
+															contract.amount *
+															periodToNum[contract.periodicity]
+													  ).toLocaleString()}`
 													: '0'}
 											</Typography>
 										</Grid>
@@ -556,7 +567,9 @@ const useStyles = makeStyles({
 											inputProps: {
 												autoComplete: 'off',
 												decimalNo: 0,
-												minValue: chosenCompany.members ? chosenCompany.members.length : 0,
+												minValue: chosenCompany.members
+													? chosenCompany.members.length
+													: 0,
 											},
 										}}
 									/>
@@ -582,14 +595,16 @@ const useStyles = makeStyles({
 						handlerRight={handleSubmit}
 						textButtonLeft="Cancel"
 						textButtonRight="Done"
-				 />
+					/>
 				</Grid>
 			) : (
 				<>
 					<Grid container>
 						<Divider className={classes.divider} style={{ width: '100%', marginTop: 25 }} />
 						<Grid item>
-							<Typography className={classes.comment}>*Changes will apply from next payment</Typography>
+							<Typography className={classes.comment}>
+								*Changes will apply from next payment
+							</Typography>
 						</Grid>
 					</Grid>
 					<Grid container className={classes.btnContainer} justifyContent="flex-end">
@@ -603,6 +618,6 @@ const useStyles = makeStyles({
 			)}
 		</Grid>
 	);
-}
+};
 
 export default Contract;

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 //MUI
 import { Grid, Table, TableHead, TableBody, TableRow, TableCell, TableContainer } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
@@ -8,9 +7,8 @@ import * as subscribersAction from '../../redux/subscribers/subscribersSlice';
 //Icons
 import { ReactComponent as Paid } from '../../assets/icons/paid.svg';
 import { ReactComponent as NotPaid } from '../../assets/icons/notPaid.svg';
-import { setChosenSubscriber } from '../../redux/subscribers/subscribersSlice';
 
-function SubscribersTable(props) {
+function SubscribersTable() {
 	const dispatch = useDispatch();
 	const subscribers = useSelector((state) => state.subscribers.subscribers);
 	const columns = ['Name', 'Email', 'Paid', 'Country'];
@@ -40,7 +38,7 @@ function SubscribersTable(props) {
 						{subscribers.map((sub, idx) => {
 							return (
 								<StyledTableRow key={idx} onClick={() => setChosenSubscriber(sub)}>
-									{Object.entries(sub).map(([key, value], idx) => {
+									{Object.entries(sub).map(([key, value]) => {
 										return key === 'full_name' ? (
 											<StyledTableCell style={{ width: 140 }}>{value}</StyledTableCell>
 										) : key === 'email' ? (

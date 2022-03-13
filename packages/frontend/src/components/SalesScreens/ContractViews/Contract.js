@@ -9,7 +9,7 @@ import { BASE_URL, END_POINT } from '../../../utils/constants';
 import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeChosenCompany, selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import { validateContract, validateEditedContract } from '../../Reusables/validationFunctions';
+import { validateContract, validateEditedContract } from '../../Reusables/ValidationFunctions';
 import { StatusSwitch, FilledButton } from '../../../styles/MainStyles';
 import ButtonRow from './ButtonRow';
 import { useHistory } from 'react-router-dom';

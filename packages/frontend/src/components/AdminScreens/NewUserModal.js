@@ -17,7 +17,7 @@ import {
 	selectUsersStatus,
 	selectUsersSearch,
 } from '../../redux/users/usersSlice';
-import { validateUser } from '../Reusables/validationFunctions';
+import { validateUser } from '../Reusables/ValidationFunctions';
 
 function NewUserModal(props) {
 	const classes = useStyles();

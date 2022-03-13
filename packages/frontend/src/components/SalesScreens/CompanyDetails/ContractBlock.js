@@ -1,7 +1,4 @@
-import React from 'react';
 import { useStyles } from '../../../styles/InfoStyles';
-import { selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 import { format } from 'date-fns';
 import { ReactComponent as GreenCheckIcon } from '../../../assets/icons/IconGreenCheck.svg';

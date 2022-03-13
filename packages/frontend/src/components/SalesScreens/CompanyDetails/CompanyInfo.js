@@ -7,7 +7,6 @@ import {
 	EditButton,
 	LinkButton,
 	FilledButton,
-	useStyles as useMainStyles,
 	CompanyStatusSwitch,
 	EditDoneButton,
 } from '../../../styles/MainStyles';
@@ -63,8 +62,6 @@ function CompanyInfo() {
 
 	useEffect(() => {
 		if (currentCompany) {
-			console.log('currentCompany', currentCompany);
-			console.log('countriesArr', countriesArr);
 			const chosenCompanyCopy = { ...currentCompany, isEditMode: false };
 			// const updatedRows = rowsCopy.map((row) => ({
 			//   ...row,
@@ -97,7 +94,6 @@ function CompanyInfo() {
 				),
 			);
 		}
-		console.log('chosenCompany', chosenCompany);
 	}, [chosenCompany]);
 
 	const currentContractProps = {
@@ -139,14 +135,12 @@ function CompanyInfo() {
 		try {
 			const res = await axios.delete(`${BASE_URL}${END_POINT.COMPANY}/${id}`);
 			if (res.status === 200) {
-				console.log(res);
 				handleCloseAlert();
 				dispatch(changeChosenCompany(null));
 				dispatch(getCompaniesDataAsync(offset, limit, search, type, status));
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully deleted', 2000));
 			}
 		} catch (error) {
-			console.log(error);
 			handleCloseAlert();
 			dispatch(actionSnackBar.setSnackBar('error', 'Delete failed', 2000));
 		}
@@ -161,7 +155,6 @@ function CompanyInfo() {
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully upgraded', 2000));
 			}
 		} catch (error) {
-			console.log(error);
 			handleCloseAlert();
 			dispatch(actionSnackBar.setSnackBar('error', 'Upgrade failed', 2000));
 		}
@@ -169,7 +162,7 @@ function CompanyInfo() {
 
 	const updateCompanyField = (key, value) => {
 		// if (value !== null && value !== undefined && value !== '') {
-		console.log('value!!!', value);
+		// console.log('value!!!', value);
 		//   setCompanyToSend(prev => ({
 		//     ...prev,
 		//     [key]: value
@@ -194,25 +187,20 @@ function CompanyInfo() {
 		//   console.log('YES')
 		const companyCopy = {};
 		// // companyCopy[key] = value
-		console.log('chosenCompany.country', chosenCompany.country);
-		console.log('currentCompany.country', currentCompany.country);
 		companyCopy.status = chosenCompany.status;
 		companyCopy.country = chosenCompany.country
 			? chosenCompany.country.code
 			: currentCompany.country.code;
 		companyCopy.name = chosenCompany.name ? chosenCompany.name : currentCompany.name;
 		// setChosenCompany(companyCopy)
-		console.log('companyCopy', companyCopy);
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.COMPANY}/${chosenCompany.id}`, companyCopy);
 			if (res.status === 201) {
-				console.log('updateCompany res', res);
 				dispatch(getChosenCompanyAsync(chosenCompany.id));
 				dispatch(getCompaniesDataAsync(offset, limit, search, type, status));
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully updated', 2000));
 			}
 		} catch (error) {
-			console.log(error);
 			dispatch(actionSnackBar.setSnackBar('error', 'Update failed', 2000));
 		}
 		// }

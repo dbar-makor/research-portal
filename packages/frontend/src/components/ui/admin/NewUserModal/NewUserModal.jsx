@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import NewUserModalView from './NewUserModal.view';
 import {
@@ -8,7 +8,7 @@ import {
 	selectUsersStatus,
 	selectUsersSearch,
 } from '../../../../redux/users/usersSlice';
-import { validateUser } from '../../../Reusables/validationFunctions';
+import { validateUser } from '../../../Reusables/ValidationFunctions';
 import * as actionSnackBar from '../../../../redux/SnackBar/action';
 import { BASE_URL, END_POINT } from '../../../../utils/constants';
 import axios from 'axios';
@@ -37,6 +37,17 @@ const NewUserModal = (props) => {
 		validateUser({ [key]: value }, errors, setErrors, setValidationResult);
 	};
 
+	const clearAndClose = () => {
+		setNewUser({
+			name: '',
+			username: '',
+			email: '',
+			country: null,
+		});
+		setInputValueCountry('');
+		handleClose();
+	};
+
 	const sendNewUser = async () => {
 		const userToSend = { ...newUser, country: newUser.country.code, type: userType };
 		// const userTypeToSend = userType === 'author' ? 'authors' : 'sales'
@@ -55,17 +66,6 @@ const NewUserModal = (props) => {
 			}
 			handleClose();
 		}
-	};
-
-	const clearAndClose = () => {
-		setNewUser({
-			name: '',
-			username: '',
-			email: '',
-			country: null,
-		});
-		setInputValueCountry('');
-		handleClose();
 	};
 
 	return (

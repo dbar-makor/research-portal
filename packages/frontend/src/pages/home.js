@@ -418,11 +418,12 @@ function home() {
 								Churchill Capital: GCP/SGO FP - Discussion with GCP Applied Temporarily
 							</div>
 							<div className={classes.carouselContect}>
-								Lorem Ipsum has been the industry-s standard dummy text ever since the 1500s, w
+								Lorem Ipsum has been the industry-s standard dummy text ever since the 1500s,
+								w
 							</div>
 							<div className={classes.carouselContect}>
-								Examples might be simplified to improve reading and learning. Tutorials, references, and
-								exampleTutorials, references, and avoid
+								Examples might be simplified to improve reading and learning. Tutorials,
+								references, and exampleTutorials, references, and avoid
 							</div>
 						</Carousel>
 					</section>
@@ -445,7 +446,10 @@ function home() {
 								</div>
 								<div>
 									<div className={classes.mostClickedIdeasTitle}>Strategy</div>
-									<div className={classes.mostClickedIdeasTitle} style={{ fontSize: '1.2rem' }}>
+									<div
+										className={classes.mostClickedIdeasTitle}
+										style={{ fontSize: '1.2rem' }}
+									>
 										Merger
 									</div>
 								</div>
@@ -457,7 +461,10 @@ function home() {
 								</div>
 								<div>
 									<div className={classes.mostClickedIdeasTitle}>Strategy</div>
-									<div className={classes.mostClickedIdeasTitle} style={{ fontSize: '1.2rem' }}>
+									<div
+										className={classes.mostClickedIdeasTitle}
+										style={{ fontSize: '1.2rem' }}
+									>
 										Merger
 									</div>
 								</div>
@@ -469,7 +476,10 @@ function home() {
 								</div>
 								<div>
 									<div className={classes.mostClickedIdeasTitle}>Strategy</div>
-									<div className={classes.mostClickedIdeasTitle} style={{ fontSize: '1.2rem' }}>
+									<div
+										className={classes.mostClickedIdeasTitle}
+										style={{ fontSize: '1.2rem' }}
+									>
 										Merger
 									</div>
 								</div>
@@ -506,7 +516,9 @@ function home() {
 										<div className={classes.lastPublicationsTitle}>02/28/2022</div>
 									</div>
 									<div>
-										<div className={classes.lastPublicationsContent}>Asia Weekly Wrap of finance news...</div>
+										<div className={classes.lastPublicationsContent}>
+											Asia Weekly Wrap of finance news...
+										</div>
 									</div>
 								</section>
 								<section className={classes.lastPublicationsWrapper}>
@@ -521,7 +533,9 @@ function home() {
 										<div className={classes.lastPublicationsTitle}>02/28/2022</div>
 									</div>
 									<div>
-										<div className={classes.lastPublicationsContent}>Asia Weekly Wrap of finance news...</div>
+										<div className={classes.lastPublicationsContent}>
+											Asia Weekly Wrap of finance news...
+										</div>
 									</div>
 								</section>
 								<section className={classes.lastPublicationsWrapper}>
@@ -536,7 +550,9 @@ function home() {
 										<div className={classes.lastPublicationsTitle}>02/28/2022</div>
 									</div>
 									<div>
-										<div className={classes.lastPublicationsContent}>Asia Weekly Wrap of finance news...</div>
+										<div className={classes.lastPublicationsContent}>
+											Asia Weekly Wrap of finance news...
+										</div>
 									</div>
 								</section>
 							</TabPanel>
@@ -638,7 +654,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -651,7 +669,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -664,7 +684,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -677,7 +699,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -690,7 +714,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -703,7 +729,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -716,7 +744,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -729,7 +759,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -742,7 +774,9 @@ function home() {
 												padding: '5px',
 											}}
 										>
-											<div className={classes.morningNotesContent}>Morning Note Asia-Pacific</div>
+											<div className={classes.morningNotesContent}>
+												Morning Note Asia-Pacific
+											</div>
 											<div className={classes.morningNotesDate}>02/28/2022</div>
 										</div>
 									</section>
@@ -789,7 +823,9 @@ function home() {
 							<div>
 								<div className={classes.industryRecoursedContent}>
 									Churchill Capital:&nbsp;
-									<span style={{ fontWeight: 'bold' }}>GCP/SGO FP - Discussion with GCP Applied Te...</span>
+									<span style={{ fontWeight: 'bold' }}>
+										GCP/SGO FP - Discussion with GCP Applied Te...
+									</span>
 								</div>
 							</div>
 						</section>
@@ -826,7 +862,9 @@ function home() {
 							<div>
 								<div className={classes.industryRecoursedContent}>
 									Churchill Capital:&nbsp;
-									<span style={{ fontWeight: 'bold' }}>GCP/SGO FP - Discussion with GCP Applied Te...</span>
+									<span style={{ fontWeight: 'bold' }}>
+										GCP/SGO FP - Discussion with GCP Applied Te...
+									</span>
 								</div>
 							</div>
 						</section>
@@ -863,7 +901,9 @@ function home() {
 							<div>
 								<div className={classes.industryRecoursedContent}>
 									Churchill Capital:&nbsp;
-									<span style={{ fontWeight: 'bold' }}>GCP/SGO FP - Discussion with GCP Applied Te...</span>
+									<span style={{ fontWeight: 'bold' }}>
+										GCP/SGO FP - Discussion with GCP Applied Te...
+									</span>
 								</div>
 							</div>
 						</section>
@@ -900,7 +940,9 @@ function home() {
 							<div>
 								<div className={classes.industryRecoursedContent}>
 									Churchill Capital:&nbsp;
-									<span style={{ fontWeight: 'bold' }}>GCP/SGO FP - Discussion with GCP Applied Te...</span>
+									<span style={{ fontWeight: 'bold' }}>
+										GCP/SGO FP - Discussion with GCP Applied Te...
+									</span>
 								</div>
 							</div>
 						</section>
@@ -937,7 +979,9 @@ function home() {
 							<div>
 								<div className={classes.industryRecoursedContent}>
 									Churchill Capital:&nbsp;
-									<span style={{ fontWeight: 'bold' }}>GCP/SGO FP - Discussion with GCP Applied Te...</span>
+									<span style={{ fontWeight: 'bold' }}>
+										GCP/SGO FP - Discussion with GCP Applied Te...
+									</span>
 								</div>
 							</div>
 						</section>
@@ -1391,7 +1435,11 @@ function home() {
                       }
                   `}</style>
 									</Helmet>
-									<DayPicker renderDay={renderDay} selectedDays={selectedDay} onDayClick={setSelectedDay} />
+									<DayPicker
+										renderDay={renderDay}
+										selectedDays={selectedDay}
+										onDayClick={setSelectedDay}
+									/>
 								</div>
 								<section className={classes.eventsWrapper}>
 									<div className={classes.eventsInnerWrapper}>
@@ -1465,7 +1513,10 @@ function home() {
 										</div>
 									</div>
 									<div className={classes.eventsInnerWrapper}>
-										<div style={{ backgroundColor: '#00CA80' }} className={classes.eventsLabel}></div>
+										<div
+											style={{ backgroundColor: '#00CA80' }}
+											className={classes.eventsLabel}
+										></div>
 										<div className={classes.eventsContentWrapper}>
 											<div className={classes.eventsInnerContentWrapper}>
 												<div className={classes.eventsHeader}>ARNA US</div>
@@ -1554,5 +1605,3 @@ const TabsList = styled(TabsListUnstyled)`
 	justify-content: center;
 	align-content: space-between;
 `;
-
-

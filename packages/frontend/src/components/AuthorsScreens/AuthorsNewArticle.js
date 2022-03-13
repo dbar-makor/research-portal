@@ -45,7 +45,7 @@ import {
 	validateLivePublication,
 	validateEvent,
 	validateEditedLivePublication,
-} from '../Reusables/validationFunctions';
+} from '../Reusables/ValidationFunctions';
 import DropZone from '../Reusables/DropZone';
 import DropZoneMulti from '../Reusables/DropZoneMulti';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';
@@ -119,7 +119,7 @@ function AuthorsNewArticle() {
 	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
-			console.log("there's a chosenResearch");
+			console.log('there\'s a chosenResearch');
 			const coverImg = chosenResearch.attachments.find(
 				(attachment) => attachment.file_type === 'main_bg',
 			);

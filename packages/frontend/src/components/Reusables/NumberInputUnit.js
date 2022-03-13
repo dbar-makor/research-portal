@@ -1,5 +1,4 @@
-import { Grid, Typography, TextField, InputAdornment } from '@material-ui/core';
-import NumberFormatCustom from '../../utils/components/NumberFormatCustom';
+import { Grid, TextField } from '@material-ui/core';
 
 function NumberInputUnit({ className, name, label, value, onChange, InputProps, error = null }) {
 	return (

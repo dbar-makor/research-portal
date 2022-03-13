@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { Grid, Typography, makeStyles, Divider } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import ButtonRow from './ButtonRow';
@@ -214,5 +214,3 @@ function SendContractView({ setStep, contractCopy, setContractCopy }) {
 }
 
 export default SendContractView;
-
-

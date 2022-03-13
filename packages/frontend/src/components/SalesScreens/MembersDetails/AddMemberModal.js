@@ -5,7 +5,7 @@ import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg
 import { FilledButton } from '../../../styles/MainStyles';
 import TextInputUnit from '../../Reusables/TextInputUnit';
 import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
-import { validateMember } from '../../Reusables/validationFunctions';
+import { validateMember } from '../../Reusables/ValidationFunctions';
 
 function AddMemberModal(props) {
 	const { open, handleClose, companyName, addMember, newMember, setNewMember } = props;

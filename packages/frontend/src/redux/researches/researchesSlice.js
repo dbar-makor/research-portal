@@ -27,5 +27,4 @@ export const getResearchesDataAsync = () => async (dispatch) => {
 	} catch (error) {}
 };
 
-
 export default researchesSlice.reducer;

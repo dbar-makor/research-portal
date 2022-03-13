@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createSlice } from '@reduxjs/toolkit';
 
-
 //Slice
 export const subscribersSlice = createSlice({
 	name: 'subscribers',

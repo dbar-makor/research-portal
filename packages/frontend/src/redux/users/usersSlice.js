@@ -112,4 +112,5 @@ export const getUsersDataAsync = () => async (dispatch) => {
 		dispatch(setLoading(false));
 	}
 };
+
 export default usersSlice.reducer;

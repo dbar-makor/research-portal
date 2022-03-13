@@ -16,7 +16,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { useLocation, Redirect, Link } from 'react-router-dom';
 // import { ReactComponent as BlueBorder } from "../../assets/icons/blueBorder.svg";
 import { ReactComponent as BlueBorder } from '../assets/icons/blueBorder.svg';
-import { validateLogin } from '../components/Reusables/ValidationFunctions';
+import { validateLogin } from '../components/Reusables/validationFunctions';
 import TextInputUnit from '../components/Reusables/TextInputUnit';
 import { FilledButton } from '../styles/MainStyles';
 const useStyles = makeStyles(() => ({
@@ -155,7 +155,6 @@ function LoginPage() {
 	};
 
 	const handleLogin = () => {
-		console.log('form.username, form.password', form.username, form.password);
 		dispatch(actionAuth.login(form.username, form.password));
 	};
 
@@ -173,15 +172,12 @@ function LoginPage() {
 	}
 
 	if (isAuthenticated) {
-		console.log('location.state', location);
 		if (location.state !== undefined && location.state !== null) {
 			return <Redirect to={location.state.from.pathname} />;
 		} else {
-			console.log('else');
 			if (isAuthor) {
 				return <Redirect to="/researches" />;
 			} else if (isSales || isAdmin) {
-				console.log('isSales');
 				return <Redirect to="/companies" />;
 			} else if (isMember) {
 				return <Redirect to="/home" />;

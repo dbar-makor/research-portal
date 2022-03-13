@@ -9,7 +9,6 @@ export const researchesSlice = createSlice({
 	},
 	reducers: {
 		getResearchesData: (state, action) => {
-			console.log('action', action.payload);
 			state.articles = action.payload;
 		},
 	},
@@ -21,6 +20,7 @@ export const getResearchesDataAsync = () => async (dispatch) => {
 		// const res = await axios.get(BASE_URL + END_POINT.DASHBOARD)
 		const res = researches;
 		// if (res.status === 200) {
+		/* eslint no-console: "off" */
 		console.log('ressss', res);
 		await dispatch(getResearchesData(res.researches));
 		// }

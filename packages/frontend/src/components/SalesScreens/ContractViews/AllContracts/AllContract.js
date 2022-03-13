@@ -90,6 +90,7 @@ function AllContracts() {
 				setCompaniesNames(companies);
 			}
 		} catch (err) {
+					/* eslint no-console: "off" */
 			console.log(err);
 		}
 	};
@@ -117,7 +118,6 @@ function AllContracts() {
 						return;
 					}
 				}
-				console.log(params, 'PARAMS');
 			});
 
 			const resp = await axios.get(`${BASE_URL}${END_POINT.CONTRACT}`, { params });

@@ -2,7 +2,6 @@ import { Grid, Typography } from '@material-ui/core';
 
 function VideoFrame(props) {
 	const { video } = props;
-	console.log(video);
 	return (
 		<Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', paddingTop: 20 }}>
 			{video.link_video !== null && video.title_video !== null ? (

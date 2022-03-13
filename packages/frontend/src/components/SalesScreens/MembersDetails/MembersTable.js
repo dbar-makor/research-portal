@@ -55,7 +55,6 @@ function MembersTable() {
 			const res = await axios.post(`${BASE_URL}${END_POINT.USER}`, memberToAdd);
 			if (res.status === 201 && chosenCompany) {
 				dispatch(getChosenCompanyAsync(chosenCompany.id));
-				console.log(res);
 				handleCloseModal();
 				setNewMember({
 					...newMember,
@@ -104,10 +103,6 @@ function MembersTable() {
 	let timer = 0;
 	const delay = 200;
 	let prevent = false;
-
-	useEffect(() => {
-		console.log('membersRows', membersRows);
-	}, [membersRows]);
 
 	useEffect(() => {
 		if (chosenCompany) {
@@ -170,7 +165,6 @@ function MembersTable() {
 		if (key !== 'categories') {
 			memberToUpdate[key] = value;
 		} else {
-			console.log('VALUES', value);
 			const newCats = [];
 			for (const cat of value) {
 				newCats.push(cat);
@@ -178,15 +172,12 @@ function MembersTable() {
 			memberToUpdate = { ...memberToUpdate, categories: newCats };
 		}
 		setCurrentMember(memberToUpdate);
-		// if (key === 'status') {
-		//   sendMember(memberToUpdate, memberToUpdate.id)
-		// }
+
 		updatedMembersRows.splice(index, 1, memberToUpdate);
 		setMembersRows(updatedMembersRows);
 	};
 
 	const sendMember = async (member, id) => {
-		console.log('member!!!!dfjhdlf', member);
 		const readyMember = {
 			...member,
 			categories: member.categories.map((category) => category.id),
@@ -195,13 +186,11 @@ function MembersTable() {
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.USER}/${id}`, readyMember);
 			if (res.status === 200) {
-				console.log(res);
 				handleClose();
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully updated', 2000));
 				// dispatch(getChosenCompanyAsync(chosenCompany.id))
 			}
 		} catch (error) {
-			console.log(error);
 			dispatch(actionSnackBar.setSnackBar('error', 'Update failed', 2000));
 			handleClose();
 		}
@@ -211,13 +200,11 @@ function MembersTable() {
 		try {
 			const res = await axios.delete(`${BASE_URL}${END_POINT.USER}/${id}`);
 			if (res.status === 200 && chosenCompany) {
-				console.log(res);
 				dispatch(getChosenCompanyAsync(chosenCompany.id));
 				handleCloseAlert();
 				dispatch(actionSnackBar.setSnackBar('success', 'Member successfully deleted', 2000));
 			}
 		} catch (error) {
-			console.log(error);
 			handleCloseAlert();
 			dispatch(actionSnackBar.setSnackBar('error', 'Delete member failed', 2000));
 		}
@@ -228,16 +215,6 @@ function MembersTable() {
 		setCurrentMember,
 	};
 
-	// const handleBlur = (membersRows) => {
-	//   const rowsCopy = membersRows.map((membersRow) => ({
-	//     ...membersRow,
-	//     isEditMode: false
-	//   }))
-	//   // const updatedRow = { ...member, isEditMode: false }
-	//   // rowsCopy.splice(index, 1, updatedRow)
-	//   setMembersRows(rowsCopy)
-
-	// }
 	const handleBlur = (e, member, index) => {
 		if (
 			!e.relatedTarget ||
@@ -253,7 +230,6 @@ function MembersTable() {
 				_.isEqual({ ...member, isEditMode: true }, { ...past, isEditMode: true }) === false
 			) {
 				rowsCopy.splice(index, 1, updatedRow);
-				console.log(rowsCopy);
 				setMembersRows(rowsCopy);
 				sendMember(member, member.id);
 				setOriginalRows(rowsCopy);
@@ -307,7 +283,6 @@ function MembersTable() {
 										onDoubleClick={() => {
 											// const rowsCopy = [...membersRows]
 											const element = document.getElementById(`${index}`);
-											console.log(element);
 											element.focus();
 											clearTimeout(timer);
 											prevent = true;
@@ -316,29 +291,20 @@ function MembersTable() {
 												...membersRow,
 												isEditMode: false,
 											}));
-											console.log('rowsCopy', rowsCopy);
 											const updatedRow = { ...row, isEditMode: true };
-											console.log('updatedRow', updatedRow);
 											rowsCopy.splice(index, 1, updatedRow);
-											console.log('rowsCopy ater', rowsCopy);
 											setMembersRows(rowsCopy);
 										}}
 										onClick={(ev) => {
-											console.log(ev);
 											if (ev.target.id !== 'categories' && ev.nodeName === 'INPUT') {
-												console.log('here', ev);
 												timer = setTimeout(function () {
 													if (!prevent) {
 														const element = document.getElementById(`${index}`);
-														console.log(element);
 														element.focus();
 													}
 													prevent = false;
 												}, delay);
 											}
-										}}
-										onFocus={() => {
-											console.log('focus');
 										}}
 										// style={{ display: filterMembersDisplay(row, row.status)}}
 										style={{
@@ -397,7 +363,6 @@ function MembersTable() {
 																	checked={value}
 																	id="memberStatus"
 																	onChange={() => {
-																		console.log('row', row);
 																		updateMemberField(!value, key, index);
 																	}}
 																/>

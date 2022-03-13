@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Dialog, Grid } from '@material-ui/core';
 import { useStyles } from '../../styles/InfoStyles';
 import SubHeaderModal from '../Reusables/SubHeaderModal';

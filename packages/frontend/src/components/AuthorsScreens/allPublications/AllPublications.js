@@ -78,9 +78,6 @@ function AllPublications() {
 				setStatistics(res.data);
 			}
 		} catch (error) {
-			/* eslint no-console: 0 */
-				console.log('get statistics', res.data);
-				setStatistics(res.data);
 			}
 		}
 

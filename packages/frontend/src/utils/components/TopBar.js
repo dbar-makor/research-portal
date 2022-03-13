@@ -175,7 +175,6 @@ function TopBar() {
 					setNotifications([...message.notifications]);
 					break;
 				case 'succeed':
-					console.log('succeed');
 					break;
 				default:
 					send = {

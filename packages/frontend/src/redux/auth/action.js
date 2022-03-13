@@ -28,6 +28,7 @@ export const login = (email, password) => async (dispatch) => {
 		});
 		dispatch(actionSnackBar.setSnackBar('success', 'Successfully connected', 2000));
 	} catch (error) {
+		/* eslint no-console: "off" */
 		console.log(error);
 		if (error) {
 			dispatch(actionSnackBar.setSnackBar('error', 'You don\'t have access to the platform', 3000));

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Grid, Typography, Dialog } from '@material-ui/core';
 import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg';
 import { useStyles } from '../../../styles/InfoStyles';
@@ -18,10 +17,6 @@ function CategoriesModal(props) {
 		setMembersRows,
 		sendMember,
 	} = props;
-
-	useEffect(() => {
-		console.log('currentMember', currentMember);
-	}, [currentMember]);
 
 	return (
 		currentMember && (

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Michal Tal Socher\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+  C:\Program Files\nodejs\node.exe C:\Users\Ortal\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
 
 PATH: 
-  C:\Users\Michal Tal Socher\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Michal Tal Socher\bin;C:\Python310\Scripts;C:\Python310;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY;C:\Users\Michal Tal Socher\AppData\Local\Microsoft\WindowsApps;C:\Users\Michal Tal Socher\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Michal Tal Socher\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Ortal\AppData\Local\Microsoft\WindowsApps;;C:\Users\Ortal\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Ortal\AppData\Roaming\npm
 
 Yarn version: 
   1.22.17
@@ -14,12 +14,12 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\Michal Tal Socher\research-portal\packages\backend\package.json: Unexpected token < in JSON at position 217
+  SyntaxError: C:\Users\Ortal\Documents\research-portal\packages\backend\package.json: Unexpected token < in JSON at position 217
       at JSON.parse (<anonymous>)
-      at C:\Users\Michal Tal Socher\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at C:\Users\Ortal\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
       at Generator.next (<anonymous>)
-      at step (C:\Users\Michal Tal Socher\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\Michal Tal Socher\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+      at step (C:\Users\Ortal\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\Ortal\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
 
 npm manifest: 
   {

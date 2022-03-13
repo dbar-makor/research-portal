@@ -78,7 +78,13 @@ function AllNotifications() {
 							{filteredNotifications.length &&
 								filteredNotifications.map((item) => {
 									const content = JSON.parse(item.content);
-									return <NotificationBox key={item.id} content={content} isRead={item.is_read} />;
+									return (
+										<NotificationBox
+											key={item.id}
+											content={content}
+											isRead={item.is_read}
+										/>
+									);
 								})}
 						</Grid>
 					</Grid>

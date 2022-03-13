@@ -20,7 +20,8 @@ export const companiesSlice = createSlice({
 	reducers: {
 		setCompanyProperty: (state, action) => {
 			if (action.payload.subProperty) {
-				state.company[action.payload.mainProperty][action.payload.subProperty] = action.payload.updatedValue;
+				state.company[action.payload.mainProperty][action.payload.subProperty] =
+					action.payload.updatedValue;
 			} else {
 				state.company[action.payload.mainProperty] = action.payload.updatedValue;
 			}
@@ -71,7 +72,10 @@ export const getCompaniesDataAsync = (offset, limit, search, type, status) => as
 	const state = getState();
 
 	try {
-		const res = await axios.get(BASE_URL + END_POINT.COMPANY, setParams(offset, limit, search, type, status));
+		const res = await axios.get(
+			BASE_URL + END_POINT.COMPANY,
+			setParams(offset, limit, search, type, status),
+		);
 		if (res.status === 200) {
 			dispatch(setProperty({ key: 'metaData', value: res.data.meta_data }));
 			dispatch(setLoading(false));

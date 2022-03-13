@@ -179,7 +179,11 @@ const NewMembersTable = ({
 									<TableCell className={classes.tableCell} align="left">
 										{row.position}
 									</TableCell>
-									<TableCell className={classes.tableCell} align="center" style={{ width: 80 }}>
+									<TableCell
+										className={classes.tableCell}
+										align="center"
+										style={{ width: 80 }}
+									>
 										{row.categories.length}
 									</TableCell>
 									<TableCell className={classes.tableCell} align="center">
@@ -199,10 +203,16 @@ const NewMembersTable = ({
 												},
 											}}
 										>
-											<MenuItem onClick={() => editMember(index)} className={classes.option}>
+											<MenuItem
+												onClick={() => editMember(index)}
+												className={classes.option}
+											>
 												Edit
 											</MenuItem>
-											<MenuItem onClick={() => deleteMember(index)} className={classes.option}>
+											<MenuItem
+												onClick={() => deleteMember(index)}
+												className={classes.option}
+											>
 												Delete
 											</MenuItem>
 										</Menu>

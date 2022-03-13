@@ -35,7 +35,8 @@ function CategoriesAutoComplete({
 	}, []);
 
 	const categoriesIDSArr = categoriesArr?.map((item) => item.id);
-	const itemIndex = parentArr && parentArr.length && parentArr.findIndex((item) => item.id === formObject.id);
+	const itemIndex =
+		parentArr && parentArr.length && parentArr.findIndex((item) => item.id === formObject.id);
 
 	//always an arr:
 	const adjustedFormObject = formObject.categories ? formObject.categories : formObject;

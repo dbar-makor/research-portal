@@ -212,7 +212,12 @@ function TopBar(props) {
 											placeholder="Idea/Ticker"
 											InputProps={{
 												endAdornment: (
+													<SearchIcon
+														className={classes.searchIcon}
+														style={{ cursor: 'pointer' }}
+													/>
 													<SearchIcon className={classes.searchIcon} style={{ cursor: 'pointer' }} />
+
 												),
 											}}
 										/>
@@ -310,19 +315,30 @@ function TopBar(props) {
 										<Grow
 											{...TransitionProps}
 											style={{
-												transformOrigin: placement === 'bottom-start' ? 'right top' : 'right bottom',
+												transformOrigin:
+													placement === 'bottom-start'
+														? 'right top'
+														: 'right bottom',
 											}}
 										>
 											<Paper>
-												<ClickAwayListener onClickAway={(e) => handleClose(e, 'user_mgmt')}>
+												<ClickAwayListener
+													onClickAway={(e) => handleClose(e, 'user_mgmt')}
+												>
 													<MenuList
 														autoFocusItem={open}
 														id="composition-menu"
 														aria-labelledby="composition-button"
 													>
-														<MenuItem onClick={() => adminGoTo('/sales')}>Sales</MenuItem>
-														<MenuItem onClick={() => adminGoTo('/companies')}>Companies Page</MenuItem>
-														<MenuItem onClick={() => adminGoTo('/authors')}>Authors Page</MenuItem>
+														<MenuItem onClick={() => adminGoTo('/sales')}>
+															Sales
+														</MenuItem>
+														<MenuItem onClick={() => adminGoTo('/companies')}>
+															Companies Page
+														</MenuItem>
+														<MenuItem onClick={() => adminGoTo('/authors')}>
+															Authors Page
+														</MenuItem>
 													</MenuList>
 												</ClickAwayListener>
 											</Paper>
@@ -354,9 +370,6 @@ function TopBar(props) {
 						<Toolbar>
 							<Grid item xs={4} className={classes.gridSpacing} style={{ marginLeft: '380px' }}>
 								<Link
-<<<<<<< HEAD
-									to={userType === 'author' ? '/researches' : userType === 'sales' ? '/companies' : '/home'}
-=======
 									to={
 										userType === 'author'
 											? '/researches'
@@ -364,7 +377,6 @@ function TopBar(props) {
 											? '/companies'
 											: '/home'
 									}
->>>>>>> 5b020432a068e31cceeef2679c924d1dbd8c26eb
 									className={classes.link}
 								>
 									<MakorLogo />

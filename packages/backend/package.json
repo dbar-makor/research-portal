@@ -6,8 +6,12 @@
 	"scripts": {
 		"prestart": "npm install",
 		"start": "nodemon index.js",
-		"format": "prettier --write \"src/**/*.js\"",
+		"format": "prettier --write **/*.js",
+<<<<<<< HEAD
+		"lint": "eslint --fix **/*.js"
+=======
 		"lint": "eslint --fix"
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 	},
 	"keywords": [
 		"openapi-generator",

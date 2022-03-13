@@ -26,7 +26,10 @@ function SubscribersTable(props) {
 						<TableRow>
 							{columns.map((col, idx) => {
 								return (
-									<StyledTableCell style={{ textAlign: col !== 'Name' ? 'center' : null }} key={idx}>
+									<StyledTableCell
+										style={{ textAlign: col !== 'Name' ? 'center' : null }}
+										key={idx}
+									>
 										{col}
 									</StyledTableCell>
 								);
@@ -41,13 +44,17 @@ function SubscribersTable(props) {
 										return key === 'full_name' ? (
 											<StyledTableCell style={{ width: 140 }}>{value}</StyledTableCell>
 										) : key === 'email' ? (
-											<StyledTableCell style={{ textAlign: 'center', width: 45 }}>{value}</StyledTableCell>
+											<StyledTableCell style={{ textAlign: 'center', width: 45 }}>
+												{value}
+											</StyledTableCell>
 										) : key === 'paid' ? (
 											<StyledTableCell style={{ textAlign: 'center', width: 30 }}>
 												{value === true ? <Paid /> : <NotPaid />}
 											</StyledTableCell>
 										) : key === 'country' ? (
-											<StyledTableCell style={{ textAlign: 'center', width: 40 }}>{value}</StyledTableCell>
+											<StyledTableCell style={{ textAlign: 'center', width: 40 }}>
+												{value}
+											</StyledTableCell>
 										) : null;
 									})}
 								</StyledTableRow>

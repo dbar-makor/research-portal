@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import SelectInputUnit from './SelectInputUnit';
-import { Grid, Button, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { ReactComponent as SearchIcon } from '../../assets/icons/IconSearch.svg';
 import { useStyles, StyledTextField, AddButton } from '../../styles/MainStyles';
 import AddIcon from '@material-ui/icons/Add';
 import NewCompanyStepper from '../SalesScreens/NewCompanySteps/NewCompanyStepper';
-import { useDispatch, useSelector } from 'react-redux';
-// import { selectSearch, selectType, selectStatus, setProperty} from '../../redux/companies/companiesSlice'
+import { useDispatch } from 'react-redux';
 import NewUserModal from '../ui/admin/NewUserModal/NewUserModal.jsx';
-import { set } from 'lodash';
 
 function Filters(props) {
-	const { pageType, search, type, status, setProperty } = props;
+	const { pageType, type, status, setProperty } = props;
 	const dispatch = useDispatch();
 	const [localSearch, setLocalSearch] = useState('');
-	// const search = useSelector(selectSearch)
-	// const type = useSelector(selectType)
-	// const status = useSelector(selectStatus)
 	const classes = useStyles();
 	const userType = pageType === 'salesUsers' ? 'sales' : pageType === 'authorsUsers' ? 'author' : '';
 
@@ -76,7 +71,9 @@ function Filters(props) {
 							value={localSearch}
 							onChange={(e) => setLocalSearch(e.target.value)}
 							onKeyDown={(e) =>
-								e.key === 'Enter' ? dispatch(setProperty({ key: 'search', value: localSearch })) : null
+								e.key === 'Enter'
+									? dispatch(setProperty({ key: 'search', value: localSearch }))
+									: null
 							}
 							variant="outlined"
 							fullWidth
@@ -84,7 +81,19 @@ function Filters(props) {
 							InputProps={{
 								endAdornment: (
 									<SearchIcon
+<<<<<<< HEAD
+										onClick={(e) =>
+											dispatch(setProperty({ key: 'search', value: localSearch }))
+										}
+=======
+<<<<<<< HEAD
+										onClick={() =>
+											dispatch(setProperty({ key: 'search', value: localSearch }))
+										}
+=======
 										onClick={(e) => dispatch(setProperty({ key: 'search', value: localSearch }))}
+>>>>>>> b0acf1d75db7ab3ec6ceab4bb0ec211c0195707c
+>>>>>>> c7002297c0167df11929209b77da14040815ff78
 										className={classes.searchIcon}
 										style={{ cursor: 'pointer' }}
 									/>
@@ -102,7 +111,9 @@ function Filters(props) {
 								valueField="value"
 								placeholder="Type"
 								value={type}
-								onChange={(e) => dispatch(setProperty({ key: 'type', value: e.target.value }))}
+								onChange={(e) =>
+									dispatch(setProperty({ key: 'type', value: e.target.value }))
+								}
 								optionsArray={typeArray}
 							/>
 						</Grid>
@@ -131,7 +142,11 @@ function Filters(props) {
 
 			<NewCompanyStepper open={pageType === 'companies' && open} handleClose={handleClose} />
 
-			<NewUserModal open={pageType !== 'companies' && open} userType={userType} handleClose={handleClose} />
+			<NewUserModal
+				open={pageType !== 'companies' && open}
+				userType={userType}
+				handleClose={handleClose}
+			/>
 		</Grid>
 	);
 }

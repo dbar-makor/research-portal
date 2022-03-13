@@ -35,7 +35,12 @@ function CategoriesModal(props) {
 					},
 				}}
 			>
-				<Grid container justifyContent="center" alignItems="center" className={classes.categoriesModalBox}>
+				<Grid
+					container
+					justifyContent="center"
+					alignItems="center"
+					className={classes.categoriesModalBox}
+				>
 					<Grid item xs={12}>
 						<Grid container justifyContent="flex-end">
 							<CloseIcon onClick={handleClose} className={classes.closeIcon} />
@@ -70,7 +75,9 @@ function CategoriesModal(props) {
 					</Grid>
 					<Grid item className={classes.saveBtn}>
 						<Grid container justifyContent="center">
-							<FilledButton onClick={() => sendMember(currentMember, currentMember.id)}>Save</FilledButton>
+							<FilledButton onClick={() => sendMember(currentMember, currentMember.id)}>
+								Save
+							</FilledButton>
 						</Grid>
 					</Grid>
 				</Grid>

@@ -4,7 +4,7 @@ import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder
 import { ReactComponent as SearchIcon } from '../../../../assets/icons/IconSearch.svg';
 
 import SelectInputUnit from '../../../Reusables/SelectInputUnit';
-import { useStyles, StyledTextField, AddButton } from '../../../../styles/MainStyles';
+import { useStyles, StyledTextField } from '../../../../styles/MainStyles';
 import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
 import InvoiceTable from './InvoiceTable';
 import RangeDatePicker from '../../../Reusables/RangeDatePicker';
@@ -51,7 +51,7 @@ function AllInvoices() {
 		setFilters((prevState) => ({ ...prevState, to: to }));
 	};
 
-	const hendlerForInvoiceId = (e, value) => {
+	const hendlerForInvoiceId = (e) => {
 		if (e.key && e.key === 'Enter') {
 			console.log(e.target.value);
 			setFilters({ ...filters, invoice_id: invoiceId });
@@ -228,7 +228,12 @@ function AllInvoices() {
 
 						{loadingInvoices && (
 							<Grid item xs={12} align="center" style={{ height: 'calc(100vh - 539px)' }}>
-								<CircularProgress size={40} thickness={4} value={100} style={{ marginTop: '8%' }} />
+								<CircularProgress
+									size={40}
+									thickness={4}
+									value={100}
+									style={{ marginTop: '8%' }}
+								/>
 							</Grid>
 						)}
 						{invoiceRows && !loadingInvoices && (

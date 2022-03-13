@@ -25,7 +25,6 @@ function WorldMap() {
 
 	const path = geoPath(projection);
 
-
 	return (
 		<>
 			{mapLoading && <Typography variant="caption">LOADING...</Typography>}
@@ -38,7 +37,9 @@ function WorldMap() {
 						))}
 						{citiesData?.map((d) => {
 							const [x, y] = projection([d.lng, d.lat]);
-							return <WorldMapSingle d={d} x={x} y={y} citiesStatus={citiesStatus} key={d.lat}/>;
+							return (
+								<WorldMapSingle d={d} x={x} y={y} citiesStatus={citiesStatus} key={d.lat} />
+							);
 						})}
 					</g>
 				</svg>

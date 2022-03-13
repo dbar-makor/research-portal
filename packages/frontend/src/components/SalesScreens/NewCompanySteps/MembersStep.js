@@ -166,7 +166,11 @@ const MembersStep = ({
 
 				{editedMemberIndex >= 0 ? (
 					<Grid item xs={1} className={classes.checkIconWrapper}>
-						<CheckButton onClick={addEditedMember} disabled={!validationResult} className={classes.checkIcon}>
+						<CheckButton
+							onClick={addEditedMember}
+							disabled={!validationResult}
+							className={classes.checkIcon}
+						>
 							<CheckIcon />
 						</CheckButton>
 					</Grid>

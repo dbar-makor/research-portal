@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/MainStyles';
-import SubHeader from '../Reusables/SubHeader';
 import TableComponent from '../Reusables/TableComponent';
 import {
 	getCompaniesDataAsync,
@@ -10,7 +9,6 @@ import {
 	selectType,
 	selectStatus,
 	selectCompaniesLoading,
-	selectCompaniesMetaData,
 	setProperty,
 	selectOffset,
 	selectHasMore,
@@ -18,10 +16,8 @@ import {
 } from '../../redux/companies/companiesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Filters from '../Reusables/Filters';
 import CompanyInfo from './CompanyDetails/CompanyInfo';
 import MembersTable from './MembersDetails/MembersTable';
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import { selectChosenCompany } from '../../redux/companies/chosenCompanySlice';
 
 function MainSalesScreen() {
@@ -32,10 +28,8 @@ function MainSalesScreen() {
 	const type = useSelector(selectType);
 	const status = useSelector(selectStatus);
 	const loading = useSelector(selectCompaniesLoading);
-	const metaData = useSelector(selectCompaniesMetaData);
 	const offset = useSelector(selectOffset);
 	const limit = useSelector(selectLimit);
-	const containerRef = useRef();
 	const chosenCompany = useSelector(selectChosenCompany);
 	const hasMore = useSelector(selectHasMore);
 
@@ -121,7 +115,11 @@ function MainSalesScreen() {
 										// onScroll={handleScroll}
 									>
 										{/* <Grid container style={{height: "100%"}}> */}
-										<TableComponent data={companiesData} pageType="companies" ref={lastItemRef} />
+										<TableComponent
+											data={companiesData}
+											pageType="companies"
+											ref={lastItemRef}
+										/>
 										{/* </Grid> */}
 										{/* <TableComponent data={companiesData} pageType='companies' scrollIndex={scrollIndex}/> */}
 									</Grid>
@@ -141,7 +139,9 @@ function MainSalesScreen() {
 							) : (
 								<Grid container>
 									<Grid item xs={6}>
-										<Typography className={classes.noMatches}>No matches found</Typography>
+										<Typography className={classes.noMatches}>
+											No matches found
+										</Typography>
 									</Grid>
 								</Grid>
 							)}

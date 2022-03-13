@@ -90,7 +90,10 @@ function SendContractView({ setStep, contractCopy, setContractCopy }) {
 		delete localCopy.contract_id;
 
 		try {
-			const res = await axios.put(`${BASE_URL}${END_POINT.CONTRACT}/${contractCopy.contract_id}`, localCopy);
+			const res = await axios.put(
+				`${BASE_URL}${END_POINT.CONTRACT}/${contractCopy.contract_id}`,
+				localCopy,
+			);
 
 			if (res.status === 200) {
 				dispatch(actionSnackBar.setSnackBar('success', 'Contract successfully updated', 2000));
@@ -148,7 +151,11 @@ function SendContractView({ setStep, contractCopy, setContractCopy }) {
 						<ContractIcon />
 						<Typography variant="h5" className={classes.mainTitle}>
 							The Contract is Ready
-							<Typography variant="caption" onClick={presentPDFContract} className={classes.pdfLink}>
+							<Typography
+								variant="caption"
+								onClick={presentPDFContract}
+								className={classes.pdfLink}
+							>
 								Visualize
 							</Typography>
 						</Typography>

@@ -31,7 +31,9 @@ function PaymentButtonBar(props) {
 					<div>
 						<Typography style={{ fontSize: 14, color: '#1C67FF' }}>{`${precentage}%`}</Typography>
 					</div>
-					<div style={{ backgroundColor: '#B8C3D8', width: '90px', height: '5px', borderRadius: 4 }}>
+					<div
+						style={{ backgroundColor: '#B8C3D8', width: '90px', height: '5px', borderRadius: 4 }}
+					>
 						<div
 							style={{
 								height: '5px',

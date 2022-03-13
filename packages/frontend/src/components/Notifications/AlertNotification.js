@@ -60,12 +60,7 @@ const AlertNotification = ({ key, notifi, setCountAlerts, handleClose }) => {
 			>
 				<Grid container>
 					<Grid item xs={12}>
-						<Grid
-							container
-							direction="column"
-							justifyContent="center"
-							alignItems="flex-start"
-						>
+						<Grid container direction="column" justifyContent="center" alignItems="flex-start">
 							<Grid item>
 								<Typography
 									style={{

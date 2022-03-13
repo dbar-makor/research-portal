@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Grid, Typography, IconButton, TextField } from '@material-ui/core';
-import { format } from 'date-fns';
 import { useStyles } from '../../../styles/InfoStyles';
 import { EditIconButton } from '../../../styles/MainStyles';
 import EditIcon from '@material-ui/icons/Edit';
@@ -9,7 +8,7 @@ import DateInputUnit from '../../Reusables/DateInputUnit';
 import { useSelector, useDispatch } from 'react-redux';
 import { Autocomplete } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
-import { formatDistance, isValid } from 'date-fns';
+import { formatDistance, isValid, format } from 'date-fns';
 import { validateProspectTrial } from '../../Reusables/validationFunctions';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
@@ -152,9 +151,14 @@ function InitialCompanyStateBlock(props) {
 			<Grid item xs={12}>
 				{props.type === 'prospect' ? (
 					<Grid container justifyContent="space-between" alignItems="center">
-						<Typography className={classes.blockHeader}>{props.title.replaceAll('_', ' ')}</Typography>
+						<Typography className={classes.blockHeader}>
+							{props.title.replaceAll('_', ' ')}
+						</Typography>
 						{trialEditMode ? (
-							<IconButton onClick={() => sendUpdatedTrial(props.id)} className={classes.editDoneBtn}>
+							<IconButton
+								onClick={() => sendUpdatedTrial(props.id)}
+								className={classes.editDoneBtn}
+							>
 								<EditDone />
 							</IconButton>
 						) : (
@@ -164,7 +168,9 @@ function InitialCompanyStateBlock(props) {
 						)}
 					</Grid>
 				) : (
-					<Typography className={classes.blockHeader}>{props.title.replaceAll('_', ' ')}</Typography>
+					<Typography className={classes.blockHeader}>
+						{props.title.replaceAll('_', ' ')}
+					</Typography>
 				)}
 			</Grid>
 			<Grid item xs={12} className={classes.marginBottom8}>

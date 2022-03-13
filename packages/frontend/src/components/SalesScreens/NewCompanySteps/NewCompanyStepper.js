@@ -265,7 +265,11 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 								<SubHeaderModal title="New Company" />
 								<Grid item xs={4} />
 								<Grid container className={classes.stepperGroup}>
-									<Stepper alternativeLabel activeStep={activeStep} connector={<StepperConnector />}>
+									<Stepper
+										alternativeLabel
+										activeStep={activeStep}
+										connector={<StepperConnector />}
+									>
 										<Step>
 											<StepLabel
 												StepIconComponent={StepperIcons}
@@ -277,7 +281,11 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 										<Step>
 											<StepLabel
 												StepIconComponent={StepperIcons}
-												onClick={activeStep === 0 && validationResult1 ? handleNext : () => {}}
+												onClick={
+													activeStep === 0 && validationResult1
+														? handleNext
+														: () => {}
+												}
 											>
 												{steps[1]}
 											</StepLabel>
@@ -291,7 +299,10 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 										{activeStep === 0 ? (
 											<div></div>
 										) : (
-											<OutlinedButton onClick={handleBack} className={classes.buttonBack}>
+											<OutlinedButton
+												onClick={handleBack}
+												className={classes.buttonBack}
+											>
 												{' '}
 												Back{' '}
 											</OutlinedButton>
@@ -310,7 +321,9 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 												<FilledButton
 													onClick={handleSubmit}
 													className={classes.buttonNext}
-													disabled={!validationResult2 || company.members.length < 1}
+													disabled={
+														!validationResult2 || company.members.length < 1
+													}
 												>
 													{' '}
 													Create{' '}

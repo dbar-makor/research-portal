@@ -21,7 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "express-openapi-validator": "^3.9.1",
+    "express-openapi-validator": "4.13.4",
     "js-yaml": "^3.3.0",
     "jshashes": "^1.0.8",
     "jsonwebtoken": "^8.5.1",

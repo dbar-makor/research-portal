@@ -1,16 +1,17 @@
 import { Typography, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
-import { useEffect, useRef, forwardRef, useSelector } from 'react';
+import { useEffect, useRef, forwardRef } from 'react';
 import { format } from 'date-fns';
 import { useStyles, StyledTableCell, StyledTableRow } from '../../styles/TableStyles';
 import { ReactComponent as GreenCheckmark } from '../../assets/icons/IconGreenCheckmark.svg';
 import { ReactComponent as RedCheckmark } from '../../assets/icons/IconRedCheckmark.svg';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as chosenCompanyActions from '../../redux/companies/chosenCompanySlice';
 import { selectChosenCompany } from '../../redux/companies/chosenCompanySlice';
 import clsx from 'clsx';
 import { selectType } from '../../redux/companies/companiesSlice';
 import { selectChosenUserData, getUserByIdAsync } from '../../redux/users/chosenUserSlice';
+
 
 const TableComponent = forwardRef((props, ref) => {
 	const { data, pageType } = props;

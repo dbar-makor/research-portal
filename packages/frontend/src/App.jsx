@@ -17,7 +17,7 @@ import AllPublications from './components/AuthorsScreens/allPublications/AllPubl
 import TopBar from './utils/components/TopBar';
 import GeneralContractView from './components/SalesScreens/ContractViews/GeneralContractView';
 import Snackbar from './components/ui/Snackbar/Snackbar.jsx';
-import Sales from './components/SalesScreens/Sales';
+import Sales from './components/ui/salesman/Sales/Sales';
 import DeadArticle from './components/AuthorsScreens/DeadArticle';
 import Article from './components/ui/researches/Article/Article';
 import SalesUsersScreen from './components/ui/admin/SalesUsersScreen/SalesUsersScreen.jsx';

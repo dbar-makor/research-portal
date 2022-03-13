@@ -16,7 +16,6 @@ export const chosenUserSlice = createSlice({
 
 export const { changeChosenUser, setLoading } = chosenUserSlice.actions;
 
-
 //selectors
 
 export const selectChosenUserData = (state) => state.chosenUser.chosenUser;
@@ -33,6 +32,5 @@ export const getUserByIdAsync = (id) => async (dispatch) => {
 		console.log(error, error.message);
 	}
 };
-
 
 export default chosenUserSlice.reducer;

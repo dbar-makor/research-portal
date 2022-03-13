@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Autocomplete } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
 import { formatDistance, isValid, format } from 'date-fns';
-import { validateProspectTrial } from '../../Reusables/validationFunctions';
+import { validateProspectTrial } from '../../Reusables/ValidationFunctions';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
@@ -59,7 +59,6 @@ function InitialCompanyStateBlock(props) {
 	}, []);
 
 	const handleTrialChange = (key, value) => {
-		console.log('key', value);
 		const stateCopy = { ...stateToUpdate, [key]: value };
 		setStateToUpdate(stateCopy);
 
@@ -67,14 +66,9 @@ function InitialCompanyStateBlock(props) {
 	};
 
 	const sendUpdatedTrial = async (id) => {
-		console.log('errors', errors);
-		console.log('stateToUpdate', stateToUpdate);
 		const trialToSend = { ...stateToUpdate };
-		console.log('trialToSend', trialToSend);
 		setTrialEditMode(false);
 		for (const [key, value] of Object.entries(errors)) {
-			console.log('key', key);
-			console.log('value', value);
 			if (value) {
 				if (key === 'sales_agent') {
 					trialToSend[key] = props['sales_agent'].id;
@@ -87,11 +81,9 @@ function InitialCompanyStateBlock(props) {
 				}
 			}
 		}
-		console.log('trialToSend AFTER', trialToSend);
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.PROSPECT}/${id}`, trialToSend);
 			if (res.status === 201) {
-				console.log('reeeees', res);
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully updated', 2000));
 				dispatch(getChosenCompanyAsync(id));
 				dispatch(getCompaniesDataAsync(offset, limit, search, type, status));
@@ -103,8 +95,6 @@ function InitialCompanyStateBlock(props) {
 	};
 
 	const datesAreOnSameDay = (first, second) => {
-		console.log('first', first);
-		console.log('second', second);
 		return (
 			first.getFullYear() === second.getFullYear() &&
 			first.getMonth() === second.getMonth() &&
@@ -113,8 +103,6 @@ function InitialCompanyStateBlock(props) {
 	};
 
 	useEffect(() => {
-		console.log('new Date(stateToUpdate.start_at)', new Date(stateToUpdate.start_at));
-		console.log('new Date(stateToUpdate.end_at)', new Date(stateToUpdate.end_at));
 		// console.log('datesAreOnSameDay', datesAreOnSameDay(new Date(stateToUpdate.start_at) === new Date(stateToUpdate.end_at)))
 		if (
 			stateToUpdate.start_at &&
@@ -131,20 +119,13 @@ function InitialCompanyStateBlock(props) {
 			isValid(new Date(stateToUpdate.end_at)) &&
 			datesAreOnSameDay(new Date(stateToUpdate.start_at), new Date(stateToUpdate.end_at))
 		) {
-			console.log(
-				'datesAreOnSameDay',
-				datesAreOnSameDay(new Date(stateToUpdate.start_at), new Date(stateToUpdate.end_at)),
-			);
 			setTrialPeriod('1 day');
 		} else {
 			setTrialPeriod('-');
 		}
-		console.log('stateToUpdate', stateToUpdate);
 	}, [stateToUpdate.start_at, stateToUpdate.end_at]);
 
-	useEffect(() => {
-		console.log('trialPeriod', trialPeriod);
-	}, [trialPeriod]);
+	useEffect(() => {}, [trialPeriod]);
 
 	return props ? (
 		<Grid container>

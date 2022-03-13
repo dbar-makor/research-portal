@@ -1,13 +1,12 @@
-import { Typography, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { useEffect, useState, useRef, forwardRef } from 'react';
+import { Typography, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
+import { useEffect, useRef, forwardRef, useSelector } from 'react';
 import { format } from 'date-fns';
-import { useStyles, StyledTableCell, StyledTableBody, StyledTableRow } from '../../styles/TableStyles';
+import { useStyles, StyledTableCell, StyledTableRow } from '../../styles/TableStyles';
 import { ReactComponent as GreenCheckmark } from '../../assets/icons/IconGreenCheckmark.svg';
 import { ReactComponent as RedCheckmark } from '../../assets/icons/IconRedCheckmark.svg';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { useDispatch } from 'react-redux';
 import * as chosenCompanyActions from '../../redux/companies/chosenCompanySlice';
-import { useSelector } from 'react-redux';
 import { selectChosenCompany } from '../../redux/companies/chosenCompanySlice';
 import clsx from 'clsx';
 import { selectType } from '../../redux/companies/companiesSlice';
@@ -212,5 +211,7 @@ const TableComponent = forwardRef((props, ref) => {
 		</Table>
 	) : null;
 });
+
+TableComponent.displayName = 'TableComponent';
 
 export default TableComponent;

@@ -1,15 +1,6 @@
-import {
-	FormControl,
-	FormHelperText,
-	Grid,
-	Input,
-	InputLabel,
-	TextField,
-	withStyles,
-} from '@material-ui/core';
-import { useState } from 'react';
+import { Grid, TextField, withStyles } from '@material-ui/core';
 
-function SubscriberInfoEdit(prop) {
+const SubscriberInfoEdit = (prop) => {
 	const { info } = prop;
 	return (
 		<Grid container>
@@ -55,7 +46,7 @@ function SubscriberInfoEdit(prop) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default SubscriberInfoEdit;
 

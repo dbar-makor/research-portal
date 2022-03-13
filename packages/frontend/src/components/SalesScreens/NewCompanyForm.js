@@ -15,7 +15,7 @@
 // import { useDispatch, useSelector} from "react-redux";
 // import {ReactComponent as CloseIcon} from '../../assets/icons/closeIcon.svg'
 // import { AddButton, DeleteButton, FilledButton, OutlinedButton } from '../../styles/MainStyles';
-// import { validateCompany } from "../Reusables/validationFunctions";
+// import { validateCompany } from "../Reusables/ValidationFunctions";
 // import NewCompanyStepper from "./NewCompanySteps/NewCompanyStepper";
 // import InfoStep from "./NewCompanySteps/InfoStep";
 // import MembersStep from "./NewCompanySteps/MembersStep";
@@ -298,7 +298,7 @@
 //     marginRight: "10px",
 //   },
 //   deleteIcon: {
-//     padding: "25px ​0 0 6p",
+//     padding: "25px 0 0 6p",
 //   },
 //   chip: {
 //     margin: "6px",

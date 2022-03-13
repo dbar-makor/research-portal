@@ -130,7 +130,6 @@ export function validateContract(fieldValues, errors, setErrors, setValidationRe
 
 		if (isValid(new Date(fieldValues.start_at))) {
 			temp.start_at = '';
-			console.log('inside is valid');
 			if (!fieldValues.start_at) {
 				temp.start_at = 'This field is required';
 			}
@@ -169,7 +168,6 @@ export function validateEditedContract(fieldValues, errors, setErrors, setValida
 
 		if (isValid(new Date(fieldValues.start_at))) {
 			temp.start_at = '';
-			console.log('inside is valid');
 			if (!fieldValues.start_at) {
 				temp.start_at = 'This field is required';
 			}
@@ -214,18 +212,13 @@ export function validateLogin(fieldValues, errors, setErrors, validationResult, 
 }
 
 export function validateProspectTrial(fieldValues, errors, setErrors, trial) {
-	console.log('fieldValues', fieldValues);
-	console.log('trial', trial);
-	console.log('IM HERE');
 	const temp = { ...errors };
 
 	if ('sales_agent' in fieldValues) {
-		console.log('fieldValuesfieldValues', fieldValues);
 		temp.sales_agent = fieldValues.sales_agent ? '' : 'This field is required';
 	}
 
 	if ('start_at' in fieldValues) {
-		console.log('"start_at" in fieldValues');
 		if (fieldValues['start_at']) {
 			temp['start_at'] = '';
 		} else {
@@ -235,7 +228,6 @@ export function validateProspectTrial(fieldValues, errors, setErrors, trial) {
 		if (isValid(new Date(fieldValues['start_at']))) {
 			temp['start_at'] = '';
 		} else {
-			console.log('INVALIIIIID');
 			temp['start_at'] = 'Date is invalid';
 		}
 	}
@@ -255,20 +247,11 @@ export function validateProspectTrial(fieldValues, errors, setErrors, trial) {
 	}
 
 	if ('start_at' in fieldValues && 'end_at' in trial) {
-		console.log(
-			'"start_at" in fieldValues && "end_at" in trial',
-			'start_at' in fieldValues && 'end_at' in trial,
-		);
-		console.log(
-			'"end_at" in fieldValues && "start_at" in trial',
-			'end_at' in fieldValues && 'start_at' in trial,
-		);
 		if (
 			isValid(new Date(fieldValues['start_at'])) &&
 			isValid(new Date(trial['end_at'])) &&
 			new Date(trial['end_at']) < new Date(fieldValues['start_at'])
 		) {
-			console.log('nu NU 1');
 			temp['start_at'] = `Min.date is ${format(new Date(trial['end_at']), 'dd/MM/yyyy')}`;
 			temp['end_at'] = '';
 		} else {
@@ -283,7 +266,6 @@ export function validateProspectTrial(fieldValues, errors, setErrors, trial) {
 			isValid(new Date(trial['start_at'])) &&
 			new Date(trial['start_at']) > new Date(fieldValues['end_at'])
 		) {
-			console.log('nu NU 2');
 			temp['end_at'] = `Min.date is ${format(new Date(trial['start_at']), 'dd/MM/yyyy')}`;
 			temp['start_at'] = '';
 		} else {
@@ -331,7 +313,6 @@ export function validateUser(fieldValues, errors, setErrors, setValidationResult
 
 export function validateDeadPublication(fieldValues, errors, setErrors, setValidationResult, selectedValue) {
 	const temp = { ...errors };
-	console.log('temp', temp);
 	const someFields = ['title', 'description'];
 	const allFields =
 		selectedValue === 'pdf'
@@ -344,7 +325,6 @@ export function validateDeadPublication(fieldValues, errors, setErrors, setValid
 	someFields.forEach((field) => {
 		if (field in fieldValues) {
 			temp[field] = fieldValues[field] ? '' : 'This field is required';
-			console.log('validated!');
 		}
 	});
 
@@ -371,13 +351,10 @@ export function validateDeadPublication(fieldValues, errors, setErrors, setValid
 	}
 
 	setErrors({ ...temp });
-	console.log('temp', temp);
 	const tempResult1 = allFields.every((field) => Object.keys(temp).includes(field));
 	const tempResult2 = Object.values(temp).every((x) => x === '');
 
 	const result = tempResult1 && tempResult2;
-	console.log('tempResult1', tempResult1);
-	console.log('tempResult2', tempResult2);
 	setValidationResult(result);
 }
 
@@ -389,12 +366,10 @@ export function validateEditedDeadPublication(
 	selectedValue,
 ) {
 	const temp = { ...errors };
-	console.log('temp', temp);
 	const someFields = ['title', 'description'];
 	someFields.forEach((field) => {
 		if (field in fieldValues) {
 			temp[field] = fieldValues[field] ? '' : 'This field is required';
-			console.log('validated!');
 		}
 	});
 
@@ -421,15 +396,12 @@ export function validateEditedDeadPublication(
 	}
 
 	setErrors({ ...temp });
-	console.log('temp', temp);
 	const result = Object.values(temp).every((x) => x === '');
-	console.log('edited version validation, result:', result);
 	setValidationResult(result);
 }
 
 export function validateLivePublication(fieldValues, errors, setErrors, setValidationResult) {
 	const temp = { ...errors };
-	console.log('temp', temp);
 	const allFields = ['title', 'categories'];
 
 	//coverImage, event date, content are validated independently, not here
@@ -443,13 +415,10 @@ export function validateLivePublication(fieldValues, errors, setErrors, setValid
 	}
 
 	setErrors({ ...temp });
-	console.log('temp', temp);
 	const tempResult1 = allFields.every((field) => Object.keys(temp).includes(field));
 	const tempResult2 = Object.values(temp).every((x) => x === '');
 
 	const result = tempResult1 && tempResult2;
-	console.log('tempResult1', tempResult1);
-	console.log('tempResult2', tempResult2);
 	setValidationResult(result);
 }
 
@@ -464,11 +433,9 @@ export function validateEditedLivePublication(fieldValues, errors, setErrors, se
 	}
 
 	setErrors({ ...temp });
-	console.log('temp', temp);
 
 	const result = Object.values(temp).every((x) => x === '');
 
-	console.log('result', result);
 	setValidationResult(result);
 }
 
@@ -486,7 +453,6 @@ export function validateEvent(fieldValues, errors, setErrors, setValidationResul
 
 		if (isValid(new Date(fieldValues.date))) {
 			temp.date = '';
-			console.log('inside is valid');
 			if (!fieldValues.date) {
 				temp.date = 'This field is required';
 			}

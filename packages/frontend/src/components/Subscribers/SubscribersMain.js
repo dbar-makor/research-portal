@@ -1,11 +1,11 @@
 import { Grid, Typography } from '@material-ui/core';
 import SubscriberDetails from './SubscriberDetails';
 import SubscribersTable from './SubscribersTable';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as subscribersAction from '../../redux/subscribers/subscribersSlice';
 
-function SubscribersMain(props) {
+function SubscribersMain() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {

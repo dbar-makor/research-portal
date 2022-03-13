@@ -1,4 +1,4 @@
-//MUI
+
 import  { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, makeStyles } from '@material-ui/core';
@@ -55,7 +55,9 @@ const useStyles = makeStyles({
 		marginTop: '2vh',
 		marginLeft: '1vw',
 	},
+
 });
+
 
 function AllPublications() {
 	const classes = useStyles();
@@ -77,9 +79,11 @@ function AllPublications() {
 			}
 		} catch (error) {
 			/* eslint no-console: 0 */
-			console.log(error, error.message);
+				console.log('get statistics', res.data);
+				setStatistics(res.data);
+			}
 		}
-	}
+  
 	useEffect(() => {
 		fetchStatistics();
 	}, []);

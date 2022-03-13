@@ -1,7 +1,7 @@
 import { Grid, Typography, TextField, Chip, makeStyles } from '@material-ui/core';
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { StyledAutoComplete } from '../../styles/MainStyles';
 
 const filter = createFilterOptions();

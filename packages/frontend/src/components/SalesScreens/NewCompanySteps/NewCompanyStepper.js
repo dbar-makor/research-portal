@@ -11,7 +11,7 @@ import {
 	selectOffset,
 	selectLimit,
 } from '../../../redux/companies/companiesSlice';
-import { validateCompany } from '../../Reusables/validationFunctions';
+import { validateCompany } from '../../Reusables/ValidationFunctions';
 import Dialog from '@material-ui/core/Dialog';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -307,29 +307,25 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 												Back{' '}
 											</OutlinedButton>
 										)}
-										{
-											activeStep === 0 ? (
-												<FilledButton
-													onClick={handleNext}
-													className={classes.buttonNext}
-													disabled={!validationResult1}
-												>
-													{' '}
-													Next{' '}
-												</FilledButton>
-											) : (
-												<FilledButton
-													onClick={handleSubmit}
-													className={classes.buttonNext}
-													disabled={
-														!validationResult2 || company.members.length < 1
-													}
-												>
-													{' '}
-													Create{' '}
-												</FilledButton>
-											)
-										}
+										{activeStep === 0 ? (
+											<FilledButton
+												onClick={handleNext}
+												className={classes.buttonNext}
+												disabled={!validationResult1}
+											>
+												{' '}
+												Next{' '}
+											</FilledButton>
+										) : (
+											<FilledButton
+												onClick={handleSubmit}
+												className={classes.buttonNext}
+												disabled={!validationResult2 || company.members.length < 1}
+											>
+												{' '}
+												Create{' '}
+											</FilledButton>
+										)}
 									</Grid>
 								</Grid>
 							</Grid>
@@ -344,5 +340,3 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 };
 
 export default NewCompanyStepper;
-
-

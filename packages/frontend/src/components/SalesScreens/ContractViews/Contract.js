@@ -9,7 +9,7 @@ import { BASE_URL, END_POINT } from '../../../utils/constants';
 import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeChosenCompany, selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import { validateContract, validateEditedContract } from '../../Reusables/validationFunctions';
+import { validateContract, validateEditedContract } from '../../Reusables/ValidationFunctions';
 import { StatusSwitch, FilledButton } from '../../../styles/MainStyles';
 import ButtonRow from './ButtonRow';
 import { useHistory } from 'react-router-dom';
@@ -251,49 +251,6 @@ const useStyles = makeStyles({
 		marginTop: 25,
 	},
 });
-
-const chargePeriods = [
-	{
-		value: 'monthly',
-		name: 'Month',
-	},
-	{
-		value: 'quarterly',
-		name: 'Quarter',
-	},
-	{
-		value: 'half',
-		name: 'Half-year',
-	},
-	{
-		value: 'fully',
-		name: 'Year',
-	},
-];
-
-const periodToNum = {
-	monthly: 12,
-	quarterly: 4,
-	half: 2,
-	fully: 1,
-};
-
-function Contract({
-	setStep,
-	setContractCopy,
-	stepperMode,
-	chosenContract,
-	setLoadingSidebar,
-	setActiveSidebar,
-}) {
-	const classes = useStyles();
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const loggedinSalesPersonBigObject = useSelector((state) => state.auth.userContent);
-	const loggedinSalesPerson = {
-		id: loggedinSalesPersonBigObject.id,
-		name: loggedinSalesPersonBigObject.name,
-	};
 
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
 	const salesmenArr = useSelector((state) => state.utils.utils.sales);
@@ -657,6 +614,6 @@ function Contract({
 			)}
 		</Grid>
 	);
-}
+};
 
 export default Contract;

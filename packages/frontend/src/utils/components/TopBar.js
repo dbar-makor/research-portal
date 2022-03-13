@@ -19,7 +19,7 @@ import { StyledTextField } from '../../styles/MainStyles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Link, useHistory } from 'react-router-dom';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ReactComponent as MakorLogo } from '../../assets/icons/makorLogo.svg';
 import { useEffect, useRef, useState } from 'react';
 import * as webSocketService from '../../services/websocket';
@@ -149,6 +149,7 @@ function TopBar() {
 
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const userType = useSelector((state) => state.auth.userContent?.type);
+	// eslint-disable-next-line no-unused-vars
 	const [notifications, setNotifications] = useState([]);
 	const options = [
 		{ value: 'region1', name: 'Region1' },
@@ -158,10 +159,8 @@ function TopBar() {
 	const webSocket = useRef(null);
 
 	useEffect(() => {
-		console.log('rerender');
 		webSocket.current = webSocketService.connectWS(token);
 		webSocket.current.onopen = () => {
-			console.log('Connection established!');
 			let message = {
 				type: 'get-notifications',
 			};
@@ -173,7 +172,6 @@ function TopBar() {
 			let send = {};
 			switch (message.type) {
 				case 'alert':
-					console.log('NOTIFICATIONS', message.notifications);
 					setNotifications([...message.notifications]);
 					break;
 				case 'succeed':
@@ -192,8 +190,6 @@ function TopBar() {
 		};
 		return () => webSocket.current.close();
 	}, []);
-
-	console.log('notifications', notifications);
 
 	const handleToggle = (type) => {
 		if (type === 'user') {
@@ -625,5 +621,3 @@ function TopBar() {
 }
 
 export default TopBar;
-
-

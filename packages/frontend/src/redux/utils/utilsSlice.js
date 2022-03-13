@@ -27,5 +27,4 @@ export const getUtilsAsync = () => async (dispatch) => {
 	}
 };
 
-
 export default utilsSlice.reducer;

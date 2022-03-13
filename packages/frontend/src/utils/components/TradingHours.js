@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import tradingHoursData from './dummy.json';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -10,7 +9,6 @@ const TradingHours = () => {
 	const formattedData = Object.entries(data).map(([key, value]) => {
 		return { country: key, status: value.status, time: value.local_time.substring(11, 16) };
 	});
-	console.log('formattedData', formattedData);
 	return (
 		<Grid container direction="row" className={classes.cityWrapper}>
 			{formattedData.map((item) => {

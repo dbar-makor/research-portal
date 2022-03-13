@@ -8,7 +8,7 @@ import {
 	selectUsersStatus,
 	selectUsersSearch,
 } from '../../../../redux/users/usersSlice';
-import { validateUser } from '../../../Reusables/validationFunctions';
+import { validateUser } from '../../../Reusables/ValidationFunctions';
 import * as actionSnackBar from '../../../../redux/SnackBar/action';
 import { BASE_URL, END_POINT } from '../../../../utils/constants';
 import axios from 'axios';
@@ -45,6 +45,17 @@ const NewUserModal = (props) => {
 		const userCopy = { ...newUser, [key]: value };
 		setNewUser(userCopy);
 		validateUser({ [key]: value }, errors, setErrors, setValidationResult);
+	};
+
+	const clearAndClose = () => {
+		setNewUser({
+			name: '',
+			username: '',
+			email: '',
+			country: null,
+		});
+		setInputValueCountry('');
+		handleClose();
 	};
 
 	const sendNewUser = async () => {

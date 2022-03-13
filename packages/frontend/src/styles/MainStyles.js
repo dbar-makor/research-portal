@@ -227,7 +227,7 @@ export const TableTextField = withStyles({
 	root: {
 		'width': '100%',
 		'& .MuiInput-underline:before': {
-			 // Semi-transparent underline
+			// Semi-transparent underline
 			borderBottom: '0.5px solid #868DA2',
 		},
 		'& .MuiInput-underline:hover:before': {
@@ -266,7 +266,7 @@ export const TableTextField = withStyles({
 				'color': '#0F0F0F',
 				'cursor': 'pointer',
 				'& .MuiInput-underline:before': {
-					 // Semi-transparent underline
+					// Semi-transparent underline
 					borderBottom: 'red',
 				},
 			},
@@ -332,16 +332,13 @@ export const StyledAutoComplete = withStyles(() => ({
 	popupIndicator: {
 		'&.MuiAutocomplete-popupIndicator': {
 			'color': '#1C67FF',
-			'& .MuiSvgIcon-root': {
-			},
+			'& .MuiSvgIcon-root': {},
 		},
 	},
 	clearIndicator: {
 		'&.MuiAutocomplete-clearIndicator': {
-			'&:hover': {
-			},
-			'& .MuiSvgIcon-fontSizeSmall': {
-			},
+			'&:hover': {},
+			'& .MuiSvgIcon-fontSizeSmall': {},
 		},
 	},
 }))(Autocomplete);
@@ -362,7 +359,8 @@ export const OutlinedButton = withStyles({
 		'&:hover': {
 			backgroundPosition: 'left bottom',
 			backgroundColor: '#1C67FF',
-			color: '#FFFFFF',		},
+			color: '#FFFFFF',
+		},
 		'&:disabled': {
 			borderColor: '#ACB1BF',
 			color: '#ACB1BF',

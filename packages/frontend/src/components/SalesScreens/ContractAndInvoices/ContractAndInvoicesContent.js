@@ -51,10 +51,8 @@ function ContractAndInvoicesContent(props) {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.COMPANY}${END_POINT.CONTRACT}/${id}`);
 			if (res.status === 200) {
-				console.log('res.data', res.data);
 				await setContracts(res.data);
 				await setFilterContract(res.data);
-				console.log(contracts, 'CONTRACT FILTER');
 			}
 		} catch (err) {
 			alert(err.message);

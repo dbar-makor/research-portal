@@ -506,6 +506,7 @@ export const CustomTextField = withStyles((theme) => ({
 		},
 		'& .MuiInputBase-input': {
 				// Text color
+
 			color: theme.palette.text.main,
 			fontSize: (props) => (props ? props.fontSize : '16px'),
 			fontWeight: 400,
@@ -520,6 +521,7 @@ export const CustomTextField = withStyles((theme) => ({
 		},
 		'& .MuiInput-underline:after': {
 			 // Solid underline on focus
+
 			borderBottom: `1px solid ${theme.palette.button.main}`,
 		},
 		'& .MuiInput-underline.Mui-error:after': {

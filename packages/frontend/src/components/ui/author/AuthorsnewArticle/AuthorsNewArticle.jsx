@@ -11,7 +11,7 @@ import {
 	validateLivePublication,
 	validateEvent,
 	validateEditedLivePublication,
-} from '../../../Reusables/validationFunctions';
+} from '../../../Reusables/ValidationFunctions';
 import AuthorsNewArticleView from './AuthorsNewArticle.view';
 
 const AuthorsNewArticle = () => {
@@ -99,6 +99,7 @@ const AuthorsNewArticle = () => {
 				}
 				// if (JSON.parse(chosenResearch.content)) {
 				// }
+
 			}
 		}
 	}, [chosenResearch]);
@@ -155,7 +156,10 @@ const AuthorsNewArticle = () => {
 				tags: tagsForServer,
 				description: description,
 				status: 'published',
-				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
+				content:
+					typeof formToSend.content === 'string'
+						? JSON.parse(formToSend.content)
+						: formToSend.content,
 			};
 		} else if (buttonMarker === 'save-draft') {
 			formToSend = {
@@ -165,7 +169,10 @@ const AuthorsNewArticle = () => {
 				tags: tagsForServer,
 				description: description,
 				status: 'draft',
-				content: typeof formToSend.content === 'string' ? JSON.parse(formToSend.content) : formToSend.content,
+				content:
+					typeof formToSend.content === 'string'
+						? JSON.parse(formToSend.content)
+						: formToSend.content,
 			};
 		} else if (buttonMarker === 'preview') {
 			formToSend = {
@@ -260,7 +267,12 @@ const AuthorsNewArticle = () => {
 				categories: formCats,
 			});
 			if (chosenResearch) {
-				validateEditedLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
+				validateEditedLivePublication(
+					{ categories: formCats },
+					errors,
+					setErrors,
+					setValidationResult,
+				);
 			} else {
 				validateLivePublication({ categories: formCats }, errors, setErrors, setValidationResult);
 			}

@@ -1,6 +1,6 @@
-import { forwardRef, useRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import { Dialog, DialogTitle, Grid, IconButton, Typography, Button } from '@material-ui/core';
+import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/ContarctsModalStyles';
 import SubHeaderModal from '../../Reusables/SubHeaderModal';
 import SideForm from './SideForm';
@@ -12,8 +12,6 @@ const ContractEditMain = forwardRef((props, ref) => {
 	const classes = useStyles();
 	const { contract, clientName } = props;
 	const [openEdit, setOpenEdit] = useState(false);
-	// const [parentValidationResult, setParentValidationResult] = useState(true);
-	// const [parentContract, setParentContract] = useState(contract);
 	const [activeSidebar, setActiveSidebar] = useState(false);
 	const [loadingSidebar, setLoadingSidebar] = useState(false);
 
@@ -55,22 +53,23 @@ const ContractEditMain = forwardRef((props, ref) => {
 						<Grid item xs={12}>
 							<Grid container alignItems="center" spacing={1}>
 								<Grid item>
-									<Typography style={{ fontSize: 16, color: '#868DA2' }}>Hisorty</Typography>
+									<Typography style={{ fontSize: 16, color: '#868DA2' }}>
+										Hisorty
+									</Typography>
 								</Grid>
 								<Grid item style={{ margintTop: '10px' }}>
-									<ArrowForwardIosIcon style={{ fontSize: 16, alignSelf: 'center', color: '#000' }} />
+									<ArrowForwardIosIcon
+										style={{ fontSize: 16, alignSelf: 'center', color: '#000' }}
+									/>
 								</Grid>
 								<Grid item>
-								
 									<Typography
 										style={{ fontSize: 16, color: '#000' }}
 									>{`Editing Contract of ${format(
-
 										new Date(contract.start_at),
 										'dd MMM, yyyy',
 									)} `}</Typography>
 								</Grid>
-
 							</Grid>
 						</Grid>
 					</Grid>
@@ -99,5 +98,7 @@ const ContractEditMain = forwardRef((props, ref) => {
 		</Dialog>
 	);
 });
+
+ContractEditMain.displayName = 'ContractEditMain';
 
 export default ContractEditMain;

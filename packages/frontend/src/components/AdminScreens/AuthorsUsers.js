@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/MainStyles';
 import TableComponent from '../Reusables/TableComponent';
@@ -13,7 +13,6 @@ import {
 } from '../../redux/users/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import { selectChosenUserData } from '../../redux/users/chosenUserSlice';
 import UserInfo from './UserInfo';
 
@@ -24,29 +23,15 @@ function AuthorsUsers() {
 	const chosenUser = useSelector(selectChosenUserData);
 
 	const loading = useSelector(selectUsersLoading);
-	const metaData = useSelector(selectUsersMetaData);
 
 	const userOffset = useSelector(selectUsersOffset);
 	const userLimit = useSelector(selectUsersLimit);
-	// const [scrollIndex, setScrollIndex] = useState(0)
-	// const scrollRef = useRef()
 	const hasMore = useSelector(selectUsersHasMore);
-
-	//Infinite scroll with intersection observer
-
-	// // let domContainer;
-	// useEffect(() => {
-	//   const domContainer = containerRef.current;
-	//   console.log("domContainer",domContainer)
-
-	// }, [])
 
 	const observer = useRef(null);
 
 	const lastItemRef = useCallback(
 		(node) => {
-			console.log('lastItemRef cb runs. node:', node);
-
 			if (loading) {
 				return;
 			}
@@ -57,7 +42,6 @@ function AuthorsUsers() {
 			observer.current = new IntersectionObserver((entries) => {
 				if (entries[0].isIntersecting && hasMore) {
 					const newOffset = userOffset + userLimit;
-					// console.log("containerRef.current?.scrollHeight",containerRef.current?.scrollHeight)
 					dispatch(setUserProperty({ key: 'offset', value: newOffset }));
 				}
 			});

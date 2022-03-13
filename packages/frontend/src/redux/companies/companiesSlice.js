@@ -106,6 +106,7 @@ export const deleteCompanyAsync = (id) => async (dispatch) => {
 			dispatch(getCompaniesDataAsync());
 		}
 	} catch (err) {
+				/* eslint no-console: "off" */
 		console.log(err.message);
 	}
 };

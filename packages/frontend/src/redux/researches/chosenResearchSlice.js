@@ -8,7 +8,6 @@ export const chosenResearchSlice = createSlice({
 	initialState: null,
 	reducers: {
 		changeChosenResearch: (state, action) => {
-			console.log('action', action.payload);
 			return (state = action.payload);
 		},
 	},
@@ -30,6 +29,7 @@ export const getChosenResearchAsync = (id) => async (dispatch) => {
 			dispatch(changeChosenResearch(res.data));
 		}
 	} catch (error) {
+				/* eslint no-console: "off" */
 		console.log(error, error.message);
 	}
 };

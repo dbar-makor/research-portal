@@ -23,7 +23,6 @@ const TableComponent = forwardRef((props, ref) => {
 	const almostLastRowRef = useRef(null);
 
 	const chooseRow = (id) => {
-		console.log('pageType TABLE', pageType);
 		if (pageType === 'companies') {
 			dispatch(chosenCompanyActions.getChosenCompanyAsync(id));
 		} else if (pageType === 'authorsUsers' || pageType === 'salesUsers') {
@@ -46,10 +45,6 @@ const TableComponent = forwardRef((props, ref) => {
 		);
 	};
 
-	useEffect(() => {
-		const almostLastRow = almostLastRowRef.current;
-		console.log('almostLastRow', almostLastRow);
-	}, []);
 
 	useEffect(() => {
 		if (data.length < 16) return;

@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Autocomplete } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
 import { formatDistance, isValid, format } from 'date-fns';
-import { validateProspectTrial } from '../../Reusables/ValidationFunctions';
+import { validateProspectTrial } from '../../Reusables/validationFunctions';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import * as actionSnackBar from '../../../redux/SnackBar/action';

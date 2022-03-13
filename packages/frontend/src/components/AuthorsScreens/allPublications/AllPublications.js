@@ -1,5 +1,5 @@
-//MUI
-import { useEffect, useState } from 'react';
+
+import  { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, makeStyles } from '@material-ui/core';
 import SubHeader from '../../Reusables/SubHeader';
@@ -32,7 +32,8 @@ const publishedFields = [
 ];
 const draftFieldLabels = ['Saved', 'Total Words', 'Average Word Count'];
 const draftFields = ['saved', 'total_words', 'average_word_count'];
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles({
 	page: {
 		margin: '4.3vh auto 0 auto',
 	},
@@ -54,57 +55,9 @@ const useStyles = makeStyles(() => ({
 		marginTop: '2vh',
 		marginLeft: '1vw',
 	},
-}));
 
-// bigTitle: {
-//   color: '#000000',
-//   fontSize: '32px',
-//   fontWeight: 600,
-//   marginBottom: '15px'
-// },
-// bigImage: {
-//   marginBottom: '20px'
-// },
-// bigDescription: {
-//   color: '#000000',
-//   fontSize: '20px',
-//   fontWeight: 600,
-//   marginBottom: '15px'
-// },
-// bigSubDescription: {
-//   color: '#000000',
-//   fontSize: '16px',
-//   marginBottom: '15px'
-// },
-// bigAuthorName: {
-//   color: '#999999',
-//   fontSize: '14px'
-// },
-// mainArticle: {
-//   marginTop: '11vh'
-// },
-// smallTitle: {
-//   color: '#000000',
-//   fontSize: '16px',
-//   fontWeight: 600,
-//   marginBottom: '10px'
-// },
-// smallArticle: {
-//   marginBottom: '10px',
-//   cursor: 'pointer'
-// },
-// smallAuthorName: {
-//   color: '#999999',
-//   fontSize: '14px'
-// },
-// bigLink: {
-//   color: '#000000',
-//   marginRight: '50px',
-//   marginTop: '25px'
-// },
-// smallLink: {
-//   textDecoration: 'none'
-// },
+});
+
 
 function AllPublications() {
 	const classes = useStyles();
@@ -122,13 +75,15 @@ function AllPublications() {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.USER}/statistics`);
 			if (res.status === 201 || res.status === 200) {
-				console.log('get statistics', res.data);
 				setStatistics(res.data);
 			}
 		} catch (error) {
-			console.log(error, error.message);
+			/* eslint no-console: 0 */
+				console.log('get statistics', res.data);
+				setStatistics(res.data);
+			}
 		}
-	}
+  
 	useEffect(() => {
 		fetchStatistics();
 	}, []);

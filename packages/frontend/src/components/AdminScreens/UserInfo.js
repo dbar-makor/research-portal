@@ -30,11 +30,6 @@ function UserInfo() {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [openAlert, setOpenAlert] = useState(false);
-	// const search = useSelector(selectSearch)
-	// const type = useSelector(selectType)
-	// const status = useSelector(selectStatus)
-	// const offset = useSelector(selectOffset)
-	// const limit = useSelector(selectLimit)
 	const [chosenUser, setChosenUser] = useState(null);
 	const countriesArr = useSelector((state) => state.utils.utils.country);
 	const [inputValue, setInputValue] = useState('');
@@ -74,30 +69,16 @@ function UserInfo() {
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully deleted', 2000));
 			}
 		} catch (error) {
-			console.log('error.response', error.response);
 			handleCloseAlert();
 			dispatch(actionSnackBar.setSnackBar('error', 'Delete failed', 2000));
 		}
 	};
 
 	const updateUserField = (key, value) => {
-		// if (value !== null && value !== undefined && value !== '') {
-		console.log('value!!!', value);
-		//   setCompanyToSend(prev => ({
-		//     ...prev,
-		//     [key]: value
-		// }))
-		// console.log('companyToSend', companyToSend)
 
 		const userCopy = { ...chosenUser };
 		userCopy[key] = value;
 		setChosenUser(userCopy);
-		// if (key === 'status') {
-		// //   console.log('companyCopy status', companyCopy)
-		// //   console.log('chosenCompany status', chosenCompany)
-		//   sendUpdatedCompany(key, value)
-		// }
-		// }
 	};
 
 	const sendUpdatedUser = async () => {
@@ -114,8 +95,6 @@ function UserInfo() {
 		userCopy.email = chosenUser.email ? chosenUser.email : currentUser.email;
 		// userCopy.type = chosenUser.type
 		// setChosenCompany(companyCopy)
-		console.log('chosenUser', chosenUser);
-		console.log('userCopy', userCopy);
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.USER}/${chosenUser.id}`, userCopy);
 			if (res.status === 200) {
@@ -124,6 +103,7 @@ function UserInfo() {
 				dispatch(actionSnackBar.setSnackBar('success', 'Successfully updated', 2000));
 			}
 		} catch (error) {
+			/* eslint no-console: "off" */
 			console.log(error);
 			if (error.response.status === 402) {
 				dispatch(actionSnackBar.setSnackBar('error', 'This user already exists', 2000));
@@ -283,10 +263,6 @@ function UserInfo() {
 												{...params}
 												style={{ width: '25%' }}
 												autoComplete="off"
-												// InputProps={{
-												//   startAdornment:  <InputAdornment position="start"> <LocationIcon />
-												//   </InputAdornment>
-												// }}
 											/>
 										)}
 									/>

@@ -1,11 +1,27 @@
-import { useEffect } from 'react';
 import { Grid, Typography, TextField, Chip, makeStyles } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { StyledTextField, StyledAutoComplete } from '../../styles/MainStyles';
-import { validateMember } from '../Reusables/ValidationFunctions';
+import { useSelector } from 'react-redux';
+import { StyledAutoComplete } from '../../styles/MainStyles';
+import { validateMember } from '../Reusables/validationFunctions';
+
+const useStyles = makeStyles({
+	chipContainer: {
+		marginTop: '10px',
+	},
+	chipItem: {
+		marginBottom: '5px',
+		marginRight: '3px',
+	},
+	chip: {
+		backgroundColor: '#EDEFF3',
+		border: 'none',
+	},
+	arrowIcon: {
+		'& .MuiSvgIcon-root': {
+			color: '#1C67FF',
+		},
+	},
+});
 
 function CategoriesAutoComplete({
 	formObject,
@@ -13,28 +29,17 @@ function CategoriesAutoComplete({
 	handler,
 	label = '',
 	className = '',
-	chipClassName,
-	chipContainerClassName,
 	error = null,
 	errors = null,
 	setErrors = () => {},
 	setValidationResult = () => {},
-	additionalParameter = null,
 	parentArr = null,
 	setParentArr = () => {},
 	chipVariant = 'outlined',
 }) {
 	const classes = useStyles();
-	const dispatch = useDispatch();
 	const categoriesArr = useSelector((state) => state.utils.utils.category);
 
-	useEffect(() => {
-		return () => {
-			console.log('autocom unmounted');
-		};
-	}, []);
-
-	const categoriesIDSArr = categoriesArr?.map((item) => item.id);
 	const itemIndex =
 		parentArr && parentArr.length && parentArr.findIndex((item) => item.id === formObject.id);
 
@@ -77,10 +82,6 @@ function CategoriesAutoComplete({
 							value={formObject.categories ? formObject.categories : formObject || ''}
 							onChange={(e, values) => handler(values)}
 							{...(error && { error: true, helperText: error })}
-							// onInputChange={(event, newInputValue) => {
-							//   setInputValue(newInputValue);
-							// }}
-							// inputValue={inputValue}
 							getOptionLabel={(option) => option.name || ''}
 							getOptionSelected={(option, value) => option.name === value.name}
 							renderInput={(params) => {
@@ -97,8 +98,7 @@ function CategoriesAutoComplete({
 							}}
 						/>
 						{adjustedFormObject.length ? (
-							// {formObject.categories && formObject.categories.length ? (
-							// {formObject.members[memberIndex].categories && formObject.members[memberIndex].categories.length ? (
+
 							<Grid item xs={12}>
 								<Grid container className={classes.chipContainer}>
 									{adjustedFormObject.map((el, index) => (
@@ -124,21 +124,4 @@ function CategoriesAutoComplete({
 
 export default CategoriesAutoComplete;
 
-const useStyles = makeStyles((theme) => ({
-	chipContainer: {
-		marginTop: '10px',
-	},
-	chipItem: {
-		marginBottom: '5px',
-		marginRight: '3px',
-	},
-	chip: {
-		backgroundColor: '#EDEFF3',
-		border: 'none',
-	},
-	arrowIcon: {
-		'& .MuiSvgIcon-root': {
-			color: '#1C67FF',
-		},
-	},
-}));
+

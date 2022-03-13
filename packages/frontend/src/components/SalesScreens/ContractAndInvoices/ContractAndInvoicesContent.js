@@ -93,12 +93,9 @@ function ContractAndInvoicesContent(props) {
 					<TableContainer style={{ height: 540 }}>
 						<Table stickyHeader size="small">
 							<TableHead>
-								{rowHeaders.map((row, index) => {
+								{rowHeaders.map((row) => {
 									return (
-										<HeaderCells
-											key={index}
-											style={{ textAlign: row.align, width: row.width }}
-										>
+										<HeaderCells style={{ textAlign: row.align, width: row.width }} key={row.name}>
 											{row.name}
 										</HeaderCells>
 									);

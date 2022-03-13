@@ -84,7 +84,7 @@ function ContractRow(props) {
 				>
 					<Grid container direction="column" spacing={2} style={{ paddingTop: 10 }}>
 						<Grid item xs={11} style={{ marginLeft: '16px' }}>
-							<Grid container spacing={1} spacing={1} direction="column">
+							<Grid container spacing={1} direction="column">
 								<Grid item>
 									<Typography style={{ fontSize: '12px', color: '#B8C3D8' }}>
 										Download

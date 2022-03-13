@@ -16,7 +16,6 @@ function ContractBlock(props) {
 	};
 
 	return (
-		// currentContract ?
 		<Grid
 			container
 			className={clsx({
@@ -75,7 +74,6 @@ function ContractBlock(props) {
 								: '-'}
 						</Typography>
 
-						{/* <Typography className={classes.fieldContent}>{chosenCompany.prospect_trial.sales_agent.name}</Typography> */}
 					</Grid>
 				</Grid>
 			</Grid>

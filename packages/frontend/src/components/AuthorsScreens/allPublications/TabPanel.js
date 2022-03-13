@@ -1,6 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+	panel: {
+		display: 'flex',
+		flexWrap: 'wrap',
+	},
+});
 
 export default function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -24,9 +30,4 @@ export default function TabPanel(props) {
 	);
 }
 
-const useStyles = makeStyles((theme) => ({
-	panel: {
-		display: 'flex',
-		flexWrap: 'wrap',
-	},
-}));
+

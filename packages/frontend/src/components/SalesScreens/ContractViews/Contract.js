@@ -251,7 +251,7 @@ const useStyles = makeStyles({
 		marginTop: 25,
 	},
 });
-const Contract = () => {
+
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
 	const salesmenArr = useSelector((state) => state.utils.utils.sales);
 	const chosenCompany = useSelector(selectChosenCompany);
@@ -312,8 +312,6 @@ const Contract = () => {
 				id: chosenCompany.id,
 			});
 			if (res.status === 200 || res.status === 201) {
-				console.log('post succeded');
-				console.log('res', res);
 				setContractCopy({ ...contract, contract_id: res.data.id });
 				setContract({});
 				dispatch(actionSnackBar.setSnackBar('success', 'Contract successfully created', 2000));
@@ -346,20 +344,18 @@ const Contract = () => {
 		contractCopy.currency = currency;
 		const sales = contract.sales?.id;
 		contractCopy.sales = sales;
-		// const signer_user = contract.signer_user?.id;
-		// contractCopy.signer_user = signer_user;
 
 		try {
 			const res = await axios.put(`${BASE_URL}${END_POINT.CONTRACT}/${contract_id}`, contractCopy);
 
 			if (res.status === 201 || res.status === 200) {
 				// dispatch(actionSnackBar.setSnackBar('success', 'Successfully updated', 2000));
-				console.log('contract updated successfully');
 				setLoadingSidebar(false);
 				setActiveSidebar(true);
 				setValidationResult(false);
 			}
 		} catch (error) {
+			/* eslint no-console: "off" */
 			console.log(error);
 			setLoadingSidebar(false);
 		}

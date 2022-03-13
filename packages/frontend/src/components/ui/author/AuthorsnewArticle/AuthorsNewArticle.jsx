@@ -44,7 +44,8 @@ const AuthorsNewArticle = () => {
 	const [errors, setErrors] = useState({});
 	const [validationResult, setValidationResult] = useState(false);
 	const [errorsEvent, setErrorsEvent] = useState({});
-	// eslint-disable-next-line no-unused-vars
+	//true as default because not mandatory
+	/* eslint no-unused-vars: 0 */
 	const [validationResultEvent, setValidationResultEvent] = useState(true);
 	const [coverImageOK, setCoverImageOK] = useState({ initial: true, final: false });
 	const [contentNotOK, setContentNotOK] = useState({ focus: false, isText: false, everTyped: false });
@@ -96,6 +97,9 @@ const AuthorsNewArticle = () => {
 				if (!chosenResearch.categories.length || !chosenResearch.title) {
 					setValidationResult(false);
 				}
+				// if (JSON.parse(chosenResearch.content)) {
+				// }
+
 			}
 		}
 	}, [chosenResearch]);
@@ -105,12 +109,8 @@ const AuthorsNewArticle = () => {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 
-			const coverImg = publication.attachments?.find(
-				(attachment) => attachment.file_type === 'main_bg',
-			);
-			const otherFiles = publication.attachments?.filter(
-				(attachment) => attachment.file_type !== 'main_bg',
-			);
+			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
+			const otherFiles = publication.attachments?.filter((attachment) => attachment.file_type !== 'main_bg');
 
 			// let categoriesIDs = publication.categories?.map(category => category.id)
 			const editedLocalForm = { ...publication, attachments: otherFiles };
@@ -161,7 +161,6 @@ const AuthorsNewArticle = () => {
 						? JSON.parse(formToSend.content)
 						: formToSend.content,
 			};
-			console.log('formToSend', formToSend);
 		} else if (buttonMarker === 'save-draft') {
 			formToSend = {
 				...formToSend,
@@ -184,7 +183,6 @@ const AuthorsNewArticle = () => {
 				description: description,
 				created_at: new Date(),
 			};
-			console.log('form to send to preview screen', formToSend);
 			history.push({
 				pathname: '/prearticle',
 				state: { publication: formToSend, from: 'new-publication' },
@@ -194,7 +192,6 @@ const AuthorsNewArticle = () => {
 
 		try {
 			let res;
-			// if((chosenResearch && chosenResearch.id )){
 			if (formToSend.id) {
 				res = await axios.put(`${BASE_URL}${END_POINT.PUBLICATION}/${formToSend.id}`, formToSend);
 				history.push('/researches');
@@ -236,7 +233,6 @@ const AuthorsNewArticle = () => {
 			newCats.push(cat.id);
 		}
 		setLocalCats(values);
-		// setLocalForm({...localForm, categories: newCats})
 		if (chosenResearch) {
 			validateEditedLivePublication({ categories: newCats }, errors, setErrors, setValidationResult);
 		} else {

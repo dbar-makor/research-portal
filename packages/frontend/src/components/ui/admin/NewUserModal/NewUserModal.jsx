@@ -30,6 +30,16 @@ const NewUserModal = (props) => {
 	const userLimit = useSelector(selectUsersLimit);
 	const userSearch = useSelector(selectUsersSearch);
 	const userStatus = useSelector(selectUsersStatus);
+	const clearAndClose = () => {
+		setNewUser({
+			name: '',
+			username: '',
+			email: '',
+			country: null,
+		});
+		setInputValueCountry('');
+		handleClose();
+	};
 
 	const updateUserField = (value, key) => {
 		const userCopy = { ...newUser, [key]: value };
@@ -50,7 +60,6 @@ const NewUserModal = (props) => {
 
 	const sendNewUser = async () => {
 		const userToSend = { ...newUser, country: newUser.country.code, type: userType };
-		// const userTypeToSend = userType === 'author' ? 'authors' : 'sales'
 		try {
 			const res = await axios.post(`${BASE_URL}${END_POINT.USER}`, userToSend);
 			if (res.status === 201) {

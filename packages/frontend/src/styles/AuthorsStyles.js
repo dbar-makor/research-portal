@@ -152,7 +152,6 @@ export const useStyles = makeStyles(() => ({
 				color: '#FF0221',
 				fontSize: 11,
 				fontWeight: 500,
-				// lineHeight: 1.5
 			},
 		},
 	},
@@ -506,17 +505,23 @@ export const CustomTextField = withStyles((theme) => ({
 			paddingRight: 0,
 		},
 		'& .MuiInputBase-input': {
+				// Text color
+
 			color: theme.palette.text.main,
 			fontSize: (props) => (props ? props.fontSize : '16px'),
 			fontWeight: 400,
 		},
 		'& .MuiInput-underline:before': {
+			// Semi-transparent underline
 			borderBottom: `1px solid ${theme.palette.input.underline}`,
 		},
 		'& .MuiInput-underline:hover:before': {
+			// Solid underline on hover
 			borderBottom: `1px solid ${theme.palette.input.underline}`,
 		},
 		'& .MuiInput-underline:after': {
+			 // Solid underline on focus
+
 			borderBottom: `1px solid ${theme.palette.button.main}`,
 		},
 		'& .MuiInput-underline.Mui-error:after': {

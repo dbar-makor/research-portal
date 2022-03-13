@@ -61,7 +61,9 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"lint": "eslint \"src/**/*.{js,jsx}\" --fix",
-		"format": "prettier --write \"src/**/*.{js,jsx}\""
+		"format": "prettier --write \"src/**/*.{js,jsx}\"",
+		"template:page": "hygen component new-page",
+		"template:ui": "hygen component new-ui"
 	},
 	"browserslist": {
 		"production": [

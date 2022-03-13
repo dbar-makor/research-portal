@@ -78,11 +78,7 @@ const get_payload_login = (user, token) => {
 		} else {
 			type = res_level.name;
 		}
-<<<<<<< HEAD
 		const data = {
-=======
-		let data = {
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			user: {
 				id: user.uuid,
 				name: user.name,

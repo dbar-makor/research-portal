@@ -117,11 +117,7 @@ const process_payload = (payload) => {
 const get_meta_data = (filter_by) => {
 	return new Promise(async (resolve, reject) => {
 		const { limit, offset } = filter_by;
-<<<<<<< HEAD
 		const [{ sum }] = await db_helper.get(query.get_sum_rows(filter_by));
-=======
-		let [{ sum }] = await db_helper.get(query.get_sum_rows(filter_by));
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 
 		const meta_data = {
 			sum_rows: sum,

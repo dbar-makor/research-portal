@@ -39,11 +39,7 @@ Comment.createComment = async (payload, result) => {
 //get all comment by publication_id
 Comment.getCommentsById = async (payload, result) => {
 	try {
-<<<<<<< HEAD
 		const processed_data = await process_payload_get_by_publication_id(payload);
-=======
-		let processed_data = await process_payload_get_by_publication_id(payload);
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 		const [pub] = await db_helper.get(
 			publication_sql.get_publication_id_by_uuid(processed_data.publication_id),
 		);
@@ -51,17 +47,10 @@ Comment.getCommentsById = async (payload, result) => {
 			return result({ status: 500 });
 		}
 		const comments = await db_helper.get(comments_sql.get_comments_by_id(pub.id));
-<<<<<<< HEAD
 		const formated_comments = [];
 		for (comment of comments) {
 			const res_replies = await db_helper.get(comments_sql.get_child_comments(comment.real_id));
 			const comment_replies = [];
-=======
-		let formated_comments = [];
-		for (comment of comments) {
-			const res_replies = await db_helper.get(comments_sql.get_child_comments(comment.real_id));
-			let comment_replies = [];
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			//check if has count replies
 			if (res_replies.length) {
 				for (reply of res_replies) {
@@ -108,11 +97,7 @@ Comment.getCommentsById = async (payload, result) => {
 //get comment by id
 Comment.getCommentById = async (payload, result) => {
 	try {
-<<<<<<< HEAD
 		const [comm] = await db_helper.get(comments_sql.get_comment_by_uuid(payload.id));
-=======
-		let [comm] = await db_helper.get(comments_sql.get_comment_by_uuid(payload.id));
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 		if (!comm) {
 			return result({ status: 200, data: [] });
 		} else {
@@ -206,13 +191,8 @@ Comment.updateCommentSocial = async (payload, result) => {
 
 const process_payload_create = async (unprocessed_data) => {
 	return new Promise(async (resolve, reject) => {
-<<<<<<< HEAD
 		const errors = [];
 		const processed_data = {};
-=======
-		let errors = [];
-		let processed_data = {};
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 		try {
 			for (const [key, val] of Object.entries(unprocessed_data)) {
 				if (typeof val !== 'undefined') {
@@ -243,11 +223,7 @@ const process_payload_create = async (unprocessed_data) => {
 												processed_data[key_1] = val_1.trim();
 											} else {
 												errors.push(
-<<<<<<< HEAD
 													'[Error]: commentCreate.publication_id is not a number on create comment!!!',
-=======
-													`[Error]: commentCreate.publication_id is not a number on create comment!!!`,
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 												);
 											}
 											break;
@@ -256,20 +232,12 @@ const process_payload_create = async (unprocessed_data) => {
 												processed_data[key_1] = val_1.trim();
 											} else {
 												errors.push(
-<<<<<<< HEAD
 													'[Error]: commentCreate.comment_id is not a number on create comment!!!',
-=======
-													`[Error]: commentCreate.comment_id is not a number on create comment!!!`,
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 												);
 											}
 											break;
 										case 'type':
-<<<<<<< HEAD
 											const types = ['like', 'dislike'];
-=======
-											let types = ['like', 'dislike'];
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 											if (types.includes(val.toLowerCase())) {
 												processed_data[key_1] = val_1.toLowerCase();
 											} else {
@@ -301,13 +269,8 @@ const process_payload_create = async (unprocessed_data) => {
 
 const process_payload_get_by_publication_id = async (unprocessed_data) => {
 	return new Promise(async (resolve, reject) => {
-<<<<<<< HEAD
 		const errors = [];
 		const processed_data = {};
-=======
-		let errors = [];
-		let processed_data = {};
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 		try {
 			for (const [key, val] of Object.entries(unprocessed_data)) {
 				if (typeof val !== 'undefined') {
@@ -318,11 +281,7 @@ const process_payload_get_by_publication_id = async (unprocessed_data) => {
 								processed_data['publication_id'] = val;
 							} else {
 								errors.push(
-<<<<<<< HEAD
 									'[Error]: publication_id is not a string on get_by_publication_id comment!!!',
-=======
-									`[Error]: publication_id is not a string on get_by_publication_id comment!!!`,
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 								);
 							}
 							break;

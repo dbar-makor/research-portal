@@ -51,19 +51,11 @@ const get_invoices = ({ limit, offset, from, to, status, company_id, invoice_id 
   ${
 		from !== undefined && to !== undefined
 			? ` AND i.invoice_date >= '${from}' AND i.invoice_date <= '${to}'`
-<<<<<<< HEAD
 			: ''
   } 
     ${status ? `AND i.status ='${status}'` : ''}
     ${company_id ? `AND co.uuid ='${company_id}'` : ''}
     ${invoice_id ? `AND  i.uuid LIKE '%${invoice_id}%'` : ''}
-=======
-			: ``
-  } 
-    ${status ? `AND i.status ='${status}'` : ``}
-    ${company_id ? `AND co.uuid ='${company_id}'` : ``}
-    ${invoice_id ? `AND  i.uuid LIKE '%${invoice_id}%'` : ``}
->>>>>>> c7002297c0167df11929209b77da14040815ff78
   LIMIT ${limit} OFFSET ${offset}`;
 };
 const get_sum_rows = ({ limit, offset, from, to, status, company_id, invoice_id }) => {

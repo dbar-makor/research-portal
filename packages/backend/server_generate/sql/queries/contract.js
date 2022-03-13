@@ -31,11 +31,7 @@ const get_contract = ({ limit, offset, from, to, period, signed, status, company
 			: ` ${
 					from !== undefined
 						? ` AND date(c.start_at) >= '${from}' `
-<<<<<<< HEAD
 						: `${to !== undefined ? ` AND date(c.end_at) <= '${to}'` : ''} `
-=======
-						: `${to !== undefined ? ` AND date(c.end_at) <= '${to}'` : ``} `
->>>>>>> c7002297c0167df11929209b77da14040815ff78
 			  }`
 	} 
   

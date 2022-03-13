@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import tradingHoursData from './dummy.json';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';

@@ -1,9 +1,7 @@
 //MUI
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
-import * as researchAction from '../../../redux/researches/researchesSlice';
-import { Link } from 'react-router-dom';
+import { Grid, makeStyles } from '@material-ui/core';
 import SubHeader from '../../Reusables/SubHeader';
 // import dataStats from "../../../config/statisticsConfig.json";
 import AllPublicationsStatColumn from './AllPublicationsStatColumn';
@@ -34,69 +32,7 @@ const publishedFields = [
 ];
 const draftFieldLabels = ['Saved', 'Total Words', 'Average Word Count'];
 const draftFields = ['saved', 'total_words', 'average_word_count'];
-
-function AllPublications() {
-	const classes = useStyles();
-	const dispatch = useDispatch();
-	const [statistics, setStatistics] = useState({});
-	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-	useEffect(() => {
-		if (isAuthenticated) {
-			dispatch(utilsAction.getUtilsAsync());
-		}
-	}, []);
-
-	async function fetchStatistics() {
-		try {
-			const res = await axios.get(`${BASE_URL}${END_POINT.USER}/statistics`);
-			if (res.status === 201 || res.status === 200) {
-				console.log('get statistics', res.data);
-				setStatistics(res.data);
-			}
-		} catch (error) {
-			console.log(error, error.message);
-		}
-	}
-	useEffect(() => {
-		fetchStatistics();
-	}, []);
-
-	return Object.keys(statistics).length ? (
-		<Grid container justifyContent="center">
-			<Grid item xs={10} className={classes.page}>
-				<SubHeader title="All Articles" />
-			</Grid>
-			<Grid container>
-				<Grid item xs={10} className={classes.contentWrapper}>
-					{/* <Grid container > */}
-					<Grid item xs={3} className={classes.statisticsColumn}>
-						<AllPublicationsStatColumn
-							publishedFieldLabels={publishedFieldLabels}
-							publishedFields={publishedFields}
-							draftFieldLabels={draftFieldLabels}
-							draftFields={draftFields}
-							statistics={statistics}
-						/>
-					</Grid>
-					{/* </Grid> */}
-
-					{/* <Grid container > */}
-					<Grid item xs={9} className={classes.publicationsColumn}>
-						<AllPublicationsTabs fetchStatistics={fetchStatistics} />
-					</Grid>
-					{/* </Grid> */}
-				</Grid>
-			</Grid>
-		</Grid>
-	) : (
-		<></>
-	);
-}
-
-export default AllPublications;
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	page: {
 		margin: '4.3vh auto 0 auto',
 	},
@@ -169,3 +105,64 @@ const useStyles = makeStyles((theme) => ({
 // smallLink: {
 //   textDecoration: 'none'
 // },
+
+function AllPublications() {
+	const classes = useStyles();
+	const dispatch = useDispatch();
+	const [statistics, setStatistics] = useState({});
+	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			dispatch(utilsAction.getUtilsAsync());
+		}
+	}, []);
+
+	async function fetchStatistics() {
+		try {
+			const res = await axios.get(`${BASE_URL}${END_POINT.USER}/statistics`);
+			if (res.status === 201 || res.status === 200) {
+				console.log('get statistics', res.data);
+				setStatistics(res.data);
+			}
+		} catch (error) {
+			console.log(error, error.message);
+		}
+	}
+	useEffect(() => {
+		fetchStatistics();
+	}, []);
+
+	return Object.keys(statistics).length ? (
+		<Grid container justifyContent="center">
+			<Grid item xs={10} className={classes.page}>
+				<SubHeader title="All Articles" />
+			</Grid>
+			<Grid container>
+				<Grid item xs={10} className={classes.contentWrapper}>
+					{/* <Grid container > */}
+					<Grid item xs={3} className={classes.statisticsColumn}>
+						<AllPublicationsStatColumn
+							publishedFieldLabels={publishedFieldLabels}
+							publishedFields={publishedFields}
+							draftFieldLabels={draftFieldLabels}
+							draftFields={draftFields}
+							statistics={statistics}
+						/>
+					</Grid>
+					{/* </Grid> */}
+
+					{/* <Grid container > */}
+					<Grid item xs={9} className={classes.publicationsColumn}>
+						<AllPublicationsTabs fetchStatistics={fetchStatistics} />
+					</Grid>
+					{/* </Grid> */}
+				</Grid>
+			</Grid>
+		</Grid>
+	) : (
+		<></>
+	);
+}
+
+export default AllPublications;

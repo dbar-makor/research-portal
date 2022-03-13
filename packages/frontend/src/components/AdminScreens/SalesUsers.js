@@ -12,7 +12,7 @@ import {
 } from '../../redux/users/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import UserInfo from '../AdminScreens/UserInfo';
+import UserInfo from '../ui/admin/UserInfo/UserInfo';
 import { selectChosenUserData } from '../../redux/users/chosenUserSlice';
 
 function SalesUsers() {

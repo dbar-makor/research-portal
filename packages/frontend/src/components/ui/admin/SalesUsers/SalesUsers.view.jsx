@@ -3,7 +3,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../../styles/MainStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TableComponent from '../../../Reusables/TableComponent';
-import UserInfo from '../../../AdminScreens/UserInfo';
+import UserInfo from '../UserInfo/UserInfo';
 
 const SalesUsersView = (props) => {
 	const classes = useStyles();

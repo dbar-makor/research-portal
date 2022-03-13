@@ -1,5 +1,5 @@
 {
-  "name": "research",
+  "name": "@r/backend",
   "version": "1.0.0",
   "description": "Project research",
   "main": "index.js",
@@ -15,6 +15,7 @@
   "private": true,
   "dependencies": {
     "@sendgrid/mail": "^7.4.0",
+    "apn": "^2.2.0",
     "body-parser": "^1.19.0",
     "camelcase": "^5.3.1",
     "cookie-parser": "^1.4.4",
@@ -22,6 +23,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "express-openapi-validator": "4.13.4",
+    "firebase-admin": "^10.0.2",
     "js-yaml": "^3.3.0",
     "jshashes": "^1.0.8",
     "jsonwebtoken": "^8.5.1",

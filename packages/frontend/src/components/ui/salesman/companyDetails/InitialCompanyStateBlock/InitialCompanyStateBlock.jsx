@@ -17,7 +17,6 @@ import { validateProspectTrial } from '../../../../Reusables/validationFunctions
 import InitialCompanyStateBlockView from './InitialCompanyStateBlock.view';
 
 const InitialCompanyStateBlock = (props) => {
-	console.log('props', props);
 	const end_at = props.end_at;
 	const id = props.id;
 	const sales_agent = props.sales_agent;

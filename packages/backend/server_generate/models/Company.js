@@ -457,8 +457,8 @@ Company.getContractsByCompanyId = async (payload, result) => {
 		//get the currency of company
 
 		const all_contracts = [];
-		for (const contract of res_contracts) {
-		for (contract of res_contracts) {
+		
+		for (let contract of res_contracts) {
 			const [res_currency] = await db_helper.get(query.get_currency_by_contract_id(contract.id));
 			if (!res_currency) return result({ status: 404 });
 			const res_invoices = await db_helper.get(query.get_full_invoices_by_contract_id(contract.id));
@@ -494,7 +494,7 @@ Company.getContractsByCompanyId = async (payload, result) => {
 			all_contracts.push(format_contract);
 		}
 		return result({ status: 200, data: all_contracts });
-	}
+
 } catch (error) {
 		console.log(error);
 		if (error.status) {

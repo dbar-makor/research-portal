@@ -5,7 +5,6 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import SearchIcon from '@material-ui/icons/Search';
 import { Autocomplete } from '@material-ui/lab';
 import clsx from 'clsx';
-
 import {
 	GreenFilledButton,
 	BinButton,
@@ -20,7 +19,7 @@ import { ReactComponent as DeleteIcon } from '../../../../../assets/icons/IconTr
 import { ReactComponent as LocationIcon } from '../../../../../assets/icons/iconLocation.svg';
 import { ReactComponent as EditIcon } from '../../../../../assets/icons/IconEdit.svg';
 import ContractBlock from '../ContractBlock/ContractBlock';
-import ContractsModal from '../../../../SalesScreens/ContractAndInvoices/ContractModal';
+import ContractsModal from '../../contractAndInvoices/ContractModal/ContractModal';
 import DeleteAlert from '../../../../Reusables/DeleteAlert';
 import InitialCompanyStateBlock from '../InitialCompanyStateBlock/InitialCompanyStateBlock';
 
@@ -68,10 +67,14 @@ const CompanyInfoView = (props) => {
 												<Grid
 													container
 													alignItems={
-														props.chosenCompany.isEditMode ? 'flex-start' : 'center'
+														props.chosenCompany.isEditMode
+															? 'flex-start'
+															: 'center'
 													}
 													justifyContent={
-														props.chosenCompany.isEditMode ? 'flex-end' : 'flex-start'
+														props.chosenCompany.isEditMode
+															? 'flex-end'
+															: 'flex-start'
 													}
 												>
 													<Grid item xs={3}>
@@ -100,15 +103,18 @@ const CompanyInfoView = (props) => {
 														<Typography
 															style={{
 																marginLeft:
-																props.chosenCompany.isEditMode && '12px',
+																	props.chosenCompany.isEditMode && '12px',
 															}}
 															className={clsx({
-																[classes.statusActive]: props.chosenCompany.status,
+																[classes.statusActive]:
+																	props.chosenCompany.status,
 																[classes.statusInactive]:
 																	!props.chosenCompany.status,
 															})}
 														>
-															{props.chosenCompany.status ? 'Active' : 'Inactive'}
+															{props.chosenCompany.status
+																? 'Active'
+																: 'Inactive'}
 														</Typography>
 													</Grid>
 												</Grid>
@@ -119,7 +125,9 @@ const CompanyInfoView = (props) => {
 										<Grid container alignItems="center" justifyContent="flex-end">
 											<Grid item style={{ marginRight: '16px' }}>
 												{props.chosenCompany.isEditMode ? (
-													<EditDoneButton onClick={() => props.sendUpdatedCompany()}>
+													<EditDoneButton
+														onClick={() => props.sendUpdatedCompany()}
+													>
 														<WhiteCheckIcon />
 													</EditDoneButton>
 												) : (
@@ -164,8 +172,12 @@ const CompanyInfoView = (props) => {
 										getOptionLabel={(option) => {
 											return option.name;
 										}}
-										onChange={(e, newValue) => props.updateCompanyField('country', newValue)}
-										onInputChange={(e, newInputValue) => props.setInputValue(newInputValue)}
+										onChange={(e, newValue) =>
+											props.updateCompanyField('country', newValue)
+										}
+										onInputChange={(e, newInputValue) =>
+											props.setInputValue(newInputValue)
+										}
 										renderInput={(params) => (
 											<TextField
 												{...params}
@@ -224,7 +236,10 @@ const CompanyInfoView = (props) => {
 							<Grid container justifyContent="flex-end">
 								<LinkButton
 									className={classes.upgradeBtn}
-									onClick={() => props.openContractDialong(props.chosenCompany.id)}
+									onClick={() => {
+										console.log('id', props.chosenCompany.id);
+										props.openContractDialong(props.chosenCompany.id);
+									}}
 								>
 									Contracts & Invoices
 								</LinkButton>

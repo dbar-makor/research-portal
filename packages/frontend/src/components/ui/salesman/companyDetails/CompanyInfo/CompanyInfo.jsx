@@ -184,7 +184,7 @@ const CompanyInfo = () => {
 			upgradeToClient={upgradeToClient}
 			history={history}
 			sendUpdatedCompany={sendUpdatedCompany}
-		>
+			openDialog={openDialog}		>
 			{' '}
 		</CompanyInfoView>
 	);

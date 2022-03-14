@@ -1,34 +1,22 @@
+import React from 'react';
+import { useStyles } from '../../../../../styles/ContarctsModalStyles';
 import { IconButton, Typography, Popover, withStyles, Grid } from '@material-ui/core';
-import { useStyles } from '../../../styles/ContarctsModalStyles';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import { useRef, useState } from 'react';
-import ContractEditMain from '../ContractEdit/ContractEditMain';
-function PaymentButtonBar(props) {
-	const { precentage, openInvoices, isOpen, clientName, contract } = props;
-	const classes = useStyles(precentage);
-	const [anchorEl, setAnchorEl] = useState(null);
+import ContractEditMain from '../../../../SalesScreens/ContractEdit/ContractEditMain';
 
-	const contractEditMainRef = useRef();
-
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
-	const open = Boolean(anchorEl);
-	const id = open ? 'simple-popover' : undefined;
+const PaymentButtonBarView = (props) => {
+	const classes = useStyles(props.precentage);
 
 	return (
 		<div style={{ display: 'flex' }}>
-			<div className={classes.paymentBar} style={{ cursor: 'pointer' }} onClick={() => openInvoices()}>
+			<div className={classes.paymentBar} style={{ cursor: 'pointer' }} onClick={() => props.openInvoices()}>
 				<div className={classes.progressBar}>
 					<div>
-						<Typography style={{ fontSize: 14, color: '#1C67FF' }}>{`${precentage}%`}</Typography>
+						<Typography
+							style={{ fontSize: 14, color: '#1C67FF' }}
+						>{`${props.precentage}%`}</Typography>
 					</div>
 					<div
 						style={{ backgroundColor: '#B8C3D8', width: '90px', height: '5px', borderRadius: 4 }}
@@ -36,27 +24,27 @@ function PaymentButtonBar(props) {
 						<div
 							style={{
 								height: '5px',
-								width: `${precentage}%`,
+								width: `${props.precentage}%`,
 								backgroundColor: '#1C67FF',
 								borderRadius: 4,
 							}}
 						></div>
 					</div>
 				</div>
-				{isOpen ? (
+				{props.isOpen ? (
 					<ExpandLessIcon fontSize="small" style={{ color: '#1C67FF' }} />
 				) : (
 					<ExpandMoreIcon fontSize="small" style={{ color: '#1C67FF' }} />
 				)}
 			</div>
 			<IconButton size="small">
-				<MoreVertIcon fontSize="small" style={{ color: '#B8C3D8' }} onClick={handleClick} />
+				<MoreVertIcon fontSize="small" style={{ color: '#B8C3D8' }} onClick={props.handleClick} />
 			</IconButton>
 			<StyledPop
-				id={id}
-				open={open}
-				anchorEl={anchorEl}
-				onClose={handleClose}
+				id={props.id}
+				open={props.open}
+				anchorEl={props.anchorEl}
+				onClose={props.handleClose}
 				anchorOrigin={{
 					vertical: 'top',
 					horizontal: 'left',
@@ -75,7 +63,7 @@ function PaymentButtonBar(props) {
 							<Grid item>
 								<Typography
 									className={classes.popContent}
-									onClick={() => contractEditMainRef.current.openModal()}
+									onClick={() => props.contractEditMainRef.current.openModal()}
 								>
 									Edit
 								</Typography>
@@ -89,13 +77,19 @@ function PaymentButtonBar(props) {
 					</Grid>
 				</Grid>
 			</StyledPop>
-			<ContractEditMain ref={contractEditMainRef} contract={contract} clientName={clientName} />
+			<ContractEditMain
+				ref={props.contractEditMainRef}
+				contract={props.contract}
+				clientName={props.clientName}
+			/>
 		</div>
 	);
-}
+};
 
-export default PaymentButtonBar;
+PaymentButtonBarView.displayName = 'PaymentButtonBarView';
+PaymentButtonBarView.defaultProps = {};
 
+export default React.memo(PaymentButtonBarView);
 const StyledPop = withStyles({
 	top: 455,
 	root: {

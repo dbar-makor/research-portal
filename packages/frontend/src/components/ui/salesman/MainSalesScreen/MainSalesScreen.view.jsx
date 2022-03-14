@@ -3,7 +3,7 @@ import { useStyles } from '../../../../styles/MainStyles';
 import { Grid, Typography } from '@material-ui/core';
 import TableComponent from '../../../Reusables/TableComponent';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import CompanyInfo from '../../../SalesScreens/CompanyDetails/CompanyInfo';
+import CompanyInfo from '../../salesman/companyDetails/CompanyInfo/CompanyInfo';
 import MembersTable from '../../../SalesScreens/MembersDetails/MembersTable';
 
 

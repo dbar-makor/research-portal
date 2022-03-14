@@ -1,19 +1,13 @@
-import { useStyles } from '../../../styles/InfoStyles';
+import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import { format } from 'date-fns';
-import { ReactComponent as GreenCheckIcon } from '../../../assets/icons/IconGreenCheck.svg';
-import clsx from 'clsx';
 import WarningIcon from '@material-ui/icons/Warning';
+import { format } from 'date-fns';
+import clsx from 'clsx';
+import { useStyles } from '../../../../../styles/InfoStyles';
+import { ReactComponent as GreenCheckIcon } from '../../../../../assets/icons/IconGreenCheck.svg';
 
-function ContractBlock(props) {
+const ContractBlockView = (props) => {
 	const classes = useStyles();
-
-	const periodToNum = {
-		monthly: 12,
-		quarterly: 4,
-		half: 2,
-		fully: 1,
-	};
 
 	return (
 		<Grid
@@ -73,7 +67,6 @@ function ContractBlock(props) {
 								? props.contract.sales_agent.name
 								: '-'}
 						</Typography>
-
 					</Grid>
 				</Grid>
 			</Grid>
@@ -128,7 +121,7 @@ function ContractBlock(props) {
 						<Typography className={classes.yearlyCostContent}>
 							{props.contractStatus || props.title === 'last'
 								? `${props.contract.currency.symbol}${(
-										props.contract.amount * periodToNum[props.contract.periodicity]
+										props.contract.amount * props.periodToNum[props.contract.periodicity]
 								  ).toLocaleString()}`
 								: '-'}
 						</Typography>
@@ -137,6 +130,9 @@ function ContractBlock(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
-export default ContractBlock;
+ContractBlockView.displayName = 'ContractBlockView';
+ContractBlockView.defaultProps = {};
+
+export default React.memo(ContractBlockView);

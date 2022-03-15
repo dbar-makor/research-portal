@@ -14,8 +14,6 @@ const useStyles = makeStyles({
 		position: 'relative',
 	},
 	lowerHalf: {
-		// display: 'flex',
-		// position: 'relative',
 		backgroundColor: '#fff',
 		flexDirection: 'column',
 		height: 170,

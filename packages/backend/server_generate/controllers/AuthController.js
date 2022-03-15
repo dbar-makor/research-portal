@@ -6,8 +6,6 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const a = 3;
-
 const Controller = require('./Controller');
 const service = require('../services/AuthService');
 const changePassword = async (request, response) => {

@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
-import SubscriberDetails from './SubscriberDetails';
+import SubscriberDetails from '../ui/Subscribers/SubscriberDetails/SubscriberDetails';
 import SubscribersTable from './SubscribersTable';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';

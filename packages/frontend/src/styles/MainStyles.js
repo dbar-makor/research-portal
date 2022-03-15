@@ -184,10 +184,18 @@ export const useStyles = makeStyles((theme) => ({
 		paddingRight: 10,
 		fontSize: 13,
 	},
+	topTopWrapper:{
+		width: 'inherit',
+		justifyContent: 'space-between',
+		minHeight:55
+	},
 	cityWrapper: {
 		margin: '10px auto',
 		width: 'fit-content',
 	},
+	userBarWrapper:{
+		justifyContent: 'flex-end'
+	}
 }));
 
 export const StyledTextField = withStyles({

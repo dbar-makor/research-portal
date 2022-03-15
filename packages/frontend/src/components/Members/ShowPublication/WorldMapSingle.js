@@ -17,7 +17,7 @@ function WorldMapSingle({ d, x, y, citiesStatus }) {
 				{tooltipState && (
 					<>
 						<rect x={x} y={y} width={100} height={30} fill="#1C67FF" rx="4" />
-						<text x={x + 50} y={y + 20} stroke="#fff" fill="#fff" textAnchor="middle">
+						<text x={x + 50} y={y + 20} fill="#fff" textAnchor="middle">
 							{d.city}
 						</text>
 					</>

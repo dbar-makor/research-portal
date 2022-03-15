@@ -1,4 +1,4 @@
-import { Grid, makeStyles, MenuItem } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { StyledTextField } from '../../styles/MainStyles';
 const useStyles = makeStyles(() => ({
 	arrowIcon: {
@@ -24,7 +24,7 @@ function SelectInputUnit({
 }) {
 	const classes = useStyles();
 	return (
-		<Grid container className={className} >
+		<Grid container className={className}>
 			<Grid item xs={12}>
 				<StyledTextField
 					select
@@ -36,6 +36,9 @@ function SelectInputUnit({
 					style={{ width: '100%' }}
 					variant={variant}
 					placeholder={placeholder}
+					SelectProps={{
+						native: true,
+					  }}
 					mode
 					InputLabelProps={{
 						shrink: false,
@@ -43,9 +46,9 @@ function SelectInputUnit({
 					{...(error && { error: true, helperText: error })}
 				>
 					{optionsArray.map((option, index) => (
-						<MenuItem key={`${option[valueField]}${index}`} value={option[valueField]}>
+						<option key={`${option[valueField]}${index}`} value={option[valueField]}>
 							{option[optionLabelField]}
-						</MenuItem>
+						</option>
 					))}
 				</StyledTextField>
 			</Grid>

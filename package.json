@@ -10,7 +10,9 @@
     "prepare": "husky install",
     "start": "yarn workspaces run start:dev",
     "lint": "yarn workspaces run lint",
-    "format": "yarn workspaces run format"
+    "format": "yarn workspaces run format",
+    "template:container": "hygen component new-container",
+    "template:ui": "hygen component new-ui"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",

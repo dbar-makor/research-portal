@@ -58,16 +58,23 @@ const useStyles = makeStyles((theme) => ({
 	},
 	select: {
 		'marginBottom': '15px',
-		// '& .MuiPopover-paper': {
-		// 	top: '200px !important',
-		// },
-		// '& ul': {
-		// 	top: '200px !important',
-		// },
 		'& svg': {
 			stroke: '#727789',
 			fill: 'transparent',
-			paddingTop: '8px',
+			paddingTop: '3px',
+		},
+		'& select': {
+			color: '#fff',
+			border: 'none',
+			outline: 'none',
+			paddingTop: 12,
+			'&::placeholder':{
+				color: '#fff',
+			},
+		},
+		'& option': {
+			paddingBottom: 10,
+			color: '#000',
 		},
 		'& .MuiSelect-nativeInput': {
 			opacity: 1,
@@ -144,7 +151,6 @@ function TopBar() {
 	const token = useSelector((state) => state.auth.token);
 
 	const anchorRef = useRef(null);
-	// eslint-disable-next-line no-unused-vars
 	const [open, setOpen] = useState(false);
 	const [openNotification, setOpenNotification] = useState(false);
 
@@ -262,7 +268,7 @@ function TopBar() {
 
 	return (
 		<>
-			<Grid container direction="column" className={classes.headerContainer}>
+			<Grid container direction="column" className={`${classes.headerContainer} header`}>
 				<Grid item style={{ backgroundColor: '#000', width: '70vw', margin: '0 auto' }}>
 					<TradingHours
 						handleToggle={handleToggle}

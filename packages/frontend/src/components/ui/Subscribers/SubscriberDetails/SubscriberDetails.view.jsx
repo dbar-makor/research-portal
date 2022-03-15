@@ -1,39 +1,46 @@
+import React from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import SubscriberInfo from './SubscriberInfo';
 import SubscriberInfoEdit from './SubscriberInfoEdit';
 
-function SubscriberDetails() {
-	const subscriber = useSelector((state) => state.subscribers.chosenSubscriber);
-	const [isEdit, setIsEdit] = useState(false);
+const StyledBtn = withStyles(() => ({
+	root: {
+		'backgroundColor': '#007FFF',
+		'color': '#ffffff',
+		'fontWeight': '500',
+		'&:hover': {
+			backgroundColor: '#007fffad',
+		},
+	},
+}))(Button);
 
-	const sendEdit = () => {
-		alert('EDITTT');
-		setIsEdit(!isEdit);
-	};
+const SubscriberDetailsView = (props) => {
 	return (
 		<Grid item xs={7} style={{ paddingTop: 50 }}>
 			<Grid container justifyContent="center">
 				<Grid item xs={12} style={{ paddingBottom: 50 }}>
 					<Typography style={{ fontSize: '25px', textAlign: 'center' }}>Subscriber Data</Typography>
 				</Grid>
-				{subscriber ? (
+				{props.subscriber ? (
 					<>
 						<Grid item xs={6} style={{ paddingBottom: 50 }}>
 							<Typography style={{ fontSize: '20px' }}>Info</Typography>
 							<Grid container alignItems="center">
 								<Grid item xs={11}>
-									{!isEdit ? (
-										<SubscriberInfo info={subscriber} />
+									{!props.isEdit ? (
+										<SubscriberInfo info={props.subscriber} />
 									) : (
-										<SubscriberInfoEdit info={subscriber} />
+										<SubscriberInfoEdit info={props.subscriber} />
 									)}
 								</Grid>
 								<Grid item xs={1} style={{ paddingTop: '25px' }}>
-									<StyledBtn onClick={() => (!isEdit ? setIsEdit(!isEdit) : sendEdit())}>
-										{!isEdit ? 'Edit' : 'Submit'}
+									<StyledBtn
+										onClick={() =>
+											!props.isEdit ? props.setIsEdit(!props.isEdit) : props.sendEdit()
+										}
+									>
+										{!props.isEdit ? 'Edit' : 'Submit'}
 									</StyledBtn>
 								</Grid>
 							</Grid>
@@ -49,16 +56,9 @@ function SubscriberDetails() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
-export default SubscriberDetails;
-const StyledBtn = withStyles(() => ({
-	root: {
-		'backgroundColor': '#007FFF',
-		'color': '#ffffff',
-		'fontWeight': '500',
-		'&:hover': {
-			backgroundColor: '#007fffad',
-		},
-	},
-}))(Button);
+SubscriberDetailsView.displayName = 'SubscriberDetailsView';
+SubscriberDetailsView.defaultProps = {};
+
+export default React.memo(SubscriberDetailsView);

@@ -144,16 +144,16 @@ const useStyles = makeStyles({
 	},
 });
 
-function truncateString(string, wordsNo) {
+const truncateString = (string, wordsNo) => {
 	const descrptionArr = string.split(' ');
 	const descriptionLength = descrptionArr.length;
 	descrptionArr.splice(wordsNo);
 	const newDescription = descrptionArr.join(' ');
 	if (descriptionLength > wordsNo) return `${newDescription}...`;
 	return newDescription;
-}
+};
 
-function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
+const PublicationsTab = ({ publication, fetchPublications, fetchStatistics }) => {
 	const classes = useStyles();
 	const [openAlert, setOpenAlert] = useState(false);
 	const [redirectMarker, setRedirectMarker] = useState(false);
@@ -175,7 +175,7 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 		}
 	}, [chosenResearch]);
 
-	async function asyncDelete() {
+	const asyncDelete = async () => {
 		try {
 			const res = await axios.delete(`${BASE_URL}${END_POINT.PUBLICATION}/${deleteID}`);
 			if (res.status === 201 || res.status === 200) {
@@ -186,27 +186,27 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 		} catch (error) {
 			dispatch(actionSnackBar.setSnackBar('error', 'Delete failed', 2000));
 		}
-	}
+	};
 
-	function handleEdit(id) {
+	const handleEdit = (id) => {
 		dispatch(getChosenResearchAsync(id));
 		setRedirectMarker(true);
-	}
+	};
 
 	const handleCloseAlert = () => {
 		setOpenAlert(false);
 	};
 
-	function deletePublication() {
+	const deletePublication = () => {
 		asyncDelete(deleteID);
 		setOpenAlert(false);
 		setDeleteID('');
-	}
+	};
 
-	function handleDeleteBtn(id) {
+	const handleDeleteBtn = (id) => {
 		setOpenAlert(true);
 		setDeleteID(id);
-	}
+	};
 
 	// const handlePublish = async (id) => {
 	// 	try {
@@ -223,7 +223,7 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 	// 	}
 	// };
 
-	function chooseImage(publication) {
+	const chooseImage = (publication) => {
 		let image = '';
 		let url = '';
 		if (publication?.attachments?.length) {
@@ -232,7 +232,7 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 			url = `${BASE_URL}${END_POINT.ASSETS}/${encodeURIComponent(imageName)}`;
 		}
 		return url;
-	}
+	};
 	return (
 		<>
 			<Grid item xs={4} className={classes.cardWrapper} key={publication.id}>
@@ -248,14 +248,12 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 							backgroundColor: '#74b2f0',
 						}}
 					>
-						{
-							publication.status === 'published' ? (
-								<Grid className={classes.viewsBox}>
-									<VisibilityIcon></VisibilityIcon>
-									{publication.views}
-								</Grid>
-							) : null
-						}
+						{publication.status === 'published' ? (
+							<Grid className={classes.viewsBox}>
+								<VisibilityIcon></VisibilityIcon>
+								{publication.views}
+							</Grid>
+						) : null}
 
 						{publication.type === 'dead' ? (
 							<Grid className={classes.typeIndicator}>
@@ -295,6 +293,6 @@ function PublicationsTab({ publication, fetchPublications, fetchStatistics }) {
 			/>
 		</>
 	);
-}
+};
 
 export default PublicationsTab;

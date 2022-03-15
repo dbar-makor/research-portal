@@ -1,4 +1,4 @@
-export function setParams(offset, limit, search, type, status) {
+export const setParams = (offset, limit, search, type, status) => {
 	const params = new URLSearchParams();
 
 	if (offset !== null && offset !== undefined && limit !== null && limit !== undefined) {
@@ -27,4 +27,4 @@ export function setParams(offset, limit, search, type, status) {
 	};
 
 	return request;
-}
+};

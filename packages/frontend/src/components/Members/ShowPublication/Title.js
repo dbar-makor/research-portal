@@ -2,7 +2,8 @@ import { Divider, Grid, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as ArrowRight } from '../../../assets/icons/arrowRight.svg';
 import { useStyles } from '../../../styles/PublicationsStyles';
-function Title(props) {
+
+const Title = (props) => {
 	const classes = useStyles();
 	const { title, description } = props;
 	const history = useHistory();
@@ -41,6 +42,6 @@ function Title(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Title;

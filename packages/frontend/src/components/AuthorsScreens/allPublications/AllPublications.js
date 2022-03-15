@@ -1,5 +1,4 @@
-
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, makeStyles } from '@material-ui/core';
 import SubHeader from '../../Reusables/SubHeader';
@@ -55,11 +54,9 @@ const useStyles = makeStyles({
 		marginTop: '2vh',
 		marginLeft: '1vw',
 	},
-
 });
 
-
-function AllPublications() {
+const AllPublications = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [statistics, setStatistics] = useState({});
@@ -71,15 +68,14 @@ function AllPublications() {
 		}
 	}, []);
 
-	async function fetchStatistics() {
+	const fetchStatistics = async () => {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.USER}/statistics`);
 			if (res.status === 201 || res.status === 200) {
 				setStatistics(res.data);
 			}
-		} catch (error) {
-			}
-		}
+		} catch (error) {}
+	};
 
 	useEffect(() => {
 		fetchStatistics();
@@ -115,6 +111,6 @@ function AllPublications() {
 	) : (
 		<></>
 	);
-}
+};
 
 export default AllPublications;

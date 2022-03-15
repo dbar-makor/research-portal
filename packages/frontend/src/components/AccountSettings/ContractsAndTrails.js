@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 
-function ContractAndTrails() {
+const ContractAndTrails = () => {
 	return <Grid item>Contract & trails</Grid>;
-}
+};
 
 export default ContractAndTrails;

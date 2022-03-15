@@ -24,7 +24,7 @@ const contractStatus = [
 	{ value: 'false', name: 'Unsigned' },
 ];
 
-function AllContracts() {
+const AllContracts = () => {
 	const dispatch = useDispatch();
 
 	const [loadingContract, setLoadingContract] = useState(true);
@@ -90,7 +90,7 @@ function AllContracts() {
 				setCompaniesNames(companies);
 			}
 		} catch (err) {
-					/* eslint no-console: "off" */
+			/* eslint no-console: "off" */
 			console.log(err);
 		}
 	};
@@ -233,6 +233,6 @@ function AllContracts() {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default AllContracts;

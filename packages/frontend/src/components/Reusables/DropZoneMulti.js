@@ -5,7 +5,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { useDropzone } from 'react-dropzone';
 import { ReactComponent as AttachmentIcon } from '../../assets/icons/iconDocument.svg';
 
-function DropZoneMulti(props) {
+const DropZoneMulti = (props) => {
 	const classes = useStyles();
 	const { onDrop = 'your attachments', fileTypes, localForm, deleteItem } = props;
 	const {
@@ -76,6 +76,6 @@ function DropZoneMulti(props) {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default DropZoneMulti;

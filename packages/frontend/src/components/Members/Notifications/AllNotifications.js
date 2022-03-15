@@ -7,7 +7,7 @@ import ControlBar from './ControlBar';
 import NotificationBox from './NotificationBox';
 import { ReactComponent as BlueShape } from '../../../assets/icons/blueBorder.svg';
 
-function AllNotifications() {
+const AllNotifications = () => {
 	const token = useSelector((state) => state.auth.token);
 	const [notifications, setNotifications] = useState([]);
 	const [filteredNotifications, setFilteredNotifications] = useState([]);
@@ -92,6 +92,6 @@ function AllNotifications() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default AllNotifications;

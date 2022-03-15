@@ -1,6 +1,6 @@
 import { isValid, format } from 'date-fns';
 
-export function validateCompany(fieldValues, errors, setErrors, setValidationResult, company) {
+export const validateCompany = (fieldValues, errors, setErrors, setValidationResult, company) => {
 	const temp = { ...errors };
 
 	if ('name' in fieldValues) {
@@ -65,7 +65,7 @@ export function validateCompany(fieldValues, errors, setErrors, setValidationRes
 
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
 export function validateMember(fieldValues, errors, setErrors, setValidationResult) {
 	const temp = { ...errors };

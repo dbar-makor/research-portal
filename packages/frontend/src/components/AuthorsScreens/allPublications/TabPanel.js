@@ -8,7 +8,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function TabPanel(props) {
+const TabPanel = (props) => {
 	const { children, value, index, ...other } = props;
 
 	const classes = useStyles();
@@ -28,6 +28,6 @@ export default function TabPanel(props) {
 			)}
 		</div>
 	);
-}
+};
 
-
+export default TabPanel;

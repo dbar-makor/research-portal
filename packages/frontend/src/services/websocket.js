@@ -25,7 +25,7 @@ export const sendEvent = (data, token) => {
 		ws.onclose = () => {};
 		ws.onerror = () => {
 			if (ws.code !== 4000) {
-				setTimeout(function () {
+				setTimeout(() => {
 					connectWS();
 				}, 2000);
 			}

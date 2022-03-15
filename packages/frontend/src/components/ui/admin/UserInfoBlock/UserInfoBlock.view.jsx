@@ -3,10 +3,9 @@ import { Grid, Typography, TextField } from '@material-ui/core';
 import { useStyles } from '../../../../styles/InfoStyles';
 import { format } from 'date-fns';
 
-
 const UserInfoBlockView = (props) => {
-	const classes=useStyles();
-  return (
+	const classes = useStyles();
+	return (
 		<Grid container spacing={1} justifyContent="space-around" className={classes.userInfoBlock}>
 			{props.userFields.map((field, index) => {
 				return (
@@ -24,7 +23,9 @@ const UserInfoBlockView = (props) => {
 											<Grid item>
 												<Typography className={classes.fieldContent}>
 													{props.chosenUser[field]
-														? props.dateFields.some((dateField) => dateField === field)
+														? props.dateFields.some(
+																(dateField) => dateField === field,
+														  )
 															? format(
 																	new Date(props.chosenUser[field]),
 																	'HH:mm dd/MM/yyyy',
@@ -37,7 +38,9 @@ const UserInfoBlockView = (props) => {
 											<Grid item>
 												<TextField
 													value={props.chosenUser[field]}
-													onChange={(e) => props.updateUserField(field, e.target.value)}
+													onChange={(e) =>
+														props.updateUserField(field, e.target.value)
+													}
 												/>
 											</Grid>
 										)
@@ -45,7 +48,9 @@ const UserInfoBlockView = (props) => {
 										<Grid item>
 											<Typography className={classes.fieldContent}>
 												{props.chosenUser[field]
-													? props.dateFields.some((dateField) => dateField === field)
+													? props.dateFields.some(
+															(dateField) => dateField === field,
+													  )
 														? format(
 																new Date(props.chosenUser[field]),
 																'HH:mm dd/MM/yyyy',

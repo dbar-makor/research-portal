@@ -14,7 +14,7 @@ import ContractAndTrails from './ContractsAndTrails';
 import PrivateRoute from '../../utils/components/PrivateRoute';
 import * as actionAuth from '../../redux/auth/action';
 
-function AccountSettings() {
+const AccountSettings = () => {
 	const userContent = useSelector((state) => state.auth.userContent);
 	const dispatch = useDispatch();
 	const chosenRouteName = window.location.pathname.replace('/settings/', '');
@@ -216,6 +216,6 @@ function AccountSettings() {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default AccountSettings;

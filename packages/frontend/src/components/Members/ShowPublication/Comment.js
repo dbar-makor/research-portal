@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Reply from './Reply';
 
-function Comment(props) {
+const Comment = (props) => {
 	const { comment, cmtNo, replyHendler, cmntId, pubId } = props;
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
@@ -129,6 +129,6 @@ function Comment(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Comment;

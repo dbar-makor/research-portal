@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function TagsAutoComplete({
+const TagsAutoComplete = ({
 	formObject,
 	setFormObject,
 	handler,
@@ -32,7 +32,7 @@ function TagsAutoComplete({
 	className = '',
 	error = null,
 	chipVariant = 'outlined',
-}) {
+}) => {
 	const classes = useStyles();
 	const tagsArr = useSelector((state) => state.utils.utils.tag);
 	const tagsArrNames = tagsArr?.map((tag) => tag.name);
@@ -131,6 +131,6 @@ function TagsAutoComplete({
 			)}
 		</>
 	);
-}
+};
 
 export default TagsAutoComplete;

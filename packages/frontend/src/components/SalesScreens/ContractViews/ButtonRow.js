@@ -37,14 +37,14 @@ const useStyles = makeStyles({
 	},
 });
 
-function ButtonRow({
+const ButtonRow = ({
 	validationResult,
 	handlerLeft = () => {},
 	handlerRight,
 	textButtonLeft = '',
 	textButtonRight,
 	style,
-}) {
+}) => {
 	const classes = useStyles();
 
 	return (
@@ -70,6 +70,6 @@ function ButtonRow({
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default ButtonRow;

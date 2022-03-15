@@ -104,7 +104,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function InvoiceTable(props) {
+const InvoiceTable = (props) => {
 	const { invoiceRows } = props;
 	const dispatch = useDispatch();
 	const classes = useStyles();
@@ -200,6 +200,6 @@ function InvoiceTable(props) {
 			</Table>
 		</TableContainer>
 	);
-}
+};
 
 export default InvoiceTable;

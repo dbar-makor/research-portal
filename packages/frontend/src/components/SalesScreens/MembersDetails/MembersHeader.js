@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import AddIcon from '@material-ui/icons/Add';
 import AddMemberModal from './AddMemberModal';
 
-function MembersHeader(props) {
+const MembersHeader = (props) => {
 	const {
 		allMembersAmount,
 		activeMembersAmount,
@@ -78,6 +78,6 @@ function MembersHeader(props) {
 			) : null}
 		</Grid>
 	);
-}
+};
 
 export default MembersHeader;

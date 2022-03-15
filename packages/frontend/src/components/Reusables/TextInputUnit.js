@@ -6,7 +6,8 @@ const useStyles = makeStyles({
 		// height:63.2
 	},
 });
-function TextInputUnit({
+
+const TextInputUnit = ({
 	className,
 	name,
 	value,
@@ -19,7 +20,7 @@ function TextInputUnit({
 	InputProps = null,
 	onKeyDown = null,
 	type = null,
-}) {
+}) => {
 	const classes = useStyles();
 
 	return (
@@ -45,6 +46,6 @@ function TextInputUnit({
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default TextInputUnit;

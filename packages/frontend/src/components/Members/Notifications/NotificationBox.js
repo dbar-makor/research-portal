@@ -6,14 +6,14 @@ import { ReactComponent as Like } from '../../../assets/icons/Like.svg';
 import { useHistory } from 'react-router';
 import { parseISO, formatDistanceToNow } from 'date-fns';
 
-function chooseIcon(type) {
+const chooseIcon = (type) => {
 	switch (type) {
 		case 'new publication':
 			return <FoldedPaper style={{ transform: 'scale(1.6)' }} />;
 		default:
 			return <Like />;
 	}
-}
+};
 
 const shortify = (string) => {
 	if (string.length > 30) {
@@ -33,7 +33,7 @@ const TimeAgo = (timestamp) => {
 	}
 };
 
-function NotificationBox({ content, isRead }) {
+const NotificationBox = ({ content, isRead }) => {
 	const classes = useStyles();
 	const history = useHistory();
 
@@ -85,6 +85,6 @@ function NotificationBox({ content, isRead }) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default NotificationBox;

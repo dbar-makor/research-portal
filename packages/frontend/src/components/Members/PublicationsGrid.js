@@ -5,7 +5,7 @@ import MainPublication from './PublicationsType/MainPublication';
 import MediumPublication from './PublicationsType/MediumPublication';
 import { useStyles } from '../../styles/PublicationsStyles';
 
-function PublicationsGrid(props) {
+const PublicationsGrid = (props) => {
 	const { publications, filter } = props;
 	const big = 0;
 	const small_indexes = [1, 2, 3, 4, 11, 12, 13, 14];
@@ -38,6 +38,6 @@ function PublicationsGrid(props) {
 					})}
 		</Grid>
 	);
-}
+};
 
 export default PublicationsGrid;

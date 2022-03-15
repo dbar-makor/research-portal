@@ -3,7 +3,7 @@ import { useStyles } from '../../styles/InfoStyles';
 import { ReactComponent as CloseIcon } from '../../assets/icons/closeIcon.svg';
 import { RedFilledButton } from '../../styles/MainStyles';
 
-function DeleteAlert(props) {
+const DeleteAlert = (props) => {
 	const { open, handleClose, itemName, itemId, itemCategory, deleteItem } = props;
 	const classes = useStyles();
 	return (
@@ -39,6 +39,6 @@ function DeleteAlert(props) {
 			</Grid>
 		</Dialog>
 	);
-}
+};
 
 export default DeleteAlert;

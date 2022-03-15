@@ -25,13 +25,13 @@ const useStyles = makeStyles({
 	},
 });
 
-function AllPublicationsStatColumn({
+const AllPublicationsStatColumn = ({
 	publishedFieldLabels,
 	publishedFields,
 	draftFieldLabels,
 	draftFields,
 	statistics,
-}) {
+}) => {
 	const classes = useStyles();
 	const pubStatistics = statistics.published;
 	const draftStatistics = statistics.drafts;
@@ -75,8 +75,6 @@ function AllPublicationsStatColumn({
 			</Grid>
 		</>
 	);
-}
+};
 
 export default AllPublicationsStatColumn;
-
-

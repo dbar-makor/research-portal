@@ -1,7 +1,13 @@
+import React from 'react';
 import { Grid, TextField, withStyles } from '@material-ui/core';
 
-const SubscriberInfoEdit = (prop) => {
-	const { info } = prop;
+const StyledTextField = withStyles(() => ({
+	root: {
+		width: 300,
+	},
+}))(TextField);
+
+const SubscriberInfoEditView = (props) => {
 	return (
 		<Grid container>
 			<Grid item xs={6}>
@@ -9,14 +15,18 @@ const SubscriberInfoEdit = (prop) => {
 					<Grid item xs={12} style={{ paddingTop: '50px' }}>
 						<Grid container>
 							<Grid item xs={12}>
-								<StyledTextField id="standard-basic" label="Name" value={info.full_name} />
+								<StyledTextField
+									id="standard-basic"
+									label="Name"
+									value={props.info.full_name}
+								/>
 							</Grid>
 						</Grid>
 					</Grid>
 					<Grid item xs={12} style={{ paddingTop: ' 50px' }}>
 						<Grid container>
 							<Grid item xs={12}>
-								<StyledTextField id="standard-basic" label="Email" value={info.email} />
+								<StyledTextField id="standard-basic" label="Email" value={props.info.email} />
 							</Grid>
 						</Grid>
 					</Grid>
@@ -30,7 +40,7 @@ const SubscriberInfoEdit = (prop) => {
 								<StyledTextField
 									id="standard-basic"
 									label="Paid"
-									value={info.paid.toString()}
+									value={props.info.paid.toString()}
 								/>
 							</Grid>
 						</Grid>
@@ -38,7 +48,11 @@ const SubscriberInfoEdit = (prop) => {
 					<Grid item xs={12} style={{ paddingTop: ' 50px' }}>
 						<Grid container>
 							<Grid item xs={12}>
-								<StyledTextField id="standard-basic" label="Country" value={info.country} />
+								<StyledTextField
+									id="standard-basic"
+									label="Country"
+									value={props.info.country}
+								/>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -48,10 +62,7 @@ const SubscriberInfoEdit = (prop) => {
 	);
 };
 
-export default SubscriberInfoEdit;
+SubscriberInfoEditView.displayName = 'SubscriberInfoEditView';
+SubscriberInfoEditView.defaultProps = {};
 
-const StyledTextField = withStyles(() => ({
-	root: {
-		width: 300,
-	},
-}))(TextField);
+export default React.memo(SubscriberInfoEditView);

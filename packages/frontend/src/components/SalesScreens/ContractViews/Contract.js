@@ -279,14 +279,14 @@ const periodToNum = {
 	fully: 1,
 };
 
-function Contract({
+const Contract = ({
 	setStep,
 	setContractCopy,
 	stepperMode,
 	chosenContract,
 	setLoadingSidebar,
 	setActiveSidebar,
-}) {
+}) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -401,7 +401,7 @@ function Contract({
 				setValidationResult(false);
 			}
 		} catch (error) {
-					/* eslint no-console: "off" */
+			/* eslint no-console: "off" */
 			console.log(error);
 			setLoadingSidebar(false);
 		}
@@ -660,6 +660,6 @@ function Contract({
 			)}
 		</Grid>
 	);
-}
+};
 
 export default Contract;

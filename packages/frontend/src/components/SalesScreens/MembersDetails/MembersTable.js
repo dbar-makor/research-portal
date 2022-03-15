@@ -17,7 +17,7 @@ import axios from 'axios';
 import DeleteAlert from '../../Reusables/DeleteAlert';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 
-function MembersTable() {
+const MembersTable = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const chosenCompany = useSelector(selectChosenCompany);
@@ -297,7 +297,7 @@ function MembersTable() {
 										}}
 										onClick={(ev) => {
 											if (ev.target.id !== 'categories' && ev.nodeName === 'INPUT') {
-												timer = setTimeout(function () {
+												timer = setTimeout(() => {
 													if (!prevent) {
 														const element = document.getElementById(`${index}`);
 														element.focus();
@@ -481,6 +481,6 @@ function MembersTable() {
       </Modal> */}
 		</Grid>
 	) : null;
-}
+};
 
 export default MembersTable;

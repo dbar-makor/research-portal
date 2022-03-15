@@ -1,33 +1,39 @@
 import {
 	AppBar,
 	Button,
-	ClickAwayListener,
 	Grid,
-	IconButton,
 	makeStyles,
-	MenuItem,
-	Paper,
-	Popper,
 	Toolbar,
-	Typography,
 	withStyles,
-	Grow,
-	MenuList,
+	Divider,
 } from '@material-ui/core';
-import { ReactComponent as SearchIcon } from '../../assets/icons/IconSearch.svg';
-import { StyledTextField } from '../../styles/MainStyles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import { Link, useHistory } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
 import { ReactComponent as MakorLogo } from '../../assets/icons/makorLogo.svg';
 import { useEffect, useRef, useState } from 'react';
 import * as webSocketService from '../../services/websocket';
 import TradingHours from './TradingHours';
-import SelectInputUnit from '../../components/Reusables/SelectInputUnit';
+import MemberTopbar from './topbarParts/MemberTopbar';
+import SalesTopbar from './topbarParts/SalesTopbar';
+import AuthorTopbar from './topbarParts/AuthorTopbar';
+import AdminTopbar from './topbarParts/AdminTopbar';
+
 const useStyles = makeStyles((theme) => ({
+	headerContainer: {
+		position: 'sticky',
+		top: 0,
+		backgroundColor: ' rgba(0, 0, 0, 1)',
+		zIndex: 1200,
+	},
 	header: {
 		backgroundColor: '#000000',
+		width: 'inherit',
+		flexDirection: 'row',
+	},
+	divider: {
+		backgroundColor: '#353535',
+		height: 2,
+		width: '100%',
 	},
 	title: {
 		flexGrow: 1,
@@ -63,8 +69,7 @@ const useStyles = makeStyles((theme) => ({
 		'& svg': {
 			stroke: '#727789',
 			fill: 'transparent',
-			paddingTop: '5px',
-			paddingRight: '30px',
+			paddingTop: '8px',
 		},
 
 		'& .MuiSelect-nativeInput': {
@@ -138,25 +143,43 @@ export const LoginButton = withStyles(() => ({
 }))(Button);
 
 function TopBar() {
-	const history = useHistory();
 	const classes = useStyles();
 	const token = useSelector((state) => state.auth.token);
 
 	const anchorRef = useRef(null);
+	// eslint-disable-next-line no-unused-vars
 	const [open, setOpen] = useState(false);
-	const userMgmtRef = useRef(null);
+	const [openNotification, setOpenNotification] = useState(false);
+
 	const [openUserMgmt, setOpenUserMgmt] = useState(false);
 
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const userType = useSelector((state) => state.auth.userContent?.type);
 	// eslint-disable-next-line no-unused-vars
 	const [notifications, setNotifications] = useState([]);
+	// eslint-disable-next-line no-unused-vars
+
 	const options = [
 		{ value: 'region1', name: 'Region1' },
 		{ value: 'region2', name: 'Region2' },
 		{ value: 'region3', name: 'Region3' },
 	];
 	const webSocket = useRef(null);
+
+	function handleListKeyDown(event, type) {
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			setOpen(false);
+			if (type === 'notify') {
+				setOpenNotification(false);
+			}
+		} else if (event.key === 'Escape') {
+			setOpen(false);
+			if (type === 'notify') {
+				setOpenNotification(false);
+			}
+		}
+	}
 
 	useEffect(() => {
 		webSocket.current = webSocketService.connectWS(token);
@@ -195,6 +218,7 @@ function TopBar() {
 			setOpen((prevOpen) => !prevOpen);
 			setOpenUserMgmt(false);
 		} else if (type === 'notify') {
+			setOpenNotification(true);
 			setOpen(false);
 			setOpenUserMgmt(false);
 		} else if (type === 'user_mgmt') {
@@ -210,394 +234,62 @@ function TopBar() {
 		if (type === 'user') {
 			setOpen(false);
 		} else if (type === 'notify') {
+			setOpenNotification(false);
 			return;
 		} else if (type === 'user_mgmt') {
 			setOpenUserMgmt(false);
 		}
 	};
 
-	function adminGoTo(pathName) {
-		setOpenUserMgmt(false);
-		history.push(pathName);
-	}
-	const hendleBarOptions = (userType) => {
+	const handleBarOptions = (userType) => {
 		switch (userType) {
 			case 'client' || 'prospect':
-				return (
-					<Grid item xs={8}>
-						<Grid container>
-							<Grid item xs={4}>
-								<Grid container style={{ marginTop: '10px', marginLeft: '-25px' }}>
-									<Grid item xs={4}>
-										<Link to="/home" className={classes.link}>
-											<Typography className={classes.title}>Home</Typography>
-										</Link>
-									</Grid>
-									<Grid item xs={4}>
-										<Link to={'/'} className={classes.styledLinks}>
-											Ideas
-										</Link>
-									</Grid>
-									<Grid item xs={4}>
-										<Link to={'/'} className={classes.styledLinks}>
-											Mkt Calendar
-										</Link>
-									</Grid>
-								</Grid>
-							</Grid>
-							<Grid item xs={7}>
-								<Grid
-									container
-									direction="row"
-									justifyContent="flex-end"
-									alignItems="center"
-									style={{ marginLeft: '-25px' }}
-								>
-									<Grid item xs={3} style={{ paddingLeft: '50px' }}>
-										<SelectInputUnit
-											className={classes.select}
-											mode="minimalistic"
-											variant="standard"
-											optionLabelField="name"
-											valueField="value"
-											placeholder="All Regions"
-											optionsArray={options}
-										></SelectInputUnit>
-									</Grid>
-
-									<Grid item xs={8} style={{ paddingRight: '250px' }}>
-										<StyledTextField
-											className={classes.search}
-											// value={localSearch}
-											// onChange={(e) => setLocalSearch(e.target.value)}
-											// onKeyDown={(e) => (e.key === 'Enter' ? dispatch(setProperty({ key: 'search', value: localSearch })) : null)}
-											variant="filled"
-											fullWidth
-											placeholder="Idea/Ticker"
-											InputProps={{
-												endAdornment: (
-													<SearchIcon
-														className={classes.searchIcon}
-														style={{ cursor: 'pointer' }}
-													/>
-												),
-											}}
-										/>
-									</Grid>
-								</Grid>
-							</Grid>
-						</Grid>
-					</Grid>
-				);
+				return <MemberTopbar classes={classes} options={options} />;
 			case 'sales':
-				return (
-					<Grid item xs={3} style={{ marginRight: 113 }}>
-						<Grid container justifyContent="space-between">
-							<Grid item>
-								<Link to={'/companies'} className={classes.styledLinks}>
-									Companies
-								</Link>
-							</Grid>
-							<Grid>
-								<Link to={'/contracts'} className={classes.styledLinks}>
-									Contracts
-								</Link>
-							</Grid>
-							<Grid>
-								<Link to={'/invoices'} className={classes.styledLinks}>
-									Invoices
-								</Link>
-							</Grid>
-						</Grid>
-					</Grid>
-				);
+				return <SalesTopbar classes={classes} />;
 			case 'author':
-				return (
-					<Grid item xs={3} style={{ marginRight: 113 }}>
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<Link to={'/researches'} className={classes.styledLinks}>
-									My Articles
-								</Link>
-							</Grid>
-						</Grid>
-					</Grid>
-				);
+				return <AuthorTopbar classes={classes} />;
 			case 'admin':
 				return (
-					<Grid item xs={3} style={{ marginRight: 113 }}>
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<Grid container alignItems="center">
-									<Grid item>
-										<Typography
-											style={{
-												fontSize: 16,
-												color: '#fffff',
-												cursor: 'pointer',
-												fontWeight: 300,
-											}}
-											onClick={() => handleToggle('user_mgmt')}
-										>
-											Users Managment
-										</Typography>
-									</Grid>
-									<Grid item>
-										<IconButton
-											size="small"
-											ref={userMgmtRef}
-											aria-controls={openUserMgmt ? 'composition-menu' : undefined}
-											aria-expanded={openUserMgmt ? 'true' : undefined}
-											aria-haspopup="true"
-											onClick={() => handleToggle('user_mgmt')}
-										>
-											{openUserMgmt ? (
-												<ExpandLessIcon style={{ color: '#ffff' }} />
-											) : (
-												<ExpandMoreIcon style={{ color: '#ffff' }} />
-											)}
-										</IconButton>
-									</Grid>
-								</Grid>
-								<Popper
-									open={openUserMgmt}
-									anchorEl={userMgmtRef.current}
-									role={undefined}
-									placement="bottom"
-									transition
-									disablePortal
-									modifiers={{
-										offset: {
-											enabled: true,
-											offset: userType === 'client' ? '-150, 10' : '-80, 10',
-										},
-									}}
-								>
-									{({ TransitionProps, placement }) => (
-										<Grow
-											{...TransitionProps}
-											style={{
-												transformOrigin:
-													placement === 'bottom-start'
-														? 'right top'
-														: 'right bottom',
-											}}
-										>
-											<Paper>
-												<ClickAwayListener
-													onClickAway={(e) => handleClose(e, 'user_mgmt')}
-												>
-													<MenuList
-														autoFocusItem={open}
-														id="composition-menu"
-														aria-labelledby="composition-button"
-													>
-														<MenuItem onClick={() => adminGoTo('/sales')}>
-															Sales
-														</MenuItem>
-														<MenuItem onClick={() => adminGoTo('/companies')}>
-															Companies Page
-														</MenuItem>
-														<MenuItem onClick={() => adminGoTo('/authors')}>
-															Authors Page
-														</MenuItem>
-													</MenuList>
-												</ClickAwayListener>
-											</Paper>
-										</Grow>
-									)}
-								</Popper>
-							</Grid>
-						</Grid>
-					</Grid>
+					<AdminTopbar
+						handleToggle={handleToggle}
+						classes={classes}
+						openUserMgmt={openUserMgmt}
+						setOpenUserMgmt={setOpenUserMgmt}
+						userType={userType}
+						handleClose={handleClose}
+					/>
 				);
 		}
 	};
 
 	return (
 		<>
-			<Grid container direction="column">
-				<Grid item style={{ backgroundColor: '#000', borderBottom: '1px solid #353535' }}>
-					<TradingHours></TradingHours>
+			<Grid container direction="column" className={classes.headerContainer}>
+				<Grid item style={{ backgroundColor: '#000', width: '70vw', margin: '0 auto' }}>
+					<TradingHours
+						handleToggle={handleToggle}
+						notifications={notifications}
+						openNotification={openNotification}
+						setOpenNotification={setOpenNotification}
+						handleListKeyDown={handleListKeyDown}
+						handleClose={handleClose}
+						anchorRef={anchorRef}
+						userType={userType}
+						setOpen={setOpen}
+						open={open}
+					/>
 				</Grid>
-				<Grid item>
+				<Divider className={classes.divider} />
+				<Grid item style={{ backgroundColor: '#000', width: '70vw', margin: '0 auto' }}>
 					<AppBar position="sticky" className={classes.header}>
-						<Toolbar>
-							<Grid item xs={4} className={classes.gridSpacing} style={{ marginLeft: '380px' }}>
-								<Link
-									to={
-										userType === 'author'
-											? '/researches'
-											: userType === 'sales'
-											? '/companies'
-											: '/home'
-									}
-									className={classes.link}
-								>
-									<MakorLogo />
-								</Link>
+						<Toolbar style={{ width: 'inherit', padding: 0, justifyContent: 'space-between' }}>
+							<Grid item xs={4}>
+								<MakorLogo clases={classes} userType={userType} />
 							</Grid>
-							{/* <Grid item style={{ flexGrow: 1 }}>
-          <Link to={userType === 'author' ? '/researches' : userType === 'sales' ? '/companies' : '/home'} className={classes.link}>
-            <Typography className={classes.title}>Home</Typography>
-          </Link>
-        </Grid> */}
 							{isAuthenticated ? (
 								<>
-									{hendleBarOptions(userType)}
-									{/*
-                  notify POPPER */}
-									{/* <Grid item>
-              <Grid container alignItems="center" style={{ marginRight: 70 }}>
-                <Grid item style={{ marginRight: 20 }}>
-                  <IconButton
-                    size="small"
-                    ref={notifyRef}
-                    aria-controls={open ? 'composition-menu' : undefined}
-                    aria-expanded={open ? 'true' : undefined}
-                    aria-haspopup="true"
-                    onClick={() => handleToggle('notify')}
-                  >
-                    <Notification style={{ position: 'relative' }} />
-                    {newNotification ? <Greendot style={{ position: 'absolute', top: 2, left: 13 }} /> : null}
-                  </IconButton>
-
-                  <Popper
-                    id={id}
-                    open={openNotification}
-                    anchorEl={notifyRef.current}
-                    role={undefined}
-                    placement="bottom"
-                    transition
-                    disablePortal
-                    onKeyDown={(e) => handleListKeyDown(e)}
-                    modifiers={{
-                      offset: {
-                        enabled: true,
-                        offset: 'none, 12',
-                      },
-                    }}
-                  >
-                    <ClickAwayListener onClickAway={(e) => handleClose(e, 'notify')}>
-                      <Paper elevation={1} style={{ position: 'relative', width: '297px' }}>
-                        <div
-                          style={{
-                            position: 'absolute',
-                            transform: 'rotate(45deg) translateX(-50%)',
-                            transformOrigin: 'center',
-                            backgroundColor: '#fff',
-                            top: 19,
-                            width: 50,
-                            height: 50,
-                            zIndex: -1,
-                            left: '48%',
-                            borderRadius: 3,
-                          }}
-                        ></div>
-                        <MenuList>
-                          <Grid container direction="row" spacing={2} justifyContent="center">
-                            <Grid item xs={11}>
-                              <Grid container justifyContent="space-between" alignItems="center" style={{ borderBottom: '1px solid #EDEFF3', paddingBottom: 8 }}>
-                                <Grid item>
-                                  <Typography style={{ fontSize: 14 }}>Notifications</Typography>
-                                </Grid>
-
-                                <Grid item>
-                                  <Grid container>
-                                    <Grid item style={{ backgroundColor: '#1C67FF', color: '#fff', borderRadius: 11, paddingInline: 10 }}>
-                                      <Typography style={{ fontSize: 12 }}>{countAlerts > 0 ? `${countAlerts} New` : 'No New'}</Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            {notifications &&
-                              notifications.map((notifi, index) => {
-                                return <AlertNotification key={index} handleClose={handleClose} notifi={notifi} setCountAlerts={setCountAlerts} />;
-                              })}
-                            <Grid item align="center" onClick={() => redirect('all_notfications')} style={{ cursor: 'pointer' }}>
-                              <Typography style={{ fontSize: 14, color: '#000', fontWeight: 'bold', textDecoration: 'none' }}>View All</Typography>
-                            </Grid>
-                          </Grid>
-                        </MenuList>
-                      </Paper>
-                    </ClickAwayListener>
-                  </Popper>
-                </Grid>
-
-                <Grid item>
-                  <Avatar src={`${member.avatar}`} />
-                </Grid>
-                <Grid item>
-                  <IconButton
-                    size="small"
-                    ref={anchorRef}
-                    aria-controls={open ? 'composition-menu' : undefined}
-                    aria-expanded={open ? 'true' : undefined}
-                    aria-haspopup="true"
-                    onClick={() => handleToggle('user')}
-                  >
-                    <ExpandMoreIcon style={{ color: '#ffff' }} />
-                  </IconButton>
-                  <Popper
-                    open={open}
-                    anchorEl={anchorRef.current}
-                    role={undefined}
-                    placement="bottom-start"
-                    transition
-                    disablePortal
-                    modifiers={{
-                      offset: {
-                        enabled: true,
-                        offset: userType === 'client' ? '-150, 10' : '-80, 10',
-                      },
-                    }}
-                  >
-                    {({ TransitionProps, placement }) => (
-                      <Grow
-                        {...TransitionProps}
-                        style={{
-                          transformOrigin: placement === 'bottom-start' ? 'right top' : 'right bottom',
-                        }}
-                      >
-                        <Paper>
-                          <ClickAwayListener onClickAway={(e) => handleClose(e, 'user')}>
-                            <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button">
-                              {userType === 'client' || userType === 'prospect' ? (
-                                <>
-                                  <MenuItem>
-                                    <Link to={'/home'} style={{ textDecoration: 'none', color: '#bababa', fontSize: 14 }}>{`Hey , ${member.name}`}</Link>
-                                  </MenuItem>
-                                  <MenuItem>
-                                    <Link to={'/settings/edit'} onClick={() => setOpen(false)} style={{ textDecoration: 'none', color: '#000' }}>
-                                      Edit Profile
-                                    </Link>
-                                  </MenuItem>
-                                  <MenuItem>
-                                    <Link to={'/settings/settings'} onClick={() => setOpen(false)} style={{ textDecoration: 'none', color: '#000' }}>
-                                      Settings
-                                    </Link>
-                                  </MenuItem>
-                                  <MenuItem>
-                                    <Link to={'/settings/contract_trails'} onClick={() => setOpen(false)}  style={{ textDecoration: 'none', color: '#000' }}>
-                                      Contracts & Trails
-                                    </Link>
-                                  </MenuItem>
-                                </>
-                              ) : null}
-                              <MenuItem onClick={handleLogout} style={{ color: '#FF0000' }}>
-                                <ExitToAppIcon />
-                                Logout
-                              </MenuItem>
-                            </MenuList>
-                          </ClickAwayListener>
-                        </Paper>
-                      </Grow>
-                    )}
-                  </Popper>
-                </Grid>
-              </Grid>
-            </Grid> */}
+									{handleBarOptions(userType)}
 								</>
 							) : (
 								<Grid item style={{ paddingRight: 80 }}>

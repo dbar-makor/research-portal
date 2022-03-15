@@ -1,12 +1,4 @@
-import {
-	AppBar,
-	Button,
-	Grid,
-	makeStyles,
-	Toolbar,
-	withStyles,
-	Divider,
-} from '@material-ui/core';
+import { AppBar, Button, Grid, makeStyles, Toolbar, withStyles, Divider } from '@material-ui/core';
 
 import { useSelector } from 'react-redux';
 import { ReactComponent as MakorLogo } from '../../assets/icons/makorLogo.svg';
@@ -66,12 +58,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 	select: {
 		'marginBottom': '15px',
+		// '& .MuiPopover-paper': {
+		// 	top: '200px !important',
+		// },
+		// '& ul': {
+		// 	top: '200px !important',
+		// },
 		'& svg': {
 			stroke: '#727789',
 			fill: 'transparent',
 			paddingTop: '8px',
 		},
-
 		'& .MuiSelect-nativeInput': {
 			opacity: 1,
 			color: '#ffff',
@@ -288,9 +285,7 @@ function TopBar() {
 								<MakorLogo clases={classes} userType={userType} />
 							</Grid>
 							{isAuthenticated ? (
-								<>
-									{handleBarOptions(userType)}
-								</>
+								<>{handleBarOptions(userType)}</>
 							) : (
 								<Grid item style={{ paddingRight: 80 }}>
 									<Grid container justifyContent="space-between">

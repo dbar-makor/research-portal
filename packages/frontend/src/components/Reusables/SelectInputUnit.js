@@ -24,7 +24,7 @@ function SelectInputUnit({
 }) {
 	const classes = useStyles();
 	return (
-		<Grid container className={className}>
+		<Grid container className={className} >
 			<Grid item xs={12}>
 				<StyledTextField
 					select

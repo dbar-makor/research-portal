@@ -104,7 +104,6 @@ function AuthorsNewArticle() {
 
 	// }, []);
 
-	//For editing
 	useEffect(() => {
 		if (chosenResearch) {
 			const coverImg = chosenResearch.attachments.find(

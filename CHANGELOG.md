@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/dbar-makor/research-portal/compare/v1.0.1...v1.0.2) (2022-03-15)
+
+
+### Bug Fixes
+
+* 🐞 hygen template fix ([18c8631](https://github.com/dbar-makor/research-portal/commit/18c8631db7b7744c9be88a656759c21c033e35fe))
+
 ## [1.0.1](https://github.com/dbar-makor/research-portal/compare/v1.0.0...v1.0.1) (2022-03-15)
 
 

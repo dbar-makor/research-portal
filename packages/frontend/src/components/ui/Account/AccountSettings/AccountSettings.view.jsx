@@ -1,35 +1,18 @@
+import React from 'react';
+
 import { Avatar, Divider, Grid, Typography } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
-import { ReactComponent as BlueShape } from '../../assets/icons/blueBorder.svg';
-import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useStyles } from '../../styles/AccountSettingsStyles';
-import EditProfile from './EditProfile';
-import Settings from './Settings';
-import ContractAndTrails from './ContractsAndTrails';
-import PrivateRoute from '../../utils/components/PrivateRoute';
-import * as actionAuth from '../../redux/auth/action';
-
-const AccountSettings = () => {
-	const userContent = useSelector((state) => state.auth.userContent);
-	const dispatch = useDispatch();
-	const chosenRouteName = window.location.pathname.replace('/settings/', '');
-	const history = useHistory();
-	const classes = useStyles(chosenRouteName === 'contract_trails' ? 'on' : 'off');
-	const { path, url } = useRouteMatch();
-
-	const handleRoute = (type) => {
-		history.push(`${url}/${type}`);
-	};
-
-	const handleLogout = () => {
-		dispatch(actionAuth.logout());
-	};
-
+import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder.svg';
+import { Switch } from 'react-router-dom';
+import EditProfile from '../EditProfile/EditProfile';
+import Settings from '../Settings/Settings';
+import ContractAndTrails from '../ContractsAndTrails/ContractsAndTrails';
+import PrivateRoute from '../../../../utils/components/PrivateRoute';
+const AccountSettingsView = (props) => {
 	return (
 		<>
 			<Grid
@@ -81,11 +64,11 @@ const AccountSettings = () => {
 										<Grid item style={{ paddingInline: '24px 16px' }}>
 											<Avatar
 												style={{ width: 54, height: 54 }}
-												src={`${userContent.avatar}`}
+												src={`${props.userContent.avatar}`}
 											/>
 										</Grid>
 										<Grid item>
-											<Typography>{userContent.name}</Typography>
+											<Typography>{props.userContent.name}</Typography>
 										</Grid>
 									</Grid>
 								</Grid>
@@ -95,11 +78,11 @@ const AccountSettings = () => {
 											item
 											xs={12}
 											className={
-												chosenRouteName === 'edit'
-													? classes.chosenRoute
-													: classes.notChosen
+												props.chosenRouteName === 'edit'
+													? props.classes.chosenRoute
+													: props.classes.notChosen
 											}
-											onClick={() => handleRoute('edit')}
+											onClick={() => props.handleRoute('edit')}
 										>
 											{/*
                       **
@@ -109,9 +92,9 @@ const AccountSettings = () => {
 												<Grid item>
 													<PersonIcon
 														className={
-															chosenRouteName === 'edit'
-																? classes.iconOn
-																: classes.icon
+															props.chosenRouteName === 'edit'
+																? props.classes.iconOn
+																: props.classes.icon
 														}
 													/>
 												</Grid>
@@ -126,19 +109,19 @@ const AccountSettings = () => {
 											item
 											xs={12}
 											className={
-												chosenRouteName === 'settings'
-													? classes.chosenRoute
-													: classes.notChosen
+												props.chosenRouteName === 'settings'
+													? props.classes.chosenRoute
+													: props.classes.notChosen
 											}
-											onClick={() => handleRoute('settings')}
+											onClick={() => props.handleRoute('settings')}
 										>
 											<Grid container alignItems="center">
 												<Grid item>
 													<SettingsIcon
 														className={
-															chosenRouteName === 'settings'
-																? classes.iconOn
-																: classes.icon
+															props.chosenRouteName === 'settings'
+																? props.classes.iconOn
+																: props.classes.icon
 														}
 													/>
 												</Grid>
@@ -151,19 +134,19 @@ const AccountSettings = () => {
 											item
 											xs={12}
 											className={
-												chosenRouteName === 'contract_trails'
-													? classes.chosenRoute
-													: classes.notChosen
+												props.chosenRouteName === 'contract_trails'
+													? props.classes.chosenRoute
+													: props.classes.notChosen
 											}
-											onClick={() => handleRoute('contract_trails')}
+											onClick={() => props.handleRoute('contract_trails')}
 										>
 											<Grid container alignItems="center">
 												<Grid item>
 													<InsertDriveFileIcon
 														className={
-															chosenRouteName === 'contract_trails'
-																? classes.iconOn
-																: classes.icon
+															props.chosenRouteName === 'contract_trails'
+																? props.classes.iconOn
+																: props.classes.icon
 														}
 													/>
 												</Grid>
@@ -195,7 +178,7 @@ const AccountSettings = () => {
 											color: '#FF3939',
 											cursor: 'pointer',
 										}}
-										onClick={handleLogout}
+										onClick={props.handleLogout}
 									>
 										<ExitToAppIcon />
 										Logout
@@ -208,9 +191,9 @@ const AccountSettings = () => {
 				{/* ROUTING GRID */}
 				<Grid item xs={10}>
 					<Switch>
-						<PrivateRoute path={`${path}/settings`} component={Settings} />
-						<PrivateRoute path={`${path}/edit`} component={EditProfile} />
-						<PrivateRoute path={`${path}/contract_trails`} component={ContractAndTrails} />
+						<PrivateRoute path={`${props.path}/settings`} component={Settings} />
+						<PrivateRoute path={`${props.path}/edit`} component={EditProfile} />
+						<PrivateRoute path={`${props.path}/contract_trails`} component={ContractAndTrails} />
 					</Switch>
 				</Grid>
 			</Grid>
@@ -218,4 +201,7 @@ const AccountSettings = () => {
 	);
 };
 
-export default AccountSettings;
+AccountSettingsView.displayName = 'AccountSettingsView';
+AccountSettingsView.defaultProps = {};
+
+export default React.memo(AccountSettingsView);

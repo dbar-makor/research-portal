@@ -28,7 +28,7 @@ import FullPublication from './components/Members/ShowPublication/FullPublicatio
 import AllContracts from './components/SalesScreens/ContractViews/AllContracts/AllContract';
 import AllInvoices from './components/SalesScreens/ContractViews/AllInvoices/AllInvoices';
 import AllNotifications from './components/Members/Notifications/AllNotifications';
-import AccountSettings from './components/AccountSettings/AccountSettings';
+import AccountSettings from './components/ui/Account/AccountSettings/AccountSettings.jsx';
 
 function App() {
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -55,7 +55,7 @@ function App() {
 	const mainTheme = createTheme({
 		typography: {
 			fontFamily: [
-				`'Inter', 
+				`'Inter',
         sans-serif`,
 			].join(','),
 		},

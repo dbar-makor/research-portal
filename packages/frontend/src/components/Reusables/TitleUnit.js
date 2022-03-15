@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 
-function TitleUnit({ classNameGrid, classNameTypography, content }) {
+const TitleUnit = ({ classNameGrid, classNameTypography, content }) => {
 	return (
 		<Grid container className={classNameGrid} justifyContent="center">
 			<Grid item xs={10}>
@@ -8,6 +8,6 @@ function TitleUnit({ classNameGrid, classNameTypography, content }) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default TitleUnit;

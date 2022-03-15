@@ -20,7 +20,7 @@ const periodicity = [
 	{ value: 'rejected', name: 'Rejected' },
 ];
 
-function AllInvoices() {
+const AllInvoices = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
@@ -126,7 +126,7 @@ function AllInvoices() {
 				setCompaniesNames(companies);
 			}
 		} catch (err) {
-					/* eslint no-console: "off" */
+			/* eslint no-console: "off" */
 			console.log(err);
 		}
 	};
@@ -244,6 +244,6 @@ function AllInvoices() {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default AllInvoices;

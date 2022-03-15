@@ -105,7 +105,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function ContractsTable(props) {
+const ContractsTable = (props) => {
 	const { contractsRows } = props;
 	const classes = useStyles();
 
@@ -147,6 +147,6 @@ function ContractsTable(props) {
 			</Table>
 		</TableContainer>
 	);
-}
+};
 
 export default ContractsTable;

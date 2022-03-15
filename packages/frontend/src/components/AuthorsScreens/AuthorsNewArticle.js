@@ -35,7 +35,7 @@ import DropZoneMulti from '../Reusables/DropZoneMulti';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';
 import TagsAutoComplete from '../Reusables/TagsAutoComplete';
 
-function AuthorsNewArticle() {
+const AuthorsNewArticle = () => {
 	const classes = useStyles();
 	const chosenResearch = useSelector(selectChosenResearch);
 
@@ -809,6 +809,6 @@ function AuthorsNewArticle() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default AuthorsNewArticle;

@@ -12,7 +12,7 @@ import {
 import Comment from './Comment';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 
-function Comments(props) {
+const Comments = (props) => {
 	const { comments, pubId } = props;
 	const dispatch = useDispatch();
 	const classes = useStyles();
@@ -135,6 +135,6 @@ function Comments(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Comments;

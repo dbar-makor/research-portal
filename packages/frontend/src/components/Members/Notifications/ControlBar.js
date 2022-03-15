@@ -4,7 +4,7 @@ import { StyledTextField } from '../../../styles/MainStyles';
 import { Grid, Typography } from '@material-ui/core';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
 
-function ControlBar({ setSearchTerm, makeAllRead }) {
+const ControlBar = ({ setSearchTerm, makeAllRead }) => {
 	const classes = useStyles();
 	const [localSearch, setLocalSearch] = useState('');
 	const handleSearch = (e) => {
@@ -52,6 +52,6 @@ function ControlBar({ setSearchTerm, makeAllRead }) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default ControlBar;

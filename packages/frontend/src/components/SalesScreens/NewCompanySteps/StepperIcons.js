@@ -28,7 +28,7 @@ const useIconStyles = makeStyles({
 	},
 });
 
-function StepperIcons(props) {
+const StepperIcons = (props) => {
 	const classes = useIconStyles();
 	const { active, completed } = props;
 
@@ -47,6 +47,6 @@ function StepperIcons(props) {
 			{icons[String(props.icon)]}
 		</div>
 	);
-}
+};
 
 export default StepperIcons;

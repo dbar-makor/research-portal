@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useStyles } from '../../styles/AuthorsStyles';
 import { ReactComponent as FileUpload } from '../../assets/icons/fileUpload.svg';
 
-function Test() {
+const Test = () => {
 	//   const onDrop = (acceptedFiles) => {
 	//     console.log(acceptedFiles);
 	//   };
@@ -35,6 +35,6 @@ function Test() {
 			</Dropzone>
 		</div>
 	);
-}
+};
 
 export default Test;

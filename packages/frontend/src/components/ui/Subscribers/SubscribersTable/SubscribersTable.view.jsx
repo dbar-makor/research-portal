@@ -1,21 +1,29 @@
-//MUI
+import React from 'react';
+
 import { Grid, Table, TableHead, TableBody, TableRow, TableCell, TableContainer } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-//Redux
-import { useDispatch, useSelector } from 'react-redux';
-import * as subscribersAction from '../../redux/subscribers/subscribersSlice';
-//Icons
-import { ReactComponent as Paid } from '../../assets/icons/paid.svg';
-import { ReactComponent as NotPaid } from '../../assets/icons/notPaid.svg';
 
-function SubscribersTable() {
-	const dispatch = useDispatch();
-	const subscribers = useSelector((state) => state.subscribers.subscribers);
+import { ReactComponent as Paid } from '../../../../assets/icons/paid.svg';
+import { ReactComponent as NotPaid } from '../../../../assets/icons/notPaid.svg';
+
+const StyledTableCell = withStyles(() => ({
+	root: {
+		color: '#000',
+	},
+}))(TableCell);
+
+const StyledTableRow = withStyles(() => ({
+	root: {
+		'&:hover': {
+			backgroundColor: '#f0f0f0',
+			cursor: 'pointer',
+		},
+	},
+}))(TableRow);
+
+const SubscribersTableView = (props) => {
 	const columns = ['Name', 'Email', 'Paid', 'Country'];
 
-	const setChosenSubscriber = (sub) => {
-		dispatch(subscribersAction.setChosenSubscriber(sub));
-	};
 	return (
 		<Grid item xs={5} style={{ height: 'calc(100vh - 60px)', paddingTop: 50 }}>
 			<TableContainer style={{ maxHeight: '80%', overflow: 'auto' }}>
@@ -35,9 +43,9 @@ function SubscribersTable() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{subscribers.map((sub, idx) => {
+						{props.subscribers.map((sub, idx) => {
 							return (
-								<StyledTableRow key={idx} onClick={() => setChosenSubscriber(sub)}>
+								<StyledTableRow key={idx} onClick={() => props.setChosenSubscriber(sub)}>
 									{Object.entries(sub).map(([key, value]) => {
 										return key === 'full_name' ? (
 											<StyledTableCell style={{ width: 140 }}>{value}</StyledTableCell>
@@ -63,20 +71,9 @@ function SubscribersTable() {
 			</TableContainer>
 		</Grid>
 	);
-}
+};
 
-const StyledTableCell = withStyles(() => ({
-	root: {
-		color: '#000',
-	},
-}))(TableCell);
+SubscribersTableView.displayName = 'SubscribersTableView';
+SubscribersTableView.defaultProps = {};
 
-const StyledTableRow = withStyles(() => ({
-	root: {
-		'&:hover': {
-			backgroundColor: '#f0f0f0',
-			cursor: 'pointer',
-		},
-	},
-}))(TableRow);
-export default SubscribersTable;
+export default React.memo(SubscribersTableView);

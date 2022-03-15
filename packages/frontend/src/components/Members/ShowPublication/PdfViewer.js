@@ -3,7 +3,7 @@ import { useStyles } from '../../../styles/PublicationsStyles';
 import { ReactComponent as FileEmpty } from '../../../assets/icons/fileEmpty.svg';
 import { BASE_URL } from '../../../utils/constants';
 
-function PdfViewer(props) {
+const PdfViewer = (props) => {
 	const { pdf } = props;
 	const classes = useStyles();
 
@@ -41,6 +41,6 @@ function PdfViewer(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default PdfViewer;

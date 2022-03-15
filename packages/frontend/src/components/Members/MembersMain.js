@@ -10,7 +10,7 @@ import { useStyles } from '../../styles/PublicationsStyles';
 
 import * as actionSnackBar from '../../redux/SnackBar/action';
 
-function MembersMain() {
+const MembersMain = () => {
 	const dispatch = useDispatch();
 	const classes = useStyles();
 	const [filter, setFilter] = useState(false);
@@ -121,6 +121,6 @@ function MembersMain() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default MembersMain;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import SubscriberInfo from './SubscriberInfo';
-import SubscriberInfoEdit from './SubscriberInfoEdit';
+import SubscriberInfo from '../../Subscribers/SubscriberInfo/SubscriberInfo';
+import SubscriberInfoEdit from '../../Subscribers/SubscriberInfoEdit/SubscriberInfoEdit';
 
 const StyledBtn = withStyles(() => ({
 	root: {

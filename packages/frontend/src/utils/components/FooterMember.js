@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../../styles/MainStyles';
 import WorldMap from '../../components/Members/WorldMap';
 
-export default function FooterMember() {
+const FooterMember = () => {
 	const classes = useStyles();
 	return (
 		<footer className={classes.memberFooter}>
@@ -59,4 +59,6 @@ export default function FooterMember() {
 			</Box>
 		</footer>
 	);
-}
+};
+
+export default FooterMember;

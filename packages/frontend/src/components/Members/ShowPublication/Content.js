@@ -2,7 +2,7 @@ import { Divider, Grid, Typography, withStyles } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import MUIRichTextEditor from 'mui-rte';
 
-function Content(props) {
+const Content = (props) => {
 	const { contentBlocks } = props;
 	const classes = useStyles();
 
@@ -24,7 +24,7 @@ function Content(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Content;
 

@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PdfViewer from './PdfViewer';
 import { FilledButton } from '../../../styles/MainStyles';
 
-function FullPublication() {
+const FullPublication = () => {
 	const dispatch = useDispatch();
 	const { pubId } = useParams();
 	const [chosenPublication, setChosenPublication] = useState();
@@ -168,6 +168,6 @@ function FullPublication() {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default FullPublication;

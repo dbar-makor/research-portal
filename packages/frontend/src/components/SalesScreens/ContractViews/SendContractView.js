@@ -65,7 +65,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function SendContractView({ setStep, contractCopy, setContractCopy }) {
+const SendContractView = ({ setStep, contractCopy, setContractCopy }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -211,6 +211,6 @@ function SendContractView({ setStep, contractCopy, setContractCopy }) {
 			{/* { pdfContent &&  <ContractPDF file={pdfContent}/> } */}
 		</Grid>
 	);
-}
+};
 
 export default SendContractView;

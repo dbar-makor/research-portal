@@ -5,7 +5,7 @@ import { ReactComponent as ImageIcon } from '../../assets/icons/iconImage.svg';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useDropzone } from 'react-dropzone';
 
-function DropZone(props) {
+const DropZone = (props) => {
 	const classes = useStyles();
 	const { onDrop, uploadedImage, setUploadedImage, purpose = 'cover image*', setFileOK, fileTypes } = props;
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: fileTypes });
@@ -73,6 +73,6 @@ function DropZone(props) {
 			)}
 		</Grid>
 	);
-}
+};
 
 export default DropZone;

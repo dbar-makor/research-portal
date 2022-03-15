@@ -182,7 +182,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function AuthorsNewArticleModal({ handleClose, open }) {
+const AuthorsNewArticleModal = ({ handleClose, open }) => {
 	const classes = useStyles();
 	const history = useHistory();
 
@@ -282,6 +282,6 @@ function AuthorsNewArticleModal({ handleClose, open }) {
 			</Grid>
 		</Dialog>
 	);
-}
+};
 
 export default AuthorsNewArticleModal;

@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function SelectInputUnit({
+const SelectInputUnit = ({
 	className,
 	name,
 	label,
@@ -21,7 +21,7 @@ function SelectInputUnit({
 	placeholder,
 	error = null,
 	variant = 'outlined',
-}) {
+}) => {
 	const classes = useStyles();
 	return (
 		<Grid container className={className}>
@@ -51,6 +51,6 @@ function SelectInputUnit({
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default SelectInputUnit;

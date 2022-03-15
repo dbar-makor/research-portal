@@ -2,7 +2,7 @@ import { memo } from 'react';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 
-function NumberFormatCustom(props) {
+const NumberFormatCustom = (props) => {
 	const { inputRef, onChange, decimalNo, minValue, ...other } = props;
 
 	return (
@@ -29,7 +29,7 @@ function NumberFormatCustom(props) {
 			isNumericString
 		/>
 	);
-}
+};
 
 NumberFormatCustom.propTypes = {
 	inputRef: PropTypes.func.isRequired,

@@ -13,12 +13,12 @@ import { BASE_URL, END_POINT } from '../../../utils/constants';
 import axios from 'axios';
 import AuthorsNewArticleModal from '../AuthorsNewArticleModal';
 
-function a11yProps(index) {
+const a11yProps = (index) => {
 	return {
 		'id': `simple-tab-${index}`,
 		'aria-controls': `simple-tabpanel-${index}`,
 	};
-}
+};
 
 const useStyles = makeStyles((theme) => ({
 	barWrapper: {
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function AllPublicationsTabs({ fetchStatistics }) {
+const AllPublicationsTabs = ({ fetchStatistics }) => {
 	const classes = useStyles();
 	const [value, setValue] = useState(0);
 	const [publications, setPublications] = useState([]);
@@ -96,7 +96,7 @@ function AllPublicationsTabs({ fetchStatistics }) {
 		setOpenNewPublication(true);
 	};
 
-	async function fetchPublications() {
+	const fetchPublications = async () => {
 		try {
 			const res = await axios.get(`${BASE_URL}${END_POINT.USER}/publication`);
 			if (res.status === 200) {
@@ -106,7 +106,7 @@ function AllPublicationsTabs({ fetchStatistics }) {
 			/* eslint no-console: 0 */
 			console.log(error, error.message);
 		}
-	}
+	};
 
 	useEffect(() => {
 		fetchPublications();
@@ -185,8 +185,6 @@ function AllPublicationsTabs({ fetchStatistics }) {
 			</TabContext>
 		</div>
 	);
-}
+};
 
 export default AllPublicationsTabs;
-
-

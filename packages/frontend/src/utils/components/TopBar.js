@@ -137,7 +137,7 @@ export const LoginButton = withStyles(() => ({
 	},
 }))(Button);
 
-function TopBar() {
+const TopBar = () => {
 	const history = useHistory();
 	const classes = useStyles();
 	const token = useSelector((state) => state.auth.token);
@@ -216,10 +216,11 @@ function TopBar() {
 		}
 	};
 
-	function adminGoTo(pathName) {
+	const adminGoTo = (pathName) => {
 		setOpenUserMgmt(false);
 		history.push(pathName);
-	}
+	};
+
 	const hendleBarOptions = (userType) => {
 		switch (userType) {
 			case 'client' || 'prospect':
@@ -617,6 +618,6 @@ function TopBar() {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default TopBar;

@@ -122,7 +122,7 @@ const useStyles = makeStyles(() => ({
 	loginBtn: {},
 }));
 
-function LoginPage() {
+const LoginPage = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const theme = useTheme();
@@ -318,7 +318,7 @@ function LoginPage() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default LoginPage;
 

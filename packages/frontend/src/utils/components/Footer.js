@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 import { ReactComponent as MakorIcon } from '../../assets/icons/makorLogo.svg';
 import { useSelector } from 'react-redux';
 
-export default function Footer() {
+const Footer = () => {
 	const userCategories = useSelector((state) => state.auth.userContent.categories);
 	return (
 		<footer style={{ position: 'relative' }}>
@@ -62,4 +62,6 @@ export default function Footer() {
 			</Box>
 		</footer>
 	);
-}
+};
+
+export default Footer;

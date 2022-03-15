@@ -33,7 +33,7 @@ import { useHistory, useLocation } from 'react-router';
 import CategoriesAutoComplete from '../Reusables/CategoriesAutoComplete';
 import TagsAutoComplete from '../Reusables/TagsAutoComplete';
 
-function DeadArticle() {
+const DeadArticle = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -1000,7 +1000,7 @@ function DeadArticle() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default DeadArticle;
 

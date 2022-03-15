@@ -1,15 +1,15 @@
 ---
-to: src/components/pages/<%= h.changeCase.pascalCase(name.toLowerCase()) %>/<%= h.changeCase.pascalCase(name.toLowerCase()) %>.jsx
+to: src/components/pages/<%=name%>/<%=name%>.jsx
 ---
-<% name = name.toLowerCase() %>import React from 'react';
+import React from 'react';
 
-import <%= h.changeCase.pascalCase(name) %>View from './<%= h.changeCase.pascalCase(name) %>.view';
+import <%=name%>View from './<%=name%>.view';
 
-const <%= h.changeCase.pascalCase(name) %> = (props) => {
-  return <<%= h.changeCase.pascalCase(name) %>View>{props.children}</<%= h.changeCase.pascalCase(name) %>View>;
+const <%=name%> = (props) => {
+  return <<%=name%>View></<%=name%>View>;
 };
 
-<%= h.changeCase.pascalCase(name) %>.displayName = '<%= h.changeCase.pascalCase(name) %>';
-<%= h.changeCase.pascalCase(name) %>.defaultProps = {};
+<%=name%>.displayName = '<%=name%>';
+<%=name%>.defaultProps = {};
 
-export default React.memo(<%= h.changeCase.pascalCase(name) %>);
+export default React.memo(<%=name%>);

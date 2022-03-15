@@ -1,15 +1,15 @@
 ---
-to: src/components/ui/<%= name %>/<%= name %>.jsx
+to: src/components/ui/<%=name%>/<%=name%>.jsx
 ---
 import React from 'react';
 
-import <%= name%>View from './<%= name%>.view';
+import <%=name%>View from './<%=name%>.view';
 
 const <%= name %> = (props) => {
-  return <<%=name%>View> </<%= name%>View>;
+  return <<%=name%>View></<%=name%>View>;
 };
 
-<%= name %>.displayName = '<%= name %>';
-<%= name%>.defaultProps = {};
+<%=name%>.displayName = '<%=name%>';
+<%=name%>.defaultProps = {};
 
-export default React.memo(<%=name %>);
+export default React.memo(<%=name%>);

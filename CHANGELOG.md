@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/dbar-makor/research-portal/compare/v1.0.0...v1.0.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* 🐞 top bar fixes ([dd06401](https://github.com/dbar-makor/research-portal/commit/dd064019a4873a1c21ee6c2d3e4277d882042f36))
+* 🐞 topbar select menu changes ([156f3e4](https://github.com/dbar-makor/research-portal/commit/156f3e4fe7ea088e406bcd307480da9fe9dec401))
+
 # 1.0.0 (2022-03-15)
 
 

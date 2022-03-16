@@ -1,27 +1,6 @@
-import {
-	makeStyles,
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-import ContractRow from './ContractRow';
-const headersName = [
-	'Status',
-	'Signaturre',
-	'Contract Period',
-	'Company',
-	'Country',
-	'Period',
-	'Amount',
-	'Yearly Cost',
-	'Actions',
-];
-
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
 	tableContainer: {
 		'maxHeight': 'calc(100vh - 265px)',
 		'&::-webkit-scrollbar': {
@@ -103,50 +82,6 @@ const useStyles = makeStyles({
 	tableCellBody: {
 		border: 'none',
 	},
-});
+}));
 
-const ContractsTable = (props) => {
-	const { contractsRows } = props;
-	const classes = useStyles();
-
-	return (
-		<TableContainer className={classes.tableContainer}>
-			<Table stickyHeader size="small" className={classes.table}>
-				<TableHead style={{ borderBottom: 'none' }}>
-					<TableRow>
-						{headersName.map((header, idx) => {
-							return (
-								<TableCell
-									className={classes.tableCellHeaders}
-									key={idx}
-									style={{
-										textAlign:
-											header === 'Status'
-												? 'center'
-												: header === 'Actions'
-												? 'center'
-												: header === 'Amount'
-												? 'right'
-												: header === 'Yearly Cost'
-												? 'right'
-												: 'none',
-									}}
-								>
-									{header}
-								</TableCell>
-							);
-						})}
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{contractsRows &&
-						contractsRows.map((contract, idx) => {
-							return <ContractRow contract={contract} key={idx} />;
-						})}
-				</TableBody>
-			</Table>
-		</TableContainer>
-	);
-};
-
-export default ContractsTable;
+export default useStyles;

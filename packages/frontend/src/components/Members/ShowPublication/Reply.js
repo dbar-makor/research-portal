@@ -2,7 +2,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import { format } from 'date-fns';
 
-function Reply(props) {
+const Reply = (props) => {
 	const { reply } = props;
 	const classes = useStyles();
 	return (
@@ -20,6 +20,6 @@ function Reply(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Reply;

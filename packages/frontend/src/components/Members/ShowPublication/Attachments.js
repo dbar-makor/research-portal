@@ -2,7 +2,7 @@ import { BASE_URL } from '../../../utils/constants';
 import { Divider, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import { ReactComponent as FileEmpty } from '../../../assets/icons/fileEmpty.svg';
-function Attachments(props) {
+const Attachments = (props) => {
 	const { attachments } = props;
 	const classes = useStyles();
 
@@ -59,6 +59,6 @@ function Attachments(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Attachments;

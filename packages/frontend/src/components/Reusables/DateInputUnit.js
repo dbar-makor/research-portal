@@ -10,7 +10,8 @@ export const useStyles = makeStyles(() => ({
 		},
 	},
 }));
-function DateInputUnit({
+
+const DateInputUnit = ({
 	className = '',
 	label,
 	value,
@@ -19,7 +20,7 @@ function DateInputUnit({
 	datePickerClass = '',
 	inputVariant = 'outlined',
 	iconFontSize = '18px',
-}) {
+}) => {
 	const classes = useStyles();
 	return (
 		<Grid container className={className}>
@@ -48,6 +49,6 @@ function DateInputUnit({
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default DateInputUnit;

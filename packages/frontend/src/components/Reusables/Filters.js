@@ -8,7 +8,7 @@ import NewCompanyStepper from '../SalesScreens/NewCompanySteps/NewCompanyStepper
 import { useDispatch } from 'react-redux';
 import NewUserModal from '../ui/admin/NewUserModal/NewUserModal.jsx';
 
-function Filters(props) {
+const Filters = (props) => {
 	const { pageType, type, status, setProperty } = props;
 	const dispatch = useDispatch();
 	const [localSearch, setLocalSearch] = useState('');
@@ -136,6 +136,6 @@ function Filters(props) {
 			/>
 		</Grid>
 	);
-}
+};
 
 export default Filters;

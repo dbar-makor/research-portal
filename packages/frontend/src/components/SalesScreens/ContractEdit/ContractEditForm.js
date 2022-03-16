@@ -342,7 +342,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function ContractEditForm(props) {
+const ContractEditForm = (props) => {
 	const { contract } = props;
 	const classes = useStyles();
 	const currenciesArr = useSelector((state) => state.utils.utils.currency);
@@ -627,6 +627,6 @@ function ContractEditForm(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default React.memo(ContractEditForm);

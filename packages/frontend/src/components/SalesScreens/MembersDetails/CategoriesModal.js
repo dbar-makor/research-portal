@@ -4,7 +4,7 @@ import { useStyles } from '../../../styles/InfoStyles';
 import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
 import { FilledButton } from '../../../styles/MainStyles';
 
-function CategoriesModal(props) {
+const CategoriesModal = (props) => {
 	const classes = useStyles();
 	const {
 		open,
@@ -79,6 +79,6 @@ function CategoriesModal(props) {
 			</Dialog>
 		)
 	);
-}
+};
 
 export default CategoriesModal;

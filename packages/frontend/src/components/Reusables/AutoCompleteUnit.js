@@ -11,8 +11,7 @@ const useStyles = makeStyles({
 	},
 });
 
-
-function AutoCompleteUnit({
+const AutoCompleteUnit = ({
 	className,
 	name,
 	label,
@@ -25,7 +24,7 @@ function AutoCompleteUnit({
 	disabled = null,
 	inputValue = '',
 	setInputValue = () => {},
-}) {
+}) => {
 	const classes = useStyles();
 
 	return (
@@ -74,8 +73,6 @@ function AutoCompleteUnit({
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default AutoCompleteUnit;
-
-

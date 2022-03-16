@@ -200,7 +200,7 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 		handleClose();
 	};
 
-	function getStepContent(step) {
+	const getStepContent = (step) => {
 		switch (step) {
 			case 0:
 				return (
@@ -238,7 +238,7 @@ const NewCompanyStepper = ({ handleClose, open }) => {
 			default:
 				return 'Unknown step';
 		}
-	}
+	};
 
 	return utils ? (
 		<Dialog

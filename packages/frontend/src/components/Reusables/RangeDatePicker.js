@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import moment from 'moment';
 
-export default function RangeDatePicker(props) {
+const RangeDatePicker = (props) => {
 	const { from, to, setFrom, setTo, max_days_allowed } = props;
 	const stylingProps = {
 		clearable: from !== 'DD/MM/YYYY' && to !== 'DD/MM/YYYY' && from && to,
@@ -135,4 +135,6 @@ export default function RangeDatePicker(props) {
 			</Popover>
 		</React.Fragment>
 	);
-}
+};
+
+export default RangeDatePicker;

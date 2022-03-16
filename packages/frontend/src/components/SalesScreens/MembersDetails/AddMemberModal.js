@@ -7,7 +7,7 @@ import TextInputUnit from '../../Reusables/TextInputUnit';
 import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
 import { validateMember } from '../../Reusables/validationFunctions';
 
-function AddMemberModal(props) {
+const AddMemberModal = (props) => {
 	const { open, handleClose, companyName, addMember, newMember, setNewMember } = props;
 	const [errors, setErrors] = useState({});
 	const [validationResult, setValidationResult] = useState(false);
@@ -131,6 +131,6 @@ function AddMemberModal(props) {
 			</Grid>
 		</Dialog>
 	);
-}
+};
 
 export default AddMemberModal;

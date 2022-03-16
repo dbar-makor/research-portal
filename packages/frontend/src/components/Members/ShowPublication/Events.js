@@ -2,7 +2,7 @@ import { Divider, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/PublicationsStyles';
 import { ReactComponent as Calendar } from '../../../assets/icons/iconCalendar.svg';
 
-function Events(props) {
+const Events = (props) => {
 	const { events } = props;
 	const classes = useStyles();
 
@@ -57,6 +57,6 @@ function Events(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default Events;

@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/MainStyles.js';
 
-function SubHeaderModal({ title }) {
+const SubHeaderModal = ({ title }) => {
 	const classes = useStyles();
 	return (
 		<>
@@ -11,6 +11,6 @@ function SubHeaderModal({ title }) {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default SubHeaderModal;

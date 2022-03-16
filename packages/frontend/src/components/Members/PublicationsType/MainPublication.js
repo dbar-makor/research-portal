@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 const MainPublication = ({ publication }) => {
 	const classes = useStyles();
 
-	function chooseImage(publication) {
+	const chooseImage = (publication) => {
 		let image = '';
 		let url = '';
 		if (publication.attachments.length) {
@@ -50,15 +50,16 @@ const MainPublication = ({ publication }) => {
 			url = `${BASE_URL}${END_POINT.ASSETS}/${encodeURIComponent(imageName)}`;
 		}
 		return url;
-	}
-	function truncateDescription(string) {
+	};
+
+	const truncateDescription = (string) => {
 		const descrptionLength = string.length;
 		if (descrptionLength > 105) {
 			return `${string.substring(0, 105)}...`;
 		} else {
 			return `${string}...`;
 		}
-	}
+	};
 
 	return (
 		<Grid item xs={3} style={{ padding: '16px' }}>

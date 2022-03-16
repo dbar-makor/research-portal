@@ -326,7 +326,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function home() {
+const home = () => {
 	const classes = useStyles();
 
 	const date = new Date();
@@ -1554,7 +1554,7 @@ function home() {
 			</Grid>
 		</main>
 	);
-}
+};
 
 export default home;
 

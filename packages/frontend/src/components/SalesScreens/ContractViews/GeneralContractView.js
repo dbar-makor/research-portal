@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function GeneralContractView() {
+const GeneralContractView = () => {
 	const classes = useStyles();
 	const [step, setStep] = useState(1);
 	const chosenCompany = useSelector(selectChosenCompany);
@@ -75,6 +75,6 @@ function GeneralContractView() {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default GeneralContractView;

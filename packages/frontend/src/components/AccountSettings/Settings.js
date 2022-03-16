@@ -6,7 +6,7 @@ import { BASE_URL, END_POINT } from '../../utils/constants';
 
 import * as actionSnackBar from '../../redux/SnackBar/action';
 
-function Settings() {
+const Settings = () => {
 	const [userSettings, setUserSettings] = useState(null);
 	const [loadingUserSettings, setLoadingUserSettings] = useState(false);
 	const dispatch = useDispatch();
@@ -178,7 +178,7 @@ function Settings() {
 			)}
 		</Grid>
 	);
-}
+};
 
 export default Settings;
 

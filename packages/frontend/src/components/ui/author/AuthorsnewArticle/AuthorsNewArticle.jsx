@@ -99,7 +99,6 @@ const AuthorsNewArticle = () => {
 				}
 				// if (JSON.parse(chosenResearch.content)) {
 				// }
-
 			}
 		}
 	}, [chosenResearch]);
@@ -109,8 +108,12 @@ const AuthorsNewArticle = () => {
 		if (location.state?.from === 'prearticle') {
 			const publication = location.state?.publication;
 
-			const coverImg = publication.attachments?.find((attachment) => attachment.file_type === 'main_bg');
-			const otherFiles = publication.attachments?.filter((attachment) => attachment.file_type !== 'main_bg');
+			const coverImg = publication.attachments?.find(
+				(attachment) => attachment.file_type === 'main_bg',
+			);
+			const otherFiles = publication.attachments?.filter(
+				(attachment) => attachment.file_type !== 'main_bg',
+			);
 
 			// let categoriesIDs = publication.categories?.map(category => category.id)
 			const editedLocalForm = { ...publication, attachments: otherFiles };

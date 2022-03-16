@@ -86,8 +86,8 @@ const useStyles = makeStyles({
 	},
 });
 
-function SideForm(props) {
-	const { activeSidebar,chosenContract, loadingSidebar } = props;
+const SideForm = (props) => {
+	const { activeSidebar, chosenContract, loadingSidebar } = props;
 
 	const classes = useStyles(props);
 	const [contractSigner, setContractSigner] = useState(chosenContract?.signer_user);
@@ -96,7 +96,6 @@ function SideForm(props) {
 	const dispatch = useDispatch();
 	const chosenCompany = useSelector(selectChosenCompany);
 	const history = useHistory();
-
 
 	const handleChange = (e) => {
 		setContractSigner(e ? e.id : '');
@@ -277,6 +276,6 @@ function SideForm(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default SideForm;

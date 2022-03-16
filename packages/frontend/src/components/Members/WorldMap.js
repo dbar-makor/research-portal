@@ -15,7 +15,7 @@ const citiesStatus = {
 	'Melbourne': 'open',
 };
 
-function WorldMap() {
+const WorldMap = () => {
 	const { mapData, mapLoading, mapError, citiesData } = useMapData();
 
 	const projection = geoMercator()
@@ -46,6 +46,6 @@ function WorldMap() {
 			)}
 		</>
 	);
-}
+};
 
 export default WorldMap;

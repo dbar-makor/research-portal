@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 
-function VideoFrame(props) {
+const VideoFrame = (props) => {
 	const { video } = props;
 	return (
 		<Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', paddingTop: 20 }}>
@@ -19,6 +19,6 @@ function VideoFrame(props) {
 			)}
 		</Grid>
 	);
-}
+};
 
 export default VideoFrame;

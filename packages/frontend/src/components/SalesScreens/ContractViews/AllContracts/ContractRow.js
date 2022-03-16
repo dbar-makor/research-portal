@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { withStyles } from '@material-ui/styles';
 import { useRef, useState } from 'react';
 
-function ContractRow(props) {
+const ContractRow = (props) => {
 	const { contract } = props;
 	const [anchorEl, setAnchorEl] = useState(null);
 
@@ -124,7 +124,7 @@ function ContractRow(props) {
 			</TableCell>
 		</TableRow>
 	);
-}
+};
 
 export default ContractRow;
 

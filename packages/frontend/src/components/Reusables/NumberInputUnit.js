@@ -1,6 +1,6 @@
 import { Grid, TextField } from '@material-ui/core';
 
-function NumberInputUnit({ className, name, label, value, onChange, InputProps, error = null }) {
+const NumberInputUnit = ({ className, name, label, value, onChange, InputProps, error = null }) => {
 	return (
 		<Grid container className={className}>
 			<Grid item xs={12}>
@@ -17,6 +17,6 @@ function NumberInputUnit({ className, name, label, value, onChange, InputProps, 
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default NumberInputUnit;

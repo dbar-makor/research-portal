@@ -152,7 +152,7 @@ const useStyles = makeStyles({
 const SmallPublication = ({ publication }) => {
 	const classes = useStyles();
 
-	function chooseImage(publication) {
+	const chooseImage = (publication) => {
 		let image = '';
 		let url = '';
 		if (publication.attachments.length) {
@@ -161,15 +161,15 @@ const SmallPublication = ({ publication }) => {
 			url = `${BASE_URL}${END_POINT.ASSETS}/${encodeURIComponent(imageName)}`;
 		}
 		return url;
-	}
-	function truncateDescription(string) {
+	};
+	const truncateDescription = (string) => {
 		const descrptionArr = string.split(' ');
 		const descriptionLength = descrptionArr.length;
 		descrptionArr.splice(14);
 		const newDescription = descrptionArr.join(' ');
 		if (descriptionLength > 15) return `${newDescription}...`;
 		return newDescription;
-	}
+	};
 	return (
 		<Grid item xs={6} style={{ padding: '16px' }}>
 			<Grid container justifyContent="space-between">

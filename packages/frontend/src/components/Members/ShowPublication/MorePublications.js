@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function MorePublications(props) {
+const MorePublications = (props) => {
 	const { categories, title } = props;
 	const localCatNames = categories.map((cat) => cat.name);
 	const [morePub, setMorePub] = useState(null);
@@ -68,7 +68,7 @@ function MorePublications(props) {
 			console.log(err);
 		}
 	};
-	function chooseImage(publication) {
+	const chooseImage = (publication) => {
 		let image = '';
 		let url = '';
 		if (publication.attachments.length) {
@@ -77,16 +77,16 @@ function MorePublications(props) {
 			url = `${BASE_URL}${END_POINT.ASSETS}/${encodeURIComponent(imageName)}`;
 		}
 		return url;
-	}
+	};
 
-	function truncateDescription(string) {
+	const truncateDescription = (string) => {
 		const descrptionLength = string.length;
 		if (descrptionLength > 105) {
 			return `${string.substring(0, 105)}...`;
 		} else {
 			return `${string}...`;
 		}
-	}
+	};
 
 	useEffect(() => {
 		getMorePublicationAsync();
@@ -137,6 +137,6 @@ function MorePublications(props) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default MorePublications;

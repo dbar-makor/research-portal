@@ -1,6 +1,6 @@
 import { Grid, Button } from '@material-ui/core';
 
-function SubmitBtn({ className, handler }) {
+const SubmitBtn = ({ className, handler }) => {
 	return (
 		<Grid item xs={12}>
 			<Grid container justifyContent="center">
@@ -12,6 +12,6 @@ function SubmitBtn({ className, handler }) {
 			</Grid>
 		</Grid>
 	);
-}
+};
 
 export default SubmitBtn;

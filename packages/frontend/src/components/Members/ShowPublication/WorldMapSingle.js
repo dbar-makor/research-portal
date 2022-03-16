@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function WorldMapSingle({ d, x, y, citiesStatus }) {
+const WorldMapSingle = ({ d, x, y, citiesStatus }) => {
 	const [tooltipState, setTooltipState] = useState(false);
 
 	return (
@@ -25,6 +25,6 @@ function WorldMapSingle({ d, x, y, citiesStatus }) {
 			</g>
 		</g>
 	);
-}
+};
 
 export default WorldMapSingle;

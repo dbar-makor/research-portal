@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../styles/MainStyles.js';
 
-function SubHeader({ title }) {
+const SubHeader = ({ title }) => {
 	const classes = useStyles();
 	return (
 		<>
@@ -23,6 +23,6 @@ function SubHeader({ title }) {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default SubHeader;

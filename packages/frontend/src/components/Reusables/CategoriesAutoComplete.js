@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 	},
 });
 
-function CategoriesAutoComplete({
+const CategoriesAutoComplete = ({
 	formObject,
 	setFormObject,
 	handler,
@@ -36,7 +36,7 @@ function CategoriesAutoComplete({
 	parentArr = null,
 	setParentArr = () => {},
 	chipVariant = 'outlined',
-}) {
+}) => {
 	const classes = useStyles();
 	const categoriesArr = useSelector((state) => state.utils.utils.category);
 
@@ -98,7 +98,6 @@ function CategoriesAutoComplete({
 							}}
 						/>
 						{adjustedFormObject.length ? (
-
 							<Grid item xs={12}>
 								<Grid container className={classes.chipContainer}>
 									{adjustedFormObject.map((el, index) => (
@@ -120,8 +119,6 @@ function CategoriesAutoComplete({
 			)}
 		</>
 	);
-}
+};
 
 export default CategoriesAutoComplete;
-
-

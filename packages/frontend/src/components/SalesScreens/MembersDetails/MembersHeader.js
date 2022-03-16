@@ -4,7 +4,7 @@ import { AddButton, StyledTextField } from '../../../styles/MainStyles';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
 import clsx from 'clsx';
 import AddIcon from '@material-ui/icons/Add';
-import AddMemberModal from './AddMemberModal';
+import AddMemberModal from '../../ui/salesman/AddMemberModal/AddMemberModal';
 
 const MembersHeader = (props) => {
 	const {

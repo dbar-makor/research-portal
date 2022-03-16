@@ -1,78 +1,54 @@
+import React from 'react';
 import { Divider, Grid, IconButton, Popover, TableCell, TableRow, Typography } from '@material-ui/core';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { format } from 'date-fns';
 import { withStyles } from '@material-ui/styles';
-import { useRef, useState } from 'react';
 
-const ContractRow = (props) => {
-	const { contract } = props;
-	const [anchorEl, setAnchorEl] = useState(null);
+//import useStyles from './ContractRow.style';
 
-	const contractEditMainRef = useRef();
+const ContractRowView = (props) => {
 
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
-	const calcYearlyCost = (amount, period) => {
-		if (period === 'fully') {
-			return amount;
-		} else if (period === 'half') {
-			return amount * 2;
-		} else if (period === 'quarterly') {
-			return amount * 3;
-		} else if (period === 'monthly') {
-			return amount * 12;
-		}
-	};
-
-	const open = Boolean(anchorEl);
-	const id = open ? 'simple-popover' : undefined;
-	return (
+  return (
 		<TableRow>
 			<TableCell style={{ textAlign: 'center' }}>
 				<FiberManualRecordIcon
-					style={{ color: contract.status === false ? '#FF3939' : '#00CA80', fontSize: '12px' }}
+					style={{ color: props.contract.status === false ? '#FF3939' : '#00CA80', fontSize: '12px' }}
 				/>
 			</TableCell>
-			<TableCell style={{ color: contract.signed === true ? '#00CA80' : '#FF3939' }}>
-				{contract.signed === true ? 'Signed' : 'Unsigned'}
+			<TableCell style={{ color: props.contract.signed === true ? '#00CA80' : '#FF3939' }}>
+				{props.contract.signed === true ? 'Signed' : 'Unsigned'}
 			</TableCell>
 			<TableCell style={{ width: 215 }}>{`${format(
-				new Date(contract.start_at),
+				new Date(props.contract.start_at),
 				'dd MMM , yyyy',
-			)} - ${format(new Date(contract.end_at), 'dd MMM, yyyy')}`}</TableCell>
-			<TableCell style={{ textTransform: 'capitalize' }}>{contract.company_name}</TableCell>
+			)} - ${format(new Date(props.contract.end_at), 'dd MMM, yyyy')}`}</TableCell>
+			<TableCell style={{ textTransform: 'capitalize' }}>{props.contract.company_name}</TableCell>
 			<TableCell
 				style={{ width: 100, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
 			>
-				{contract.company_country.length > 6
-					? `${contract.company_country.slice(0, 6)}...`
-					: contract.company_country}
+				{props.contract.company_country.length > 6
+					? `${props.contract.company_country.slice(0, 6)}...`
+					: props.contract.company_country}
 			</TableCell>
 			<TableCell style={{ textTransform: 'capitalize' }}>
-				{contract.periodicity === 'fully' ? 'Yearly' : contract.periodicity}
+				{props.contract.periodicity === 'fully' ? 'Yearly' : props.contract.periodicity}
 			</TableCell>
 			<TableCell
 				style={{ textAlign: 'right' }}
-			>{`${contract.currency.symbol}${contract.amount}`}</TableCell>
+			>{`${props.contract.currency.symbol}${props.contract.amount}`}</TableCell>
 			<TableCell style={{ fontWeight: 'bold', textAlign: 'right' }}>{`${
-				contract.currency.symbol
-			}${calcYearlyCost(contract.amount, contract.periodicity)}`}</TableCell>
+				props.contract.currency.symbol
+			}${props.calcYearlyCost(props.contract.amount, props.contract.periodicity)}`}</TableCell>
 			<TableCell style={{ textAlign: 'center' }}>
 				<IconButton size="small">
-					<MoreVertIcon fontSize="small" style={{ color: '#B8C3D8' }} onClick={handleClick} />
+					<MoreVertIcon fontSize="small" style={{ color: '#B8C3D8' }} onClick={props.handleClick} />
 				</IconButton>
 				<StyledPop
-					id={id}
-					open={open}
-					anchorEl={anchorEl}
-					onClose={handleClose}
+					id={props.id}
+					open={props.open}
+					anchorEl={props.anchorEl}
+					onClose={props.handleClose}
 					anchorOrigin={{
 						vertical: 'top',
 						horizontal: 'left',
@@ -107,12 +83,12 @@ const ContractRow = (props) => {
 								<Grid item>
 									<Typography
 										style={{ fontSize: '14px' }}
-										onClick={() => contractEditMainRef.current.openModal()}
+										onClick={() => props.contractEditMainRef.current.openModal()}
 									>
 										Edit
 									</Typography>
 								</Grid>
-								<Grid item style={{ cursor: 'pointer' }} onClick={handleClose}>
+								<Grid item style={{ cursor: 'pointer' }} onClick={props.handleClose}>
 									<Typography style={{ fontSize: '14px', color: '#FF3939' }}>
 										Cancel
 									</Typography>
@@ -126,8 +102,10 @@ const ContractRow = (props) => {
 	);
 };
 
-export default ContractRow;
+ContractRowView.displayName = 'ContractRowView';
+ContractRowView.defaultProps = {};
 
+export default React.memo(ContractRowView);
 const StyledPop = withStyles({
 	root: {
 		'& .MuiPopover-paper': {

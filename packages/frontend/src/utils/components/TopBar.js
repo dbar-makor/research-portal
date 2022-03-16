@@ -1,7 +1,7 @@
 import { AppBar, Button, Grid, makeStyles, Toolbar, withStyles, Divider } from '@material-ui/core';
 
 import { useSelector } from 'react-redux';
-import { ReactComponent as MakorLogo } from '../../assets/icons/makorLogo.svg';
+// import { ReactComponent as MakorLogo } from '../../assets/icons/makorLogo.svg';
 import { useEffect, useRef, useState } from 'react';
 import * as webSocketService from '../../services/websocket';
 import TradingHours from './TradingHours';
@@ -9,6 +9,7 @@ import MemberTopbar from './topbarParts/MemberTopbar';
 import SalesTopbar from './topbarParts/SalesTopbar';
 import AuthorTopbar from './topbarParts/AuthorTopbar';
 import AdminTopbar from './topbarParts/AdminTopbar';
+import MakorLogo from './topbarParts/MakorLogo';
 
 const useStyles = makeStyles((theme) => ({
 	headerContainer: {
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
 	link: {
 		textDecoration: 'none',
 		color: '#fff',
+		// '&:hover': {
+		// 	cursor: 'pointer',
+		// },
 	},
 	subTitle: {
 		color: '#000000',
@@ -288,7 +292,7 @@ function TopBar() {
 					<AppBar position="sticky" className={classes.header}>
 						<Toolbar style={{ width: 'inherit', padding: 0, justifyContent: 'space-between' }}>
 							<Grid item xs={4}>
-								<MakorLogo clases={classes} userType={userType} />
+								<MakorLogo classes={classes} userType={userType} />
 							</Grid>
 							{isAuthenticated ? (
 								<>{handleBarOptions(userType)}</>

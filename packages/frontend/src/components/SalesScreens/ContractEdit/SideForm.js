@@ -6,7 +6,7 @@ import { BASE_URL, END_POINT } from '../../../utils/constants';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeChosenCompany, selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
-import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
+import AutoCompleteUnit from '../../ui/reusables/AutoCompleteUnit/AutoCompleteUnit';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { FilledButton } from '../../../styles/MainStyles';
 import { useHistory } from 'react-router-dom';

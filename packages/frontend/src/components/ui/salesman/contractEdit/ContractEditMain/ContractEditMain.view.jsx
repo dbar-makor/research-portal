@@ -1,34 +1,22 @@
-import { forwardRef, useImperativeHandle, useState } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
+import React from 'react';
 import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
-import { useStyles } from '../../../styles/ContarctsModalStyles';
-import SubHeaderModal from '../../Reusables/SubHeaderModal';
-import SideForm from './SideForm';
+import CloseIcon from '@material-ui/icons/Close';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { useStyles } from '../../../../../styles/ContarctsModalStyles';
+import SubHeaderModal from '../../../../Reusables/SubHeaderModal';
+import Contract from '../../contractViews/Contract/Contract';
+import SideForm from '../SideForm/SideForm';
 import { format } from 'date-fns';
-import Contract from '../ContractViews/Contract';
 
-const ContractEditMain = forwardRef((props, ref) => {
+//import useStyles from './ContractEditMain.style';
+
+const ContractEditMainView = (props) => {
 	const classes = useStyles();
-	const { contract, clientName } = props;
-	const [openEdit, setOpenEdit] = useState(false);
-	const [activeSidebar, setActiveSidebar] = useState(false);
-	const [loadingSidebar, setLoadingSidebar] = useState(false);
-
-	useImperativeHandle(ref, () => ({
-		openModal() {
-			setOpenEdit(!openEdit);
-		},
-	}));
-
-	const openModal = () => {
-		setOpenEdit(!openEdit);
-	};
 
 	return (
 		<Dialog
-			open={openEdit}
-			onClose={() => openModal()}
+			open={props.openEdit}
+			onClose={() => props.openModal()}
 			classes={{ paper: classes.contractModalPaper }}
 			BackdropProps={{
 				classes: {
@@ -37,7 +25,7 @@ const ContractEditMain = forwardRef((props, ref) => {
 			}}
 		>
 			<Grid item xs={12} align="right" style={{ margin: '10px 10px 0px 0px' }}>
-				<IconButton size="small" onClick={() => openModal()}>
+				<IconButton size="small" onClick={() => props.openModal()}>
 					<CloseIcon style={{ color: '#000' }} />
 				</IconButton>
 			</Grid>
@@ -47,7 +35,7 @@ const ContractEditMain = forwardRef((props, ref) => {
 						<Grid container alignItems="center" justifyContent="center">
 							<SubHeaderModal title="Edit Contract" />
 							<Grid item xs={12}>
-								<Typography className={classes.modalSubHeader}>{clientName}</Typography>
+								<Typography className={classes.modalSubHeader}>{props.clientName}</Typography>
 							</Grid>
 						</Grid>
 						<Grid item xs={12}>
@@ -66,7 +54,7 @@ const ContractEditMain = forwardRef((props, ref) => {
 									<Typography
 										style={{ fontSize: 16, color: '#000' }}
 									>{`Editing Contract of ${format(
-										new Date(contract.start_at),
+										new Date(props.contract.start_at),
 										'dd MMM, yyyy',
 									)} `}</Typography>
 								</Grid>
@@ -78,18 +66,18 @@ const ContractEditMain = forwardRef((props, ref) => {
 						<Grid item xs={8}>
 							<Contract
 								stepperMode={false}
-								chosenContract={contract}
-								setLoadingSidebar={setLoadingSidebar}
-								setActiveSidebar={setActiveSidebar}
+								chosenContract={props.contract}
+								setLoadingSidebar={props.setLoadingSidebar}
+								setActiveSidebar={props.setActiveSidebar}
 							/>
 						</Grid>
 						<Grid item xs={4}>
 							<SideForm
-								setActiveSidebar={setActiveSidebar}
-								activeSidebar={activeSidebar}
-								chosenContract={contract}
-								loadingSidebar={loadingSidebar}
-								setLoadingSidebar={setLoadingSidebar}
+								setActiveSidebar={props.setActiveSidebar}
+								activeSidebar={props.activeSidebar}
+								chosenContract={props.contract}
+								loadingSidebar={props.loadingSidebar}
+								setLoadingSidebar={props.setLoadingSidebar}
 							/>
 						</Grid>
 					</Grid>
@@ -97,8 +85,9 @@ const ContractEditMain = forwardRef((props, ref) => {
 			</DialogTitle>
 		</Dialog>
 	);
-});
+};
 
-ContractEditMain.displayName = 'ContractEditMain';
+ContractEditMainView.displayName = 'ContractEditMainView';
+ContractEditMainView.defaultProps = {};
 
-export default ContractEditMain;
+export default React.memo(ContractEditMainView);

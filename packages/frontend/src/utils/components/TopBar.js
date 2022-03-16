@@ -10,6 +10,7 @@ import SalesTopbar from './topbarParts/SalesTopbar';
 import AuthorTopbar from './topbarParts/AuthorTopbar';
 import AdminTopbar from './topbarParts/AdminTopbar';
 import MakorLogo from './topbarParts/MakorLogo';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
 	headerContainer: {
@@ -68,11 +69,11 @@ const useStyles = makeStyles((theme) => ({
 			paddingTop: '3px',
 		},
 		'& select': {
-			color: '#fff',
-			border: 'none',
-			outline: 'none',
-			paddingTop: 12,
-			'&::placeholder':{
+			'color': '#fff',
+			'border': 'none',
+			'outline': 'none',
+			'paddingTop': 12,
+			'&::placeholder': {
 				color: '#fff',
 			},
 		},
@@ -151,8 +152,8 @@ export const LoginButton = withStyles(() => ({
 }))(Button);
 
 const TopBar = () => {
+	// eslint-disable-next-line no-unused-vars
 	const history = useHistory();
- 
 	const classes = useStyles();
 	const token = useSelector((state) => state.auth.token);
 
@@ -250,13 +251,12 @@ const TopBar = () => {
 		}
 	};
 
-	const adminGoTo = (pathName) => {
-		setOpenUserMgmt(false);
-		history.push(pathName);
-	};
+	// const adminGoTo = (pathName) => {
+	// 	setOpenUserMgmt(false);
+	// 	history.push(pathName);
+	// };
 
-	const hendleBarOptions = (userType) => {
-
+	const handleBarOptions = (userType) => {
 		switch (userType) {
 			case 'client' || 'prospect':
 				return <MemberTopbar classes={classes} options={options} />;

@@ -4,13 +4,12 @@ import { Grid, Typography } from '@material-ui/core';
 import TableComponent from '../../reusables/TableComponent/TableComponent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CompanyInfo from '../../salesman/companyDetails/CompanyInfo/CompanyInfo';
-import MembersTable from '../../../SalesScreens/MembersDetails/MembersTable';
-
+import MembersTable from '../membersDetails/MembersTable/MembersTable';
 
 const MainSalesScreenView = (props) => {
-  const classes = useStyles();
+	const classes = useStyles();
 
-  return  (
+	return (
 		<Grid container justifyContent="center">
 			<Grid item xs={10}>
 				<Grid container>
@@ -18,11 +17,7 @@ const MainSalesScreenView = (props) => {
 						<Grid item xs={12}>
 							{props.companiesData.length ? (
 								<Grid container>
-									<Grid
-										item
-										xs={6}
-										className={classes.scrollableTableContainer}
-									>
+									<Grid item xs={6} className={classes.scrollableTableContainer}>
 										<TableComponent
 											data={props.companiesData}
 											pageType="companies"

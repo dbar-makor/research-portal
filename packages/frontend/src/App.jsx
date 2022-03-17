@@ -15,7 +15,7 @@ import { LOGIN_SUCCESS } from './redux/auth/constants';
 import AuthorsNewArticle from './components/ui/author/AuthorsnewArticle/AuthorsNewArticle';
 import AllPublications from './components/ui/author/allPublications/AllPublications/AllPublications';
 import TopBar from './utils/components/TopBar';
-import GeneralContractView from './components/SalesScreens/ContractViews/GeneralContractView';
+import GeneralContractView from './components/ui/salesman/contractViews/GeneralContractView/GeneralContractView';
 import Snackbar from './components/ui/Snackbar/Snackbar.jsx';
 import Sales from './components/ui/salesman/Sales/Sales';
 import DeadArticle from './components/ui/author/DeadArticle/DeadArticle';
@@ -25,8 +25,8 @@ import AuthorsUsersScreen from './components/ui/admin/AuthorsUsersScreen/Authors
 import FooterMember from './utils/components/FooterMember';
 import MembersMain from './components/Members/MembersMain';
 import FullPublication from './components/Members/ShowPublication/FullPublication';
-import AllContracts from './components/SalesScreens/ContractViews/AllContracts/AllContract';
-import AllInvoices from './components/SalesScreens/ContractViews/AllInvoices/AllInvoices';
+import AllContracts from './components/ui/salesman/contractViews/allContracts/AllContract/AllContract';
+import AllInvoices from './components/ui/salesman/contractViews/allInvoices/AllInvoices/AllInvoices';
 import AllNotifications from './components/Members/Notifications/AllNotifications';
 import AccountSettings from './components/AccountSettings/AccountSettings';
 

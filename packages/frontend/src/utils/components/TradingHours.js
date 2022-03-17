@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
-import tradingHoursData from './dummy.json';
+import tradingHoursData from '../../components/layout/dummy.json';
 import { useStyles } from '../../styles/MainStyles';
-import BellNotifications from './topbarParts/BellNotifications';
-import UserIcon from './topbarParts/UserIcon';
-import { TradingHourUnit } from './topbarParts/TradingHourUnit';
+import BellNotifications from '../../components/layout/topbarParts/BellNotifications/BellNotifications';
+import UserIcon from '../../components/layout/topbarParts/UserIcon/UserIcon';
+import TradingHourUnit  from '../../components/layout/topbarParts/TradingHourUnit/TradingHourUnit';
 
 const TradingHours = ({
 	handleToggle,
@@ -45,6 +45,7 @@ const TradingHours = ({
 						setOpenNotification={setOpenNotification}
 						handleListKeyDown={handleListKeyDown}
 						handleClose={handleClose}
+						open={open}
 					/>
 				</Grid>
 				<Grid item xs={3}>

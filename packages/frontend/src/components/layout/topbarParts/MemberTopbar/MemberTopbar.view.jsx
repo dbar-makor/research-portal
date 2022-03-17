@@ -1,28 +1,30 @@
+import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import SelectInputUnit from '../../../components/Reusables/SelectInputUnit';
-import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
-import { StyledTextField } from '../../../styles/MainStyles';
+import SelectInputUnit from '../../../../components/Reusables/SelectInputUnit';
+import { ReactComponent as SearchIcon } from '../../../../assets/icons/IconSearch.svg';
+import { StyledTextField } from '../../../../styles/MainStyles';
+//import useStyles from './MemberTopbar.style';
 
-const MemberTopbar = ({ classes, options }) => {
+const MemberTopbarView = (props) => {
 
-	return (
+  return (
 		<Grid item xs={8}>
 			<Grid container justifyContent="space-between">
 				<Grid item xs={6}>
 					<Grid container style={{ marginTop: '10px' }}>
 						<Grid item xs={4}>
-							<Link to="/home" className={classes.link}>
-								<Typography className={classes.title}>Home</Typography>
+							<Link to="/home" className={props.classes.link}>
+								<Typography className={props.classes.title}>Home</Typography>
 							</Link>
 						</Grid>
 						<Grid item xs={4}>
-							<Link to={'/'} className={classes.styledLinks}>
+							<Link to={'/'} className={props.classes.styledLinks}>
 								Ideas
 							</Link>
 						</Grid>
 						<Grid item xs={4}>
-							<Link to={'/'} className={classes.styledLinks}>
+							<Link to={'/'} className={props.classes.styledLinks}>
 								Mkt Calendar
 							</Link>
 						</Grid>
@@ -32,20 +34,20 @@ const MemberTopbar = ({ classes, options }) => {
 					<Grid container direction="row" justifyContent="space-between" alignItems="center">
 						<Grid item xs={3}>
 							<SelectInputUnit
-								className={classes.select}
+								className={props.classes.select}
 								mode="minimalistic"
 								variant="standard"
 								optionLabelField="name"
 								valueField="value"
 								placeholder="All Regions"
-								optionsArray={options}
+								optionsArray={props.options}
 							></SelectInputUnit>
 						</Grid>
 
 						<Grid item xs={6}>
 							<StyledTextField
                                 id="regionSelect"
-								className={classes.search}
+								className={props.classes.search}
 								// value={localSearch}
 								// onChange={(e) => setLocalSearch(e.target.value)}
 								// onKeyDown={(e) => (e.key === 'Enter' ? dispatch(setProperty({ key: 'search', value: localSearch })) : null)}
@@ -55,7 +57,7 @@ const MemberTopbar = ({ classes, options }) => {
 								InputProps={{
 									endAdornment: (
 										<SearchIcon
-											className={classes.searchIcon}
+											className={props.classes.searchIcon}
 											style={{ cursor: 'pointer' }}
 										/>
 									),
@@ -69,4 +71,7 @@ const MemberTopbar = ({ classes, options }) => {
 	);
 };
 
-export default MemberTopbar;
+MemberTopbarView.displayName = 'MemberTopbarView';
+MemberTopbarView.defaultProps = {};
+
+export default React.memo(MemberTopbarView);

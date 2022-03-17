@@ -3,8 +3,8 @@ import { Dialog, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../../styles/InfoStyles';
 import { ReactComponent as CloseIcon } from '../../../../assets/icons/closeIcon.svg';
 import { FilledButton } from '../../../../styles/MainStyles';
-import TextInputUnit from '../../../Reusables/TextInputUnit';
-import CategoriesAutoComplete from '../../../Reusables/CategoriesAutoComplete';
+import TextInputUnit from '../../reusables/TextInputUnit/TextInputUnit';
+import CategoriesAutoComplete from '../../reusables/CategoriesAutoComplete/CategoriesAutoComplete';
 
 //import useStyles from './AddMemberModal.style';
 

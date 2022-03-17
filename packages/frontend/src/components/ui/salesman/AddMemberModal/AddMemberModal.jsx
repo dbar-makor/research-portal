@@ -1,5 +1,5 @@
 import React ,{ useState } from 'react';
-import { validateMember } from '../../../Reusables/validationFunctions';
+import { validateMember } from '../../../../utils/helpers/validationFunctions';
 import AddMemberModalView from './AddMemberModal.view';
 
 const AddMemberModal = (props) => {

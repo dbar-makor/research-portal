@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as actionSnackBar from '../../../../../redux/SnackBar/action';
 import { changeChosenCompany, selectChosenCompany } from '../../../../../redux/companies/chosenCompanySlice';
-import { validateContract, validateEditedContract } from '../../../../Reusables/validationFunctions';
+import { validateContract, validateEditedContract } from '../../../../../utils/helpers/validationFunctions';
 import ContractView from './Contract.view';
 
 const chargePeriods = [

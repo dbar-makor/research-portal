@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, Typography, Divider } from '@material-ui/core';
-import TextInputUnit from '../../../../Reusables/TextInputUnit';
-import NumberInputUnit from '../../../../Reusables/NumberInputUnit';
-import AutoCompleteUnit from '../../../../Reusables/AutoCompleteUnit';
+import TextInputUnit from '../../../reusables/TextInputUnit/TextInputUnit';
+import NumberInputUnit from '../../../reusables/NumberInputUnit/NumberInputUnit';
+import AutoCompleteUnit from '../../../reusables/AutoCompleteUnit/AutoCompleteUnit';
 import ButtonRow from '../ButtonRow/ButtonRow';
-import DateInputUnit from '../../../../Reusables/DateInputUnit';
+import DateInputUnit from '../../../reusables/DateInputUnit/DateInputUnit';
 import { StatusSwitch, FilledButton } from '../../../../../styles/MainStyles';
 import NumberFormatCustom from '../../../../../utils/components/NumberFormatCustom';
 import useStyles from './Contract.style';

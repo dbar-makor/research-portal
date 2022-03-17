@@ -13,7 +13,7 @@ import {
 } from '../../../../../redux/companies/companiesSlice';
 import * as actionSnackBar from '../../../../../redux/SnackBar/action';
 import { getChosenCompanyAsync } from '../../../../../redux/companies/chosenCompanySlice';
-import { validateProspectTrial } from '../../../../Reusables/validationFunctions';
+import { validateProspectTrial } from '../../../../../utils/helpers/validationFunctions';
 import InitialCompanyStateBlockView from './InitialCompanyStateBlock.view';
 
 const InitialCompanyStateBlock = (props) => {

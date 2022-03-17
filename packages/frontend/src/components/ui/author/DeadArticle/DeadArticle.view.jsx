@@ -2,7 +2,7 @@ import React, {forwardRef} from 'react';
 import { Grid, Typography, Button, Divider } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import Radio from '@material-ui/core/Radio';
-import SubHeader from '../../../Reusables/SubHeader';
+import SubHeader from '../../reusables/SubHeader/SubHeader';
 import { useStyles, AtricleTitleTextField } from '../../../../styles/AuthorsStyles';
 import { ReactComponent as FileUpload } from '../../../../assets/icons/fileUpload.svg';
 import { ReactComponent as InsertLink } from '../../../../assets/icons/insertLink.svg';
@@ -17,9 +17,9 @@ import {
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { ReactComponent as CalendarIcon } from '../../../../assets/icons/iconCalendar.svg';
 import clsx from 'clsx';
-import DropZone from '../../../Reusables/DropZone';
-import CategoriesAutoComplete from '../../../Reusables/CategoriesAutoComplete';
-import TagsAutoComplete from '../../../Reusables/TagsAutoComplete';
+import DropZone from '../../../ui/reusables/DropZone/DropZone';
+import CategoriesAutoComplete from '../../reusables/CategoriesAutoComplete/CategoriesAutoComplete';
+import TagsAutoComplete from '../../reusables/TagsAutoComplete/TagsAutoComplete';
 import { selectChosenResearch } from '../../../../redux/researches/chosenResearchSlice';
 import { useSelector } from 'react-redux';
 

@@ -1,7 +1,7 @@
 import { Grid, Typography, Dialog } from '@material-ui/core';
 import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg';
 import { useStyles } from '../../../styles/InfoStyles';
-import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
+import CategoriesAutoComplete from '../../ui/reusables/CategoriesAutoComplete/CategoriesAutoComplete';
 import { FilledButton } from '../../../styles/MainStyles';
 
 const CategoriesModal = (props) => {

@@ -1,10 +1,10 @@
 import { Grid, Typography, CircularProgress } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder.svg';
-import SelectInputUnit from '../../../Reusables/SelectInputUnit';
+import SelectInputUnit from '../../../ui/reusables/SelectInputUnit/SelectInputUnit';
 import { useStyles } from '../../../../styles/MainStyles';
-import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
-import RangeDatePicker from '../../../Reusables/RangeDatePicker';
+import AutoCompleteUnit from '../../../ui/reusables/AutoCompleteUnit/AutoCompleteUnit';
+import RangeDatePicker from '../../../ui/reusables/RangeDatePicker/RangeDatePicker';
 import ContractsTable from './ContractsTable';
 import { BASE_URL, END_POINT } from '../../../../utils/constants';
 import axios from 'axios';

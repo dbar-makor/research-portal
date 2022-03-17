@@ -4,7 +4,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import { BinButton, EditButton } from '../../../../../styles/MainStyles';
 import EditIcon from '@material-ui/icons/Edit';
 import { ReactComponent as DeleteIcon } from '../../../../../assets/icons/IconTrash.svg';
-import DeleteAlert from '../../../../Reusables/DeleteAlert';
+import DeleteAlert from '../../../reusables/DeleteAlert/DeleteAlert';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { ReactComponent as EmptyFile } from '../../../../../assets/icons/fileEmpty.svg';
 import useStyles from './PublicationsTab.style';

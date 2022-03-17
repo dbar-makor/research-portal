@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/ContarctsModalStyles';
-import SubHeaderModal from '../../Reusables/SubHeaderModal';
+import SubHeaderModal from '../../ui/reusables/SubHeaderModal/SubHeaderModal';
 import SideForm from './SideForm';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { format } from 'date-fns';

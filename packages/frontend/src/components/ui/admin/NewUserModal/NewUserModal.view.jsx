@@ -3,9 +3,9 @@ import { Dialog, Grid } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { useStyles } from '../../../../styles/InfoStyles';
 import { FilledButton } from '../../../../styles/MainStyles';
-import SubHeaderModal from '../../../Reusables/SubHeaderModal';
-import TextInputUnit from '../../../Reusables/TextInputUnit';
-import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
+import SubHeaderModal from '../../reusables/SubHeaderModal/SubHeaderModal';
+import TextInputUnit from '../../reusables/TextInputUnit/TextInputUnit';
+import AutoCompleteUnit from '../../reusables/AutoCompleteUnit/AutoCompleteUnit';
 
 const NewUserModalView = (props) => {
 	const classes = useStyles();

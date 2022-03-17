@@ -8,7 +8,7 @@ import { ReactComponent as ContractIcon } from '../../../assets/icons/contract.s
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
-import AutoCompleteUnit from '../../Reusables/AutoCompleteUnit';
+import AutoCompleteUnit from '../../ui/reusables/AutoCompleteUnit/AutoCompleteUnit';
 import { OutlinedButton } from '../../../styles/MainStyles';
 
 const useStyles = makeStyles({

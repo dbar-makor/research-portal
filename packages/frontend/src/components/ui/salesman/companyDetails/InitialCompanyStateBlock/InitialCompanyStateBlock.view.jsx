@@ -4,7 +4,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Autocomplete } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
 import { Grid, Typography, IconButton, TextField } from '@material-ui/core';
-import DateInputUnit from '../../../../Reusables/DateInputUnit';
+import DateInputUnit from '../../../reusables/DateInputUnit/DateInputUnit';
 import { useStyles } from '../../../../../styles/InfoStyles';
 import { ReactComponent as EditDone } from '../../../../../assets/icons/IconEditDone.svg';
 import { EditIconButton } from '../../../../../styles/MainStyles';

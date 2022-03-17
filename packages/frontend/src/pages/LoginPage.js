@@ -16,8 +16,8 @@ import { useTheme } from '@material-ui/core/styles';
 import { useLocation, Redirect, Link } from 'react-router-dom';
 // import { ReactComponent as BlueBorder } from "../../assets/icons/blueBorder.svg";
 import { ReactComponent as BlueBorder } from '../assets/icons/blueBorder.svg';
-import { validateLogin } from '../components/Reusables/validationFunctions';
-import TextInputUnit from '../components/Reusables/TextInputUnit';
+import { validateLogin } from '../utils/helpers/validationFunctions';
+import TextInputUnit from '../components/ui/reusables/TextInputUnit/TextInputUnit';
 import { FilledButton } from '../styles/MainStyles';
 const useStyles = makeStyles(() => ({
 	modalContainer: {

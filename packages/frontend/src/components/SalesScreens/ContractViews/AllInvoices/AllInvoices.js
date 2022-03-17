@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { ReactComponent as BlueShape } from '../../../../assets/icons/blueBorder.svg';
 import { ReactComponent as SearchIcon } from '../../../../assets/icons/IconSearch.svg';
 
-import SelectInputUnit from '../../../Reusables/SelectInputUnit';
+import SelectInputUnit from '../../../ui/reusables/SelectInputUnit/SelectInputUnit';
 import { useStyles, StyledTextField } from '../../../../styles/MainStyles';
-import AutoCompleteUnit from '../../../Reusables/AutoCompleteUnit';
+import AutoCompleteUnit from '../../../ui/reusables/AutoCompleteUnit/AutoCompleteUnit';
 import InvoiceTable from './InvoiceTable';
-import RangeDatePicker from '../../../Reusables/RangeDatePicker';
+import RangeDatePicker from '../../../ui/reusables/RangeDatePicker/RangeDatePicker';
 import axios from 'axios';
 import { BASE_URL, END_POINT } from '../../../../utils/constants';
 import { useDispatch } from 'react-redux';

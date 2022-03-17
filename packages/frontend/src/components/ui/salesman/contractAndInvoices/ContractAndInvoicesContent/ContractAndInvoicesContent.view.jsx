@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Grid, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 import { useStyles } from '../../../../../styles/ContarctsModalStyles';
-import SelectInputUnit from '../../../../Reusables/SelectInputUnit';
+import SelectInputUnit from '../../../reusables/SelectInputUnit/SelectInputUnit';
 import ContractRow from '../ContractRow/ContractRow';
 
 const ContractAndInvoicesContentView = (props) => {

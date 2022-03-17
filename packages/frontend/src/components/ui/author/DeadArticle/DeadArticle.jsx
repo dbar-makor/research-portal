@@ -9,7 +9,7 @@ import {
 	validateDeadPublication,
 	validateEvent,
 	validateEditedDeadPublication,
-} from '../../../Reusables/validationFunctions';
+} from '../../../../utils/helpers/validationFunctions';
 import { useHistory, useLocation } from 'react-router';
 
 import DeadArticleView from './DeadArticle.view';

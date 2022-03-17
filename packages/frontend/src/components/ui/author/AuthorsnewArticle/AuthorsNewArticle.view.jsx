@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import ClearIcon from '@material-ui/icons/Clear';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
-import SubHeader from '../../../Reusables/SubHeader';
+import SubHeader from '../../reusables/SubHeader/SubHeader';
 import {
 	StyledTextField,
 	OutlinedButton,
@@ -14,10 +14,10 @@ import {
 	AddButton,
 	DeleteButton,
 } from '../../../../styles/MainStyles';
-import DropZone from '../../../Reusables/DropZone';
-import DropZoneMulti from '../../../Reusables/DropZoneMulti';
-import CategoriesAutoComplete from '../../../Reusables/CategoriesAutoComplete';
-import TagsAutoComplete from '../../../Reusables/TagsAutoComplete';
+import DropZone from '../../reusables/DropZone/DropZone';
+import DropZoneMulti from '../../reusables/DropZoneMulti/DropZoneMulti';
+import CategoriesAutoComplete from '../../reusables/CategoriesAutoComplete/CategoriesAutoComplete';
+import TagsAutoComplete from '../../reusables/TagsAutoComplete/TagsAutoComplete';
 import { ReactComponent as CalendarIcon } from '../../../../assets/icons/iconCalendar.svg';
 import clsx from 'clsx';
 

@@ -14,7 +14,7 @@ import clsx from 'clsx';
 import CategoriesModal from './CategoriesModal';
 import { BASE_URL, END_POINT } from '../../../utils/constants';
 import axios from 'axios';
-import DeleteAlert from '../../Reusables/DeleteAlert';
+import DeleteAlert from '../../ui/reusables/DeleteAlert/DeleteAlert';
 import * as actionSnackBar from '../../../redux/SnackBar/action';
 
 const MembersTable = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useStyles } from '../../../../styles/MainStyles';
-import SubHeader from '../../../Reusables/SubHeader';
-import Filters from '../../../Reusables/Filters';
+import SubHeader from '../../reusables/SubHeader/SubHeader';
+import Filters from '../../reusables/Filters/Filters';
 import MainSalesScreen from '../MainSalesScreen/MainSalesScreen';
 
 

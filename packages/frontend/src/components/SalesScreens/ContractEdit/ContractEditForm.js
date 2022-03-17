@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import AutoCompleteUnit from '../../ui/reusables/AutoCompleteUnit/AutoCompleteUnit';
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
-import DateInputUnit from '../../Reusables/DateInputUnit';
-import NumberInputUnit from '../../Reusables/NumberInputUnit';
+import DateInputUnit from '../../ui/reusables/DateInputUnit/DateInputUnit';
+import NumberInputUnit from '../../ui/reusables/NumberInputUnit/NumberInputUnit';
 import NumberFormatCustom from '../../../utils/components/NumberFormatCustom';
 import { selectChosenCompany } from '../../../redux/companies/chosenCompanySlice';
 

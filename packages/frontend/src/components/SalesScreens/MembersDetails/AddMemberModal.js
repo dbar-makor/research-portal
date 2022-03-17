@@ -3,9 +3,9 @@ import { Dialog, Grid, Typography } from '@material-ui/core';
 import { useStyles } from '../../../styles/InfoStyles';
 import { ReactComponent as CloseIcon } from '../../../assets/icons/closeIcon.svg';
 import { FilledButton } from '../../../styles/MainStyles';
-import TextInputUnit from '../../Reusables/TextInputUnit';
-import CategoriesAutoComplete from '../../Reusables/CategoriesAutoComplete';
-import { validateMember } from '../../Reusables/validationFunctions';
+import TextInputUnit from '../../ui/reusables/TextInputUnit/TextInputUnit';
+import CategoriesAutoComplete from '../../ui/reusables/CategoriesAutoComplete/CategoriesAutoComplete';
+import { validateMember } from '../../../utils/helpers/validationFunctions';
 
 const AddMemberModal = (props) => {
 	const { open, handleClose, companyName, addMember, newMember, setNewMember } = props;

@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/dbar-makor/research-portal/compare/v1.0.5...v1.0.6) (2022-03-20)
+
+
+### Bug Fixes
+
+* 🐞 a bug due to destructure ([31fac32](https://github.com/dbar-makor/research-portal/commit/31fac32eec1be3f01ec269c55f796c5e7d6d9b99))
+* 🐞 fix ([5276140](https://github.com/dbar-makor/research-portal/commit/5276140792c979df2424ad4589b30e813256f624))
+
 ## [1.0.5](https://github.com/dbar-makor/research-portal/compare/v1.0.4...v1.0.5) (2022-03-20)
 
 

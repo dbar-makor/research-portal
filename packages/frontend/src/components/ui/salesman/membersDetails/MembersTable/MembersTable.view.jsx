@@ -5,7 +5,7 @@ import MembersHeader from '../MembersHeader/MembersHeader';
 import { MembersTableCell, MembersTableRow } from '../../../../../styles/TableStyles';
 import { TableTextField, StatusSwitch, LightBlueButton, BinButton } from '../../../../../styles/MainStyles';
 import CategoriesModal from '../CategoriesModal/CategoriesModal';
-import DeleteAlert from '../../../../Reusables/DeleteAlert';
+import DeleteAlert from '../../../reusables/DeleteAlert/DeleteAlert';
 import { ReactComponent as DeleteIcon } from '../../../../../assets/icons/IconTrash.svg';
 import { ReactComponent as LogsIcon } from '../../../../../assets/icons/IconLogs.svg';
 import clsx from 'clsx';

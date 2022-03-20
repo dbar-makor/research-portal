@@ -1,18 +1,13 @@
 import React from 'react';
 import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
-<<<<<<< HEAD:packages/frontend/src/components/SalesScreens/ContractEdit/ContractEditMain.js
-import { useStyles } from '../../../styles/ContarctsModalStyles';
-import SubHeaderModal from '../../ui/reusables/SubHeaderModal/SubHeaderModal';
-import SideForm from './SideForm';
-=======
-import CloseIcon from '@material-ui/icons/Close';
->>>>>>> 16a099bc4889e4b2b930dd80c726d191a0af1c5d:packages/frontend/src/components/ui/salesman/contractEdit/ContractEditMain/ContractEditMain.view.jsx
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { useStyles } from '../../../../../styles/ContarctsModalStyles';
-import SubHeaderModal from '../../../../Reusables/SubHeaderModal';
+import SubHeaderModal from '../../../reusables/SubHeaderModal/SubHeaderModal';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Contract from '../../contractViews/Contract/Contract';
 import SideForm from '../SideForm/SideForm';
 import { format } from 'date-fns';
+//import CloseIcon from '@material-ui/icons/Close';
+
 
 //import useStyles from './ContractEditMain.style';
 
@@ -32,7 +27,7 @@ const ContractEditMainView = (props) => {
 		>
 			<Grid item xs={12} align="right" style={{ margin: '10px 10px 0px 0px' }}>
 				<IconButton size="small" onClick={() => props.openModal()}>
-					<CloseIcon style={{ color: '#000' }} />
+					<c style={{ color: '#000' }} />
 				</IconButton>
 			</Grid>
 			<DialogTitle>

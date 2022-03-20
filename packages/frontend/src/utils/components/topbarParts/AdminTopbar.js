@@ -1,25 +1,18 @@
-import { Grid, Typography, Paper, IconButton } from '@material-ui/core';
+import { Grid, Typography, Paper,  Grow, ClickAwayListener,MenuList,MenuItem,IconButton, Popper} from '@material-ui/core';
 import { useRef } from 'react';
-//import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const AdminTopbar = ({
-	// classes,
 	handleToggle,
 	openUserMgmt,
-    setOpenUserMgmt,
+	setOpenUserMgmt,
 	userType,
-	Popper,
-	Grow,
-	ClickAwayListener,
 	handleClose,
-	MenuList,
-    MenuItem,
 }) => {
 	const userMgmtRef = useRef(null);
 
-    function adminGoTo(pathName) {
+	function adminGoTo(pathName) {
 		setOpenUserMgmt(false);
 		history.push(pathName);
 	}

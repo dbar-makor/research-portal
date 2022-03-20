@@ -45,6 +45,10 @@ export const useMapData = () => {
 	useEffect(() => {
 		getMapData();
 		getCitiesData();
+		return () => {
+			setMapLoading(false);
+				setMapData(null);
+		  };
 	}, []);
 
 	return { mapData, mapLoading, mapError, citiesData };

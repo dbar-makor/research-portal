@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/dbar-makor/research-portal/compare/v1.0.4...v1.0.5) (2022-03-20)
+
+
+### Bug Fixes
+
+* 🐞 bug fixes in main admin screen (created by splitting comp ([38c045b](https://github.com/dbar-makor/research-portal/commit/38c045b739207a02b137b02ff3606c3e5a9c8f2b))
+
 ## [1.0.4](https://github.com/dbar-makor/research-portal/compare/v1.0.3...v1.0.4) (2022-03-20)
 
 

@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/dbar-makor/research-portal/compare/v1.0.3...v1.0.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* 🐞 fixing remaining bugs of split components ([8684f7b](https://github.com/dbar-makor/research-portal/commit/8684f7b4716827b47d0c32c100ed3f91bb34180f))
+
 ## [1.0.3](https://github.com/dbar-makor/research-portal/compare/v1.0.2...v1.0.3) (2022-03-16)
 
 

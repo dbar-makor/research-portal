@@ -11,7 +11,7 @@ import { useStyles } from '../../styles/AccountSettingsStyles';
 import EditProfile from './EditProfile';
 import Settings from './Settings';
 import ContractAndTrails from './ContractsAndTrails';
-import PrivateRoute from '../../utils/components/PrivateRoute';
+import PrivateRoute from '../../components/layout/PrivateRoute/PrivateRoute';
 import * as actionAuth from '../../redux/auth/action';
 
 const AccountSettings = () => {

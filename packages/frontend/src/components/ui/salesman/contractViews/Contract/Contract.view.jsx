@@ -6,7 +6,7 @@ import AutoCompleteUnit from '../../../reusables/AutoCompleteUnit/AutoCompleteUn
 import ButtonRow from '../ButtonRow/ButtonRow';
 import DateInputUnit from '../../../reusables/DateInputUnit/DateInputUnit';
 import { StatusSwitch, FilledButton } from '../../../../../styles/MainStyles';
-import NumberFormatCustom from '../../../../../utils/components/NumberFormatCustom';
+import NumberFormatCustom from '../../../../layout/NumberFormatCustom/NumberFormatCustom';
 import useStyles from './Contract.style';
 
 const ContractView = (props) => {

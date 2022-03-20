@@ -37,6 +37,7 @@ const Filters = (props) => {
   type={props.type}
   userType={userType}
   status={props.status}
+  open={open}
 
   />;
 };

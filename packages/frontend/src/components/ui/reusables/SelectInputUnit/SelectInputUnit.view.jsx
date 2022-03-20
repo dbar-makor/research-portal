@@ -24,6 +24,7 @@ const SelectInputUnitView = (props) => {
 						native: true,
 					  }}
 					mode={props.mode}
+
 					InputLabelProps={{
 						shrink: false,
 					}}

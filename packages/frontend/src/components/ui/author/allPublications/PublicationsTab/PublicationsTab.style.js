@@ -82,7 +82,7 @@ const useStyles = makeStyles({
 	backdrop: {
 		'zIndex': '2',
 		'width': 'inherit',
-		'height': 'inherit',
+		'height': 200,
 		'position': 'absolute',
 		'opacity': 0,
 		'transition': 'opacity 0.7s',

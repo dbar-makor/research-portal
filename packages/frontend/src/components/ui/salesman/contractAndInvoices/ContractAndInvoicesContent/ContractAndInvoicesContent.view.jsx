@@ -29,6 +29,7 @@ const ContractAndInvoicesContentView = (props) => {
 							optionLabelField="name"
 							onChange={(e) => props.filterStatus(e.target.value)}
 							valueField="value"
+							native={false}
 						/>
 					</Grid>
 				</Grid>

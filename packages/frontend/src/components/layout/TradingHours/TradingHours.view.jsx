@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{forwardRef} from 'react';
 import { useStyles } from '../../../styles/MainStyles';
 import { Grid } from '@material-ui/core';
 import BellNotifications from '../topbarParts/BellNotifications/BellNotifications';
@@ -7,7 +7,7 @@ import TradingHourUnit from '../topbarParts/TradingHourUnit/TradingHourUnit';
 
 //import useStyles from './TradingHours.style';
 
-const TradingHoursView = (props) => {
+const TradingHoursView = forwardRef((props,ref) => {
 	const classes = useStyles();
 
 	return (
@@ -37,7 +37,7 @@ const TradingHoursView = (props) => {
 				</Grid>
 				<Grid item xs={3}>
 					<UserIcon
-						ref={props.anchorRef}
+						ref={ref}
 						handleToggle={props.handleToggle}
 						userType={props.userType}
 						handleClose={props.handleClose}
@@ -48,7 +48,7 @@ const TradingHoursView = (props) => {
 			</Grid>
 		</Grid>
 	);
-};
+});
 
 TradingHoursView.displayName = 'TradingHoursView';
 TradingHoursView.defaultProps = {};

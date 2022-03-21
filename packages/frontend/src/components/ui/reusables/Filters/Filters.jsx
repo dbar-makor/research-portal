@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
 import FiltersView from './Filters.view';
-
 
 const Filters = (props) => {
 	const {  setProperty, pageType } = props;

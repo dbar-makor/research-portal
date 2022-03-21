@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { AppBar, Button, Grid, Toolbar, withStyles, Divider } from '@material-ui/core';
 import TradingHours from '../TradingHours/TradingHours';
 import MemberTopbar from '../topbarParts/MemberTopbar/MemberTopbar';
@@ -37,7 +37,7 @@ export const LoginButton = withStyles(() => ({
 	},
 }))(Button);
 
-const TopBarView = (props) => {
+const TopBarView = forwardRef((props, ref) => {
 	const classes = useStyles();
 
 	const handleBarOptions = (userType) => {
@@ -73,7 +73,7 @@ const TopBarView = (props) => {
 						setOpenNotification={props.setOpenNotification}
 						handleListKeyDown={props.handleListKeyDown}
 						handleClose={props.handleClose}
-						anchorRef={props.anchorRef}
+						ref={ref}
 						userType={props.userType}
 						setOpen={props.setOpen}
 						open={props.open}
@@ -106,7 +106,7 @@ const TopBarView = (props) => {
 			</Grid>
 		</>
 	);
-};
+});
 
 TopBarView.displayName = 'TopBarView';
 TopBarView.defaultProps = {};

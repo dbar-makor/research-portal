@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actionAuth from '../../../../redux/auth/action';
 
 import UserIconView from './UserIcon.view';
 
-const UserIcon = (props) => {
-	const { handleToggle, userType, handleClose, setOpen, open,	ref } = props;
+const UserIcon = forwardRef((props, ref) => {
+	const { handleToggle, userType, handleClose, setOpen, open } = props;
 	const user = useSelector((state) => state.auth.userContent);
 	const dispatch = useDispatch();
 
@@ -14,17 +14,17 @@ const UserIcon = (props) => {
 	};
 	return (
 		<UserIconView
-      handleToggle={handleToggle}
+			handleToggle={handleToggle}
 			userType={userType}
 			handleClose={handleClose}
 			setOpen={setOpen}
-      open={open}
-      user={user}
-      handleLogout={handleLogout}
+			open={open}
+			user={user}
+			handleLogout={handleLogout}
 			ref={ref}
 		></UserIconView>
 	);
-};
+});
 
 UserIcon.displayName = 'UserIcon';
 UserIcon.defaultProps = {};

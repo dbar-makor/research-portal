@@ -17,7 +17,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //import useStyles from './UserIcon.style';
 
 const UserIconView = forwardRef((props, ref) => {
-	console.log(ref);
 	return (
 		<Grid container alignItems="center" justifyContent="flex-end">
 			<Grid container justifyContent="flex-end">

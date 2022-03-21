@@ -1,21 +1,25 @@
-import { Grid, Typography, Paper,  Grow, ClickAwayListener,MenuList,MenuItem,IconButton, Popper} from '@material-ui/core';
+import {
+	Grid,
+	Typography,
+	Paper,
+	Grow,
+	ClickAwayListener,
+	MenuList,
+	MenuItem,
+	IconButton,
+	Popper,
+} from '@material-ui/core';
 import { useRef } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
-const AdminTopbar = ({
-	handleToggle,
-	openUserMgmt,
-	setOpenUserMgmt,
-	userType,
-	handleClose,
-}) => {
+const AdminTopbar = ({ handleToggle, openUserMgmt, setOpenUserMgmt, userType, handleClose }) => {
 	const userMgmtRef = useRef(null);
 
-	function adminGoTo(pathName) {
+	const adminGoTo = (pathName) => {
 		setOpenUserMgmt(false);
 		history.push(pathName);
-	}
+	};
 
 	return (
 		<Grid item xs={3} style={{ marginRight: 113 }}>

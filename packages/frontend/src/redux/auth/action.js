@@ -11,7 +11,7 @@ export const login = (email, password) => async (dispatch) => {
 
 	try {
 		const headers = { 'Content-Type': 'application/json' };
-
+		console.log('BASE_URL', BASE_URL);
 		const res = await axios({
 			method: 'PUT',
 			url: `${BASE_URL}${END_POINT.AUTH}`,
@@ -31,7 +31,7 @@ export const login = (email, password) => async (dispatch) => {
 		/* eslint no-console: "off" */
 		console.log(error);
 		if (error) {
-			dispatch(actionSnackBar.setSnackBar('error', 'You don\'t have access to the platform', 3000));
+			dispatch(actionSnackBar.setSnackBar('error', 'You dont have access to the platform', 3000));
 		} else {
 			if (error.response && error.response.data !== undefined) {
 				dispatch(actionSnackBar.setSnackBar('error', 'Login failed', 2000));

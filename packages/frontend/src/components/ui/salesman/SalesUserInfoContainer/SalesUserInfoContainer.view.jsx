@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useStyles } from '../../../../styles/MainStyles';
-import TableComponent from '../../../Reusables/TableComponent';
+import TableComponent from '../../reusables/TableComponent/TableComponent';
 
 const SalesUserInfoContainerView = (props) => {
   const classes = useStyles();

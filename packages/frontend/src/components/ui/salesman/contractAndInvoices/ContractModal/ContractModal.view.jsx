@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import SubHeaderModal from '../../../../Reusables/SubHeaderModal';
+import SubHeaderModal from '../../../reusables/SubHeaderModal/SubHeaderModal';
 import { useStyles } from '../../../../../styles/ContarctsModalStyles';
 import ContractAndInvoicesContent from '../ContractAndInvoicesContent/ContractAndInvoicesContent';
 

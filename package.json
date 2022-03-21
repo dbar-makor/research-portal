@@ -19,12 +19,12 @@
     "@commitlint/config-conventional": "^16.0.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.10.0",
     "git-cz": "^4.8.0",
     "husky": "^7.0.4",
     "hygen": "^6.1.0",
     "lint-staged": "^12.3.3",
-    "prettier": "^2.5.1",
-    "eslint": "^8.10.0"
+    "prettier": "^2.5.1"
   },
   "dependencies": {
     "eslint-plugin-unused-imports": "2.0.0"

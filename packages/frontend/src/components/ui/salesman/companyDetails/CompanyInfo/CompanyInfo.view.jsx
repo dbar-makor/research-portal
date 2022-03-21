@@ -20,7 +20,7 @@ import { ReactComponent as LocationIcon } from '../../../../../assets/icons/icon
 import { ReactComponent as EditIcon } from '../../../../../assets/icons/IconEdit.svg';
 import ContractBlock from '../ContractBlock/ContractBlock';
 import ContractsModal from '../../contractAndInvoices/ContractModal/ContractModal';
-import DeleteAlert from '../../../../Reusables/DeleteAlert';
+import DeleteAlert from '../../../reusables/DeleteAlert/DeleteAlert';
 import InitialCompanyStateBlock from '../InitialCompanyStateBlock/InitialCompanyStateBlock';
 
 const CompanyInfoView = (props) => {
@@ -237,7 +237,6 @@ const CompanyInfoView = (props) => {
 								<LinkButton
 									className={classes.upgradeBtn}
 									onClick={() => {
-										console.log('id', props.chosenCompany.id);
 										props.openContractDialong(props.chosenCompany.id);
 									}}
 								>

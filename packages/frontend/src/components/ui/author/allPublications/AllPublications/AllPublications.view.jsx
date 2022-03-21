@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import SubHeader from '../../../../Reusables/SubHeader';
+import SubHeader from '../../../reusables/SubHeader/SubHeader';
 import AllPublicationsStatColumn from '../AllPublicationsStatColumn/AllPublicationsStatColumn';
 import AllPublicationsTabs from '../AllPublicationsTabs/AllPublicationsTabs';
 

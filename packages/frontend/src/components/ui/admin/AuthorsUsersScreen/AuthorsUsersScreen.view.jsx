@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStyles } from '../../../../styles/MainStyles';
-import Filters from '../../../Reusables/Filters';
+import Filters from '../../reusables/Filters/Filters';
 import { Grid } from '@material-ui/core';
-import SubHeader from '../../../Reusables/SubHeader';
+import SubHeader from '../../reusables/SubHeader/SubHeader';
 import AuthorsUsers from '../AuthorsUsers/AuthorsUsers.jsx';
 
 const AuthorsUsersScreenView = (props) => {

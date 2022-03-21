@@ -1,8 +1,8 @@
 import React from 'react';
-import { Grid, Typography, withStyles, Switch, makeStyles, TextField } from '@material-ui/core';
-import AutoCompleteUnit from '../../../../Reusables/AutoCompleteUnit';
-import NumberInputUnit from '../../../../Reusables/NumberInputUnit';
-import DateInputUnit from '../../../../Reusables/DateInputUnit';
+import { Grid, Typography, withStyles, Switch, TextField } from '@material-ui/core';
+import AutoCompleteUnit from '../../../reusables/AutoCompleteUnit/AutoCompleteUnit';
+import NumberInputUnit from '../../../reusables/NumberInputUnit/NumberInputUnit';
+import DateInputUnit from '../../../reusables/DateInputUnit/DateInputUnit';
 import NumberFormatCustom from '../../../../../utils/components/NumberFormatCustom';
 
 import useStyles from './ContractEditForm.style';
@@ -156,7 +156,7 @@ const ContractEditFormView = (props) => {
 									// label="Start Date"
 									value={props.contractForm.start_at || new Date()}
 									error={props.errors['start_at']}
-									onChange={(date) => handleContract(date, 'start_at')}
+									onChange={(date) => props.handleContract(date, 'start_at')}
 								/>
 							</Grid>
 						</Grid>
@@ -247,7 +247,7 @@ const ContractEditFormView = (props) => {
 				</Grid>
 			</Grid>
 		</Grid>
-	);;
+	);
 };
 
 ContractEditFormView.displayName = 'ContractEditFormView';

@@ -55,6 +55,7 @@ const AllInvoicesView = (props) => {
 												value={props.transactionStatus.value}
 												onChange={(e) => props.inputHandler(e, 'STATUS')}
 												optionsArray={props.periodicity}
+												native={false}
 											/>
 										</Grid>
 									</Grid>

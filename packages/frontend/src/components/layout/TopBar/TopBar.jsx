@@ -107,7 +107,7 @@ const TopBar = () => {
 			openNotification={openNotification}
 			setOpenNotification={setOpenNotification}
 			handleListKeyDown={handleListKeyDown}
-			anchorRef={anchorRef}
+			ref={anchorRef}
 			userType={userType}
 			setOpen={setOpen}
 			open={open}

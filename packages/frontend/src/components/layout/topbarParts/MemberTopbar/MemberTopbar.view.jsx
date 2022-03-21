@@ -40,12 +40,12 @@ const MemberTopbarView = (props) => {
 								valueField="value"
 								placeholder="All Regions"
 								optionsArray={props.options}
+								native={true}
 							></SelectInputUnit>
 						</Grid>
-
 						<Grid item xs={6}>
 							<StyledTextField
-                                id="regionSelect"
+               id="regionSelect"
 								className={props.classes.search}
 								// value={localSearch}
 								// onChange={(e) => setLocalSearch(e.target.value)}

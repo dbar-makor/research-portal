@@ -37,7 +37,7 @@ const UserIconView = forwardRef((props, ref) => {
 				</Grid>
 				<Popper
 					open={props.open}
-					anchorEl={props.ref.current}
+					anchorEl={ref.current}
 					role={undefined}
 					placement="bottom-start"
 					transition

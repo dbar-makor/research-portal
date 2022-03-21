@@ -78,6 +78,7 @@ const InfoStepView = (props) => {
 						onChange={props.handleCompany}
 						optionsArray={typeArray}
 						error={props.errors.type}
+						native={false}
 					/>
 				</Grid>
 				<Grid item xs={12} className={classes.fieldWrapper}>

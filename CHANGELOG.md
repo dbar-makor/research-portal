@@ -1,3 +1,24 @@
+## [1.0.10](https://github.com/dbar-makor/research-portal/compare/v1.0.9...v1.0.10) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 disable login button while sending request ([1cf3ef7](https://github.com/dbar-makor/research-portal/commit/1cf3ef7f15da793c4ad27b1db24781cd68bdd26e))
+
+## [1.0.9](https://github.com/dbar-makor/research-portal/compare/v1.0.8...v1.0.9) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 fixing bugs due to components refactoring ([f41876b](https://github.com/dbar-makor/research-portal/commit/f41876b3100195006a63f84d0e9e1549c3557c0f))
+
+## [1.0.8](https://github.com/dbar-makor/research-portal/compare/v1.0.7...v1.0.8) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 selectinputnative bug ([1477cd3](https://github.com/dbar-makor/research-portal/commit/1477cd373ab7d3058873e1c6bfea54f78c0fca95))
+
 ## [1.0.7](https://github.com/dbar-makor/research-portal/compare/v1.0.6...v1.0.7) (2022-03-21)
 
 

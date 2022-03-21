@@ -39,8 +39,7 @@ const statusArray = [
 
 const FiltersView = (props) => {
 	const classes = useStyles();
-  const dispatch = useDispatch();
-
+	const dispatch = useDispatch();
 	return (
 		<Grid container justifyContent="space-between" alignItems="center">
 			<Grid item xs={8}>
@@ -61,7 +60,12 @@ const FiltersView = (props) => {
 								endAdornment: (
 									<SearchIcon
 										onClick={() =>
-											dispatch(props.setProperty({ key: 'search', value: props.localSearch }))
+											dispatch(
+												props.setProperty({
+													key: 'search',
+													value: props.localSearch,
+												}),
+											)
 										}
 										className={classes.searchIcon}
 										style={{ cursor: 'pointer' }}
@@ -80,6 +84,7 @@ const FiltersView = (props) => {
 								valueField="value"
 								placeholder="Type"
 								value={props.type}
+								native={false}
 								onChange={(e) =>
 									dispatch(props.setProperty({ key: 'type', value: e.target.value }))
 								}
@@ -91,12 +96,18 @@ const FiltersView = (props) => {
 						<SelectInputUnit
 							className={classes.autoCompleteStyle}
 							name="status"
-							label={props.status !== undefined && props.status !== null && props.status !== '' ? '' : 'Status'}
+							label={
+								props.status !== undefined && props.status !== null && props.status !== ''
+									? ''
+									: 'Status'
+							}
 							optionLabelField="name"
 							valueField="value"
 							placeholder="Status"
 							value={props.status}
-							onChange={(e) => dispatch(props.setProperty({ key: 'status', value: e.target.value }))}
+							onChange={(e) =>
+								dispatch(props.setProperty({ key: 'status', value: e.target.value }))
+							}
 							optionsArray={statusArray}
 						/>
 					</Grid>
@@ -106,7 +117,10 @@ const FiltersView = (props) => {
 				<AddIcon className={classes.addIcon} />{' '}
 				<Typography style={{ color: '#FFFFFF' }}>&nbsp;&nbsp;New&nbsp;</Typography>
 			</AddButton>
-			<NewCompanyStepper open={props.pageType === 'companies' && props.open} handleClose={props.handleClose} />
+			<NewCompanyStepper
+				open={props.pageType === 'companies' && props.open}
+				handleClose={props.handleClose}
+			/>
 
 			<NewUserModal
 				open={props.pageType !== 'companies' && props.open}

@@ -2,8 +2,8 @@ import './App.css';
 import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import LoginPage from './pages/LoginPage';
-import home from './pages/home';
+import LoginPage from './components/pages/LoginPage/LoginPage';
+import GeneralHome from './components/pages/GeneralHome/GeneralHome';
 import PrivateRoute from './components/layout/PrivateRoute/PrivateRoute';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -170,7 +170,7 @@ function App() {
 					<Snackbar />
 					<Switch>
 						<Route exact path="/login" component={LoginPage} />
-						<Route exact path="/home" component={home} />
+						<Route exact path="/home" component={GeneralHome} />
 						{isAdmin && <Route component={AdminViews} />}
 						{isAuthor && <Route component={AuthorsViews} />}
 						{isSales && <Route component={SalesmenViews} />}

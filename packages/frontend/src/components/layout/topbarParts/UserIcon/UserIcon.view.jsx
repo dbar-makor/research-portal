@@ -1,3 +1,4 @@
+import React, { forwardRef } from 'react';
 import {
 	Grid,
 	Avatar,
@@ -9,43 +10,37 @@ import {
 	MenuItem,
 	Grow,
 } from '@material-ui/core';
-import { forwardRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import * as actionAuth from '../../../redux/auth/action';
 import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, open }, ref) => {
-	const user = useSelector((state) => state.auth.userContent);
-	const dispatch = useDispatch();
+//import useStyles from './UserIcon.style';
 
-	const handleLogout = () => {
-		dispatch(actionAuth.logout());
-	};
+const UserIconView = forwardRef((props, ref) => {
+	console.log(ref);
 	return (
 		<Grid container alignItems="center" justifyContent="flex-end">
 			<Grid container justifyContent="flex-end">
-				<Grid item container alignItems='center' justifyContent='flex-end'>
+				<Grid item container alignItems="center" justifyContent="flex-end">
 					<Grid item>
 						<IconButton
 							size="small"
 							ref={ref}
-							aria-controls={open ? 'composition-menu' : undefined}
-							aria-expanded={open ? 'true' : undefined}
+							aria-controls={props.open ? 'composition-menu' : undefined}
+							aria-expanded={props.open ? 'true' : undefined}
 							aria-haspopup="true"
-							onClick={() => handleToggle('user')}
+							onClick={() => props.handleToggle('user')}
 						>
 							<ExpandMoreIcon style={{ color: '#ffff' }} />
 						</IconButton>
 					</Grid>
 					<Grid item>
-						<Avatar src={`${user.avatar}`} />
+						<Avatar src={`${props.user.avatar}`} />
 					</Grid>
 				</Grid>
 				<Popper
-					open={open}
-					anchorEl={ref.current}
+					open={props.open}
+					anchorEl={props.ref.current}
 					role={undefined}
 					placement="bottom-start"
 					transition
@@ -66,13 +61,13 @@ const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, ope
 							}}
 						>
 							<Paper>
-								<ClickAwayListener onClickAway={(e) => handleClose(e, 'user')}>
+								<ClickAwayListener onClickAway={(e) => props.handleClose(e, 'user')}>
 									<MenuList
 										autoFocusItem={open}
 										id="composition-menu"
 										aria-labelledby="composition-button"
 									>
-										{userType === 'client' || userType === 'prospect' ? (
+										{props.userType === 'client' || props.userType === 'prospect' ? (
 											<>
 												<MenuItem>
 													<Link
@@ -82,12 +77,12 @@ const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, ope
 															color: '#bababa',
 															fontSize: 14,
 														}}
-													>{`Hey , ${user.name}`}</Link>
+													>{`Hey , ${props.user.name}`}</Link>
 												</MenuItem>
 												<MenuItem>
 													<Link
 														to={'/settings/edit'}
-														onClick={() => setOpen(false)}
+														onClick={() => props.setOpen(false)}
 														style={{ textDecoration: 'none', color: '#000' }}
 													>
 														Edit Profile
@@ -96,7 +91,7 @@ const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, ope
 												<MenuItem>
 													<Link
 														to={'/settings/settings'}
-														onClick={() => setOpen(false)}
+														onClick={() => props.setOpen(false)}
 														style={{ textDecoration: 'none', color: '#000' }}
 													>
 														Settings
@@ -105,7 +100,7 @@ const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, ope
 												<MenuItem>
 													<Link
 														to={'/settings/contract_trails'}
-														onClick={() => setOpen(false)}
+														onClick={() => props.setOpen(false)}
 														style={{ textDecoration: 'none', color: '#000' }}
 													>
 														Contracts & Trails
@@ -113,7 +108,7 @@ const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, ope
 												</MenuItem>
 											</>
 										) : null}
-										<MenuItem onClick={handleLogout} style={{ color: '#FF0000' }}>
+										<MenuItem onClick={props.handleLogout} style={{ color: '#FF0000' }}>
 											<ExitToAppIcon />
 											Logout
 										</MenuItem>
@@ -125,10 +120,10 @@ const UserIcon = forwardRef(({ handleToggle, userType, handleClose, setOpen, ope
 				</Popper>
 			</Grid>
 		</Grid>
-		// {/* </Grid> */}
 	);
 });
 
-UserIcon.displayName = 'UserIcon';
+UserIconView.displayName = 'UserIconView';
+UserIconView.defaultProps = {};
 
-export default UserIcon;
+export default React.memo(UserIconView);

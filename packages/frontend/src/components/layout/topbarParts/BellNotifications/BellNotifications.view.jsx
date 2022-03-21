@@ -1,54 +1,35 @@
+import React from 'react';
 import { Grid,	IconButton, Popper, Paper, Typography, ClickAwayListener, MenuList } from '@material-ui/core';
-import { useState, useRef } from 'react';
-import AlertNotification from '../../../components/Notifications/AlertNotification';
-import { ReactComponent as Notification } from '../../../assets/icons/Notifiaction.svg';
-import { ReactComponent as Greendot } from '../../../assets/icons/greenDot.svg';
+import { ReactComponent as Notification } from '../../../../assets/icons/Notifiaction.svg';
+import { ReactComponent as Greendot } from '../../../../assets/icons/greenDot.svg';
+import AlertNotification from '../../../Notifications/AlertNotification';
 
-const BellNotifications = ({
-	handleToggle,
-	notifications,
-	handleListKeyDown,
-	handleClose,
-	openNotification,
-	setOpenNotification,
-}) => {
-	const notifyRef = useRef(null);
-	// eslint-disable-next-line no-unused-vars
-	const [newNotification, setNewNotification] = useState(false);
+//import useStyles from './BellNotifications.style';
 
-	const id = openNotification ? 'simple-popper' : undefined;
-	const [countAlerts, setCountAlerts] = useState(0);
+const BellNotificationsView = (props) => {
 
-	const redirect = (type) => {
-		switch (type) {
-			case 'all_notfications':
-				history.push('/all_notfications');
-				setOpenNotification(false);
-		}
-	};
-
-	return (
+  return (
 		<>
 			<IconButton
 				size="small"
-				ref={notifyRef}
-				aria-controls={open ? 'composition-menu' : undefined}
-				aria-expanded={open ? 'true' : undefined}
+				ref={props.notifyRef}
+				aria-controls={props.open ? 'composition-menu' : undefined}
+				aria-expanded={props.open ? 'true' : undefined}
 				aria-haspopup="true"
-				onClick={() => handleToggle('notify')}
+				onClick={() => props.handleToggle('notify')}
 			>
 				<Notification style={{ position: 'relative' }} />
-				{newNotification ? <Greendot style={{ position: 'absolute', top: 2, left: 13 }} /> : null}
+				{props.newNotification ? <Greendot style={{ position: 'absolute', top: 2, left: 13 }} /> : null}
 			</IconButton>
 			<Popper
-				id={id}
-				open={openNotification}
-				anchorEl={notifyRef.current}
+				id={props.id}
+				open={props.openNotification}
+				anchorEl={props.notifyRef.current}
 				role={undefined}
 				placement="bottom"
 				transition
 				disablePortal
-				onKeyDown={(e) => handleListKeyDown(e, 'notify')}
+				onKeyDown={(e) => props.handleListKeyDown(e, 'notify')}
                 style={{zIndex: 1200}}
 				modifiers={{
 					offset: {
@@ -57,7 +38,7 @@ const BellNotifications = ({
 					},
 				}}
 			>
-				<ClickAwayListener onClickAway={(e) => handleClose(e, 'notify')}>
+				<ClickAwayListener onClickAway={(e) => props.handleClose(e, 'notify')}>
 					<Paper elevation={1} style={{ position: 'relative', width: '297px' }}>
 						<div
 							style={{
@@ -101,28 +82,28 @@ const BellNotifications = ({
 													}}
 												>
 													<Typography style={{ fontSize: 12 }}>
-														{countAlerts > 0 ? `${countAlerts} New` : 'No New'}
+														{props.countAlerts > 0 ? `${props.countAlerts} New` : 'No New'}
 													</Typography>
 												</Grid>
 											</Grid>
 										</Grid>
 									</Grid>
 								</Grid>
-								{notifications &&
-									notifications.map((notifi, index) => {
+								{props.notifications &&
+									props.notifications.map((notifi, index) => {
 										return (
 											<AlertNotification
 												key={index}
-												handleClose={handleClose}
+												handleClose={props.handleClose}
 												notifi={notifi}
-												setCountAlerts={setCountAlerts}
+												setCountAlerts={props.setCountAlerts}
 											/>
 										);
 									})}
 								<Grid
 									item
 									align="center"
-									onClick={() => redirect('all_notfications')}
+									onClick={() => props.redirect('all_notfications')}
 									style={{ cursor: 'pointer' }}
 								>
 									<Typography
@@ -145,4 +126,7 @@ const BellNotifications = ({
 	);
 };
 
-export default BellNotifications;
+BellNotificationsView.displayName = 'BellNotificationsView';
+BellNotificationsView.defaultProps = {};
+
+export default React.memo(BellNotificationsView);

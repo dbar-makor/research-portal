@@ -1,3 +1,10 @@
+## [1.0.11](https://github.com/dbar-makor/research-portal/compare/v1.0.10...v1.0.11) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 make the settings component reusable ([61abfba](https://github.com/dbar-makor/research-portal/commit/61abfbaa9ac9e9f168a22e4b89b391e2a581a264))
+
 ## [1.0.10](https://github.com/dbar-makor/research-portal/compare/v1.0.9...v1.0.10) (2022-03-21)
 
 

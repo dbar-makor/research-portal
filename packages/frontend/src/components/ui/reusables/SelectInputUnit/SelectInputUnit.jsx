@@ -19,6 +19,7 @@ const SelectInputUnit = (props) => {
     optionLabelField={props.optionLabelField}
     valueField={props.valueField}
     placeholder={props.placeholder}
+    mode={props.mode}
   />;
 };
 

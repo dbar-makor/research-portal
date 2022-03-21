@@ -91,28 +91,25 @@ const FiltersView = (props) => {
 						<SelectInputUnit
 							className={classes.autoCompleteStyle}
 							name="status"
-							label={status !== undefined && status !== null && status !== '' ? '' : 'Status'}
+							label={props.status !== undefined && props.status !== null && props.status !== '' ? '' : 'Status'}
 							optionLabelField="name"
 							valueField="value"
 							placeholder="Status"
-							value={status}
+							value={props.status}
 							onChange={(e) => dispatch(props.setProperty({ key: 'status', value: e.target.value }))}
 							optionsArray={statusArray}
 						/>
 					</Grid>
 				</Grid>
 			</Grid>
-			{/* <Grid item xs={3}> */}
 			<AddButton disableRipple onClick={props.handleOpen} style={{ marginRight: '8px' }}>
 				<AddIcon className={classes.addIcon} />{' '}
 				<Typography style={{ color: '#FFFFFF' }}>&nbsp;&nbsp;New&nbsp;</Typography>
 			</AddButton>
-			{/* </Grid> */}
-
-			<NewCompanyStepper open={props.pageType === 'companies' && open} handleClose={props.handleClose} />
+			<NewCompanyStepper open={props.pageType === 'companies' && props.open} handleClose={props.handleClose} />
 
 			<NewUserModal
-				open={props.pageType !== 'companies' && open}
+				open={props.pageType !== 'companies' && props.open}
 				userType={props.userType}
 				handleClose={props.handleClose}
 			/>

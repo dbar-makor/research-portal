@@ -4,7 +4,8 @@
   "description": "Research Portal",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/backend/*"
   ],
   "scripts": {
     "prepare": "husky install",

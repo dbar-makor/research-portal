@@ -67,7 +67,7 @@ export const validateCompany = (fieldValues, errors, setErrors, setValidationRes
 	setValidationResult(result);
 };
 
-export function validateMember(fieldValues, errors, setErrors, setValidationResult) {
+export const validateMember = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 	const someFields = ['member_name', 'username', 'position'];
 	const allFields = ['member_name', 'username', 'email', 'position', 'categories'];
@@ -104,9 +104,9 @@ export function validateMember(fieldValues, errors, setErrors, setValidationResu
 
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
-export function validateContract(fieldValues, errors, setErrors, setValidationResult) {
+export const validateContract = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 	const someFields = ['currency', 'amount', 'periodicity', 'members'];
 	const allFields = ['sales', 'currency', 'amount', 'periodicity', 'members'];
@@ -143,9 +143,9 @@ export function validateContract(fieldValues, errors, setErrors, setValidationRe
 	const tempResult2 = Object.values(temp).every((x) => x === '');
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
-export function validateEditedContract(fieldValues, errors, setErrors, setValidationResult) {
+export const validateEditedContract = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 	const someFields = ['currency', 'amount', 'periodicity', 'members'];
 
@@ -179,9 +179,9 @@ export function validateEditedContract(fieldValues, errors, setErrors, setValida
 	setErrors({ ...temp });
 	const result = Object.values(temp).every((x) => x === '');
 	setValidationResult(result);
-}
+};
 
-export function validateLogin(fieldValues, errors, setErrors, validationResult, setValidationResult) {
+export const validateLogin = (fieldValues, errors, setErrors, validationResult, setValidationResult) => {
 	const temp = { ...errors };
 	const allFields = ['username', 'password'];
 
@@ -209,9 +209,9 @@ export function validateLogin(fieldValues, errors, setErrors, validationResult, 
 
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
-export function validateProspectTrial(fieldValues, errors, setErrors, trial) {
+export const validateProspectTrial = (fieldValues, errors, setErrors, trial) => {
 	const temp = { ...errors };
 
 	if ('sales_agent' in fieldValues) {
@@ -275,9 +275,9 @@ export function validateProspectTrial(fieldValues, errors, setErrors, trial) {
 	}
 
 	setErrors({ ...temp });
-}
+};
 
-export function validateUser(fieldValues, errors, setErrors, setValidationResult) {
+export const validateUser = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 	const someFields = ['name', 'username', 'country'];
 	const allFields = ['name', 'username', 'email', 'country'];
@@ -309,9 +309,15 @@ export function validateUser(fieldValues, errors, setErrors, setValidationResult
 
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
-export function validateDeadPublication(fieldValues, errors, setErrors, setValidationResult, selectedValue) {
+export const validateDeadPublication = (
+	fieldValues,
+	errors,
+	setErrors,
+	setValidationResult,
+	selectedValue,
+) => {
 	const temp = { ...errors };
 	const someFields = ['title', 'description'];
 	const allFields =
@@ -356,15 +362,15 @@ export function validateDeadPublication(fieldValues, errors, setErrors, setValid
 
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
-export function validateEditedDeadPublication(
+export const validateEditedDeadPublication = (
 	fieldValues,
 	errors,
 	setErrors,
 	setValidationResult,
 	selectedValue,
-) {
+) => {
 	const temp = { ...errors };
 	const someFields = ['title', 'description'];
 	someFields.forEach((field) => {
@@ -398,9 +404,9 @@ export function validateEditedDeadPublication(
 	setErrors({ ...temp });
 	const result = Object.values(temp).every((x) => x === '');
 	setValidationResult(result);
-}
+};
 
-export function validateLivePublication(fieldValues, errors, setErrors, setValidationResult) {
+export const validateLivePublication = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 	const allFields = ['title', 'categories'];
 
@@ -420,9 +426,9 @@ export function validateLivePublication(fieldValues, errors, setErrors, setValid
 
 	const result = tempResult1 && tempResult2;
 	setValidationResult(result);
-}
+};
 
-export function validateEditedLivePublication(fieldValues, errors, setErrors, setValidationResult) {
+export const validateEditedLivePublication = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 	if ('title' in fieldValues) {
 		temp['title'] = fieldValues['title'] ? '' : 'This field is required';
@@ -437,9 +443,9 @@ export function validateEditedLivePublication(fieldValues, errors, setErrors, se
 	const result = Object.values(temp).every((x) => x === '');
 
 	setValidationResult(result);
-}
+};
 
-export function validateEvent(fieldValues, errors, setErrors, setValidationResult) {
+export const validateEvent = (fieldValues, errors, setErrors, setValidationResult) => {
 	const temp = { ...errors };
 
 	const allFields = ['title', 'date'];
@@ -468,4 +474,4 @@ export function validateEvent(fieldValues, errors, setErrors, setValidationResul
 	const result = tempResult1 && tempResult2;
 
 	setValidationResult(result);
-}
+};

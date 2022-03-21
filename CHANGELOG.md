@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/dbar-makor/research-portal/compare/v1.0.8...v1.0.9) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 fixing bugs due to components refactoring ([f41876b](https://github.com/dbar-makor/research-portal/commit/f41876b3100195006a63f84d0e9e1549c3557c0f))
+
 ## [1.0.8](https://github.com/dbar-makor/research-portal/compare/v1.0.7...v1.0.8) (2022-03-21)
 
 

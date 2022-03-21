@@ -53,6 +53,7 @@ const AllContractView = (props) => {
 										valueField="value"
 										placeholder="Type"
 										optionsArray={props.periodicity}
+										native={false}
 									/>
 								</Grid>
 								<Grid item xs={3} style={{ marginLeft: 15 }}>

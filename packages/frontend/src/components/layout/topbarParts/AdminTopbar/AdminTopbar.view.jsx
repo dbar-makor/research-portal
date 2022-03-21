@@ -1,22 +1,20 @@
-import { Grid, Typography, Paper,  Grow, ClickAwayListener,MenuList,MenuItem,IconButton, Popper} from '@material-ui/core';
-import { useRef } from 'react';
+import {
+	Grid,
+	Typography,
+	Paper,
+	Grow,
+	ClickAwayListener,
+	MenuList,
+	MenuItem,
+	IconButton,
+	Popper,
+} from '@material-ui/core';
+import React from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+//import useStyles from './AdminTopbar.style';
 
-const AdminTopbar = ({
-	handleToggle,
-	openUserMgmt,
-	setOpenUserMgmt,
-	userType,
-	handleClose,
-}) => {
-	const userMgmtRef = useRef(null);
-
-	function adminGoTo(pathName) {
-		setOpenUserMgmt(false);
-		history.push(pathName);
-	}
-
+const AdminTopbarView = (props) => {
 	return (
 		<Grid item xs={3} style={{ marginRight: 113 }}>
 			<Grid container justifyContent="flex-end">
@@ -30,7 +28,7 @@ const AdminTopbar = ({
 									cursor: 'pointer',
 									fontWeight: 300,
 								}}
-								onClick={() => handleToggle('user_mgmt')}
+								onClick={() => props.handleToggle('user_mgmt')}
 							>
 								Users Managment
 							</Typography>
@@ -38,13 +36,13 @@ const AdminTopbar = ({
 						<Grid item>
 							<IconButton
 								size="small"
-								ref={userMgmtRef}
-								aria-controls={openUserMgmt ? 'composition-menu' : undefined}
-								aria-expanded={openUserMgmt ? 'true' : undefined}
+								ref={props.userMgmtRef}
+								aria-controls={props.openUserMgmt ? 'composition-menu' : undefined}
+								aria-expanded={props.openUserMgmt ? 'true' : undefined}
 								aria-haspopup="true"
-								onClick={() => handleToggle('user_mgmt')}
+								onClick={() => props.handleToggle('user_mgmt')}
 							>
-								{openUserMgmt ? (
+								{props.openUserMgmt ? (
 									<ExpandLessIcon style={{ color: '#ffff' }} />
 								) : (
 									<ExpandMoreIcon style={{ color: '#ffff' }} />
@@ -53,8 +51,8 @@ const AdminTopbar = ({
 						</Grid>
 					</Grid>
 					<Popper
-						open={openUserMgmt}
-						anchorEl={userMgmtRef.current}
+						open={props.openUserMgmt}
+						anchorEl={props.userMgmtRef.current}
 						role={undefined}
 						placement="bottom"
 						transition
@@ -62,7 +60,7 @@ const AdminTopbar = ({
 						modifiers={{
 							offset: {
 								enabled: true,
-								offset: userType === 'client' ? '-150, 10' : '-80, 10',
+								offset: props.userType === 'client' ? '-150, 10' : '-80, 10',
 							},
 						}}
 					>
@@ -75,17 +73,19 @@ const AdminTopbar = ({
 								}}
 							>
 								<Paper>
-									<ClickAwayListener onClickAway={(e) => handleClose(e, 'user_mgmt')}>
+									<ClickAwayListener onClickAway={(e) => props.handleClose(e, 'user_mgmt')}>
 										<MenuList
 											autoFocusItem={open}
 											id="composition-menu"
 											aria-labelledby="composition-button"
 										>
-											<MenuItem onClick={() => adminGoTo('/sales')}>Sales</MenuItem>
-											<MenuItem onClick={() => adminGoTo('/companies')}>
+											<MenuItem onClick={() => props.adminGoTo('/sales')}>
+												Sales
+											</MenuItem>
+											<MenuItem onClick={() => props.adminGoTo('/companies')}>
 												Companies Page
 											</MenuItem>
-											<MenuItem onClick={() => adminGoTo('/authors')}>
+											<MenuItem onClick={() => props.adminGoTo('/authors')}>
 												Authors Page
 											</MenuItem>
 										</MenuList>
@@ -100,4 +100,7 @@ const AdminTopbar = ({
 	);
 };
 
-export default AdminTopbar;
+AdminTopbarView.displayName = 'AdminTopbarView';
+AdminTopbarView.defaultProps = {};
+
+export default React.memo(AdminTopbarView);

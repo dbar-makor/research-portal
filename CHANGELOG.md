@@ -1,3 +1,17 @@
+## [1.0.8](https://github.com/dbar-makor/research-portal/compare/v1.0.7...v1.0.8) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 selectinputnative bug ([1477cd3](https://github.com/dbar-makor/research-portal/commit/1477cd373ab7d3058873e1c6bfea54f78c0fca95))
+
+## [1.0.7](https://github.com/dbar-makor/research-portal/compare/v1.0.6...v1.0.7) (2022-03-21)
+
+
+### Bug Fixes
+
+* 🐞 bugs from merge ([c8777a9](https://github.com/dbar-makor/research-portal/commit/c8777a92ebba6f1862bacaa5b970978fe221683f))
+
 ## [1.0.6](https://github.com/dbar-makor/research-portal/compare/v1.0.5...v1.0.6) (2022-03-20)
 
 

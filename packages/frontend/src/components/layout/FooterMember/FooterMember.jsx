@@ -1,9 +1,7 @@
 import React from 'react';
-
 import FooterMemberView from './FooterMember.view';
-
 const FooterMember = () => {
-  return <FooterMemberView></FooterMemberView>;
+	return <FooterMemberView></FooterMemberView>;
 };
 
 FooterMember.displayName = 'FooterMember';

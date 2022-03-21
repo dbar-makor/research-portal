@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{forwardRef} from 'react';
 import tradingHoursData from '../dummy.json';
 
 import TradingHoursView from './TradingHours.view';
 
-const TradingHours = (props) => {
+const TradingHours = forwardRef((props,ref) => {
 	const {
 		handleToggle,
 		notifications,
@@ -11,7 +11,6 @@ const TradingHours = (props) => {
 		setOpenNotification,
 		handleListKeyDown,
 		handleClose,
-		anchorRef,
 		userType,
 		setOpen,
 		open,
@@ -27,15 +26,15 @@ const TradingHours = (props) => {
   setOpenNotification={setOpenNotification}
   handleListKeyDown={handleListKeyDown}
   handleClose={handleClose}
-  anchorRef={anchorRef}
+  ref={ref}
   userType={userType}
   setOpen={setOpen}
   open={open}
   data={data}
   formattedData={formattedData}
   ></TradingHoursView>;
-};
-
+}
+);
 TradingHours.displayName = 'TradingHours';
 TradingHours.defaultProps = {};
 

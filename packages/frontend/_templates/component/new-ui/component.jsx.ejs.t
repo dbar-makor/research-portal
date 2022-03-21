@@ -5,7 +5,7 @@ import React from 'react';
 
 import <%=name%>View from './<%=name%>.view';
 
-const <%= name %> = (props) => {
+const <%= name %> = () => {
   return <<%=name%>View></<%=name%>View>;
 };
 

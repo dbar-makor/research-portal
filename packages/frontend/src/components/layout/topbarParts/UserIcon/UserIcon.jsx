@@ -5,22 +5,23 @@ import * as actionAuth from '../../../../redux/auth/action';
 import UserIconView from './UserIcon.view';
 
 const UserIcon = (props) => {
-	const { handleToggle, userType, handleClose, setOpen, open,	ref } = props;
+	const { handleToggle, userType, handleClose, setOpen, open, ref } = props;
 	const user = useSelector((state) => state.auth.userContent);
 	const dispatch = useDispatch();
 
 	const handleLogout = () => {
 		dispatch(actionAuth.logout());
 	};
+
 	return (
 		<UserIconView
-      handleToggle={handleToggle}
+			handleToggle={handleToggle}
 			userType={userType}
 			handleClose={handleClose}
 			setOpen={setOpen}
-      open={open}
-      user={user}
-      handleLogout={handleLogout}
+			open={open}
+			user={user}
+			handleLogout={handleLogout}
 			ref={ref}
 		></UserIconView>
 	);

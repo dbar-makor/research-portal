@@ -1,8 +1,8 @@
 import { Grid, Divider } from '@material-ui/core';
-import BigPublication from './PublicationsType/BigPublication';
-import SmallPublication from './PublicationsType/SmallPublication';
-import MainPublication from './PublicationsType/MainPublication';
-import MediumPublication from './PublicationsType/MediumPublication';
+import BigPublication from '../ui/members/PublicationsType/BigPublication/BigPublication';
+import SmallPublication from '../ui/members/PublicationsType/SmallPublication/SmallPublication';
+import MainPublication from '../ui/members/PublicationsType/MainPublication/MainPublication';
+import MediumPublication from '../ui/members/PublicationsType/MediumPublication/MediumPublication';
 import { useStyles } from '../../styles/PublicationsStyles';
 
 const PublicationsGrid = (props) => {

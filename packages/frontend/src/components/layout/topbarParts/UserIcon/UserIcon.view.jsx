@@ -14,8 +14,6 @@ import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-//import useStyles from './UserIcon.style';
-
 const UserIconView = forwardRef((props, ref) => {
 	return (
 		<Grid container alignItems="center" justifyContent="flex-end">

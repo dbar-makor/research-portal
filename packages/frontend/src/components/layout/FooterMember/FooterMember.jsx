@@ -1,5 +1,6 @@
 import React from 'react';
 import FooterMemberView from './FooterMember.view';
+
 const FooterMember = () => {
 	return <FooterMemberView></FooterMemberView>;
 };

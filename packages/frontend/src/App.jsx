@@ -9,9 +9,9 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { setAuthToken } from './utils/constants';
 
-// REDUX
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_SUCCESS } from './redux/auth/constants';
+
 import AuthorsNewArticle from './components/ui/author/AuthorsnewArticle/AuthorsNewArticle';
 import AllPublications from './components/ui/author/allPublications/AllPublications/AllPublications';
 import TopBar from './components/layout/TopBar/TopBar';
@@ -24,10 +24,10 @@ import SalesUsersScreen from './components/ui/admin/SalesUsersScreen/SalesUsersS
 import AuthorsUsersScreen from './components/ui/admin/AuthorsUsersScreen/AuthorsUsersScreen.jsx';
 import FooterMember from './components/layout/FooterMember/FooterMember';
 import MembersMain from './components/Members/MembersMain';
-import FullPublication from './components/Members/ShowPublication/FullPublication';
+import FullPublication from './components/ui/members/ShowPublication/FullPublication/FullPublication';
 import AllContracts from './components/ui/salesman/contractViews/allContracts/AllContract/AllContract';
 import AllInvoices from './components/ui/salesman/contractViews/allInvoices/AllInvoices/AllInvoices';
-import AllNotifications from './components/Members/Notifications/AllNotifications';
+import AllNotifications from './components/ui/members/Notifications/AllNotifications/AllNotifications';
 import AccountSettings from './components/AccountSettings/AccountSettings';
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
 	const mainTheme = createTheme({
 		typography: {
 			fontFamily: [
-				`'Inter', 
+				`'Inter',
         sans-serif`,
 			].join(','),
 		},

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useStyles } from '../../../styles/MainStyles';
 import { Grid } from '@material-ui/core';
-import BellNotifications from '../../../utils/components/topbarParts/BellNotifications';
-import UserIcon from '../../../utils/components/topbarParts/UserIcon';
-import { TradingHourUnit } from '../../../utils/components/topbarParts/TradingHourUnit';
+import BellNotifications from '../topbarParts/BellNotifications/BellNotifications';
+import UserIcon from '../topbarParts/UserIcon/UserIcon';
+import TradingHourUnit from '../topbarParts/TradingHourUnit/TradingHourUnit';
 
 //import useStyles from './TradingHours.style';
 

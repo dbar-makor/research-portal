@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import SelectInputUnit from '../../../components/ui/reusables/SelectInputUnit/SelectInputUnit';
-import { ReactComponent as SearchIcon } from '../../../assets/icons/IconSearch.svg';
-import { StyledTextField } from '../../../styles/MainStyles';
+import SelectInputUnit from '../../../../components/ui/reusables/SelectInputUnit/SelectInputUnit';
+import { ReactComponent as SearchIcon } from '../../../../assets/icons/IconSearch.svg';
+import { StyledTextField } from '../../../../styles/MainStyles';
 
 const MemberTopbarView = (props) => {
 

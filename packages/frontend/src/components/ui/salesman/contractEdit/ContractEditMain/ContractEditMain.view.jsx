@@ -1,7 +1,5 @@
 import React from 'react';
 import { Dialog, DialogTitle, Grid, IconButton, Typography } from '@material-ui/core';
-
-import CloseIcon from '@material-ui/icons/Close';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { useStyles } from '../../../../../styles/ContarctsModalStyles';
 import SubHeaderModal from '../../../reusables/SubHeaderModal/SubHeaderModal';

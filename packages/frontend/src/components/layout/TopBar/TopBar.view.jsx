@@ -1,11 +1,11 @@
 import React from 'react';
 import { AppBar, Button, Grid, Toolbar, withStyles, Divider } from '@material-ui/core';
 import TradingHours from '../TradingHours/TradingHours';
-import MemberTopbar from '../../../utils/components/topbarParts/MemberTopbar';
-import SalesTopbar from '../../../utils/components/topbarParts/SalesTopbar';
-import AuthorTopbar from '../../../utils/components/topbarParts/AuthorTopbar';
-import AdminTopbar from '../../../utils/components/topbarParts/AdminTopbar';
-import MakorLogo from '../../../utils/components/topbarParts/MakorLogo';
+import MemberTopbar from '../topbarParts/MemberTopbar/MemberTopbar';
+import SalesTopbar from '../topbarParts/SalesTopbar/SalesTopbar';
+import AuthorTopbar from '../topbarParts/AuthorTopbar/AuthorTopbar';
+import AdminTopbar from '../topbarParts/AdminTopbar/AdminTopbar';
+import MakorLogo from '../topbarParts/MakorLogo/MakorLogo';
 import useStyles from './TopBar.style';
 export const StyledButton = withStyles(() => ({
 	root: {

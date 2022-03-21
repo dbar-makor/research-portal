@@ -152,8 +152,7 @@ function App() {
 		return (
 			<Switch>
 				<PrivateRoute path="/home" component={MembersMain} />
-				<PrivateRoute path="/settings">
-					<AccountSettings />
+				<PrivateRoute path="/settings" component={AccountSettings}>
 				</PrivateRoute>
 				<PrivateRoute exact path="/article/:pubId" component={FullPublication} />
 				<PrivateRoute exact path="/all_notfications" component={AllNotifications} />

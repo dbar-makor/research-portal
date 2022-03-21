@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import * as webSocketService from '../../services/websocket';
 import TradingHours from './TradingHours';
-import MemberTopbar from './topbarParts/MemberTopbar';
-import SalesTopbar from './topbarParts/SalesTopbar';
-import AuthorTopbar from './topbarParts/AuthorTopbar';
-import AdminTopbar from './topbarParts/AdminTopbar';
-import MakorLogo from './topbarParts/MakorLogo';
+import MemberTopbar from '../../components/layout/topbarParts/MemberTopbar/MemberTopbar';
+import SalesTopbar from '../../components/layout/topbarParts/SalesTopbar/SalesTopbar';
+import AuthorTopbar from '../../components/layout/topbarParts/AuthorTopbar/AuthorTopbar';
+import AdminTopbar from '../../components/layout/topbarParts/AdminTopbar/AdminTopbar';
+import MakorLogo from '../../components/layout/topbarParts/MakorLogo/MakorLogo';
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({

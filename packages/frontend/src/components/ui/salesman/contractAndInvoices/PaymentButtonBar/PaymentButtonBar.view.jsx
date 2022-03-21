@@ -4,7 +4,7 @@ import { IconButton, Typography, Popover, withStyles, Grid } from '@material-ui/
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ContractEditMain from '../../../../SalesScreens/ContractEdit/ContractEditMain';
+import ContractEditMain from '../../../salesman/contractEdit/ContractEditMain/ContractEditMain';
 
 const PaymentButtonBarView = (props) => {
 	const classes = useStyles(props.precentage);

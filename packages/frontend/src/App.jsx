@@ -116,7 +116,7 @@ function App() {
 			<Switch>
 				<PrivateRoute exact path="/researches" component={AllPublications} />
 				<PrivateRoute exact path="/new-article" component={AuthorsNewArticle} />
-				<PrivateRoute exact path="/settings" component={AccountSettings} />
+				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/upload-article" component={DeadArticle} />
 				<PrivateRoute exact path="article/:id" component={Article} />
 				<PrivateRoute path="/prearticle" component={FullPublication} />

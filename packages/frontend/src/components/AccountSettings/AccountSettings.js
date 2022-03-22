@@ -13,6 +13,8 @@ import Settings from '../ui/reusables/Settings/Settings';
 import ContractAndTrails from './ContractsAndTrails';
 import PrivateRoute from '../../components/layout/PrivateRoute/PrivateRoute';
 import * as actionAuth from '../../redux/auth/action';
+import { useState, useCallback } from 'react';
+import ChangePassword from '../ui/reusables/ChangePassword/ChangePassword';
 
 const AccountSettings = () => {
 	const userContent = useSelector((state) => state.auth.userContent);
@@ -21,14 +23,23 @@ const AccountSettings = () => {
 	const history = useHistory();
 	const classes = useStyles(chosenRouteName === 'contract_trails' ? 'on' : 'off');
 	const { path, url } = useRouteMatch('/settings');
+	const [chosenModal, setChosenModal] = useState(false);
 
 	const handleRoute = (type) => {
+		if (type === 'modal') {
+			setChosenModal(true);
+			return;
+		}
 		history.push(`${url}/${type}`);
 	};
 
 	const handleLogout = () => {
 		dispatch(actionAuth.logout());
 	};
+
+	const handleCloseModal = useCallback(() => {
+		setChosenModal(false);
+	});
 
 	return (
 		<>
@@ -101,10 +112,6 @@ const AccountSettings = () => {
 											}
 											onClick={() => handleRoute('edit')}
 										>
-											{/*
-                      **
-                      TODO : Both "edit profile and contracts & trails needs to be Build "
-                       */}
 											<Grid container alignItems="center">
 												<Grid item>
 													<PersonIcon
@@ -174,6 +181,20 @@ const AccountSettings = () => {
 												</Grid>
 											</Grid>
 										</Grid>
+										<Grid
+											item
+											xs={12}
+											className={chosenModal ? classes.chosenRoute : classes.notChosen}
+											onClick={() => handleRoute('modal')}
+										>
+											<Grid container alignItems="center">
+												<Grid item>
+													<Typography style={{ fontSize: 14 }}>
+														Change Password
+													</Typography>
+												</Grid>
+											</Grid>
+										</Grid>
 									</Grid>
 								</Grid>
 							</Grid>
@@ -208,13 +229,16 @@ const AccountSettings = () => {
 				{/* ROUTING GRID */}
 				<Grid item xs={10}>
 					<Switch>
-						{console.log(`${path}/settings`)}
 						<PrivateRoute path={`${path}/settings`} component={Settings} />
 						<PrivateRoute path={`${path}/edit`} component={EditProfile} />
 						<PrivateRoute path={`${path}/contract_trails`} component={ContractAndTrails} />
 					</Switch>
 				</Grid>
 			</Grid>
+			<ChangePassword
+			chosenModal={chosenModal}
+			handleCloseModal={handleCloseModal}
+			/>
 		</>
 	);
 };

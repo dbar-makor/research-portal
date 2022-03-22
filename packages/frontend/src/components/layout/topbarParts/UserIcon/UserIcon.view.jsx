@@ -66,7 +66,6 @@ const UserIconView = forwardRef((props, ref) => {
 										id="composition-menu"
 										aria-labelledby="composition-button"
 									>
-										<>
 											<MenuItem>
 												<Link
 													to={'/home'}
@@ -106,7 +105,6 @@ const UserIconView = forwardRef((props, ref) => {
 													</Link>
 												</MenuItem>
 											) : null}
-										</>
 										<MenuItem onClick={props.handleLogout} style={{ color: '#FF0000' }}>
 											<ExitToAppIcon />
 											Logout

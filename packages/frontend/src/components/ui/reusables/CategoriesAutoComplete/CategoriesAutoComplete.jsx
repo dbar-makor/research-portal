@@ -35,17 +35,18 @@ const CategoriesAutoComplete = (props) => {
 		errors && validateMember({ categories: categoryCopy }, errors, setErrors, setValidationResult);
 	};
 
-	return <CategoriesAutoCompleteView
-  label={label}
-  className={className}
-  handler={handler}
-  formObject={formObject}
-  error={error}
-  adjustedFormObject={adjustedFormObject}
-  chipVariant={chipVariant}
-  deleteItem={deleteItem}
-
-  />;
+	return (
+		<CategoriesAutoCompleteView
+			label={label}
+			className={className}
+			handler={handler}
+			formObject={formObject}
+			error={error}
+			adjustedFormObject={adjustedFormObject}
+			chipVariant={chipVariant}
+			deleteItem={deleteItem}
+		/>
+	);
 };
 
 CategoriesAutoComplete.displayName = 'CategoriesAutoComplete';

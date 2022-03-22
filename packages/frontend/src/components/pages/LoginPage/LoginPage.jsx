@@ -14,6 +14,7 @@ const LoginPage = () => {
 	const [validationResult, setValidationResult] = useState(false);
 	const twoFactAuth = useSelector((state) => state.auth.twoFactAuth);
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+	const loadingIndicator = useSelector((state) => state.auth.loadingIndicator);
 	const isAuthor = useSelector((state) => state.auth.userContent?.type === 'author');
 	const isSales = useSelector((state) => state.auth.userContent?.type === 'sales');
 	const isAdmin = useSelector((state) => state.auth.userContent?.type === 'admin');
@@ -74,6 +75,7 @@ const LoginPage = () => {
       errors={errors}
       validationResult={validationResult}
       showPassword={showPassword}
+			loadingIndicator={loadingIndicator}
 		/>
 	);
 };

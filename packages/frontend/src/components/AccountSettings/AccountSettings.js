@@ -1,6 +1,5 @@
 import { Avatar, Divider, Grid, Typography } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
 import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
@@ -9,7 +8,8 @@ import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from '../../styles/AccountSettingsStyles';
 import EditProfile from './EditProfile';
-import Settings from './Settings';
+//import Settings from './Settings';
+import Settings from '../ui/reusables/Settings/Settings';
 import ContractAndTrails from './ContractsAndTrails';
 import PrivateRoute from '../../components/layout/PrivateRoute/PrivateRoute';
 import * as actionAuth from '../../redux/auth/action';
@@ -20,7 +20,7 @@ const AccountSettings = () => {
 	const chosenRouteName = window.location.pathname.replace('/settings/', '');
 	const history = useHistory();
 	const classes = useStyles(chosenRouteName === 'contract_trails' ? 'on' : 'off');
-	const { path, url } = useRouteMatch();
+	const { path, url } = useRouteMatch('/settings');
 
 	const handleRoute = (type) => {
 		history.push(`${url}/${type}`);
@@ -208,7 +208,7 @@ const AccountSettings = () => {
 				{/* ROUTING GRID */}
 				<Grid item xs={10}>
 					<Switch>
-						{console.log('path', path)}
+						{console.log(`${path}/settings`)}
 						<PrivateRoute path={`${path}/settings`} component={Settings} />
 						<PrivateRoute path={`${path}/edit`} component={EditProfile} />
 						<PrivateRoute path={`${path}/contract_trails`} component={ContractAndTrails} />

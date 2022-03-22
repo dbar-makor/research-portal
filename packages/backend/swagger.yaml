@@ -12,7 +12,7 @@ servers:
       description: "LOCAL server"
     - url: "http://localhost:8097"
       description: "Ortal LOCAL server"
-    - url: "http://10.0.0.38:8096"
+    - url: "http://10.0.0.24:8096"
       description: "DEV server"
 tags:
     - name: "auth"

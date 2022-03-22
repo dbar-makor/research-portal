@@ -1,33 +1,36 @@
 import { makeStyles, withStyles, TextField } from '@material-ui/core';
-
 export const useStyles = makeStyles(() => ({
-	'newArticleContainer': {
+	newArticleContainer: {
 		marginTop: '4.3vh',
+		height: 'fit-content',
 	},
-	'marginBottom35': {
+	newArticleWrapper:{
+		height: 'content-fit'
+	},
+	marginBottom35: {
 		marginBottom: '35px',
 	},
-	'marginTop15': {
+	marginTop15: {
 		marginTop: '15px',
 	},
-	'marginTop25': {
+	marginTop25: {
 		marginTop: '25px',
 	},
-	'mainArticleTitle': {
+	mainArticleTitle: {
 		fontSize: '36px',
 		marginBottom: '30px',
 	},
-	'uploadGrid': {
+	uploadGrid: {
 		border: '1px dashed #000000',
 		padding: '15px',
 	},
-	'uploadBtn': {
+	uploadBtn: {
 		'margin': '10px',
 		'&:hover': {
 			backgroundColor: 'transparent',
 		},
 	},
-	'uploadLink': {
+	uploadLink: {
 		textTransform: 'none',
 		padding: '0px',
 		fontSize: '16px',
@@ -35,76 +38,73 @@ export const useStyles = makeStyles(() => ({
 		textDecoration: 'underline',
 		cursor: 'pointer',
 	},
-	'uploadText': {
+	uploadText: {
 		textTransform: 'none',
 		padding: '0px',
 		fontSize: '16px',
 		color: '#868DA2',
 	},
-	'onlyPng': {
+	onlyPng: {
 		color: '#868DA2',
 		textAlign: 'center',
 		fontSize: '14px',
 	},
-	'plusIcon': {
+	plusIcon: {
 		'paddingLeft': 0,
 		'&:hover': {
 			backgroundColor: 'transparent',
 		},
 	},
-	'eventContainer': {
+	eventContainer: {
 		marginBottom: '15px',
 	},
-	'datePicker': {
+	datePicker: {
 		marginRight: '15px',
 	},
-	'textField': {
+	textField: {
 		width: '100%',
 	},
-	'&.MUIRichTextEditor-container': {},
-	'marginRight15': {},
-	'marginLeft15': {
+	marginLeft15: {
 		marginLeft: '15px',
 	},
-	'addIcon': {
+	addIcon: {
 		fill: '#FFFFFF',
 		fontSize: '20px',
 	},
-	'addIconDisabled': {
+	addIconDisabled: {
 		fill: 'grey',
 	},
-	'attachIcon': {
+	attachIcon: {
 		width: '24px',
 		marginBottom: '10px',
 	},
-	'maxSize': {
+	maxSize: {
 		fontSize: '14px',
 		color: '#999999',
 	},
-
-	'chipContainer': {
+	chipContainer: {
 		marginTop: '10px',
 	},
-	'chipItem': {
+	chipItem: {
 		marginBottom: '5px',
 		marginRight: '3px',
 	},
-	'hashtagsContainer': {
+	hashtagsContainer: {
 		marginTop: '16px',
 	},
-	'hashtag': {
+	hashtag: {
 		color: 'blue',
 	},
-	'clearHashtag': {
+	clearHashtag: {
 		fontSize: '13px',
 	},
-	'clearHashtagBtn': {
+	clearHashtagBtn: {
 		padding: '4px',
 	},
-	'oneHashtag': {
+	oneHashtag: {
 		marginRight: '7px',
 	},
-	'eventDatePicker': {
+	eventDatePicker: {
 		'width': '100%',
 		'height': '43px',
 		'& .MuiOutlinedInput-root': {
@@ -120,7 +120,6 @@ export const useStyles = makeStyles(() => ({
 			},
 		},
 		'& .MuiInputBase-root': {
-			'&.Mui-focused fieldset': {},
 			'& .MuiButtonBase-root': {
 				'paddingRight': 0,
 				'&:hover': {
@@ -132,7 +131,7 @@ export const useStyles = makeStyles(() => ({
 			},
 			'& .MuiInputBase-input': {
 				'padding': '11px',
-				'paddingRight': '0px',
+				'paddingRight': 0,
 				'&::placeholder': {
 					color: '#868DA2',
 					opacity: 1,
@@ -155,26 +154,30 @@ export const useStyles = makeStyles(() => ({
 			},
 		},
 	},
-	'blueShape': {
+	blueShape: {
 		backgroundColor: '#1C67FF',
 		borderRadius: '8px',
 		height: '12px',
 		marginBottom: '10px',
 	},
-	'writeNewTitle': {
+	writeNewTitle: {
 		color: '#868DA2',
 		fontSize: '24px',
 	},
-	'newArticleRightContainer': {
+	newArticleLeftContainer: {
+		height: 'fit-content',
+	},
+	newArticleRightContainer: {
 		'position': 'relative',
+		alignContent: 'space-between',
 		'marginLeft': '16px',
+		'height': '100%',
+		'width': 'inherit',
 		'border': '1px solid #EDEFF3',
-		'borderBottom': 'none',
-		'borderRadius': '8px 8px 0px 0px',
-		'padding': '24px',
+		'borderRadius': '8px 8px 8px 8px',
+		'padding': '24px 24px 0px 24px ',
 		'minHeight': '700px',
-		'maxHeight': '700px',
-		'overflow': 'auto',
+		//'overflow': 'auto',
 		'&::-webkit-scrollbar': {
 			width: '3px',
 			height: '3px',
@@ -188,33 +191,39 @@ export const useStyles = makeStyles(() => ({
 			borderRadius: '10px',
 		},
 	},
-	'uploadImage': {
+	rightForm: {
+		height: 'contentFit',
+	},
+	uploadImage: {
 		borderRadius: '8px',
 		border: '1px solid #EDEFF3',
 		padding: '10px',
 		minHeight: '122px',
 		marginBottom: '16px',
 	},
-	'subHeaderRight': {
+	subHeaderRight: {
 		color: '#868DA2',
 		fontSize: '16px',
 	},
-	'divider': {
+	autoCompletesContainer:{
+		marginBottom: '16px',
+	},
+	divider: {
 		backgroundColor: '#EDEFF3',
 		height: '1px',
 		width: '100%',
 	},
-	'uploadAttachment': {
+	uploadAttachment: {
 		borderRadius: '8px',
 		border: '1px solid #EDEFF3',
 		padding: '10px',
 		minHeight: '120px',
 	},
-	'autoCompleteChips': {},
-	'tagsInputContainer': {
+	autoCompleteChips: {},
+	tagsInputContainer: {
 		marginTop: '16px',
 	},
-	'dateStyle': {
+	dateStyle: {
 		'& .MuiOutlinedInput-input': {
 			padding: '10.6px',
 		},
@@ -226,30 +235,30 @@ export const useStyles = makeStyles(() => ({
 			borderColor: '#A5AFC233',
 		},
 	},
-	'calendarIcon': {
+	calendarIcon: {
 		'& g': {
 			'& path': {
 				stroke: '#1C67FF',
 			},
 		},
 	},
-	'descriptionStyle': {
+	descriptionStyle: {
 		'& .MuiOutlinedInput-multiline': {
 			padding: 11,
 		},
 	},
-	'clearIcon': {
+	clearIcon: {
 		fontSize: '15px',
 		fill: '#868DA2',
 	},
-	'chip': {
+	chip: {
 		backgroundColor: '#EDEFF3',
 	},
-	'chipClear': {
+	chipClear: {
 		width: '17px',
 		height: '17px',
 	},
-	'muiEditor': {
+	muiEditor: {
 		MUIRichTextEditor: {
 			root: {
 				'width': '100%',
@@ -288,19 +297,18 @@ export const useStyles = makeStyles(() => ({
 			},
 		},
 	},
-	'buttonsContainer': {
+	buttonsContainer: {
 		marginLeft: '16px',
-		border: '1px solid #EDEFF3',
 		padding: '17px',
 		minHeight: '75px',
 		maxHeight: '75px',
 		borderTop: 'none',
 		borderRadius: '0px 0px 8px 8px',
 	},
-	'attachmentLine': {
+	attachmentLine: {
 		marginTop: '15px',
 	},
-	'radioTitle': {
+	radioTitle: {
 		'& .MuiTypography-body1': {
 			'fontSize': '20px',
 			'fontFamily': 'inter',
@@ -310,7 +318,7 @@ export const useStyles = makeStyles(() => ({
 			},
 		},
 	},
-	'publishStyle': {
+	publishStyle: {
 		'backgroundColor': '#1C67FF',
 		'color': '#FFF',
 		'borderRadius': '21px',
@@ -328,7 +336,7 @@ export const useStyles = makeStyles(() => ({
 			color: '#868DA2',
 		},
 	},
-	'saveDraft': {
+	saveDraft: {
 		color: '#1C67FF',
 		fontFamily: 'inter',
 		fontWeight: 400,
@@ -338,7 +346,7 @@ export const useStyles = makeStyles(() => ({
 		backgroundColor: '#FFF',
 		textTransform: 'capitalize',
 	},
-	'cancelStyle': {
+	cancelStyle: {
 		'color': '#0F0F0F',
 		'textDecorationLine': 'underline',
 		'textTransform': 'capitalize',
@@ -353,7 +361,7 @@ export const useStyles = makeStyles(() => ({
 			},
 		},
 	},
-	'radioStyle': {
+	radioStyle: {
 		'& .MuiSvgIcon-root': {
 			'color': '#1C67FF',
 			'&:hover': {
@@ -361,7 +369,7 @@ export const useStyles = makeStyles(() => ({
 			},
 		},
 	},
-	'disabledRadio': {
+	disabledRadio: {
 		'color': '#868DA2',
 		'& .MuiTypography-body1': {
 			fontSize: '20px',
@@ -370,25 +378,19 @@ export const useStyles = makeStyles(() => ({
 			backgroundColor: '#EDEFF3',
 		},
 	},
-	'linkStyle': {
+	linkStyle: {
 		'padding': 0,
 		'& path': {
 			fill: '#1C67FF',
 		},
 	},
-	'link2Style': {
-		'padding': 0,
-		'& path': {
-			fill: '#868DA2',
-		},
-	},
-	'iconButton': {
+	iconButton: {
 		padding: 0,
 	},
-	'padding0px': {
+	padding0px: {
 		padding: 0,
 	},
-	'arrowStyle': {
+	arrowStyle: {
 		'padding': 1,
 		'& path': {
 			fill: '#868DA2',
@@ -397,7 +399,7 @@ export const useStyles = makeStyles(() => ({
 			padding: 5,
 		},
 	},
-	'arrow2Style': {
+	arrow2Style: {
 		'& path': {
 			'fill': '#1C67FF',
 			'cursor': 'pointer',
@@ -409,24 +411,24 @@ export const useStyles = makeStyles(() => ({
 			padding: 2,
 		},
 	},
-	'coverImage': {
+	coverImage: {
 		color: '#0F0F0F',
 		fontSize: '14px',
 		fontFamily: 'inter',
 	},
-	'coverGrid': {
+	coverGrid: {
 		backgroundColor: '#EDEFF3',
 		border: '1px solid #EDEFF3',
 		borderRadius: '0 0 8px 8px',
 		padding: 4,
 	},
-	'reuploadStyle': {
+	reuploadStyle: {
 		color: '#1C67FF',
 		fontSize: '14px',
 		textDecorationLine: 'underline',
 		cursor: 'pointer',
 	},
-	'pdfbtn': {
+	pdfbtn: {
 		'fontSize': '1rem',
 		'fontWeight': '500',
 		'color': '#868DA2',
@@ -440,7 +442,7 @@ export const useStyles = makeStyles(() => ({
 			backgroundColor: '#fff',
 		},
 	},
-	'dropZone': {
+	dropZone: {
 		borderRadius: '8px',
 		border: '1px solid #EDEFF3',
 		minHeight: '158px',
@@ -448,7 +450,7 @@ export const useStyles = makeStyles(() => ({
 		width: '260px',
 		paddingTop: 18,
 	},
-	'customError': {
+	customError: {
 		color: 'red',
 		marginLeft: 10,
 		marginBottom: 10,
@@ -505,7 +507,7 @@ export const CustomTextField = withStyles((theme) => ({
 			paddingRight: 0,
 		},
 		'& .MuiInputBase-input': {
-				// Text color
+			// Text color
 
 			color: theme.palette.text.main,
 			fontSize: (props) => (props ? props.fontSize : '16px'),
@@ -520,7 +522,7 @@ export const CustomTextField = withStyles((theme) => ({
 			borderBottom: `1px solid ${theme.palette.input.underline}`,
 		},
 		'& .MuiInput-underline:after': {
-			 // Solid underline on focus
+			// Solid underline on focus
 
 			borderBottom: `1px solid ${theme.palette.button.main}`,
 		},

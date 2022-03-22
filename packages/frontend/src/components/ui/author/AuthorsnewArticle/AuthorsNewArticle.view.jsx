@@ -22,14 +22,15 @@ import { ReactComponent as CalendarIcon } from '../../../../assets/icons/iconCal
 import clsx from 'clsx';
 
 const AuthorsNewArticleView = (props) => {
-	const classes = useStyles;
+	const classes = useStyles();
+
 	return (
 		<Grid container justifyContent="center" style={{ paddingTop: 20 }}>
 			<Grid item xs={10}>
 				<Grid container className={classes.newArticleContainer}>
 					<SubHeader title="Write New Article" />
 					<Grid item xs={6}>
-						<Grid container>
+						<Grid container className={classes.newArticleLeftContainer}>
 							<Grid item xs={12}>
 								<Grid container justifyContent="space-between" alignItems="flex-end"></Grid>
 							</Grid>
@@ -131,265 +132,272 @@ const AuthorsNewArticleView = (props) => {
 					</Grid>
 					<Grid item xs={4}>
 						<Grid container className={classes.newArticleRightContainer}>
-							<Grid item xs={12}>
-								<Grid container>
-									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>
-											Information
-										</Typography>
-									</Grid>
-									<Grid item xs={9}>
-										<DropZone
-											className={classes.dropZone}
-											fileTypes=".png, .jpg, .svg, .jfif, .webp"
-											onDrop={props.onDropCover}
-											uploadedImage={props.coverImage}
-											setUploadedImage={props.setCoverImage}
-											purpose="cover image*"
-											fileOK={props.coverImageOK}
-											setFileOK={props.setCoverImageOK}
-											//  error={errors.coverImage}
-										/>
-										{!props.coverImageOK.initial && (
-											<Typography variant="caption" className={classes.customError}>
-												This field is required
+							<Grid item xs={12} container className={classes.rightForm}>
+								<Grid item xs={12}>
+									<Grid container>
+										<Grid item xs={3}>
+											<Typography className={classes.subHeaderRight}>
+												Information
 											</Typography>
-										)}
-										<Grid container>
-											<CategoriesAutoComplete
-												formObject={props.localCats}
-												setFormObject={props.setLocalCats}
-												handler={props.handleCatsChange}
-												error={props.errors.categories}
-												errors={props.errors}
-												setErrors={props.setErrors}
-												validationResult={props.validationResult}
-												setValidationResult={props.setValidationResult}
+										</Grid>
+										<Grid item xs={9}>
+											<DropZone
+												className={classes.dropZone}
+												fileTypes=".png, .jpg, .svg, .jfif, .webp"
+												onDrop={props.onDropCover}
+												uploadedImage={props.coverImage}
+												setUploadedImage={props.setCoverImage}
+												purpose="cover image*"
+												fileOK={props.coverImageOK}
+												setFileOK={props.setCoverImageOK}
+												//  error={errors.coverImage}
+											/>
+											{!props.coverImageOK.initial && (
+												<Typography variant="caption" className={classes.customError}>
+													This field is required
+												</Typography>
+											)}
+											<Grid container className={classes.autoCompletesContainer}>
+												<CategoriesAutoComplete
+													formObject={props.localCats}
+													setFormObject={props.setLocalCats}
+													handler={props.handleCatsChange}
+													error={props.errors.categories}
+													errors={props.errors}
+													setErrors={props.setErrors}
+													validationResult={props.validationResult}
+													setValidationResult={props.setValidationResult}
+												/>
+												<TagsAutoComplete
+													className={classes.tagsInputContainer}
+													formObject={props.localTags}
+													setFormObject={props.setLocalTags}
+													handler={props.handleTagsValue}
+													// chipClassName={classes.chip}
+												/>
+											</Grid>
+										</Grid>
+									</Grid>
+								</Grid>
+
+								<Divider className={classes.divider} />
+								<Grid item xs={12}>
+									<Grid
+										container
+										className={`${classes.marginTop15} ${classes.eventsScrolledContainer}`}
+									>
+										<Grid item xs={3}>
+											<Typography className={classes.subHeaderRight}>Events</Typography>
+										</Grid>
+										<Grid item xs={9}>
+											<Grid
+												container
+												className={classes.eventContainer}
+												alignItems="center"
+												justifyContent="space-between"
+											>
+												<Grid item xs={5}>
+													<StyledTextField
+														onChange={(e) => {
+															props.setCurrentEvent({
+																...props.currentEvent,
+																title: e.target.value,
+															});
+															props.validateEvent(
+																{ title: e.target.value },
+																props.errorsEvent,
+																props.setErrorsEvent,
+																props.setValidationResultEvent,
+															);
+														}}
+														value={props.currentEvent.title}
+														variant="outlined"
+														placeholder="Title"
+														className={classes.textField}
+														inputProps={{
+															maxLength: 50,
+														}}
+													/>
+												</Grid>
+												<Grid item xs={5}>
+													<KeyboardDatePicker
+														autoOk
+														orientation="portrait"
+														disableToolbar
+														variant="inline"
+														inputVariant="outlined"
+														format={'dd/MM/yyyy'}
+														placeholder="Date"
+														value={props.currentEvent.date}
+														className={classes.eventDatePicker}
+														InputAdornmentProps={{ position: 'end' }}
+														keyboardIcon={
+															<CalendarIcon className={classes.calendarIcon} />
+														}
+														onChange={(date) => {
+															props.setCurrentEvent({
+																...props.currentEvent,
+																date: date,
+															});
+															props.validateEvent(
+																{ date: date },
+																props.errorsEvent,
+																props.setErrorsEvent,
+																props.setValidationResultEvent,
+															);
+														}}
+														PopoverProps={{
+															classes: { paper: classes.calendarPaper },
+														}}
+													/>
+												</Grid>
+
+												<Grid item xs={1}>
+													<AddButton
+														disableRipple
+														disabled={!props.ifCurrentEventFilled}
+														onClick={props.addEvent}
+													>
+														<AddIcon
+															className={clsx(classes.addIcon, {
+																[classes.addIconDisabled]:
+																	!props.ifCurrentEventFilled,
+															})}
+														/>
+													</AddButton>
+												</Grid>
+											</Grid>
+											{props.localForm &&
+												props.localForm.events &&
+												props.localForm.events.map((event, index) => (
+													<Grid
+														container
+														className={classes.eventContainer}
+														alignItems="center"
+														justifyContent="space-between"
+														key={index}
+														ref={(el) =>
+															(props.tableRowsRefs.current[index] = el)
+														}
+													>
+														<Grid item xs={5}>
+															<StyledTextField
+																onChange={(e) =>
+																	props.updatePropertyField(
+																		index,
+																		e.target.value,
+																		'title',
+																		'events',
+																	)
+																}
+																value={event.title}
+																variant="outlined"
+																placeholder="Title"
+																className={classes.textField}
+																inputProps={{
+																	maxLength: 50,
+																}}
+															/>
+														</Grid>
+														<Grid item xs={5}>
+															<KeyboardDatePicker
+																autoOk
+																orientation="portrait"
+																disableToolbar
+																variant="inline"
+																inputVariant="outlined"
+																format={'dd/MM/yyyy'}
+																placeholder="Date"
+																value={event.date}
+																className={classes.eventDatePicker}
+																InputAdornmentProps={{ position: 'end' }}
+																keyboardIcon={
+																	props.localForm.events[index]
+																		.date ? null : (
+																		<CalendarIcon
+																			className={classes.calendarIcon}
+																		/>
+																	)
+																}
+																onChange={(date) =>
+																	props.updatePropertyField(
+																		index,
+																		date,
+																		'date',
+																		'events',
+																	)
+																}
+																style={{ width: '100%', maxHeight: '53px' }}
+																PopoverProps={{
+																	classes: { paper: classes.calendarPaper },
+																}}
+															/>
+														</Grid>
+														<Grid item xs={1}>
+															<DeleteButton
+																disableRipple
+																onClick={() =>
+																	props.deleteItem(index, 'events')
+																}
+															>
+																<ClearIcon className={classes.clearIcon} />
+															</DeleteButton>
+														</Grid>
+													</Grid>
+												))}
+										</Grid>
+									</Grid>
+								</Grid>
+
+								<Divider className={classes.divider} />
+
+								<Grid item xs={12}>
+									<Grid container className={classes.marginTop15}>
+										<Grid item xs={3}>
+											<Typography className={classes.subHeaderRight}>
+												Attachments
+											</Typography>
+										</Grid>
+										<Grid item xs={9}>
+											<DropZoneMulti
+												className={classes.uploadAttachment}
+												fileTypes=".jpg, .png, .svg, .doc, .docx, .pdf"
+												onDrop={props.onDrop}
+												purpose="your files"
+												localForm={props.localForm}
+												deleteItem={props.deleteItem}
 											/>
 										</Grid>
-										<TagsAutoComplete
-											className={classes.tagsInputContainer}
-											formObject={props.localTags}
-											setFormObject={props.setLocalTags}
-											handler={props.handleTagsValue}
-											// chipClassName={classes.chip}
-										/>
 									</Grid>
 								</Grid>
 							</Grid>
-
-							<Divider className={classes.divider} />
 							<Grid item xs={12}>
 								<Grid
 									container
-									className={`${classes.marginTop15} ${classes.eventsScrolledContainer}`}
+									justifyContent="space-between"
+									className={classes.buttonsContainer}
 								>
-									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>Events</Typography>
-									</Grid>
-									<Grid item xs={9}>
-										<Grid
-											container
-											className={classes.eventContainer}
-											alignItems="center"
-											justifyContent="space-between"
-										>
-											<Grid item xs={5}>
-												<StyledTextField
-													onChange={(e) => {
-														props.setCurrentEvent({
-															...props.currentEvent,
-															title: e.target.value,
-														});
-														props.validateEvent(
-															{ title: e.target.value },
-															props.errorsEvent,
-															props.setErrorsEvent,
-															props.setValidationResultEvent,
-														);
-													}}
-													value={props.currentEvent.title}
-													variant="outlined"
-													placeholder="Title"
-													className={classes.textField}
-													inputProps={{
-														maxLength: 50,
-													}}
-												/>
-											</Grid>
-											<Grid item xs={5}>
-												<KeyboardDatePicker
-													autoOk
-													orientation="portrait"
-													disableToolbar
-													variant="inline"
-													inputVariant="outlined"
-													format={'dd/MM/yyyy'}
-													placeholder="Date"
-													value={props.currentEvent.date}
-													className={classes.eventDatePicker}
-													InputAdornmentProps={{ position: 'end' }}
-													keyboardIcon={
-														<CalendarIcon className={classes.calendarIcon} />
-													}
-													onChange={(date) => {
-														props.setCurrentEvent({
-															...props.currentEvent,
-															date: date,
-														});
-														props.validateEvent(
-															{ date: date },
-															props.errorsEvent,
-															props.setErrorsEvent,
-															props.setValidationResultEvent,
-														);
-													}}
-													PopoverProps={{
-														classes: { paper: classes.calendarPaper },
-													}}
-												/>
-											</Grid>
-
-											<Grid item xs={1}>
-												<AddButton
-													disableRipple
-													disabled={!props.ifCurrentEventFilled}
-													onClick={props.addEvent}
-												>
-													<AddIcon
-														className={clsx(classes.addIcon, {
-															[classes.addIconDisabled]:
-																!props.ifCurrentEventFilled,
-														})}
-													/>
-												</AddButton>
-											</Grid>
-										</Grid>
-										{props.localForm &&
-											props.localForm.events &&
-											props.localForm.events.map((event, index) => (
-												<Grid
-													container
-													className={classes.eventContainer}
-													alignItems="center"
-													justifyContent="space-between"
-													key={index}
-													ref={(el) => (props.tableRowsRefs.current[index] = el)}
-												>
-													<Grid item xs={5}>
-														<StyledTextField
-															onChange={(e) =>
-																props.updatePropertyField(
-																	index,
-																	e.target.value,
-																	'title',
-																	'events',
-																)
-															}
-															value={event.title}
-															variant="outlined"
-															placeholder="Title"
-															className={classes.textField}
-															inputProps={{
-																maxLength: 50,
-															}}
-														/>
-													</Grid>
-													<Grid item xs={5}>
-														<KeyboardDatePicker
-															autoOk
-															orientation="portrait"
-															disableToolbar
-															variant="inline"
-															inputVariant="outlined"
-															format={'dd/MM/yyyy'}
-															placeholder="Date"
-															value={event.date}
-															className={classes.eventDatePicker}
-															InputAdornmentProps={{ position: 'end' }}
-															keyboardIcon={
-																props.localForm.events[index].date ? null : (
-																	<CalendarIcon
-																		className={classes.calendarIcon}
-																	/>
-																)
-															}
-															onChange={(date) =>
-																props.updatePropertyField(
-																	index,
-																	date,
-																	'date',
-																	'events',
-																)
-															}
-															style={{ width: '100%', maxHeight: '53px' }}
-															PopoverProps={{
-																classes: { paper: classes.calendarPaper },
-															}}
-														/>
-													</Grid>
-													<Grid item xs={1}>
-														<DeleteButton
-															disableRipple
-															onClick={() => props.deleteItem(index, 'events')}
-														>
-															<ClearIcon className={classes.clearIcon} />
-														</DeleteButton>
-													</Grid>
-												</Grid>
-											))}
-									</Grid>
-								</Grid>
-							</Grid>
-
-							<Divider className={classes.divider} />
-
-							<Grid item xs={12}>
-								<Grid container className={classes.marginTop15}>
-									<Grid item xs={3}>
-										<Typography className={classes.subHeaderRight}>
-											Attachments
-										</Typography>
-									</Grid>
-									<Grid item xs={9}>
-										<DropZoneMulti
-											className={classes.uploadAttachment}
-											fileTypes=".jpg, .png, .svg, .doc, .docx, .pdf"
-											onDrop={props.onDrop}
-											purpose="your files"
-											localForm={props.localForm}
-											deleteItem={props.deleteItem}
-										/>
-									</Grid>
-								</Grid>
-							</Grid>
-						</Grid>
-						<Grid item xs={12}>
-							<Grid
-								container
-								justifyContent="space-between"
-								className={classes.buttonsContainer}
-							>
-								{((props.chosenResearch && props.chosenResearch.status === 'draft') ||
-									!props.chosenResearch) && (
-									<OutlinedButton onClick={() => props.sendPublication('save-draft')}>
-										Save Draft
+									{((props.chosenResearch && props.chosenResearch.status === 'draft') ||
+										!props.chosenResearch) && (
+										<OutlinedButton onClick={() => props.sendPublication('save-draft')}>
+											Save Draft
+										</OutlinedButton>
+									)}
+									<OutlinedButton onClick={() => props.sendPublication('preview')}>
+										Preview
 									</OutlinedButton>
-								)}
-								<OutlinedButton onClick={() => props.sendPublication('preview')}>
-									Preview
-								</OutlinedButton>
-								<FilledButton
-									disabled={
-										!props.validationResult ||
-										!props.validationResultEvent ||
-										!props.coverImageOK.final ||
-										!props.contentNotOK.isText
-									}
-									onClick={() => props.sendPublication('done')}
-								>
-									Done
-								</FilledButton>
+									<FilledButton
+										disabled={
+											!props.validationResult ||
+											!props.validationResultEvent ||
+											!props.coverImageOK.final ||
+											!props.contentNotOK.isText
+										}
+										onClick={() => props.sendPublication('done')}
+									>
+										Done
+									</FilledButton>
+								</Grid>
 							</Grid>
 						</Grid>
 					</Grid>

@@ -34,6 +34,7 @@
 		"lodash": "^4.17.21",
 		"moment": "^2.29.1",
 		"mui-rte": "^1.29.0",
+		"p-limit": "^4.0.0",
 		"pdfjs-dist": "^2.11.338",
 		"react": "^17.0.2",
 		"react-animated-css": "^1.2.1",

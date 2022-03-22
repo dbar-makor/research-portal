@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "start": "yarn workspaces run start:dev",
+    "start": "yarn workspaces run start",
     "lint": "yarn workspaces run lint",
     "format": "yarn workspaces run format",
     "template:container": "hygen component new-container",

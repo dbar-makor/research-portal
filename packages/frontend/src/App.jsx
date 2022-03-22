@@ -116,6 +116,7 @@ function App() {
 			<Switch>
 				<PrivateRoute exact path="/researches" component={AllPublications} />
 				<PrivateRoute exact path="/new-article" component={AuthorsNewArticle} />
+				<PrivateRoute exact path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/upload-article" component={DeadArticle} />
 				<PrivateRoute exact path="article/:id" component={Article} />
 				<PrivateRoute path="/prearticle" component={FullPublication} />
@@ -129,6 +130,7 @@ function App() {
 			<Switch>
 				<PrivateRoute exact path="/companies" component={Sales} />
 				<PrivateRoute exact path="/contracts" component={AllContracts} />
+				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/invoices" component={AllInvoices} />
 				<PrivateRoute exact path="/contract" component={GeneralContractView} />
 				<PrivateRoute path="/*" component={LoginPage} />
@@ -141,6 +143,7 @@ function App() {
 			<Switch>
 				<PrivateRoute exact path="/companies" component={Sales} />
 				<PrivateRoute exact path="/contract" component={GeneralContractView} />
+				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/authors" component={AuthorsUsersScreen} />
 				<PrivateRoute exact path="/sales" component={SalesUsersScreen} />
 				<PrivateRoute path="/*" component={LoginPage} />
@@ -152,9 +155,7 @@ function App() {
 		return (
 			<Switch>
 				<PrivateRoute path="/home" component={MembersMain} />
-				<PrivateRoute path="/settings">
-					<AccountSettings />
-				</PrivateRoute>
+				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/article/:pubId" component={FullPublication} />
 				<PrivateRoute exact path="/all_notfications" component={AllNotifications} />
 				<PrivateRoute path="/*" component={LoginPage} />

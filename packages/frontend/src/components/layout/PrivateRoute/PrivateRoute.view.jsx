@@ -4,7 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 //import useStyles from './PrivateRoute.style';
 
 const PrivateRouteView = (props) => {
-const Component = props.Component;
+const Component = props.component;
+
   return  (
 		<Route
 			{...props.rest}

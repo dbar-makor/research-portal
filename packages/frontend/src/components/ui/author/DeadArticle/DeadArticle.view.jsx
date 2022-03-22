@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, { forwardRef } from 'react';
 import { Grid, Typography, Button, Divider } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import Radio from '@material-ui/core/Radio';
@@ -23,16 +23,14 @@ import TagsAutoComplete from '../../reusables/TagsAutoComplete/TagsAutoComplete'
 import { selectChosenResearch } from '../../../../redux/researches/chosenResearchSlice';
 import { useSelector } from 'react-redux';
 
-
 //import useStyles from './DeadArticle.style';
 
-const DeadArticleView = forwardRef((props,ref) => {
-
-  const chosenResearch = useSelector(selectChosenResearch);
+const DeadArticleView = forwardRef((props, ref) => {
+	const chosenResearch = useSelector(selectChosenResearch);
 
 	const classes = useStyles();
 	return (
-		<Grid container justifyContent="center">
+		<Grid container justifyContent="center" className={classes.newArticleWrapper}>
 			<Grid item xs={10} className={classes.newArticleContainer}>
 				<SubHeader title="Upload Research" />
 			</Grid>
@@ -44,8 +42,8 @@ const DeadArticleView = forwardRef((props,ref) => {
 					backgroundColor: '#fff',
 					width: '812px',
 					position: 'absolute',
-					top: '124px',
-					left: '554px',
+					top: '15vh',
+					left: '30vw',
 					alignItems: 'center',
 					borderRadius: '8px',
 					border: '1px solid #EDEFF3',
@@ -244,12 +242,12 @@ const DeadArticleView = forwardRef((props,ref) => {
 										InputAdornmentProps={{ position: 'end' }}
 										keyboardIcon={<CalendarIcon className={classes.calendarIcon} />}
 										onChange={(date) => {
-											props.setCurrentEvent({ ...	props.currentEvent, date: date });
-                      props.validateEvent(
+											props.setCurrentEvent({ ...props.currentEvent, date: date });
+											props.validateEvent(
 												{ date: date },
-                        props.errorsEvent,
-                        props.setErrorsEvent,
-                        props.setValidationResultEvent,
+												props.errorsEvent,
+												props.setErrorsEvent,
+												props.setValidationResultEvent,
 											);
 										}}
 										PopoverProps={{
@@ -320,7 +318,7 @@ const DeadArticleView = forwardRef((props,ref) => {
 													)
 												}
 												onChange={(date) =>
-                          props.updatePropertyField(index, date, 'date', 'events')
+													props.updatePropertyField(index, date, 'date', 'events')
 												}
 												style={{ width: '100%', maxHeight: '53px' }}
 												PopoverProps={{
@@ -331,7 +329,7 @@ const DeadArticleView = forwardRef((props,ref) => {
 										<Grid item xs={1} style={{ textAlignLast: 'right' }}>
 											<DeleteButton
 												disableRipple
-												onClick={() => 	props.deleteItem(index, 'events')}
+												onClick={() => props.deleteItem(index, 'events')}
 											>
 												<ClearIcon className={classes.clearIcon} />
 											</DeleteButton>
@@ -433,10 +431,10 @@ const DeadArticleView = forwardRef((props,ref) => {
 															} else {
 																props.validateDeadPublication(
 																	{ file_pdf: props.localForm.title_pdf },
-                                  props.errors,
-                                  props.setErrors,
-                                  props.setValidationResult,
-                                  props.selectedValue,
+																	props.errors,
+																	props.setErrors,
+																	props.setValidationResult,
+																	props.selectedValue,
 																);
 															}
 														}}
@@ -449,7 +447,7 @@ const DeadArticleView = forwardRef((props,ref) => {
 													Upload PDF
 													<FileUpload
 														className={
-                              props.selectedValue === 'pdf'
+															props.selectedValue === 'pdf'
 																? classes.arrow2Style
 																: classes.arrowStyle
 														}
@@ -457,13 +455,17 @@ const DeadArticleView = forwardRef((props,ref) => {
 												</>
 											)}
 										</Button>
-										{!!	props.errors.file_pdf && (
+										{!!props.errors.file_pdf && (
 											<Typography
 												variant="caption"
 												className={classes.customError}
-												style={props.selectedValue === 'video' ? { color: '#868DA2' } : {}}
+												style={
+													props.selectedValue === 'video'
+														? { color: '#868DA2' }
+														: {}
+												}
 											>
-												{	props.errors.file_pdf}
+												{props.errors.file_pdf}
 											</Typography>
 										)}
 									</label>
@@ -486,7 +488,7 @@ const DeadArticleView = forwardRef((props,ref) => {
 										name="radio-button-demo"
 										color="default"
 										className={
-                      props.selectedValue === 'video'
+											props.selectedValue === 'video'
 												? classes.radioStyle
 												: classes.disabledRadio
 										}
@@ -576,7 +578,9 @@ const DeadArticleView = forwardRef((props,ref) => {
 							<Grid item xs={3}>
 								<FilledButton
 									disabled={
-										!props.validationResult || !props.validationResultEvent || !props.coverImageOK.final
+										!props.validationResult ||
+										!props.validationResultEvent ||
+										!props.coverImageOK.final
 									}
 									onClick={() => props.sendPublication('done')}
 									className={classes.publishStyle}

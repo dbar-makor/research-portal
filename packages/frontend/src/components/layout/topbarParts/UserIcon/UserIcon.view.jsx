@@ -66,36 +66,36 @@ const UserIconView = forwardRef((props, ref) => {
 										id="composition-menu"
 										aria-labelledby="composition-button"
 									>
-										{props.userType === 'client' || props.userType === 'prospect' ? (
-											<>
-												<MenuItem>
-													<Link
-														to={'/home'}
-														style={{
-															textDecoration: 'none',
-															color: '#bababa',
-															fontSize: 14,
-														}}
-													>{`Hey , ${props.user.name}`}</Link>
-												</MenuItem>
-												<MenuItem>
-													<Link
-														to={'/settings/edit'}
-														onClick={() => props.setOpen(false)}
-														style={{ textDecoration: 'none', color: '#000' }}
-													>
-														Edit Profile
-													</Link>
-												</MenuItem>
-												<MenuItem>
-													<Link
-														to={'/settings/settings'}
-														onClick={() => props.setOpen(false)}
-														style={{ textDecoration: 'none', color: '#000' }}
-													>
-														Settings
-													</Link>
-												</MenuItem>
+										<>
+											<MenuItem>
+												<Link
+													to={'/home'}
+													style={{
+														textDecoration: 'none',
+														color: '#bababa',
+														fontSize: 14,
+													}}
+												>{`Hey , ${props.user.name}`}</Link>
+											</MenuItem>
+											<MenuItem>
+												<Link
+													to={'/settings/edit'}
+													onClick={() => props.setOpen(false)}
+													style={{ textDecoration: 'none', color: '#000' }}
+												>
+													Edit Profile
+												</Link>
+											</MenuItem>
+											<MenuItem>
+												<Link
+													to={'/settings/settings'}
+													onClick={() => props.setOpen(false)}
+													style={{ textDecoration: 'none', color: '#000' }}
+												>
+													Settings
+												</Link>
+											</MenuItem>
+											{props.userType === 'client' || props.userType === 'prospect' ? (
 												<MenuItem>
 													<Link
 														to={'/settings/contract_trails'}
@@ -105,8 +105,8 @@ const UserIconView = forwardRef((props, ref) => {
 														Contracts & Trails
 													</Link>
 												</MenuItem>
-											</>
-										) : null}
+											) : null}
+										</>
 										<MenuItem onClick={props.handleLogout} style={{ color: '#FF0000' }}>
 											<ExitToAppIcon />
 											Logout

@@ -5,7 +5,6 @@ import BellNotifications from '../topbarParts/BellNotifications/BellNotification
 import UserIcon from '../topbarParts/UserIcon/UserIcon';
 import TradingHourUnit from '../topbarParts/TradingHourUnit/TradingHourUnit';
 
-//import useStyles from './TradingHours.style';
 
 const TradingHoursView = forwardRef((props, ref) => {
 	const classes = useStyles();

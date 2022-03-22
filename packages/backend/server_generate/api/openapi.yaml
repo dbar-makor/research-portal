@@ -13,7 +13,7 @@ servers:
 - description: Ortal LOCAL server
   url: http://localhost:8097
 - description: DEV server
-  url: http://10.0.0.38:8096
+  url: http://10.0.0.24:8096
 tags:
 - name: auth
 - name: utils

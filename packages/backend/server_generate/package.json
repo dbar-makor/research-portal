@@ -1,5 +1,5 @@
 {
-  "name": "@r/backend",
+  "name": "research",
   "version": "1.0.0",
   "description": "Project research",
   "main": "index.js",
@@ -14,18 +14,14 @@
   "license": "Unlicense",
   "private": true,
   "dependencies": {
-    "@firebase/app-compat": "^0.1.10",
     "@sendgrid/mail": "^7.4.0",
-    "apn": "^2.2.0",
     "body-parser": "^1.19.0",
     "camelcase": "^5.3.1",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
-    "date-fns": "^2.27.0",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "express-openapi-validator": "4.13.4",
-    "firebase-admin": "^10.0.0",
+    "express-openapi-validator": "^3.9.1",
     "js-yaml": "^3.3.0",
     "jshashes": "^1.0.8",
     "jsonwebtoken": "^8.5.1",
@@ -35,13 +31,8 @@
     "nodemon": "^2.0.4",
     "ono": "^5.0.1",
     "openapi-sampler": "^1.0.0-beta.15",
-    "path": "^0.12.7",
-    "pdfkit": "^0.13.0",
     "swagger-ui-express": "^4.0.2",
-    "twilio": "^3.71.2",
-    "uuid": "^8.3.2",
-    "winston": "^3.2.1",
-    "ws": "^8.3.0"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "axios": "^0.21.1",

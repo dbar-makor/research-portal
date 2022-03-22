@@ -1,4 +1,4 @@
-import React,{forwardRef} from 'react';
+import React, { forwardRef } from 'react';
 import { useStyles } from '../../../styles/MainStyles';
 import { Grid } from '@material-ui/core';
 import BellNotifications from '../topbarParts/BellNotifications/BellNotifications';
@@ -7,14 +7,14 @@ import TradingHourUnit from '../topbarParts/TradingHourUnit/TradingHourUnit';
 
 //import useStyles from './TradingHours.style';
 
-const TradingHoursView = forwardRef((props,ref) => {
+const TradingHoursView = forwardRef((props, ref) => {
 	const classes = useStyles();
 
 	return (
 		<Grid container className={classes.topTopWrapper}>
 			<Grid item xs={9} container direction="row" className={classes.cityWrapper}>
-				{props.formattedData.map((item) => {
-					return <TradingHourUnit key={item.city} item={item} classes={classes} />;
+				{props.formattedData.map((item, key) => {
+					return <TradingHourUnit key={key} item={item} classes={classes} />;
 				})}
 			</Grid>
 			<Grid

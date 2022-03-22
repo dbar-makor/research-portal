@@ -157,7 +157,7 @@ const AuthorsNewArticleView = (props) => {
 													This field is required
 												</Typography>
 											)}
-											<Grid container>
+											<Grid container className={classes.autoCompletesContainer}>
 												<CategoriesAutoComplete
 													formObject={props.localCats}
 													setFormObject={props.setLocalCats}

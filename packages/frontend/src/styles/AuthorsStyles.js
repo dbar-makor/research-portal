@@ -4,6 +4,9 @@ export const useStyles = makeStyles(() => ({
 		marginTop: '4.3vh',
 		height: 'fit-content',
 	},
+	newArticleWrapper:{
+		height: 'content-fit'
+	},
 	marginBottom35: {
 		marginBottom: '35px',
 	},
@@ -201,6 +204,9 @@ export const useStyles = makeStyles(() => ({
 	subHeaderRight: {
 		color: '#868DA2',
 		fontSize: '16px',
+	},
+	autoCompletesContainer:{
+		marginBottom: '16px',
 	},
 	divider: {
 		backgroundColor: '#EDEFF3',

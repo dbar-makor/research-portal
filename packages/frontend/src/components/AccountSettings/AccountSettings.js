@@ -208,6 +208,7 @@ const AccountSettings = () => {
 				{/* ROUTING GRID */}
 				<Grid item xs={10}>
 					<Switch>
+						{console.log('path', path)}
 						<PrivateRoute path={`${path}/settings`} component={Settings} />
 						<PrivateRoute path={`${path}/edit`} component={EditProfile} />
 						<PrivateRoute path={`${path}/contract_trails`} component={ContractAndTrails} />

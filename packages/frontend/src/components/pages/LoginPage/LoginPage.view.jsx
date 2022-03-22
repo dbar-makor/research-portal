@@ -30,10 +30,7 @@ const LoginPageView = (props) => {
 					<Grid
 						item
 						xs={12}
-						// sm={5}
-						// lg={4}
 						className={classes.paddingOfGrid}
-						//  className={classes.loginGridPadding}
 					>
 						<Grid container justifyContent="center">
 							<BlueBorder />
@@ -131,7 +128,7 @@ const LoginPageView = (props) => {
 											id="loginBtn"
 											varint="outlined"
 											onClick={props.handleLogin}
-											disabled={!props.validationResult}
+											disabled={!props.validationResult || props.loadingIndicator}
 											className={classes.logIn}
 											//   disabled={form.username === "" || form.password === ""}
 										>

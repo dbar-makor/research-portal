@@ -1,8 +1,11 @@
-## [1.0.10](https://github.com/dbar-makor/research-portal/compare/v1.0.9...v1.0.10) (2022-03-22)
+## [1.0.10](https://github.com/dbar-makor/research-portal/compare/v1.0.9...v1.0.10) (2022-03-21)
+
+
 
 
 ### Bug Fixes
 
+* 🐞 disable login button while sending request ([1cf3ef7](https://github.com/dbar-makor/research-portal/commit/1cf3ef7f15da793c4ad27b1db24781cd68bdd26e))
 * 🐞 various bug fixes for author views ([5abf4ea](https://github.com/dbar-makor/research-portal/commit/5abf4ea8ddbb43f0ea8e1faffb764cae5eb082ea))
 
 ## [1.0.9](https://github.com/dbar-makor/research-portal/compare/v1.0.8...v1.0.9) (2022-03-21)

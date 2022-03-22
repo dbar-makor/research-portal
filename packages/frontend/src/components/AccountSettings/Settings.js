@@ -12,9 +12,10 @@ const Settings = () => {
 	const dispatch = useDispatch();
 	const getUserSettings = async () => {
 		try {
+			const token = localStorage.getItem('token');
+			axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 			const res = await axios.get(`${BASE_URL}${END_POINT.SETTINGS}/notification`);
 			setLoadingUserSettings(true);
-
 			if (res.status === 200) {
 				setLoadingUserSettings(false);
 				setUserSettings(res.data);
@@ -23,7 +24,6 @@ const Settings = () => {
 			dispatch(actionSnackBar.setSnackBar('error', 'Network error', 3000));
 		}
 	};
-
 	const handleToggle = (e, section, key) => {
 		if (section === 'publications' || section === 'replies') {
 			setUserSettings((prevState) => ({
@@ -54,6 +54,7 @@ const Settings = () => {
 
 	useEffect(() => {
 		sendAfterChange();
+		console.log(userSettings);
 	}, [userSettings]);
 
 	useEffect(() => {

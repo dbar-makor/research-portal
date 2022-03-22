@@ -6,42 +6,42 @@
  * parameters are extracted and sent to the service, and where response is handled.
  */
 
-const Controller = require('./Controller');
-const service = require('../services/AuthService');
+const Controller = require('./Controller')
+const service = require('../services/AuthService')
 const changePassword = async (request, response) => {
-	await Controller.handleRequest(request, response, service.changePassword);
-};
+  await Controller.handleRequest(request, response, service.changePassword)
+}
 
 const createAuth = async (request, response) => {
-	await Controller.handleRequest(request, response, service.createAuth);
-};
+  await Controller.handleRequest(request, response, service.createAuth)
+}
 
 const deleteAuth = async (request, response) => {
-	await Controller.handleRequest(request, response, service.deleteAuth);
-};
+  await Controller.handleRequest(request, response, service.deleteAuth)
+}
 
 const forgotPassword = async (request, response) => {
-	await Controller.handleRequest(request, response, service.forgotPassword);
-};
+  await Controller.handleRequest(request, response, service.forgotPassword)
+}
 
 const registerAuth = async (request, response) => {
-	await Controller.handleRequest(request, response, service.registerAuth);
-};
+  await Controller.handleRequest(request, response, service.registerAuth)
+}
 
 const resetPassword = async (request, response) => {
-	await Controller.handleRequest(request, response, service.resetPassword);
-};
+  await Controller.handleRequest(request, response, service.resetPassword)
+}
 
 const verifyTwofactorAuthMobileAnswer = async (request, response) => {
-	await Controller.handleRequest(request, response, service.verifyTwofactorAuthMobileAnswer);
-};
+  await Controller.handleRequest(request, response, service.verifyTwofactorAuthMobileAnswer)
+}
 
 module.exports = {
-	changePassword,
-	createAuth,
-	deleteAuth,
-	forgotPassword,
-	registerAuth,
-	resetPassword,
-	verifyTwofactorAuthMobileAnswer,
-};
+  changePassword,
+  createAuth,
+  deleteAuth,
+  forgotPassword,
+  registerAuth,
+  resetPassword,
+  verifyTwofactorAuthMobileAnswer,
+}

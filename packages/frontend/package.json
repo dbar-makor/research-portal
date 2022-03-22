@@ -38,6 +38,7 @@
 		"pdfjs-dist": "^2.11.338",
 		"react": "^17.0.2",
 		"react-animated-css": "^1.2.1",
+		"react-avatar-editor": "^12.0.0",
 		"react-calendar": "^3.7.0",
 		"react-date-range": "^1.4.0",
 		"react-day-picker": "^7.4.10",

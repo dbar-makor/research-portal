@@ -7,7 +7,7 @@ import { ReactComponent as BlueShape } from '../../assets/icons/blueBorder.svg';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from '../../styles/AccountSettingsStyles';
-import EditProfile from './EditProfile';
+import EditProfile from '../ui/reusables/EditProfile/EditProfile';
 //import Settings from './Settings';
 import Settings from '../ui/reusables/Settings/Settings';
 import ContractAndTrails from './ContractsAndTrails';
@@ -67,15 +67,15 @@ const AccountSettings = () => {
 				style={{
 					position: 'relative',
 					margin: '60px 0px 59px 450px',
-					width: '65%',
-					height: 'calc(100vh - 380px)',
+					width: '60%',
+					height: 'calc(100vh - 220px)',
 					border: '1px solid #A5AFC233',
 					borderRadius: '8px',
 				}}
 			>
 				<Grid
 					item
-					xs={2}
+					xs={3}
 					style={{
 						backgroundColor: '#F6F9FC',
 						borderTop: '2px solid #A5AFC233',
@@ -227,7 +227,7 @@ const AccountSettings = () => {
 					</Grid>
 				</Grid>
 				{/* ROUTING GRID */}
-				<Grid item xs={10}>
+				<Grid item xs={9}>
 					<Switch>
 						<PrivateRoute path={`${path}/settings`} component={Settings} />
 						<PrivateRoute path={`${path}/edit`} component={EditProfile} />

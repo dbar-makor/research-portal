@@ -38,7 +38,7 @@ const Settings = () => {
 		}
 	};
 	const handleToggle = (e, section, key) => {
-		if (section === 'publications' || section === 'replies') {
+		if (section !=='is_active') {
 			setUserSettings((prevState) => ({
 				...prevState,
 				settings: {

@@ -114,9 +114,9 @@ function App() {
 	const AuthorsViews = () => {
 		return (
 			<Switch>
+				<PrivateRoute  path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/researches" component={AllPublications} />
 				<PrivateRoute exact path="/new-article" component={AuthorsNewArticle} />
-				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/upload-article" component={DeadArticle} />
 				<PrivateRoute exact path="article/:id" component={Article} />
 				<PrivateRoute path="/prearticle" component={FullPublication} />
@@ -128,9 +128,9 @@ function App() {
 	const SalesmenViews = () => {
 		return (
 			<Switch>
+				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/companies" component={Sales} />
 				<PrivateRoute exact path="/contracts" component={AllContracts} />
-				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/invoices" component={AllInvoices} />
 				<PrivateRoute exact path="/contract" component={GeneralContractView} />
 				<PrivateRoute path="/*" component={LoginPage} />
@@ -141,9 +141,9 @@ function App() {
 	const AdminViews = () => {
 		return (
 			<Switch>
+				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/companies" component={Sales} />
 				<PrivateRoute exact path="/contract" component={GeneralContractView} />
-				<PrivateRoute path="/settings" component={AccountSettings} />
 				<PrivateRoute exact path="/authors" component={AuthorsUsersScreen} />
 				<PrivateRoute exact path="/sales" component={SalesUsersScreen} />
 				<PrivateRoute path="/*" component={LoginPage} />

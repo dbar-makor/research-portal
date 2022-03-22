@@ -8,7 +8,6 @@ const SubscriberDetails = () => {
 	const [isEdit, setIsEdit] = useState(false);
 
 	const sendEdit = () => {
-		alert('EDITTT');
 		setIsEdit(!isEdit);
 	};
 

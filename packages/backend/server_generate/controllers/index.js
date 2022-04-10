@@ -3,6 +3,7 @@ const CategoryController = require('./CategoryController')
 const CommentController = require('./CommentController')
 const CompanyController = require('./CompanyController')
 const ContractController = require('./ContractController')
+const EnigmaXController = require('./EnigmaXController')
 const FileController = require('./FileController')
 const InvoiceController = require('./InvoiceController')
 const ProspectController = require('./ProspectController')
@@ -18,6 +19,7 @@ module.exports = {
   CommentController,
   CompanyController,
   ContractController,
+  EnigmaXController,
   FileController,
   InvoiceController,
   ProspectController,

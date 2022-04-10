@@ -1,5 +1,4 @@
 import React from 'react';
-
 import NumberFormatCustomView from './NumberFormatCustom.view';
 import PropTypes from 'prop-types';
 

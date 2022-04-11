@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/dbar-makor/research-portal/compare/v1.2.0...v1.2.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* 🐞 user and publication fixes ([3ba8a27](https://github.com/dbar-makor/research-portal/commit/3ba8a27c6d0a1886260fe3e121fc9798910a9b6a))
+
 # [1.2.0](https://github.com/dbar-makor/research-portal/compare/v1.1.0...v1.2.0) (2022-04-11)
 
 

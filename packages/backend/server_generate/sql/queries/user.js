@@ -67,6 +67,12 @@ const delete_user = (uuid) => {
   WHERE uuid = '${uuid}' AND is_active = 1;`;
 };
 
+const get_user_categories = (uuids) => {
+	return `
+  select id from category where uuid in(${uuids})
+  `;
+};
+
 const get_level_by_uuid = (uuid) => {
 	return `SELECT * FROM level WHERE uuid = '${uuid}';`;
 };
@@ -154,6 +160,11 @@ const get_date_last_client = (user_id) => {
   WHERE c.sales_id=${user_id} 
   ORDER BY cli.created_at DESC limit 1;`;
 };
+const insert_user_category = (userId, categoryId, isActive) => {
+	return `
+  insert into user_has_category(user_id,category_id,is_active)values(${userId},${categoryId},${isActive})
+  `;
+};
 const get_date_last_prospect = (user_id) => {
 	return `SELECT p.created_at FROM 
    prospect p INNER JOIN company c 
@@ -207,4 +218,6 @@ module.exports = {
 	get_count_clients,
 	get_count_prospects,
 	get_last_publication,
+	get_user_categories,
+	insert_user_category,
 };

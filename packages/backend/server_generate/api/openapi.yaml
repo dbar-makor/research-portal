@@ -2817,6 +2817,10 @@ components:
       - username
     user_update:
       properties:
+        avatar:
+          type: string
+        birthday:
+          type: string
         name:
           example: john doe
           type: string
@@ -2828,13 +2832,12 @@ components:
           type: string
         categories:
           description: 'associate categories (uuid-s) array to user '
-          example:
-          - 4c9b048d-4c27-11ec-8f4c-10e7c6179426
-          - 13b5d04c-4dc7-11ec-ae2c-0068ebbf7c92
           items:
-            example: 4c9b048d-4c27-11ec-8f4c-10e7c6179426
+            format: uuid
             type: string
           type: array
+        phone:
+          $ref: '#/components/schemas/user_update_phone'
         position:
           description: associate company position (role) to user
           example: CTO
@@ -3787,6 +3790,13 @@ components:
           description: dialing code of the country
           example: "972"
           pattern: ^[0-9]{1,4}$
+          type: string
+      type: object
+    user_update_phone:
+      properties:
+        dialing_code:
+          type: string
+        number:
           type: string
       type: object
     users_users:

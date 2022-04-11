@@ -2531,6 +2531,10 @@ components:
                 - username
         user_update:
             properties:
+                avatar:
+                    type: string
+                birthday:
+                    type: string
                 name:
                     example: "john doe"
                     type: string
@@ -2542,21 +2546,24 @@ components:
                     format: email
                 categories:
                     type: array
-                    example:
-                        [
-                            "4c9b048d-4c27-11ec-8f4c-10e7c6179426",
-                            "13b5d04c-4dc7-11ec-ae2c-0068ebbf7c92",
-                        ]
-                    description: "associate categories (uuid-s) array to user "
                     items:
                         type: string
-                        example: "4c9b048d-4c27-11ec-8f4c-10e7c6179426"
+                        format: uuid
+                    description: "associate categories (uuid-s) array to user "
+                phone:
+                    type: object
+                    properties:
+                        dialing_code:
+                            type: string
+                        number:
+                            type: string
                 position:
                     type: string
                     example: "CTO"
                     description: "associate company position (role) to user"
                 status:
                     type: boolean
+
         users:
             description: "Object of user profiles"
             type: object

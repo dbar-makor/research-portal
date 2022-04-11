@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import { useMapData } from '../../customHooks/useMapData';
 import { geoMercator, geoPath } from 'd3';
-import WorldMapSingle from './ShowPublication/WorldMapSingle';
+import WorldMapSingle from '../ui/members/ShowPublication/WorldMapSingle/WorldMapSingle';
 
 const width = 350;
 const height = 200;

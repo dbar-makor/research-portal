@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dbar-makor/research-portal/compare/v1.1.0...v1.2.0) (2022-04-11)
+
+
+### Features
+
+* 🔥 public api for enigma z ([b3233a0](https://github.com/dbar-makor/research-portal/commit/b3233a07edcaa342c17864e9707938ff9dc90806))
+
 # [1.1.0](https://github.com/dbar-makor/research-portal/compare/v1.0.10...v1.1.0) (2022-03-22)
 
 

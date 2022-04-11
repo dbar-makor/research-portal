@@ -19,6 +19,7 @@ Publication.createPublication = async (payload, result) => {
 	try {
 		const { id: user_id } = payload.bearerAuth.user;
 		const unprocessed_data = payload.publicationCreate;
+		console.log(unprocessed_data);
 		const processed_data = await process_data(unprocessed_data);
 		processed_data.user_id = user_id;
 		const categories = processed_data.categories;
@@ -388,13 +389,14 @@ Publication.getPublicationById = async (payload, result) => {
 Publication.updatePublication = async (payload, result) => {
 	try {
 		const { id: user_id } = payload.bearerAuth.user;
-		console.log('payload', payload);
 		const unprocessed_data = payload.publicationUpdate;
 		const status = unprocessed_data.status;
 		delete unprocessed_data.status;
 		const { id: publication_uuid } = payload;
 		delete unprocessed_data.id;
+
 		const processed_data = await process_data(unprocessed_data);
+		
 		const categories = processed_data.categories;
 		const tags = processed_data.tags;
 		const events = processed_data.events;
@@ -1016,14 +1018,16 @@ const process_data = (unprocessed_data) => {
 						processed_data[key] = val.trim();
 						break;
 					case 'categories':
-						if (isArray(val) && val.length) {
-							processed_data[key] = val;
-						} else {
-							return reject({ status: 400 });
-						}
+						if (isArray(val)) {
+							if (unprocessed_data['status'] === 'draft') processed_data[key] = val;
+							else {
+								if (val.length) processed_data[key] = val;
+								else return reject({ status: 400 });
+							}
+						} else return reject({ status: 400 });
 						break;
 					case 'tags':
-						if (isArray(val) && val.length) {
+						if (isArray(val)) {
 							processed_data[key] = [];
 							for (const tag_value of Object.values(val)) {
 								const new_tag = {};
@@ -1037,10 +1041,10 @@ const process_data = (unprocessed_data) => {
 									return reject({ status: 400 });
 								}
 							}
-						}
+						} else return reject({ status: 400 });
 						break;
 					case 'events':
-						if (isArray(val) && val.length) {
+						if (isArray(val)) {
 							processed_data[key] = [];
 							for (const event_value of Object.values(val)) {
 								const new_event = {};
@@ -1065,19 +1069,23 @@ const process_data = (unprocessed_data) => {
 						}
 						break;
 					case 'attachments':
-						let has_main_bg = false;
-						if (isArray(val) && val.length) {
+						//!incase of array
+						if (isArray(val)) {
 							processed_data[key] = [];
-							for (const attachment of Object.values(val)) {
-								if (attachment.file_type == 'main_bg') has_main_bg = true;
-								if (!attachment.file_name || !attachment.file_name_system) {
-									return reject({ status: 401 });
-								} else {
-									processed_data[key].push(attachment);
-								}
+							const status = unprocessed_data['status'];
+							//!incase of draft
+							if (status === 'draft') {
+								processed_data[key] = [...val];
+								//!incase of published
+							} else {
+								const isMainBgExist = val.some(
+									(attachment) => attachment.file_type === 'main_bg',
+								);
+
+								if (isMainBgExist) processed_data[key] = [...val];
+								else return reject({ status: 400 });
 							}
-							if (!has_main_bg) return reject({ status: 401 });
-						}
+						} else return reject({ status: 400 });
 						break;
 					case 'comments':
 						processed_data[key] = val;
@@ -1109,13 +1117,21 @@ const process_data = (unprocessed_data) => {
 					case 'published_at':
 						processed_data[key] = moment(val, 'YYYY-MM-DD').toDate();
 						break;
+
 					default:
-						console.log('key', key);
 						return reject({ status: 404 });
 				}
 			}
 		}
-		return resolve(processed_data);
+
+		const isInfoExist = Object.values(processed_data).some((data) => {
+			if (isArray(data)) return data.length > 0;
+			else if (typeof data === 'object') return Object.values(data).length > 0;
+			else return data.length > 0;
+		});
+
+		if (isInfoExist) return resolve(processed_data);
+		else return reject({ status: 400 });
 	});
 };
 

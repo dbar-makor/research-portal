@@ -262,6 +262,7 @@ User.getUserById = async (payload, result) => {
 				last_connected_at: user.last_connected_at,
 				total_published: res_statistics ? res_statistics.posts : null,
 				phone: user.phone,
+				position: user.position,
 			};
 			user = format_user;
 		}
@@ -289,46 +290,18 @@ User.updateUser = async (payload, result) => {
 		const host = process.env.DB_NAME;
 		const { id } = payload;
 		const unprocessed_payload = payload.userUpdate;
-		delete unprocessed_payload.id;
+		//!getting the proccessed data and the user id
 		const data_processed = await process_payload(unprocessed_payload);
-		const category_ids = data_processed.categories ? data_processed.categories : [];
+		let [res_user] = await db_helper.get(query.get_user_id_by_uuid(id, host));
+		const userId = res_user.id;
+		//!delete user categories and insert again with the updates ones
+		await db_helper.get(query.delete_categories_of_user(userId));
+		// for (const categoryId of data_processed.categories) {
+		// 	await db_helper.get(query.insert_user_category(userId, categoryId, 1));
+		// }
 		delete data_processed.categories;
-		const [res_user] = await db_helper.get(query.get_user_id_by_uuid(id, host));
-		let user_id;
-		if (res_user.id) {
-			user_id = res_user.id;
-			//delete all categories of user_id
-			const delete_categories = await db_helper.update(
-				query.delete_categories_of_user(user_id),
-				user_id,
-			);
-			if (!delete_categories) return result({ status: 404 });
-		}
-		let any_category_fail = false;
-		if (category_ids.length) {
-			//
-			for (category_uuid of category_ids) {
-				const [category_id_obj] = await db_helper.get(
-					category_query.get_category_id_by_uuid(category_uuid),
-				);
-				const user_category = { user_id, category_id: category_id_obj.id };
-				const res_categ = await db_helper.update(
-					query_user_has_category.create_user_has_category(user_category),
-					user_category,
-				);
-				if (!res_categ || res_categ.affectedRows < 1) {
-					any_category_fail = true;
-				}
-			}
-		}
-		if (any_category_fail) {
-			return result({ status: 404 });
-		}
-		const res = await db_helper.update(query.update_user(data_processed, id), data_processed);
-
-		if (!res.affectedRows) {
-			return result({ status: 404 });
-		}
+		//!update the user
+		await db_helper.update(query.update_user(data_processed, id), data_processed);
 
 		return result({ status: 200 });
 	} catch (error) {
@@ -458,7 +431,7 @@ const process_payload = (payload) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const processed_payload = {};
-			for (const [key, val] of Object.entries(payload)) {
+			for (var [key, val] of Object.entries(payload)) {
 				if (val !== undefined || typeof val !== 'object') {
 					switch (key) {
 						case 'name':
@@ -469,9 +442,6 @@ const process_payload = (payload) => {
 							break;
 						case 'email':
 							processed_payload.email = val.trim();
-							break;
-						case 'categories':
-							processed_payload.categories = val;
 							break;
 						case 'position':
 							processed_payload.position = val;
@@ -484,8 +454,23 @@ const process_payload = (payload) => {
 							if (!res_country) return reject({ status: 404 });
 							processed_payload.country = res_country.code;
 							break;
+						case 'birthday':
+							processed_payload[key] = val;
+							break;
+						case 'phone':
+							processed_payload[key] = JSON.stringify(val);
+							break;
+						case 'avatar':
+							processed_payload[key] = val;
+							break;
+						case 'categories':
+							val = val.map((id) => `"${id}"`);
+							let ids = await db_helper.get(query.get_user_categories(val));
+							ids = ids.map((id) => id.id);
+							processed_payload[key] = ids;
+							break;
 						default:
-							//return reject({ status: 400 });
+							return reject({ status: 400 });
 					}
 				}
 			}

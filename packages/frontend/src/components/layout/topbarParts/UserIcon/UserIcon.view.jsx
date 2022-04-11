@@ -14,8 +14,6 @@ import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-//import useStyles from './UserIcon.style';
-
 const UserIconView = forwardRef((props, ref) => {
 	return (
 		<Grid container alignItems="center" justifyContent="flex-end">
@@ -66,7 +64,6 @@ const UserIconView = forwardRef((props, ref) => {
 										id="composition-menu"
 										aria-labelledby="composition-button"
 									>
-										<>
 											<MenuItem>
 												<Link
 													to={'/home'}
@@ -106,7 +103,6 @@ const UserIconView = forwardRef((props, ref) => {
 													</Link>
 												</MenuItem>
 											) : null}
-										</>
 										<MenuItem onClick={props.handleLogout} style={{ color: '#FF0000' }}>
 											<ExitToAppIcon />
 											Logout

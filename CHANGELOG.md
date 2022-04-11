@@ -1,3 +1,41 @@
+# [1.1.0](https://github.com/dbar-makor/research-portal/compare/v1.0.10...v1.1.0) (2022-03-22)
+
+
+### Bug Fixes
+
+* 🐞 bugs fixing ([9cf2b0e](https://github.com/dbar-makor/research-portal/commit/9cf2b0e0df8f3b83cd5e6409d02bf684d54cca3d))
+* 🐞 enhancment to settings component ([a148382](https://github.com/dbar-makor/research-portal/commit/a1483820dbf3c0b247af6024553103c8addf2695))
+* 🐞 make the settings component reusable ([61abfba](https://github.com/dbar-makor/research-portal/commit/61abfbaa9ac9e9f168a22e4b89b391e2a581a264))
+* 🐞 settings for authors- attemp to fix route ([ded3051](https://github.com/dbar-makor/research-portal/commit/ded305108f295693ad2129128745af091144fa4f))
+* 🐞 various bug fixes for author views ([5abf4ea](https://github.com/dbar-makor/research-portal/commit/5abf4ea8ddbb43f0ea8e1faffb764cae5eb082ea))
+
+
+### Features
+
+* 🔥 edit profile component creation ([9d39487](https://github.com/dbar-makor/research-portal/commit/9d39487b2cbd900a406a840c23be08c557b6d077))
+
+## [1.0.11](https://github.com/dbar-makor/research-portal/compare/v1.0.10...v1.0.11) (2022-03-22)
+
+
+### Bug Fixes
+
+* 🐞 bugs fixing ([9cf2b0e](https://github.com/dbar-makor/research-portal/commit/9cf2b0e0df8f3b83cd5e6409d02bf684d54cca3d))
+* 🐞 enhancment to settings component ([a148382](https://github.com/dbar-makor/research-portal/commit/a1483820dbf3c0b247af6024553103c8addf2695))
+* 🐞 make the settings component reusable ([61abfba](https://github.com/dbar-makor/research-portal/commit/61abfbaa9ac9e9f168a22e4b89b391e2a581a264))
+* 🐞 settings for authors- attemp to fix route ([ded3051](https://github.com/dbar-makor/research-portal/commit/ded305108f295693ad2129128745af091144fa4f))
+* 🐞 various bug fixes for author views ([5abf4ea](https://github.com/dbar-makor/research-portal/commit/5abf4ea8ddbb43f0ea8e1faffb764cae5eb082ea))
+
+## [1.0.11](https://github.com/dbar-makor/research-portal/compare/v1.0.10...v1.0.11) (2022-03-22)
+
+
+### Bug Fixes
+
+* 🐞 bugs fixing ([9cf2b0e](https://github.com/dbar-makor/research-portal/commit/9cf2b0e0df8f3b83cd5e6409d02bf684d54cca3d))
+* 🐞 enhancment to settings component ([a148382](https://github.com/dbar-makor/research-portal/commit/a1483820dbf3c0b247af6024553103c8addf2695))
+* 🐞 make the settings component reusable ([61abfba](https://github.com/dbar-makor/research-portal/commit/61abfbaa9ac9e9f168a22e4b89b391e2a581a264))
+* 🐞 settings for authors- attemp to fix route ([ded3051](https://github.com/dbar-makor/research-portal/commit/ded305108f295693ad2129128745af091144fa4f))
+* 🐞 various bug fixes for author views ([5abf4ea](https://github.com/dbar-makor/research-portal/commit/5abf4ea8ddbb43f0ea8e1faffb764cae5eb082ea))
+
 ## [1.0.11](https://github.com/dbar-makor/research-portal/compare/v1.0.10...v1.0.11) (2022-03-22)
 
 

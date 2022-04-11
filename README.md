@@ -7,5 +7,5 @@
 - [ESLint] - Linting the code and prevents bad code
 - [Git] - Version manager for the repository
 - [Prettier] - Styling your code
-- [Semantic Release] - Documents repository releases and updating package.json version & releasing AWS deployment version
+- [Semantic Release] - Documents repository releases and updating package.json version
 - [Yarn] - Package manager

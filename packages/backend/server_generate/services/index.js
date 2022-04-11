@@ -3,6 +3,7 @@ const CategoryService = require('./CategoryService')
 const CommentService = require('./CommentService')
 const CompanyService = require('./CompanyService')
 const ContractService = require('./ContractService')
+const EnigmaXService = require('./EnigmaXService')
 const FileService = require('./FileService')
 const InvoiceService = require('./InvoiceService')
 const ProspectService = require('./ProspectService')
@@ -18,6 +19,7 @@ module.exports = {
   CommentService,
   CompanyService,
   ContractService,
+  EnigmaXService,
   FileService,
   InvoiceService,
   ProspectService,

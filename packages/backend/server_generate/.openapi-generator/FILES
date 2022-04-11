@@ -8,6 +8,7 @@ controllers/CommentController.js
 controllers/CompanyController.js
 controllers/ContractController.js
 controllers/Controller.js
+controllers/EnigmaXController.js
 controllers/FileController.js
 controllers/InvoiceController.js
 controllers/ProspectController.js
@@ -26,6 +27,7 @@ services/CategoryService.js
 services/CommentService.js
 services/CompanyService.js
 services/ContractService.js
+services/EnigmaXService.js
 services/FileService.js
 services/InvoiceService.js
 services/ProspectService.js

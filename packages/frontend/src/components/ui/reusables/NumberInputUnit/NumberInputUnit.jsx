@@ -3,6 +3,7 @@ import React from 'react';
 import NumberInputUnitView from './NumberInputUnit.view';
 
 const NumberInputUnit = (props) => {
+	console.log('props', props);
 	const error = props.error ? props.error : null;
 	return (
 		<NumberInputUnitView

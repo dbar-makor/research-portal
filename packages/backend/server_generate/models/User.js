@@ -218,6 +218,7 @@ User.getUserById = async (payload, result) => {
 				id: user.id,
 				type: res_level.name,
 				avatar: user.avatar,
+				position: user.position,
 				name: user.name,
 				status: user.status ? true : false,
 				country: {
@@ -232,6 +233,7 @@ User.getUserById = async (payload, result) => {
 				total_clients: res_count_clients ? res_count_clients.count : 0,
 				last_connected_at: user.last_connected_at,
 				total_prospects: res_count_prospects ? res_count_prospects.count : 0,
+				phone: user.phone,
 			};
 			user = format_user;
 		}
@@ -259,6 +261,7 @@ User.getUserById = async (payload, result) => {
 				total_views: res_statistics ? res_statistics.views : null,
 				last_connected_at: user.last_connected_at,
 				total_published: res_statistics ? res_statistics.posts : null,
+				phone: user.phone,
 			};
 			user = format_user;
 		}
@@ -482,7 +485,7 @@ const process_payload = (payload) => {
 							processed_payload.country = res_country.code;
 							break;
 						default:
-							return reject({ status: 400 });
+							//return reject({ status: 400 });
 					}
 				}
 			}

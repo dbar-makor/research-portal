@@ -1,6 +1,6 @@
 const get_country = () => {
 	return `
-    SELECT name, iso_code_2 AS code FROM country; 
+    SELECT name, iso_code_2 AS code, dialing_code FROM country; 
   `;
 };
 const get_sales = () => {

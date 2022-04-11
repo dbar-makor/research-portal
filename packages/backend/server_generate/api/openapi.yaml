@@ -28,6 +28,7 @@ tags:
 - name: prospect
 - name: subscription
 - name: settings
+- name: enigma-x
 paths:
   /auth:
     delete:
@@ -2566,6 +2567,31 @@ paths:
       - settings
       x-codegen-request-body-name: notifications_settings_update
       x-eov-operation-handler: controllers/SettingsController
+  /enigma-x/publications:
+    get:
+      description: return array of publications
+      operationId: enigmaXGetPublications
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enigma-x_publications'
+          description: successful operation
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: 'public publications for enigma-x '
+      tags:
+      - enigma-x
+      x-eov-operation-handler: controllers/EnigmaXController
 components:
   requestBodies:
     inline_object:
@@ -3627,6 +3653,43 @@ components:
           type: object
         is_active:
           type: boolean
+      type: object
+    enigma-x_publications:
+      example:
+        publications:
+        - author_name: author_name
+          image: image
+          comments: 5
+          description: description
+          created_at: YYYY-MM-DD
+          dislikes: 5
+          title: title
+          content: content
+          shares: 0
+          updated_at: YYYY-MM-DD
+          id: id
+          views: 6
+          status: published
+          likes: 1
+        - author_name: author_name
+          image: image
+          comments: 5
+          description: description
+          created_at: YYYY-MM-DD
+          dislikes: 5
+          title: title
+          content: content
+          shares: 0
+          updated_at: YYYY-MM-DD
+          id: id
+          views: 6
+          status: published
+          likes: 1
+      properties:
+        publications:
+          items:
+            $ref: '#/components/schemas/publication_by_author_id_publications'
+          type: array
       type: object
     inline_object:
       properties:

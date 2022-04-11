@@ -54,7 +54,7 @@ const get_user_by_uuid = (uuid) => {
 	return `
     SELECT
     u.id AS user_id, u.uuid AS id, u.name,u.status,u.country, u.username, u.avatar, u.email,u.phone, 
-    u.last_login_at AS last_connected_at, u.connection_count, u.created_at
+    u.last_login_at AS last_connected_at, u.connection_count, u.created_at ,u.position
     FROM user u
     JOIN level l ON l.id = u.level_id
     WHERE u.uuid = '${uuid}' AND is_active = 1;`;

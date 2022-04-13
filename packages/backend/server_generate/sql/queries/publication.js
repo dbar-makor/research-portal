@@ -226,7 +226,7 @@ const update_attachments = (data, publication_id) => {
 	return `
   UPDATE attachment
   SET ${Object.keys(data).map((key) => `${key} = ? `)}
-  WHERE publication_id = ${publication_id} AND type='main_bg';
+  WHERE publication_id = ${publication_id};
   `;
 };
 const decreas_posts = (user_id) => {

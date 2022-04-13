@@ -391,12 +391,11 @@ Publication.updatePublication = async (payload, result) => {
 		const { id: user_id } = payload.bearerAuth.user;
 		const unprocessed_data = payload.publicationUpdate;
 		const status = unprocessed_data.status;
-		delete unprocessed_data.status;
 		const { id: publication_uuid } = payload;
 		delete unprocessed_data.id;
 
 		const processed_data = await process_data(unprocessed_data);
-		
+
 		const categories = processed_data.categories;
 		const tags = processed_data.tags;
 		const events = processed_data.events;
@@ -406,9 +405,9 @@ Publication.updatePublication = async (payload, result) => {
 		delete processed_data.events;
 		delete processed_data.attachments;
 		if (status == 'published') {
-			console.log('i`m here');
 			processed_data.published_at = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 		}
+		delete processed_data.status;
 		const [res_publication_id] = await db_helper.get(query.get_publication_id_by_uuid(publication_uuid));
 		const publication_id = res_publication_id.id;
 		//get the total words befor update;
@@ -468,11 +467,11 @@ Publication.updatePublication = async (payload, result) => {
 				query.delete_categories_of_publication(publication_id),
 				publication_id,
 			);
-			if (!delete_categories.affectedRows) {
-				console.log('i`m here4');
+			// if (!delete_categories.affectedRows) {
+			// 	console.log('i`m here4');
 
-				return result({ status: 400 });
-			}
+			// 	return result({ status: 400 });
+			// }
 			console.log('categories', categories);
 			for (category_uuid of categories) {
 				const [category] = await db_helper.get(query.get_category_id_by_uuid(category_uuid));
@@ -578,6 +577,7 @@ Publication.updatePublication = async (payload, result) => {
 		if (attachments) {
 			// Upload files to bucket & save to db
 			for (const attachment of attachments) {
+				console.log('attachment', attachment);
 				//updalod to bucket
 				// const { file_name, file_name_system, type } = attachment.file_name
 				//let res_file = await bucket_service.upload_file_to_bucket(file_name)
@@ -1019,12 +1019,19 @@ const process_data = (unprocessed_data) => {
 						break;
 					case 'categories':
 						if (isArray(val)) {
+							console.log('unprocessed_data', unprocessed_data);
 							if (unprocessed_data['status'] === 'draft') processed_data[key] = val;
 							else {
 								if (val.length) processed_data[key] = val;
-								else return reject({ status: 400 });
+								else {
+									console.log(1);
+									return reject({ status: 400 });
+								}
 							}
-						} else return reject({ status: 400 });
+						} else {
+							console.log(2);
+							return reject({ status: 400 });
+						}
 						break;
 					case 'tags':
 						if (isArray(val)) {
@@ -1038,10 +1045,14 @@ const process_data = (unprocessed_data) => {
 									new_tag['id'] = tag_value['id'];
 									processed_data[key].push(new_tag);
 								} else {
+									console.log(3);
 									return reject({ status: 400 });
 								}
 							}
-						} else return reject({ status: 400 });
+						} else {
+							console.log(4);
+							return reject({ status: 400 });
+						}
 						break;
 					case 'events':
 						if (isArray(val)) {
@@ -1049,6 +1060,7 @@ const process_data = (unprocessed_data) => {
 							for (const event_value of Object.values(val)) {
 								const new_event = {};
 								if (!event_value['title'] || !event_value['date']) {
+									console.log(5);
 									return reject({ status: 400 });
 								} else {
 									if (event_value['id']) {
@@ -1083,9 +1095,15 @@ const process_data = (unprocessed_data) => {
 								);
 
 								if (isMainBgExist) processed_data[key] = [...val];
-								else return reject({ status: 400 });
+								else {
+									console.log(6);
+									return reject({ status: 400 });
+								}
 							}
-						} else return reject({ status: 400 });
+						} else {
+							console.log(7);
+							return reject({ status: 400 });
+						}
 						break;
 					case 'comments':
 						processed_data[key] = val;
@@ -1117,7 +1135,6 @@ const process_data = (unprocessed_data) => {
 					case 'published_at':
 						processed_data[key] = moment(val, 'YYYY-MM-DD').toDate();
 						break;
-
 					default:
 						return reject({ status: 404 });
 				}

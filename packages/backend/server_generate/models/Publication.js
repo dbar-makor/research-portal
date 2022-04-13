@@ -318,13 +318,14 @@ Publication.getPublicationById = async (payload, result) => {
 			publication_comments.push(format_comment);
 		}
 		if (publication.type == 'live') {
+			console.log('publication', publication);
 			let format_publication = {
 				id: publication.uuid,
 				published_at: publication.status ? publication.status : null,
 				status: publication.status ? 'published' : 'draft',
 				attachments: res_attachments ? res_attachments : [],
 				comments: publication.comments,
-				content: publication.content,
+				content: publication.content && publication.content !== '{}' ? publication.content : {},
 				created_at: publication.created_at,
 				updated_at: publication.updated_at,
 				description: publication.description,
@@ -472,7 +473,6 @@ Publication.updatePublication = async (payload, result) => {
 
 			// 	return result({ status: 400 });
 			// }
-			console.log('categories', categories);
 			for (category_uuid of categories) {
 				const [category] = await db_helper.get(query.get_category_id_by_uuid(category_uuid));
 				const category_id = category.id;
@@ -575,6 +575,11 @@ Publication.updatePublication = async (payload, result) => {
 
 		// Handle attachments:
 		if (attachments) {
+			//delete all existing attachment of publication
+			const delete_attachments = await db_helper.update(
+				query.delete_attachments(publication_id),
+				publication_id,
+			);
 			// Upload files to bucket & save to db
 			for (const attachment of attachments) {
 				console.log('attachment', attachment);
@@ -583,9 +588,10 @@ Publication.updatePublication = async (payload, result) => {
 				//let res_file = await bucket_service.upload_file_to_bucket(file_name)
 				attachment.type = attachment.file_type;
 				delete attachment.file_type;
+				attachment.publication_id = publication_id;
 				//save in db
 				const res_save_in_db = await db_helper.update(
-					query.update_attachments(attachment, publication_id),
+					query.create_attachments(attachment),
 					attachment,
 				);
 				if (!res_save_in_db.affectedRows) {
@@ -1142,9 +1148,24 @@ const process_data = (unprocessed_data) => {
 		}
 
 		const isInfoExist = Object.values(processed_data).some((data) => {
-			if (isArray(data)) return data.length > 0;
-			else if (typeof data === 'object') return Object.values(data).length > 0;
-			else return data.length > 0;
+			console.log('processed_data', processed_data);
+			if (isArray(data)) {
+				console.log('yesss');
+				console.log(data.length > 0, data);
+				return data.length > 0;
+			} else if (typeof data === 'object') {
+				console.log(Object.values(data).length > 0, data);
+				return Object.values(data).length > 0;
+			} else if (
+				data !== 'draft' &&
+				data !== 'published' &&
+				data !== 'live' &&
+				data !== 'dead' &&
+				data !== '{}'
+			) {
+				console.log(data.length);
+				return data.length > 0;
+			}
 		});
 
 		if (isInfoExist) return resolve(processed_data);

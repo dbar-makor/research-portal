@@ -258,6 +258,10 @@ const delete_publication_has_tag = (publication_id) => {
 const delete_events_of_publication = (publication_id) => {
 	return `DELETE FROM event WHERE (publication_id) IN (${publication_id})`;
 };
+const delete_attachments=(publication_id) => {
+  return `DELETE FROM attachment WHERE publication_id=${publication_id}`;
+
+}
 const get_categories_of_user = (user_id) => {
 	return `SELECT c.id ,c.name FROM user_has_category u
   INNER JOIN category c ON c.id=u.category_id WHERE u.user_id=${user_id};`;
@@ -310,6 +314,7 @@ const get_publication_by_id = (id) => {
 module.exports = {
 	create_publication,
 	create_attachments,
+  delete_attachments,
 	get_publications_by_category_id,
 	get_publication_by_uuid,
 	get_publication_id_by_uuid,

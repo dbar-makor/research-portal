@@ -606,7 +606,7 @@ Publication.updatePublication = async (payload, result) => {
 		return result({ status: 201 });
 	} catch (e) {
 		console.log('There was an error updating Publication', e);
-		return result({ status: 500 });
+		return result(e);
 	}
 };
 

@@ -114,7 +114,7 @@ FROM publication p
 inner join user u on 
 u.id=  p.user_id
 WHERE p.user_id=${id}  AND p.is_active=1
-ORDER BY p.created_at DESC;`;
+ORDER BY p.updated_at DESC;`;
 };
 const get_attachments_by_publication_id = (id) => {
 	return `

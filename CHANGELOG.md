@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/dbar-makor/research-portal/compare/v1.2.3...v1.2.4) (2022-04-13)
+
+
+### Bug Fixes
+
+* 🐞 bug fix ([891465f](https://github.com/dbar-makor/research-portal/commit/891465fd599148cc0b0f078bdcc19ddcd63ed968))
+
 ## [1.2.3](https://github.com/dbar-makor/research-portal/compare/v1.2.2...v1.2.3) (2022-04-13)
 
 
